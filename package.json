@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "build-framework": "npx webpack --config framework.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
+    "watch-framework": "npx webpack --watch --config framework.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
+    "build-sample": "npx webpack --config sample.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
+    "watch-sample": "npx webpack --watch --config sample.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
+    "build-all": "npm-run-all build-framework build-sample",
+    "watch-all": "npm-run-all watch-framework watch-sample"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "glob": "^7.1.2"
+  },
+  "private": true
+}
