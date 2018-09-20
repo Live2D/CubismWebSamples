@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+
+    "configurations": [
+        // Webサーバー上にあるファイルをデバッグ
+        {
+            // デバッグ設定の名称
+            "name": "Launch remote website with sourcemaps",
+            
+            // デバッグ種別を指定(chrome)
+            "type": "chrome",
+
+            // launchまたはattachを指定
+            "request": "launch",
+
+            // Webサーバー上にあるデバッグ対象のURLを指定
+            "url": "http://localhost:5500/Sample/TypeScript/Demo/index.html",
+
+            // マッピングするローカルファイルが配置されているディレクトリを指定
+            "webRoot": "${workspaceFolder}/",
+
+            // ソースマップの有効・向こうの指定（true/false）
+            "sourceMaps": true,
+        }
+    ]
+}
