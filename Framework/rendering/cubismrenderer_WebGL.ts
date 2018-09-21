@@ -901,7 +901,7 @@ export namespace Live2DCubismFramework
                 // テクスチャ設定
                 this.gl.activeTexture(this.gl.TEXTURE0);
                 this.gl.bindTexture(this.gl.TEXTURE_2D, textureId);
-                this.gl.uniform1f(shaderSet.samplerTexture0Location, 0);
+                this.gl.uniform1i(shaderSet.samplerTexture0Location, 0);
 
                 // 頂点配列の設定(VBO)
                 if(vertexBuffer == null)
