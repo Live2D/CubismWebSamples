@@ -38,20 +38,31 @@ Cubism Coreライブラリと組み合わせて使用します。
 
 5. Visual Studio Codeを再起動します。  
 
-6. ターミナルを起動し、package.jsonがあるディレクトリ上で npm install を実行すると、必要な物がインストールされます。  
-    (例)E:\Workspace\CubismWebSamples  
+6. ビルドに必要な物をインストールします。  
+package.jsonがあるディレクトリに移動し、下記コマンドを実行します。  
+`npm install`
 
 
 # TypeScript Core Binding
 
 CoreライブラリはTypeScript用に以下プロジェクトでバインドし、出力されたファイルをCoreフォルダに入れる必要があります。  
-- https://github.com/Live2D/CubismBindings
 
-CubismBindings/data/templates/js/.in/live2dcubismcore.tsの名前空間をLIVE2DCUBISMCOREからLive2DCubismCoreに変更し、  
-CubismBindingsのREADME.mdに従いバインドします。  
+インストール、バインドに必要な手順については下記を参考にしてください。  
+https://github.com/Live2D/CubismBindings
+
+動作確認バージョン
+- emscripten 1.37.40  
+- Python 2.7.15  
+- PyYAML 3.12  
+- Pystache 0.5.4  
+
+バインドに必要なemscriptenについては下記を参考にしてください。  
+https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html#updating-the-sdk
 
 
 # ビルド方法
+
+上記TypeScript環境を前提とした操作になります。  
 
 1. Visual Studio Codeでプロジェクトフォルダを開きます。  
 (例)E:\Workspace\CubismWebSamples
