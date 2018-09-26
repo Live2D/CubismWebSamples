@@ -6,7 +6,7 @@
 */
 
 import {Live2DCubismFramework as live2dcubismframework} from "../../../../Framework/live2dcubismframework";
-import {Live2DCubismFramework as cubismid} from "../../../../Framework/id/CubismId";
+import {Live2DCubismFramework as cubismid} from "../../../../Framework/id/cubismid";
 import {Live2DCubismFramework as cubismusermodel} from "../../../../Framework/model/cubismusermodel";
 import {Live2DCubismFramework as icubismmodelsetting} from "../../../../Framework/icubismmodelsetting";
 import {Live2DCubismFramework as cubismmodelsettingjson} from "../../../../Framework/cubismmodelsettingjson";
