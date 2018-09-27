@@ -10,7 +10,6 @@ import {Live2DCubismFramework as cubismmatrix44} from "../../../../Framework/mat
 import Csm_CubismMatrix44 = cubismmatrix44.CubismMatrix44;
 import Csm_CubismFramework = live2dcubismframework.CubismFramework;
 import Csm_Option = Option;
-import { LAppAllocator } from "./lappallocator";
 import { LAppView } from "./lappview";
 import { LAppPal } from "./lapppal";
 import { LAppTextureManager } from "./lapptexturemanager";
@@ -245,7 +244,6 @@ export class LAppDelegate
         this._mouseY = 0.0;
         this._isEnd = false;
 
-        this._cubismAllocator = new LAppAllocator();
         this._cubismOption = new Csm_Option();
         this._view = new LAppView();
         this._textureManager = new LAppTextureManager();
@@ -271,7 +269,6 @@ export class LAppDelegate
         LAppPal.updateTime();
     }
 
-    _cubismAllocator: LAppAllocator;    // Cubism3 Allocator
     _cubismOption: Csm_Option;          // Cubism3 Option
     _view: LAppView;                    // View情報
     _captured: boolean;                 // クリックしているか
@@ -286,7 +283,7 @@ export class LAppDelegate
 /**
  * クリックしたときに呼ばれる。
  */
-function onClickBegan(e): void
+function onClickBegan(e: MouseEvent): void
 {
     LAppDelegate.getInstance()._captured = true;
     if(!LAppDelegate.getInstance()._view)
@@ -304,9 +301,9 @@ function onClickBegan(e): void
 /**
  * マウスポインタが動いたら呼ばれる。
  */
-function onMouseMoved(e): void
+function onMouseMoved(e: MouseEvent): void
 {
-    let rect = e.target.getBoundingClientRect();
+    let rect = e.toElement.getBoundingClientRect();
     let posX: number = e.clientX - rect.left;
     let posY: number = e.clientY - rect.top;
 
@@ -327,10 +324,10 @@ function onMouseMoved(e): void
 /**
  * クリックが終了したら呼ばれる。
  */
-function onClickEnded(e): void
+function onClickEnded(e: MouseEvent): void
 {
     LAppDelegate.getInstance()._captured = false;
-    let rect = e.target.getBoundingClientRect();
+    let rect = e.toElement.getBoundingClientRect();
     let posX: number = e.clientX - rect.left;
     let posY: number = e.clientY - rect.top;
 

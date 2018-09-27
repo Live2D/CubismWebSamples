@@ -9,17 +9,17 @@ import {Live2DCubismFramework as live2dcubismframework, Option} from "../live2dc
 import CubismFramework = live2dcubismframework.CubismFramework;
 import { CSM_LOG_LEVEL, CSM_LOG_LEVEL_VERBOSE, CSM_LOG_LEVEL_DEBUG, CSM_LOG_LEVEL_INFO, CSM_LOG_LEVEL_WARNING, CSM_LOG_LEVEL_ERROR } from "../cubismframeworkconfig";
 
-export const CubismLogPrint = (level: Option.LogLevel, fmt: string, ... args) => 
+export const CubismLogPrint = (level: Option.LogLevel, fmt: string, ... args: any[]) => 
 {
     Live2DCubismFramework.CubismDebug.print(level, "[CSM]" + fmt, args);
 }
 
-export const CubismLogPrintIn = (level: Option.LogLevel, fmt: string, ... args) =>
+export const CubismLogPrintIn = (level: Option.LogLevel, fmt: string, ... args: any[]) =>
 {
     CubismLogPrint(level, fmt + "\n", args);
 }
 
-export let CSM_ASSERT = (expr) =>
+export let CSM_ASSERT = (expr: any) =>
 {
     console.assert(expr);
 };
