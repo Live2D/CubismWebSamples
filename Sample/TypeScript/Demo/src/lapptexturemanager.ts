@@ -46,7 +46,7 @@ export class LAppTextureManager
      * @param fileName 読み込む画像ファイルパス名
      * @return 画像情報、読み込み失敗時はnullを返す
      */
-    public createTextureFromPngFile(fileName, callback): TextureInfo
+    public createTextureFromPngFile(fileName: string, callback: any): TextureInfo
     {
         // search loaded texture already
         for(let i: number = 0; i < this._textures.getSize(); i++)

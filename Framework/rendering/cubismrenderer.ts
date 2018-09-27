@@ -242,7 +242,7 @@ export namespace Live2DCubismFramework
         /**
          * モデル描画の実装
          */
-        public abstract doDrawModel();
+        public abstract doDrawModel(): void;
 
         /**
          * 描画オブジェクト（アートメッシュ）を描画する
@@ -258,17 +258,17 @@ export namespace Live2DCubismFramework
          */
         public abstract drawMesh(textureNo: number, indexCount: number, vertexCount: number,
                                     indexArray: Uint16Array, vertexArray: Float32Array, uvArray: Float32Array,
-                                    opacity: number, colorBlendMode: CubismRenderer.CubismBlendMode);
+                                    opacity: number, colorBlendMode: CubismRenderer.CubismBlendMode): void;
 
         /**
          * モデル描画直前のレンダラのステートを保持する
          */
-        public abstract saveProfile();
+        public abstract saveProfile(): void;
 
         /**
          * モデル描画直前のレンダラのステートを復帰させる
          */
-        public abstract restoreProfile();
+        public abstract restoreProfile(): void;
 
         protected _mvpMatrix4x4: CubismMatrix44;                  // Model-View-Projection 行列
         protected _modelColor: CubismRenderer.CubismTextureColor; // モデル自体のカラー（RGBA）

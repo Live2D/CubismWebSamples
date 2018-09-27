@@ -393,7 +393,7 @@ export namespace Live2DCubismFramework
          * @param vertexInde 物理点のインデックス
          * @return 物理点の位置
          */
-        public getParticlePosition(physicsSettingIndex: number, vertexIndex): CubismVector2
+        public getParticlePosition(physicsSettingIndex: number, vertexIndex: number): CubismVector2
         {
             let ret: CubismVector2 = new CubismVector2(0, 0);
             ret.x = this._json.getRoot().getMap().getValue(PhysicsSettings).getVector().at(physicsSettingIndex).getMap().getValue(Vertices).getVector().at(vertexIndex).getMap().getValue(Position).getMap().getValue(X).toFloat();

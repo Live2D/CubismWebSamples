@@ -349,7 +349,7 @@ export namespace Live2DCubismFramework
          */
         public checkEndOfFile(): boolean
         {
-            return this._root[1].equals("EOF");
+            return this._root.getArray()[1].equals("EOF");
         }
 
         /**
