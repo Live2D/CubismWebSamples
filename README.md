@@ -51,7 +51,7 @@ CoreライブラリはTypeScript用に以下プロジェクトでバインドし
 https://github.com/Live2D/CubismBindings
 
 動作確認バージョン
-- emscripten 1.37.40  
+- emscripten 1.37.40, 1.38.12  
 - Python 2.7.15  
 - PyYAML 3.12  
 - Pystache 0.5.4  
