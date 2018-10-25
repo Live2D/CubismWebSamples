@@ -1,12 +1,11 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
 * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
 */
 
-import {Live2DCubismFramework as live2dcubismframework, Option} from "../../../../Framework/live2dcubismframework";
-import Csm_CubismFramework_Option = Option;
+import {LogLevel} from "../../../../Framework/live2dcubismframework";
 
 /**
  * Sample Appで使用する定数
@@ -66,5 +65,5 @@ export namespace LAppDefine
     export const DebugTouchLogEnable: boolean = false;
 
     // Frameworkから出力するログのレベル設定
-    export const CubismLoggingLevel: Csm_CubismFramework_Option.LogLevel = Csm_CubismFramework_Option.LogLevel.LogLevel_Verbose;
+    export const CubismLoggingLevel: LogLevel = LogLevel.LogLevel_Verbose;
 }

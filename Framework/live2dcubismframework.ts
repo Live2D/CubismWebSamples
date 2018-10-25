@@ -214,13 +214,13 @@ export namespace Live2DCubismFramework
          *
          * @return  現在のログ出力レベル設定の値
          */
-        public static getLoggingLevel(): Option.LogLevel
+        public static getLoggingLevel(): LogLevel
         {
             if (s_option != null)
             {
                 return s_option.loggingLevel;
             }
-            return Option.LogLevel.LogLevel_Off;
+            return LogLevel.LogLevel_Off;
         }
 
         /**
@@ -263,21 +263,18 @@ export namespace Live2DCubismFramework
 
 export class Option
 {
-    loggingLevel: Option.LogLevel;  // ログ出力レベルの設定
+    loggingLevel: LogLevel;  // ログ出力レベルの設定
 }
 
 /**
  * ログ出力のレベル
  */
-export namespace Option
+export enum LogLevel
 {
-    export enum LogLevel
-    {
-        LogLevel_Verbose = 0,   // 詳細ログ
-        LogLevel_Debug,         // デバッグログ
-        LogLevel_Info,          // Infoログ
-        LogLevel_Warning,       // 警告ログ
-        LogLevel_Error,         // エラーログ
-        LogLevel_Off            // ログ出力無効
-    }
+    LogLevel_Verbose = 0,   // 詳細ログ
+    LogLevel_Debug,         // デバッグログ
+    LogLevel_Info,          // Infoログ
+    LogLevel_Warning,       // 警告ログ
+    LogLevel_Error,         // エラーログ
+    LogLevel_Off            // ログ出力無効
 }

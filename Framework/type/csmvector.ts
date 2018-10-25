@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -175,7 +175,7 @@ export namespace Live2DCubismFramework
          * @param begin　挿入するコンテナの開始位置
          * @param end 挿入するコンテナの終端位置
          */
-        public insert(position: csmVector.iterator<T>, begin: csmVector.iterator<T>, end: csmVector.iterator<T>): void
+        public insert(position: iterator<T>, begin: iterator<T>, end: iterator<T>): void
         {
             let dstSi: number = position._index;
             let srcSi: number = begin._index;
@@ -226,7 +226,7 @@ export namespace Live2DCubismFramework
          * コンテナから要素を削除して他の要素をシフトする
          * @param ite 削除する要素
          */
-        public erase(ite: csmVector.iterator<T>): csmVector.iterator<T>
+        public erase(ite: iterator<T>): iterator<T>
         {
             let index: number = ite._index;
             if(index < 0 || this._size <= index)
@@ -238,7 +238,7 @@ export namespace Live2DCubismFramework
             this._ptr.splice(index, 1);
             --this._size;
 
-            let ite2: csmVector.iterator<T> = new csmVector.iterator<T>(this, index);   // 終了
+            let ite2: iterator<T> = new iterator<T>(this, index);   // 終了
             return ite2;
         }
 
@@ -266,20 +266,20 @@ export namespace Live2DCubismFramework
         /**
          * コンテナの先頭要素を返す
          */
-        public begin(): csmVector.iterator<T>
+        public begin(): iterator<T>
         {
-            let ite: csmVector.iterator<T> = (this._size == 0) 
+            let ite: iterator<T> = (this._size == 0) 
                                 ? this.end()
-                                : new csmVector.iterator<T>(this, 0);
+                                : new iterator<T>(this, 0);
             return ite;
         }
 
         /**
          * コンテナの終端要素を返す
          */
-        public end(): csmVector.iterator<T>
+        public end(): iterator<T>
         {
-            let ite: csmVector.iterator<T> = new csmVector.iterator<T>(this, this._size);
+            let ite: iterator<T> = new iterator<T>(this, this._size);
             return ite;
         }
 
@@ -300,97 +300,94 @@ export namespace Live2DCubismFramework
         static readonly s_defaultSize = 10; // コンテナ初期化のデフォルトサイズ
     }
 
-    export namespace csmVector
+    export class iterator<T>
     {
-        export class iterator<T>
+        /**
+         * コンストラクタ
+         */
+        public constructor(v?: csmVector<T>, index?: number)
         {
-            /**
-             * コンストラクタ
-             */
-            public constructor(v?: csmVector<T>, index?: number)
-            {
-                this._vector = (v != undefined) ? v : null;
-                this._index = (index != undefined) ? index : 0;
-            }
-
-            /**
-             * 代入
-             */
-            public set(ite: iterator<T>): iterator<T>
-            {
-                this._index = ite._index;
-                this._vector = ite._vector;
-                return this;
-            }
-
-            /**
-             * 前置き++演算
-             */
-            public preIncrement(): iterator<T>
-            {
-                ++this._index;
-                return this;
-            }
-            
-            /**
-             * 前置き--演算
-             */
-            public preDecrement(): iterator<T>
-            {
-                --this._index;
-                return this;
-            }
-
-            /**
-             * 後置き++演算子
-             */
-            public increment(): iterator<T>
-            {
-                let iteold = new iterator<T>(this._vector, this._index++);
-                this._vector = iteold._vector;
-                this._index = iteold._index;
-                return this;
-            }
-
-            /**
-             * 後置き--演算子
-             */
-            public decrement(): iterator<T>
-            {
-                let iteold = new iterator<T>(this._vector, this._index--);  // 古い値を保存
-                this._vector = iteold._vector;
-                this._index = iteold._index;
-                return this;
-            }
-
-            /**
-             * ptr
-             */
-            public ptr(): T
-            {
-                return this._vector._ptr[this._index];
-            }
-
-            /**
-             * =演算子のオーバーロード
-             */
-            public substitution(ite: iterator<T>): iterator<T>
-            {
-                this._index = ite._index;
-                this._vector = ite._vector;
-                return this;
-            }
-
-            /**
-             * !=演算子のオーバーロード
-             */
-            public notEqual(ite: iterator<T>): boolean
-            {
-                return (this._index != ite._index) || (this._vector != ite._vector);
-            }
-
-            _index: number; // コンテナのインデックス値
-            _vector: csmVector<T>;  // コンテナ
+            this._vector = (v != undefined) ? v : null;
+            this._index = (index != undefined) ? index : 0;
         }
+
+        /**
+         * 代入
+         */
+        public set(ite: iterator<T>): iterator<T>
+        {
+            this._index = ite._index;
+            this._vector = ite._vector;
+            return this;
+        }
+
+        /**
+         * 前置き++演算
+         */
+        public preIncrement(): iterator<T>
+        {
+            ++this._index;
+            return this;
+        }
+        
+        /**
+         * 前置き--演算
+         */
+        public preDecrement(): iterator<T>
+        {
+            --this._index;
+            return this;
+        }
+
+        /**
+         * 後置き++演算子
+         */
+        public increment(): iterator<T>
+        {
+            let iteold = new iterator<T>(this._vector, this._index++);
+            this._vector = iteold._vector;
+            this._index = iteold._index;
+            return this;
+        }
+
+        /**
+         * 後置き--演算子
+         */
+        public decrement(): iterator<T>
+        {
+            let iteold = new iterator<T>(this._vector, this._index--);  // 古い値を保存
+            this._vector = iteold._vector;
+            this._index = iteold._index;
+            return this;
+        }
+
+        /**
+         * ptr
+         */
+        public ptr(): T
+        {
+            return this._vector._ptr[this._index];
+        }
+
+        /**
+         * =演算子のオーバーロード
+         */
+        public substitution(ite: iterator<T>): iterator<T>
+        {
+            this._index = ite._index;
+            this._vector = ite._vector;
+            return this;
+        }
+
+        /**
+         * !=演算子のオーバーロード
+         */
+        public notEqual(ite: iterator<T>): boolean
+        {
+            return (this._index != ite._index) || (this._vector != ite._vector);
+        }
+
+        _index: number; // コンテナのインデックス値
+        _vector: csmVector<T>;  // コンテナ
     }
 }

@@ -96,6 +96,18 @@ F5で実行し、remote web site with sourcemapを選択します。
 当リポジトリの変更履歴については[コミットログ](https://github.com/Live2D/CubismWebSamples/commits/master)を参照ください。
 
 
+# 動作確認環境
+
+- Windows Chrome 70.0.3538.67  
+- Windows Firefox 63.0  
+- Windows Edge 17.17134  
+- macOS Chrome 70.0.3538.77  
+- macOS Firefox 63.0  
+- macOS Safari 12.0  
+- iOS Safari 12.0  
+- Android Chrome 70.0.3538.64  
+
+
 # TODO
 
 以下Core内関数の実装

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -12,18 +12,10 @@ import Csm_CubismMatrix44 = cubismMatrix44.CubismMatrix44;
 import { TouchManager } from "./touchmanager";
 import { LAppDefine } from "./lappdefine";
 import { LAppLive2DManager } from "./lapplive2dmanager";
-import { LAppDelegate, canvas} from "./lappdelegate";
+import { LAppDelegate, canvas, gl} from "./lappdelegate";
 import { LAppSprite } from "./lappsprite";
 import { TextureInfo } from "./lapptexturemanager";
 import { LAppPal } from "./lapppal";
-
-enum LoadStep
-{
-    BackImage,
-    GearImage,
-    PowerImage,
-    CompleteLoad
-}
 
 /**
  * 描画クラス。
@@ -35,8 +27,6 @@ export class LAppView
      */
     constructor()
     {
-        this._loadStep = LoadStep.BackImage;
-
         this._programId = null;
         this._back = null;
         this._gear = null;
@@ -86,14 +76,30 @@ export class LAppView
     }
 
     /**
+     * 解放する
+     */
+    public release(): void
+    {
+        this._viewMatrix = null;        
+        this._touchManager = null;
+        this._deviceToScreen = null;
+        
+        this._gear.release();
+        this._gear = null;
+        
+        this._back.release();
+        this._back = null;
+
+        gl.deleteProgram(this._programId);
+        this._programId = null;
+    }
+
+    /**
      * 描画する。
      */
     public render(): void
     {
-        if(this._loadStep != LoadStep.CompleteLoad)
-        {
-            return;
-        }
+        gl.useProgram(this._programId);
 
         if(this._back)
         {
@@ -103,6 +109,8 @@ export class LAppView
         {
             this._gear.render(this._programId);
         }
+
+        gl.flush();
 
         let live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
         
@@ -114,9 +122,8 @@ export class LAppView
      */
     public initializeSprite(): void
     {
-        let width: number, height: number;
-        width = canvas.width;
-        height = canvas.height;
+        let width: number = canvas.width;
+        let height: number = canvas.height;
 
         let textureManager = LAppDelegate.getInstance().getTextureManager();
         const resourcesPath = LAppDefine.ResourcesPath;
@@ -124,54 +131,36 @@ export class LAppView
         let imageName: string = "";
 
         // 背景画像初期化
-        if(this._loadStep == LoadStep.BackImage)
+        imageName = LAppDefine.BackImageName;
+
+        // 非同期なのでコールバック関数を作成
+        let initBackGroundTexture = (textureInfo: TextureInfo): void =>
         {
-            imageName = LAppDefine.BackImageName;
-    
-            // 非同期なのでコールバック関数を作成
-            let initBackGroundTexture = (textureInfo: TextureInfo): void =>
-            {
-                let x: number = width * 0.5;
-                let y: number = height * 0.5;
-    
-                let fwidth = textureInfo.width * 2.0;
-                let fheight = height * 0.95;
-                this._back = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
-                this._loadStep = LoadStep.GearImage;
-            }
-            let backGroundTexture: TextureInfo = textureManager.createTextureFromPngFile(resourcesPath + imageName, initBackGroundTexture);
-    
-            // 既に画像があれば直接初期化
-            if(backGroundTexture != null)
-            {
-                initBackGroundTexture(backGroundTexture);
-            }
-        }
+            let x: number = width * 0.5;
+            let y: number = height * 0.5;
+
+            let fwidth = textureInfo.width * 2.0;
+            let fheight = height * 0.95;
+            this._back = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
+        };
+
+        textureManager.createTextureFromPngFile(resourcesPath + imageName, initBackGroundTexture);
         
         // 歯車画像初期化
-        if(this._loadStep == LoadStep.GearImage)
+        imageName = LAppDefine.GearImageName;
+        let initGearTexture = (textureInfo: TextureInfo): void =>
         {
-            imageName = LAppDefine.GearImageName;
-            let initGearTexture = (textureInfo: TextureInfo): void =>
-            {
-                let x = width - textureInfo.width * 0.5;
-                let y = height - textureInfo.height * 0.5;
-                let fwidth = textureInfo.width;
-                let fheight = textureInfo.height;
-                this._gear = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
+            let x = width - textureInfo.width * 0.5;
+            let y = height - textureInfo.height * 0.5;
+            let fwidth = textureInfo.width;
+            let fheight = textureInfo.height;
+            this._gear = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
+        };
 
-                this._loadStep = LoadStep.CompleteLoad;
-            }
-            let gearTexture: TextureInfo = textureManager.createTextureFromPngFile(resourcesPath + imageName, initGearTexture);
-    
-            // 既に画像があれば直接初期化
-            if(gearTexture != null)
-            {
-                initGearTexture(gearTexture);
-            }
-        }
+        textureManager.createTextureFromPngFile(resourcesPath + imageName, initGearTexture);
 
-        if(this._loadStep == LoadStep.CompleteLoad)
+        // シェーダーを作成
+        if(this._programId == null)
         {
             this._programId = LAppDelegate.getInstance().createShader();
         }
@@ -285,6 +274,4 @@ export class LAppView
     _gear: LAppSprite;                      // ギア画像
     _changeModel: boolean;                  // モデル切り替えフラグ
     _isClick: boolean;                      // クリック中
-
-    _loadStep: number;
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -62,17 +62,8 @@ export namespace Live2DCubismFramework
         public drawModel(): void
         {
             if(this.getModel() == null) return;
-            /**
-             * doDrawModelの描画前と描画後に以下の関数を呼んでください
-             * ・saveProfile();
-             * ・restoreProfile();
-             * これはレンダラの描画設定を保存復帰させることで、
-             * モデル描画直前の状態に戻すための処理です。
-             */
 
-            this.saveProfile();
             this.doDrawModel();
-            this.restoreProfile();
         }
 
         /**
@@ -152,7 +143,7 @@ export namespace Live2DCubismFramework
          * 
          * @return RGBAのカラー情報
          */
-        public getModelColor(): CubismRenderer.CubismTextureColor
+        public getModelColor(): CubismTextureColor
         {
             return JSON.parse(JSON.stringify(this._modelColor));
         }
@@ -232,7 +223,7 @@ export namespace Live2DCubismFramework
             this._isPremultipliedAlpha = false;
             this._anisortopy = 0.0;
             this._model = null;
-            this._modelColor = new CubismRenderer.CubismTextureColor();
+            this._modelColor = new CubismTextureColor();
 
             // 単位行列に初期化
             this._mvpMatrix4x4 = new CubismMatrix44();
@@ -258,55 +249,42 @@ export namespace Live2DCubismFramework
          */
         public abstract drawMesh(textureNo: number, indexCount: number, vertexCount: number,
                                     indexArray: Uint16Array, vertexArray: Float32Array, uvArray: Float32Array,
-                                    opacity: number, colorBlendMode: CubismRenderer.CubismBlendMode): void;
-
-        /**
-         * モデル描画直前のレンダラのステートを保持する
-         */
-        public abstract saveProfile(): void;
-
-        /**
-         * モデル描画直前のレンダラのステートを復帰させる
-         */
-        public abstract restoreProfile(): void;
+                                    opacity: number, colorBlendMode: CubismBlendMode): void;
 
         protected _mvpMatrix4x4: CubismMatrix44;                  // Model-View-Projection 行列
-        protected _modelColor: CubismRenderer.CubismTextureColor; // モデル自体のカラー（RGBA）
+        protected _modelColor: CubismTextureColor; // モデル自体のカラー（RGBA）
         protected _isCulling: boolean;                            // カリングが有効ならtrue
         protected _isPremultipliedAlpha: boolean;                 // 乗算済みαならtrue
         protected _anisortopy: any;                            // テクスチャの異方性フィルタリングのパラメータ
         protected _model: CubismModel;                            // レンダリング対象のモデル
     }
 
-    export namespace CubismRenderer
+    export enum CubismBlendMode
     {
-        export enum CubismBlendMode
-        {
-            CubismBlendMode_Normal = 0,         // 通常
-            CubismBlendMode_Additive = 1,       // 加算
-            CubismBlendMode_Multiplicative = 2, // 乗算
-        };
+        CubismBlendMode_Normal = 0,         // 通常
+        CubismBlendMode_Additive = 1,       // 加算
+        CubismBlendMode_Multiplicative = 2, // 乗算
+    };
 
+    /**
+     * テクスチャの色をRGBAで扱うためのクラス
+     */
+    export class CubismTextureColor
+    {
         /**
-         * テクスチャの色をRGBAで扱うためのクラス
+         * コンストラクタ
          */
-        export class CubismTextureColor
+        constructor()
         {
-            /**
-             * コンストラクタ
-             */
-            constructor()
-            {
-                this.R = 1.0;
-                this.G = 1.0;
-                this.B = 1.0;
-                this.A = 1.0;
-            }
-
-            R: number;  // 赤チャンネル
-            G: number;  // 緑チャンネル
-            B: number;  // 青チャンネル
-            A: number;  // αチャンネル
+            this.R = 1.0;
+            this.G = 1.0;
+            this.B = 1.0;
+            this.A = 1.0;
         }
+
+        R: number;  // 赤チャンネル
+        G: number;  // 緑チャンネル
+        B: number;  // 青チャンネル
+        A: number;  // αチャンネル
     }
 }

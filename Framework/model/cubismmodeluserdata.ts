@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -62,9 +62,11 @@ export namespace Live2DCubismFramework
          */
         public static delete(modelUserData: CubismModelUserData): void
         {
-            modelUserData.release();
-            modelUserData = void 0;
-            modelUserData = null;
+            if(modelUserData != null)
+            {
+                modelUserData.release();
+                modelUserData = null;
+            }
         }
 
         /**
@@ -127,7 +129,7 @@ export namespace Live2DCubismFramework
         {
             for(let i: number = 0; i < this._userDataNodes.getSize(); ++i)
             {
-                this._userDataNodes.set(i, void 0);
+                this._userDataNodes.set(i, null);
             }
 
             this._userDataNodes = null;

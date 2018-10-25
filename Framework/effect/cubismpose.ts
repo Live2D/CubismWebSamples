@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -12,6 +12,7 @@ import {Live2DCubismFramework as cubismframework} from "../live2dcubismframework
 import {Live2DCubismFramework as cubismjson} from "../utils/cubismjson";
 import CubismIdHandle = cubismid.CubismIdHandle;
 import csmVector = csmvector.csmVector;
+import iterator = csmvector.iterator;
 import CubismModel = cubismmodel.CubismModel;
 import CubismFramework = cubismframework.CubismFramework;
 import CubismJson = cubismjson.CubismJson;
@@ -73,7 +74,7 @@ export namespace Live2DCubismFramework
                 for(let groupIndex: number = 0; groupIndex < idCount; ++groupIndex)
                 {
                     let partInfo: Value = idListInfo.getVector().at(groupIndex);
-                    let partData: CubismPose.PartData = new CubismPose.PartData();
+                    let partData: PartData = new PartData();
                     const parameterId: CubismIdHandle = CubismFramework.getIdManager().getId(partInfo.getMap().getValue(Id).getRawString());
 
                     partData.partId = parameterId;
@@ -86,7 +87,7 @@ export namespace Live2DCubismFramework
 
                         for(let linkIndex: number = 0; linkIndex < linkCount; ++linkIndex)
                         {
-                            let linkPart: CubismPose.PartData = new CubismPose.PartData();
+                            let linkPart: PartData = new PartData();
                             const linkId: CubismIdHandle = CubismFramework.getIdManager().getId(linkListInfo.getVector().at(linkIndex).getString());
 
                             linkPart.partId = linkId;
@@ -114,8 +115,10 @@ export namespace Live2DCubismFramework
          */
         public static delete(pose: CubismPose): void
         {
-            pose = void 0;
-            pose = null;
+            if(pose != null)
+            {
+                pose = null;
+            }
         }
 
         /**
@@ -201,7 +204,7 @@ export namespace Live2DCubismFramework
         {
             for(let groupIndex: number = 0; groupIndex < this._partGroups.getSize(); ++groupIndex)
             {
-                let partData: CubismPose.PartData = this._partGroups.at(groupIndex);
+                let partData: PartData = this._partGroups.at(groupIndex);
 
                 if(partData.link.getSize() == 0)
                 {
@@ -213,7 +216,7 @@ export namespace Live2DCubismFramework
 
                 for(let linkIndex: number = 0; linkIndex < partData.link.getSize(); ++linkIndex)
                 {
-                    let linkPart: CubismPose.PartData = partData.link.at(linkIndex);
+                    let linkPart: PartData = partData.link.at(linkIndex);
                     const linkPartIndex: number = linkPart.partIndex;
 
                     if(linkPartIndex < 0)
@@ -323,94 +326,91 @@ export namespace Live2DCubismFramework
         {
             this._fadeTimeSeconds = DefaultFadeInSeconds;
             this._lastModel = null;
-            this._partGroups = new csmVector<CubismPose.PartData>();
+            this._partGroups = new csmVector<PartData>();
             this._partGroupCounts = new csmVector<number>();
         }
 
-        _partGroups: csmVector<CubismPose.PartData>; // パーツグループ
+        _partGroups: csmVector<PartData>; // パーツグループ
         _partGroupCounts: csmVector<number>;         // それぞれのパーツグループの個数
         _fadeTimeSeconds: number;           // フェード時間[秒]
         _lastModel: CubismModel;            // 前回操作したモデル
     }
 
-    export namespace CubismPose
+    /**
+     * パーツにまつわるデータを管理
+     */
+    export class PartData
     {
         /**
-         * パーツにまつわるデータを管理
+         * コンストラクタ
          */
-        export class PartData
+        constructor(v?: PartData)
         {
-            /**
-             * コンストラクタ
-             */
-            constructor(v?: PartData)
-            {
-                this.parameterIndex = 0;
-                this.partIndex = 0;
-                this.link = new csmVector<PartData>();
-                
-                if(v != undefined)
-                {
-                    this.partId = v.partId;
-
-                    for(const ite: csmVector.iterator<PartData> = v.link.begin(); ite.notEqual(v.link.end()); ite.preIncrement())
-                    {
-                        this.link.pushBack(ite.ptr().clone());
-                    }
-                }
-            }
-
-            /**
-             * =演算子のオーバーロード
-             */
-            public assignment(v: PartData): PartData
+            this.parameterIndex = 0;
+            this.partIndex = 0;
+            this.link = new csmVector<PartData>();
+            
+            if(v != undefined)
             {
                 this.partId = v.partId;
 
-                for(const ite: csmVector.iterator<PartData> = v.link.begin(); ite.notEqual(v.link.end()); ite.preIncrement())
+                for(const ite: iterator<PartData> = v.link.begin(); ite.notEqual(v.link.end()); ite.preIncrement())
                 {
                     this.link.pushBack(ite.ptr().clone());
                 }
-
-                return this;
             }
-
-            /**
-             * 初期化
-             * @param model 初期化に使用するモデル
-             */
-            public initialize(model: CubismModel): void
-            {
-                this.parameterIndex = model.getParameterIndex(this.partId);
-                this.partIndex = model.getPartIndex(this.partId);
-
-                model.setParameterValueByIndex(this.parameterIndex, 1);
-            }
-
-            /**
-             * オブジェクトのコピーを生成する
-             */
-            public clone(): PartData
-            {
-                let clonePartData: PartData = new PartData();
-
-                clonePartData.partId = this.partId;
-                clonePartData.parameterIndex = this.parameterIndex;
-                clonePartData.partIndex = this.partIndex;
-                clonePartData.link = new csmVector<PartData>();
-
-                for(let ite: csmVector.iterator<PartData> = this.link.begin(); ite.notEqual(this.link.end()); ite.increment())
-                {
-                    clonePartData.link.pushBack(ite.ptr().clone());
-                }
-
-                return clonePartData;
-            }
-            
-            partId: CubismIdHandle;   // パーツID
-            parameterIndex: number; // パラメータのインデックス
-            partIndex: number;  // パーツのインデックス
-            link: csmVector<PartData>;   // 連動するパラメータ
         }
+
+        /**
+         * =演算子のオーバーロード
+         */
+        public assignment(v: PartData): PartData
+        {
+            this.partId = v.partId;
+
+            for(const ite: iterator<PartData> = v.link.begin(); ite.notEqual(v.link.end()); ite.preIncrement())
+            {
+                this.link.pushBack(ite.ptr().clone());
+            }
+
+            return this;
+        }
+
+        /**
+         * 初期化
+         * @param model 初期化に使用するモデル
+         */
+        public initialize(model: CubismModel): void
+        {
+            this.parameterIndex = model.getParameterIndex(this.partId);
+            this.partIndex = model.getPartIndex(this.partId);
+
+            model.setParameterValueByIndex(this.parameterIndex, 1);
+        }
+
+        /**
+         * オブジェクトのコピーを生成する
+         */
+        public clone(): PartData
+        {
+            let clonePartData: PartData = new PartData();
+
+            clonePartData.partId = this.partId;
+            clonePartData.parameterIndex = this.parameterIndex;
+            clonePartData.partIndex = this.partIndex;
+            clonePartData.link = new csmVector<PartData>();
+
+            for(let ite: iterator<PartData> = this.link.begin(); ite.notEqual(this.link.end()); ite.increment())
+            {
+                clonePartData.link.pushBack(ite.ptr().clone());
+            }
+
+            return clonePartData;
+        }
+        
+        partId: CubismIdHandle;   // パーツID
+        parameterIndex: number; // パラメータのインデックス
+        partIndex: number;  // パーツのインデックス
+        link: csmVector<PartData>;   // 連動するパラメータ
     }
 }
