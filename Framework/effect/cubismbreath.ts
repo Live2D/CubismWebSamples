@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -37,15 +37,17 @@ export namespace Live2DCubismFramework
          */
         public static delete(instance: CubismBreath): void
         {
-            instance = void 0;
-            instance = null;
+            if(instance != null)
+            {
+                instance = null;
+            }
         }
 
         /**
          * 呼吸のパラメータの紐づけ
          * @param breathParameters 呼吸を紐づけたいパラメータのリスト
          */
-        public setParameters(breathParameters: csmVector<CubismBreath.BreathParameterData>): void
+        public setParameters(breathParameters: csmVector<BreathParameterData>): void
         {
             this._breathParameters = breathParameters;
         }
@@ -54,7 +56,7 @@ export namespace Live2DCubismFramework
          * 呼吸に紐づいているパラメータの取得
          * @return 呼吸に紐づいているパラメータのリスト
          */
-        public getParameters(): csmVector<CubismBreath.BreathParameterData>
+        public getParameters(): csmVector<BreathParameterData>
         {
             return this._breathParameters;
         }
@@ -72,7 +74,7 @@ export namespace Live2DCubismFramework
 
             for(let i: number = 0; i < this._breathParameters.getSize(); ++i)
             {
-                let data: CubismBreath.BreathParameterData = this._breathParameters.at(i);
+                let data: BreathParameterData = this._breathParameters.at(i);
 
                 model.addParameterValueById(
                     data.parameterId,
@@ -91,50 +93,46 @@ export namespace Live2DCubismFramework
             this._currentTime = 0.0;
         }
 
-         _breathParameters: csmVector<CubismBreath.BreathParameterData>; // 呼吸にひもづいているパラメータのリスト
+         _breathParameters: csmVector<BreathParameterData>; // 呼吸にひもづいているパラメータのリスト
          _currentTime: number;  // 積算時間[秒]
     }
     
-    export namespace CubismBreath
+    /**
+     * 呼吸のパラメータ情報
+     */
+    export class BreathParameterData
     {
         /**
-         * 呼吸のパラメータ情報
+         * コンストラクタ
+         * @param parameterId   呼吸をひもづけるパラメータID
+         * @param offset        呼吸を正弦波としたときの、波のオフセット
+         * @param peak          呼吸を正弦波としたときの、波の高さ
+         * @param cycle         呼吸を正弦波としたときの、波の周期
+         * @param weight        パラメータへの重み
          */
-        export class BreathParameterData
+        constructor(parameterId?: CubismIdHandle, offset?: number, peak?: number, cycle?: number, weight?: number)
         {
-            /**
-             * コンストラクタ
-             * @param parameterId   呼吸をひもづけるパラメータID
-             * @param offset        呼吸を正弦波としたときの、波のオフセット
-             * @param peak          呼吸を正弦波としたときの、波の高さ
-             * @param cycle         呼吸を正弦波としたときの、波の周期
-             * @param weight        パラメータへの重み
-             */
-            constructor(parameterId?: CubismIdHandle, offset?: number, peak?: number, cycle?: number, weight?: number)
-            {
-                this.parameterId = (parameterId == undefined) 
-                        ? null 
-                        : parameterId;
-                this.offset = (offset == undefined)
-                        ? 0.0 
-                        : offset;
-                this.peak = (peak == undefined)
-                        ? 0.0
-                        : peak;
-                this.cycle = (cycle == undefined)
-                        ? 0.0
-                        : cycle;
-                this.weight = (weight == undefined)
-                        ? 0.0 
-                        : weight;
-            }
-
-            parameterId: CubismIdHandle;  // 呼吸をひもづけるパラメータID\
-            offset: number;         // 呼吸を正弦波としたときの、波のオフセット
-            peak: number;           // 呼吸を正弦波としたときの、波の高さ
-            cycle: number;          // 呼吸を正弦波としたときの、波の周期
-            weight: number;         // パラメータへの重み
+            this.parameterId = (parameterId == undefined) 
+                    ? null 
+                    : parameterId;
+            this.offset = (offset == undefined)
+                    ? 0.0 
+                    : offset;
+            this.peak = (peak == undefined)
+                    ? 0.0
+                    : peak;
+            this.cycle = (cycle == undefined)
+                    ? 0.0
+                    : cycle;
+            this.weight = (weight == undefined)
+                    ? 0.0 
+                    : weight;
         }
-        
+
+        parameterId: CubismIdHandle;  // 呼吸をひもづけるパラメータID\
+        offset: number;         // 呼吸を正弦波としたときの、波のオフセット
+        peak: number;           // 呼吸を正弦波としたときの、波の高さ
+        cycle: number;          // 呼吸を正弦波としたときの、波の周期
+        weight: number;         // パラメータへの重み
     }
 }

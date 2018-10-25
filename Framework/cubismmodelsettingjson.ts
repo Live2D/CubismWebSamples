@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -11,6 +11,7 @@ import {Live2DCubismFramework as cubismid} from "./id/cubismid";
 import {Live2DCubismFramework as cubismjson} from "./utils/cubismjson";
 import {Live2DCubismFramework as csmmap} from"./type/csmmap";
 import csmMap = csmmap.csmMap;
+import iterator = csmmap.iterator;
 import CubismFramework = cubismframework.CubismFramework;
 import CubismIdHandle = cubismid.CubismIdHandle;
 import CubismJson = cubismjson.CubismJson;
@@ -396,7 +397,7 @@ export namespace Live2DCubismFramework
 
             let ret: boolean = false;
 
-            for(const ite: csmMap.iterator<string, Value> = map.begin(); ite.notEqual(map.end()); ite.preIncrement())
+            for(const ite: iterator<string, Value> = map.begin(); ite.notEqual(map.end()); ite.preIncrement())
             {
                 outLayoutMap.setValue(ite.ptr().first, ite.ptr().second.toFloat());
                 ret = true;

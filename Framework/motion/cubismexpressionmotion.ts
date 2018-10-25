@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -80,28 +80,28 @@ export namespace Live2DCubismFramework
                 const value: number = param.getMap().getValue(ExpressionKeyValue).toFloat(); // 値
 
                 // 計算方法の設定
-                let blendType: CubismExpressionMotion.ExpressionBlendType;
+                let blendType: ExpressionBlendType;
 
                 if(param.getMap().getValue(ExpressionKeyBlend).isNull() || param.getMap().getValue(ExpressionKeyBlend).getString() == BlendValueAdd)
                 {
-                    blendType = this.ExpressionBlendType.ExpressionBlendType_Add;
+                    blendType = ExpressionBlendType.ExpressionBlendType_Add;
                 }
                 else if(param.getMap().getValue(ExpressionKeyBlend).getString() == BlendValueMultiply)
                 {
-                    blendType = this.ExpressionBlendType.ExpressionBlendType_Multiply;
+                    blendType = ExpressionBlendType.ExpressionBlendType_Multiply;
                 }
                 else if(param.getMap().getValue(ExpressionKeyBlend).getString() == BlendValueOverwrite)
                 {
-                    blendType = this.ExpressionBlendType.ExpressionBlendType_Overwrite;
+                    blendType = ExpressionBlendType.ExpressionBlendType_Overwrite;
                 }
                 else
                 {
                     // その他 仕様にない値を設定した時は加算モードにすることで復旧
-                    blendType = this.ExpressionBlendType.ExpressionBlendType_Add;
+                    blendType = ExpressionBlendType.ExpressionBlendType_Add;
                 }
 
                 // 設定オブジェクトを作成してリストに追加する
-                let item: CubismExpressionMotion.ExpressionParameter = new CubismExpressionMotion.ExpressionParameter();
+                let item: ExpressionParameter = new ExpressionParameter();
 
                 item.parameterId = parameterId;
                 item.blendType = blendType;
@@ -125,21 +125,21 @@ export namespace Live2DCubismFramework
         {
             for(let i: number = 0; i < this._parameters.getSize(); ++i)
             {
-                let parameter: CubismExpressionMotion.ExpressionParameter = this._parameters.at(i);
+                let parameter: ExpressionParameter = this._parameters.at(i);
 
                 switch(parameter.blendType)
                 {
-                case CubismExpressionMotion.ExpressionBlendType.ExpressionBlendType_Add:
+                case ExpressionBlendType.ExpressionBlendType_Add:
                     {
                         model.addParameterValueById(parameter.parameterId, parameter.value, weight);
                         break;
                     }
-                case CubismExpressionMotion.ExpressionBlendType.ExpressionBlendType_Multiply:
+                case ExpressionBlendType.ExpressionBlendType_Multiply:
                     {
                         model.multiplyParameterValueById(parameter.parameterId, parameter.value, weight);
                         break;
                     }
-                case CubismExpressionMotion.ExpressionBlendType.ExpressionBlendType_Overwrite:
+                case ExpressionBlendType.ExpressionBlendType_Overwrite:
                     {
                         model.setParameterValueById(parameter.parameterId, parameter.value, weight)
                         break;
@@ -158,32 +158,29 @@ export namespace Live2DCubismFramework
         {
             super();
 
-            this._parameters = new csmVector<CubismExpressionMotion.ExpressionParameter>();
+            this._parameters = new csmVector<ExpressionParameter>();
         }
 
-        _parameters: csmVector<CubismExpressionMotion.ExpressionParameter>;  // 表情のパラメータ情報リスト
+        _parameters: csmVector<ExpressionParameter>;  // 表情のパラメータ情報リスト
     }
 
-    export namespace CubismExpressionMotion
+    /**
+     * 表情パラメータ値の計算方式
+     */
+    export enum ExpressionBlendType
     {
-        /**
-         * 表情パラメータ値の計算方式
-         */
-        export enum ExpressionBlendType
-        {
-            ExpressionBlendType_Add = 0,        // 加算
-            ExpressionBlendType_Multiply = 1,   // 乗算
-            ExpressionBlendType_Overwrite = 2   // 上書き
-        }
+        ExpressionBlendType_Add = 0,        // 加算
+        ExpressionBlendType_Multiply = 1,   // 乗算
+        ExpressionBlendType_Overwrite = 2   // 上書き
+    }
 
-        /**
-         * 表情のパラメータ情報
-         */
-        export class ExpressionParameter
-        {
-            parameterId: CubismIdHandle;          // パラメータID
-            blendType: ExpressionBlendType; // パラメータの演算種類
-            value: number;                  // 値
-        }
-    } 
+    /**
+     * 表情のパラメータ情報
+     */
+    export class ExpressionParameter
+    {
+        parameterId: CubismIdHandle;          // パラメータID
+        blendType: ExpressionBlendType; // パラメータの演算種類
+        value: number;                  // 値
+    }
 }

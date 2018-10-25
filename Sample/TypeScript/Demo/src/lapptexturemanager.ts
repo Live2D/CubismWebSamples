@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -21,6 +21,15 @@ export class LAppTextureManager
     constructor()
     {
         this._textures = new Csm_csmVector<TextureInfo>();
+    }
+
+    /**
+     * 解放する。
+     */
+    public release(): void
+    {
+        this._textures.clear();
+        this._textures = null;
     }
 
     /**

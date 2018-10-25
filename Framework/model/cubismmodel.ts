@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -13,7 +13,7 @@ import {Live2DCubismFramework as csmmap} from "../type/csmmap";
 import {Live2DCubismFramework as csmvector} from "../type/csmvector";
 import {CSM_ASSERT} from "../utils/cubismdebug";
 import CubismFramework = cubismframework.CubismFramework;
-import CubismRenderer = cubismrenderer.CubismRenderer;
+import CubismBlendMode = cubismrenderer.CubismBlendMode;
 import csmVector = csmvector.csmVector;
 import csmMap = csmmap.csmMap;
 import CubismIdHandle = cubismid.CubismIdHandle;
@@ -579,15 +579,15 @@ export namespace Live2DCubismFramework
          * @param drawableIndex Drawableのインデックス
          * @return drawableのブレンドモード
          */
-        public getDrawableBlendMode(drawableIndex: number): CubismRenderer.CubismBlendMode
+        public getDrawableBlendMode(drawableIndex: number): CubismBlendMode
         {
             const constantFlags = this._model.drawables.constantFlags;
             
             return (Live2DCubismCore.Utils.hasBlendAdditiveBit(constantFlags[drawableIndex]))
-                        ? CubismRenderer.CubismBlendMode.CubismBlendMode_Additive
+                        ? CubismBlendMode.CubismBlendMode_Additive
                         : (Live2DCubismCore.Utils.hasBlendMultiplicativeBit(constantFlags[drawableIndex]))
-                        ? CubismRenderer.CubismBlendMode.CubismBlendMode_Multiplicative
-                        : CubismRenderer.CubismBlendMode.CubismBlendMode_Normal;
+                        ? CubismBlendMode.CubismBlendMode_Multiplicative
+                        : CubismBlendMode.CubismBlendMode_Normal;
         }
 
         /**

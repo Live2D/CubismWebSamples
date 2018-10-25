@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -212,18 +212,18 @@ export namespace Live2DCubismFramework
         /**
          * コンテナの先頭要素を返す
          */
-        public begin(): csmMap.iterator<_KeyT, _ValT>
+        public begin(): iterator<_KeyT, _ValT>
         {
-            let ite: csmMap.iterator<_KeyT, _ValT> = new csmMap.iterator<_KeyT, _ValT>(this, 0);
+            let ite: iterator<_KeyT, _ValT> = new iterator<_KeyT, _ValT>(this, 0);
             return ite;
         }
 
         /**
          * コンテナの終端要素を返す
          */
-        public end(): csmMap.iterator<_KeyT, _ValT>
+        public end(): iterator<_KeyT, _ValT>
         {
-            let ite: csmMap.iterator<_KeyT, _ValT> = new csmMap.iterator<_KeyT, _ValT>(this, this._size); // 終了
+            let ite: iterator<_KeyT, _ValT> = new iterator<_KeyT, _ValT>(this, this._size); // 終了
             return ite;
         }
 
@@ -232,7 +232,7 @@ export namespace Live2DCubismFramework
          * 
          * @param ite 削除する要素
          */
-        public erase(ite: csmMap.iterator<_KeyT, _ValT>): csmMap.iterator<_KeyT, _ValT>
+        public erase(ite: iterator<_KeyT, _ValT>): iterator<_KeyT, _ValT>
         {
             let index: number = ite._index;
             if(index < 0 || this._size <= index)
@@ -244,7 +244,7 @@ export namespace Live2DCubismFramework
             this._keyValues.splice(index, 1);
             --this._size;
 
-            let ite2: csmMap.iterator<_KeyT, _ValT> = new csmMap.iterator<_KeyT, _ValT>(this, index); // 終了
+            let ite2: iterator<_KeyT, _ValT> = new iterator<_KeyT, _ValT>(this, index); // 終了
             return ite2;
         }
 
@@ -266,95 +266,93 @@ export namespace Live2DCubismFramework
         public _size: number;       // コンテナの要素数
     }
 
-    export namespace csmMap
+
+    /**
+     * csmMap<T>のイテレータ
+     */
+    export class iterator<_KeyT, _ValT>
     {
         /**
-         * csmMap<T>のイテレータ
+         * コンストラクタ
          */
-        export class iterator<_KeyT, _ValT>
+        constructor(v?: csmMap<_KeyT, _ValT>, idx?: number)
         {
-            /**
-             * コンストラクタ
-             */
-            constructor(v?: csmMap<_KeyT, _ValT>, idx?: number)
-            {
-                this._map = (v != undefined)
-                    ? v
-                    : new csmMap<_KeyT, _ValT>();
+            this._map = (v != undefined)
+                ? v
+                : new csmMap<_KeyT, _ValT>();
 
-                this._index = (idx != undefined)
-                    ? idx
-                    : 0;
-            }
-
-            /**
-             * =演算子のオーバーロード
-             */
-            public set(ite: iterator<_KeyT, _ValT>): iterator<_KeyT, _ValT>
-            {
-                this._index = ite._index;
-                this._map = ite._map;
-                return this;
-            }
-
-            /**
-             * 前置き++演算子のオーバーロード
-             */
-            public preIncrement(): iterator<_KeyT, _ValT>
-            {
-                ++this._index;
-                return this;
-            }
-
-            /**
-             * 前置き--演算子のオーバーロード
-             */
-            public preDecrement(): iterator<_KeyT, _ValT>
-            {
-                --this._index;
-                return this;
-            }
-
-            /**
-             * 後置き++演算子のオーバーロード
-             */
-            public increment(): iterator<_KeyT, _ValT>
-            {
-                let iteold = new iterator<_KeyT, _ValT>(this._map, this._index++);  // 古い値を保存
-                this._map = iteold._map;
-                this._index = iteold._index;
-                return this;
-            }
-
-            /**
-             * 後置き--演算子のオーバーロード
-             */
-            public decrement(): iterator<_KeyT, _ValT>
-            {
-                let iteold = new iterator<_KeyT, _ValT>(this._map, this._index); // 古い値を保存
-                this._map = iteold._map;
-                this._index = iteold._index;
-                return this;
-            }
-
-            /**
-             * *演算子のオーバーロード
-             */
-            public ptr(): csmPair<_KeyT, _ValT>
-            {
-                return this._map._keyValues[this._index];
-            }
-
-            /**
-             * !=演算
-             */
-            public notEqual(ite: iterator<_KeyT, _ValT>): boolean
-            {
-                return (this._index != ite._index) || (this._map != ite._map);
-            }
-
-            _index: number;             // コンテナのインデックス値
-            _map: csmMap<_KeyT, _ValT>; // コンテナ
+            this._index = (idx != undefined)
+                ? idx
+                : 0;
         }
+
+        /**
+         * =演算子のオーバーロード
+         */
+        public set(ite: iterator<_KeyT, _ValT>): iterator<_KeyT, _ValT>
+        {
+            this._index = ite._index;
+            this._map = ite._map;
+            return this;
+        }
+
+        /**
+         * 前置き++演算子のオーバーロード
+         */
+        public preIncrement(): iterator<_KeyT, _ValT>
+        {
+            ++this._index;
+            return this;
+        }
+
+        /**
+         * 前置き--演算子のオーバーロード
+         */
+        public preDecrement(): iterator<_KeyT, _ValT>
+        {
+            --this._index;
+            return this;
+        }
+
+        /**
+         * 後置き++演算子のオーバーロード
+         */
+        public increment(): iterator<_KeyT, _ValT>
+        {
+            let iteold = new iterator<_KeyT, _ValT>(this._map, this._index++);  // 古い値を保存
+            this._map = iteold._map;
+            this._index = iteold._index;
+            return this;
+        }
+
+        /**
+         * 後置き--演算子のオーバーロード
+         */
+        public decrement(): iterator<_KeyT, _ValT>
+        {
+            let iteold = new iterator<_KeyT, _ValT>(this._map, this._index); // 古い値を保存
+            this._map = iteold._map;
+            this._index = iteold._index;
+            return this;
+        }
+
+        /**
+         * *演算子のオーバーロード
+         */
+        public ptr(): csmPair<_KeyT, _ValT>
+        {
+            return this._map._keyValues[this._index];
+        }
+
+        /**
+         * !=演算
+         */
+        public notEqual(ite: iterator<_KeyT, _ValT>): boolean
+        {
+            return (this._index != ite._index) || (this._map != ite._map);
+        }
+
+        _index: number;             // コンテナのインデックス値
+        _map: csmMap<_KeyT, _ValT>; // コンテナ
     }
 }

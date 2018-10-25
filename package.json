@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "build-framework": "npx webpack --config framework.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
-    "watch-framework": "npx webpack --watch --config framework.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
-    "build-sample": "npx webpack --config sample.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
-    "watch-sample": "npx webpack --watch --config sample.webpack.config.js --mode development --module-bind 'ts=ts-loader' --resolve-extensions .ts,.js",
+    "build-framework": "npx webpack --config framework.webpack.config.js",
+    "watch-framework": "npx webpack --watch --config framework.webpack.config.js",
+    "build-sample": "npx webpack --config sample.webpack.config.js",
+    "watch-sample": "npx webpack --watch --config sample.webpack.config.js",
     "build-all": "npm-run-all build-framework build-sample",
     "watch-all": "npm-run-all watch-framework watch-sample"
   },
