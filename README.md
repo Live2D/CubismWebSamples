@@ -100,7 +100,7 @@ F5で実行し、remote web site with sourcemapを選択します。
 
 - Windows Chrome 70.0.3538.67  
 - Windows Firefox 63.0  
-- Windows Edge 17.17134  
+- Windows Microsoft Edge 17.17134  
 - macOS Chrome 70.0.3538.77  
 - macOS Firefox 63.0  
 - macOS Safari 12.0  
