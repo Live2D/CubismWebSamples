@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -40,8 +40,10 @@ export namespace Live2DCubismFramework
          */
         public static delete(eyeBlink: CubismEyeBlink): void
         {
-            eyeBlink = void 0;
-            eyeBlink = null;
+            if(eyeBlink != null)
+            {
+                eyeBlink = null;
+            }
         }
 
         /**
@@ -97,57 +99,57 @@ export namespace Live2DCubismFramework
 
             switch(this._blinkingState)
             {
-                case CubismEyeBlink.EyeState.EyeState_Closing:
+                case EyeState.EyeState_Closing:
                     t = ((this._userTimeSeconds - this._stateStartTimeSeconds) / this._closingSeconds);
                     
                     if(t >= 1.0)
                     {
                         t = 1.0;
-                        this._blinkingState = CubismEyeBlink.EyeState.EyeState_Closed;
+                        this._blinkingState = EyeState.EyeState_Closed;
                         this._stateStartTimeSeconds = this._userTimeSeconds;
                     }
 
                     parameterValue = 1.0 - t;
 
                     break;
-                case CubismEyeBlink.EyeState.EyeState_Closed:
+                case EyeState.EyeState_Closed:
                     t = ((this._userTimeSeconds - this._stateStartTimeSeconds) / this._closedSeconds);
 
                     if(t >= 1.0)
                     {
-                        this._blinkingState = CubismEyeBlink.EyeState.EyeState_Opening;
+                        this._blinkingState = EyeState.EyeState_Opening;
                         this._stateStartTimeSeconds = this._userTimeSeconds;
                     }
 
                     parameterValue = 0.0;
 
                     break;
-                case CubismEyeBlink.EyeState.EyeState_Opening:
+                case EyeState.EyeState_Opening:
                     t = ((this._userTimeSeconds - this._stateStartTimeSeconds) / this._openingSeconds);
 
                     if(t >= 1.0)
                     {
                         t = 1.0;
-                        this._blinkingState = CubismEyeBlink.EyeState.EyeState_Interval;
+                        this._blinkingState = EyeState.EyeState_Interval;
                         this._nextBlinkingTime = this.determinNextBlinkingTiming();
                     }
 
                     parameterValue = t;
 
                     break;
-                case CubismEyeBlink.EyeState.EyeState_Interval:
+                case EyeState.EyeState_Interval:
                     if(this._nextBlinkingTime < this._userTimeSeconds)
                     {
-                        this._blinkingState = CubismEyeBlink.EyeState.EyeState_Closing;
+                        this._blinkingState = EyeState.EyeState_Closing;
                         this._stateStartTimeSeconds = this._userTimeSeconds;
                     }
 
                     parameterValue = 1.0;
 
                     break;
-                case CubismEyeBlink.EyeState.EyeState_First:
+                case EyeState.EyeState_First:
                 default:
-                    this._blinkingState = CubismEyeBlink.EyeState.EyeState_Interval;
+                    this._blinkingState = EyeState.EyeState_Interval;
                     this._nextBlinkingTime = this.determinNextBlinkingTiming();
 
                     parameterValue = 1.0;
@@ -171,7 +173,7 @@ export namespace Live2DCubismFramework
          */
         public constructor(modelSetting: ICubismModelSetting)
         {
-            this._blinkingState = CubismEyeBlink.EyeState.EyeState_First;
+            this._blinkingState = EyeState.EyeState_First;
             this._nextBlinkingTime = 0.0;
             this._stateStartTimeSeconds = 0.0;
             this._blinkingIntervalSeconds = 4.0;
@@ -212,27 +214,24 @@ export namespace Live2DCubismFramework
         _closedSeconds: number;             // まぶたを閉じている動作の所要時間[秒]
         _openingSeconds: number;            // まぶたを開く動作の所要時間[秒]
         _userTimeSeconds: number;           // デルタ時間の積算値[秒]
-    }
-    
-    export namespace CubismEyeBlink
-    {
-        /**
-         * まばたきの状態
-         * 
-         * まばたきの状態を表す列挙型
-         */
-        export enum EyeState
-        {
-            EyeState_First = 0, // 初期状態
-            EyeState_Interval,  // まばたきしていない状態
-            EyeState_Closing,   // まぶたが閉じていく途中の状態
-            EyeState_Closed,    // まぶたが閉じている状態
-            EyeState_Opening    // まぶたが開いていく途中の状態
-        }
 
         /**
          * IDで指定された目のパラメータが、0のときに閉じるなら true 、1の時に閉じるなら false 。
          */ 
-        export const CloseIfZero = true;
+        static readonly CloseIfZero: boolean = true;
+    }
+
+    /**
+     * まばたきの状態
+     * 
+     * まばたきの状態を表す列挙型
+     */
+    export enum EyeState
+    {
+        EyeState_First = 0, // 初期状態
+        EyeState_Interval,  // まばたきしていない状態
+        EyeState_Closing,   // まぶたが閉じていく途中の状態
+        EyeState_Closed,    // まぶたが閉じている状態
+        EyeState_Opening    // まぶたが開いていく途中の状態
     }
 }

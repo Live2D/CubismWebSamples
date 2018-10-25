@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -73,10 +73,12 @@ export namespace Live2DCubismFramework
          */
         deleteModel(model: CubismModel): void
         {
-            model.release();
-            model = void 0;
-
-            --this._modelCount;
+            if(model != null)
+            {
+                model.release();
+                model = null;
+                --this._modelCount;
+            }
         }
 
 

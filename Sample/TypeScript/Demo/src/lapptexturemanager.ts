@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -24,6 +24,15 @@ export class LAppTextureManager
     }
 
     /**
+     * 解放する。
+     */
+    public release(): void
+    {
+        this._textures.clear();
+        this._textures = null;
+    }
+
+    /**
      * プリマルチプライ処理
      * @param red 画像のRed値
      * @param green 画像のGreen値
@@ -46,7 +55,7 @@ export class LAppTextureManager
      * @param fileName 読み込む画像ファイルパス名
      * @return 画像情報、読み込み失敗時はnullを返す
      */
-    public createTextureFromPngFile(fileName, callback): TextureInfo
+    public createTextureFromPngFile(fileName: string, callback: any): TextureInfo
     {
         // search loaded texture already
         for(let i: number = 0; i < this._textures.getSize(); i++)

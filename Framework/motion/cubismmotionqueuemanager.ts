@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -13,6 +13,7 @@ import {Live2DCubismFramework as csmstring} from '../type/csmstring';
 import csmString = csmstring.csmString;
 import CubismModel = cubismmodel.CubismModel;
 import csmVector = csmvector.csmVector;
+import iterator = csmvector.iterator;
 import CubismMotionQueueEntry = cubismmotionqueueentry.CubismMotionQueueEntry;
 import ACubismMotion = acubismmotion.ACubismMotion;
 
@@ -108,7 +109,7 @@ export namespace Live2DCubismFramework
             // ------- 処理を行う -------
             // 既にモーションがあれば終了フラグを立てる
 
-            for(let ite: csmVector.iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());)
+            for(let ite: iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());)
             {
                 let motionQueueEntry: CubismMotionQueueEntry = ite.ptr();
 
@@ -152,7 +153,7 @@ export namespace Live2DCubismFramework
         public isFinishedByHandle(motionQueueEntryNumber: CubismMotionQueueEntryHandle): boolean
         {
             // 既にモーションがあれば終了フラグを立てる
-            for(let ite: csmVector.iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());ite.increment())
+            for(let ite: iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());ite.increment())
             {
                 let motionQueueEntry: CubismMotionQueueEntry = ite.ptr();
 
@@ -177,7 +178,7 @@ export namespace Live2DCubismFramework
             // ------- 処理を行う -------
             // 既にモーションがあれば終了フラグを立てる
 
-            for(let ite: csmVector.iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());)
+            for(let ite: iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());)
             {
                 let motionQueueEntry: CubismMotionQueueEntry = ite.ptr();
 
@@ -207,7 +208,7 @@ export namespace Live2DCubismFramework
         {
             //------- 処理を行う -------
             // 既にモーションがあれば終了フラグを立てる
-            for(let ite: csmVector.iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end()); ite.preIncrement())
+            for(let ite: iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end()); ite.preIncrement())
             {
                 let motionQueueEntry: CubismMotionQueueEntry = ite.ptr();
 
@@ -252,7 +253,7 @@ export namespace Live2DCubismFramework
             // ------- 処理を行う --------
             // 既にモーションがあれば終了フラグを立てる
 
-            for(let ite: csmVector.iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());)
+            for(let ite: iterator<CubismMotionQueueEntry> = this._motions.begin(); ite.notEqual(this._motions.end());)
             {
                 let motionQueueEntry: CubismMotionQueueEntry = ite.ptr();
 

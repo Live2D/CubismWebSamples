@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -272,6 +272,21 @@ export namespace Live2DCubismFramework
         public multiplyByMatrix(m: CubismMatrix44): void
         {
             CubismMatrix44.multiply(m.getArray(), this._tr, this._tr);
+        }
+
+        /**
+         * オブジェクトのコピーを生成する
+         */
+        public clone(): CubismMatrix44
+        {
+            let cloneMatrix: CubismMatrix44 = new CubismMatrix44();
+
+            for(let i: number = 0; i < this._tr.length; i++)
+            {
+                cloneMatrix._tr[i] = this._tr[i];
+            }
+
+            return cloneMatrix;
         }
 
         protected _tr: Float32Array;    // 4x4行列データ

@@ -1,4 +1,4 @@
-node_modules/
+.idea/
 
-/Core/*
-!Please copy cubism core for web
+node_modules/
+Sample/TypeScript/Demo/dist/

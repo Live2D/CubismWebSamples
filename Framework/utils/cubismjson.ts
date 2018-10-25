@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -11,7 +11,9 @@ import {Live2DCubismFramework as csmvector} from "../type/csmvector";
 import {CubismLogInfo} from "./cubismdebug";
 import {strtod} from "../live2dcubismframework";
 import csmVector = csmvector.csmVector;
+import csmVector_iterator = csmvector.iterator;
 import csmMap = csmmap.csmMap;
+import csmMap_iterator = csmmap.iterator;
 import csmString = csmstring.csmString;
 
 export namespace Live2DCubismFramework
@@ -306,6 +308,29 @@ export namespace Live2DCubismFramework
         }
 
         /**
+         *  UnicodeのバイナリをStringに変換・長い文字のスライスバージョン
+         */
+        public LongArrayBufferToString(buffer: ArrayBuffer, len: number) : string
+        {
+            let tmp: string[] = [];
+            for (let p: number = 0; p < buffer.byteLength; p += len)
+            {
+                tmp.push(this.ArrayBufferToString(buffer.slice(p, p + len)));
+            }
+          
+            return tmp.join("");
+          }
+
+        /**
+         *  UnicodeのバイナリをStringに変換
+         */
+        public ArrayBufferToString( buffer: ArrayBuffer ): string
+        {
+            // 8ビット変換 
+            return String.fromCharCode.apply("", new Uint8Array(buffer));
+        }
+
+        /**
          * JSONのパースを実行する
          * @param buffer    パース対象のデータバイト
          * @param size      データバイトのサイズ
@@ -315,7 +340,7 @@ export namespace Live2DCubismFramework
         public parseBytes(buffer: ArrayBuffer, size: number): boolean
         {
             let endPos: number[] = new Array(1); // 参照渡しにするため配列
-            let decodeBuffer: string = new TextDecoder('utf-8').decode(buffer);
+            let decodeBuffer: string = this.LongArrayBufferToString(buffer, 1024);
             this._root = this.parseValue(decodeBuffer, size, 0, endPos);
 
             if(this._error)
@@ -349,7 +374,7 @@ export namespace Live2DCubismFramework
          */
         public checkEndOfFile(): boolean
         {
-            return this._root[1].equals("EOF");
+            return this._root.getArray()[1].equals("EOF");
         }
 
         /**
@@ -1065,7 +1090,7 @@ export namespace Live2DCubismFramework
          */
         public release(): void
         {
-            for(let ite: csmVector.iterator<Value> = this._array.begin(); ite.notEqual(this._array.end()); ite.preIncrement())
+            for(let ite: csmVector_iterator<Value> = this._array.begin(); ite.notEqual(this._array.end()); ite.preIncrement())
             {
                 let v: Value = ite.ptr();
                 
@@ -1092,7 +1117,7 @@ export namespace Live2DCubismFramework
         {
             let stringBuffer: string = indent + "[\n";
 
-            for(let ite: csmVector.iterator<Value> = this._array.begin(); ite.notEqual(this._array.end()); ite.increment())
+            for(let ite: csmVector_iterator<Value> = this._array.begin(); ite.notEqual(this._array.end()); ite.increment())
             {
                 let v: Value = ite.ptr();
                 this._stringBuffer += indent + "" + v.getString(indent + " ") + "\n";
@@ -1151,7 +1176,7 @@ export namespace Live2DCubismFramework
          */
         public release(): void
         {
-            const ite: csmMap.iterator<string, Value> = this._map.begin();
+            const ite: csmMap_iterator<string, Value> = this._map.begin();
 
             while(ite.notEqual(this._map.end()))
             {
@@ -1182,7 +1207,7 @@ export namespace Live2DCubismFramework
         {
             this._stringBuffer = indent + "{\n";
 
-            const ite: csmMap.iterator<string, Value> = this._map.begin();
+            const ite: csmMap_iterator<string, Value> = this._map.begin();
             while(ite.notEqual(this._map.end()))
             {
                 const key = ite.ptr().first;
@@ -1222,7 +1247,7 @@ export namespace Live2DCubismFramework
             {
                 this._keys = new csmVector<string>();
 
-                const ite: csmMap.iterator<string, Value> = this._map.begin();
+                const ite: csmMap_iterator<string, Value> = this._map.begin();
 
                 while(ite.notEqual(this._map.end()))
                 {

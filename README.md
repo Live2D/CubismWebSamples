@@ -51,7 +51,7 @@ CoreライブラリはTypeScript用に以下プロジェクトでバインドし
 https://github.com/Live2D/CubismBindings
 
 動作確認バージョン
-- emscripten 1.37.40  
+- emscripten 1.37.40, 1.38.12  
 - Python 2.7.15  
 - PyYAML 3.12  
 - Pystache 0.5.4  
@@ -94,6 +94,18 @@ F5で実行し、remote web site with sourcemapを選択します。
 # 変更履歴
 
 当リポジトリの変更履歴については[コミットログ](https://github.com/Live2D/CubismWebSamples/commits/master)を参照ください。
+
+
+# 動作確認環境
+
+- Windows Chrome 70.0.3538.67  
+- Windows Firefox 63.0  
+- Windows Microsoft Edge 17.17134  
+- macOS Chrome 70.0.3538.77  
+- macOS Firefox 63.0  
+- macOS Safari 12.0  
+- iOS Safari 12.0  
+- Android Chrome 70.0.3538.64  
 
 
 # TODO

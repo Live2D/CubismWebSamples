@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -67,9 +67,11 @@ export namespace Live2DCubismFramework
          */
         public static delete(physics: CubismPhysics): void
         {
-            physics.release();
-            physics = void 0;
-            physics = null;
+            if(physics != null)
+            {
+                physics.release();
+                physics = null;
+            }
         }
 
         /**
@@ -201,7 +203,7 @@ export namespace Live2DCubismFramework
          * オプションの設定
          * @param options オプション
          */
-        public setOptions(options: CubismPhysics.Options): void
+        public setOptions(options: Options): void
         {
             this._options = options;
         }
@@ -210,7 +212,7 @@ export namespace Live2DCubismFramework
          * オプションの取得
          * @return オプション
          */
-        public getOption(): CubismPhysics.Options
+        public getOption(): Options
         {
             return this._options;
         }
@@ -223,7 +225,7 @@ export namespace Live2DCubismFramework
             this._physicsRig = null;
 
             // set default options
-            this._options = new CubismPhysics.Options();
+            this._options = new Options();
             this._options.gravity.y = -1.0;
             this._options.gravity.x = 0;
             this._options.wind.x = 0;
@@ -401,26 +403,22 @@ export namespace Live2DCubismFramework
         }
 
         _physicsRig: CubismPhysicsRig;      // 物理演算のデータ
-        _options: CubismPhysics.Options;    // オプション
+        _options: Options;    // オプション
     }
 
-    export namespace CubismPhysics
+    /**
+     * 物理演算のオプション
+     */
+    export class Options
     {
-        /**
-         * 物理演算のオプション
-         */
-        export class Options
+        constructor()
         {
-            constructor()
-            {
-                this.gravity = new CubismVector2(0, 0);
-                this.wind = new CubismVector2(0, 0);
-            }
-
-            gravity: CubismVector2; // 重力方向
-            wind: CubismVector2;    // 風の方向
+            this.gravity = new CubismVector2(0, 0);
+            this.wind = new CubismVector2(0, 0);
         }
 
+        gravity: CubismVector2; // 重力方向
+        wind: CubismVector2;    // 風の方向
     }
 
     /**

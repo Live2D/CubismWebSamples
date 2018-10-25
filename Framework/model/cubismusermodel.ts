@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -319,9 +319,9 @@ export namespace Live2DCubismFramework
          */
         public deleteRenderer(): void
         {
-            if(this._renderer)
+            if(this._renderer != null)
             {
-                this._renderer = void 0;
+                this._renderer.release();
                 this._renderer = null;
             }
         }
@@ -406,33 +406,37 @@ export namespace Live2DCubismFramework
          */
         public release()
         {
-            this._motionManager.release();
-            this._motionManager = void 0;
-            this._motionManager = null;
+            if(this._motionManager != null)
+            {
+                this._motionManager.release();
+                this._motionManager = null;
+            }
 
-            this._expressionManager.release();
-            this._expressionManager = void 0;
-            this._expressionManager = null;
+            if(this._expressionManager != null)
+            {
+                this._expressionManager.release();
+                this._expressionManager = null;
+            }
             
-            this._moc.deleteModel(this._model);
-            this._moc.release();
-            this._moc = void 0;
-            this._moc = null;
+            if(this._moc != null)
+            {
+                this._moc.deleteModel(this._model);
+                this._moc.release();
+                this._moc = null;
+            }
             
-            this._modelMatrix = void 0;
             this._modelMatrix = null;
 
             CubismPose.delete(this._pose);
             CubismEyeBlink.delete(this._eyeBlink);
             CubismBreath.delete(this._breath);
             
-            this._dragManager = void 0;
             this._dragManager = null;
             
             CubismPhysics.delete(this._physics);
             CubismModelUserData.delete(this._modelUserData);
-            this.deleteRenderer();
 
+            this.deleteRenderer();
         }
 
         protected _moc:                 CubismMoc;              // Mocデータ

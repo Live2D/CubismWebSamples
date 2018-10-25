@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -76,7 +76,8 @@ export class LAppLive2DManager
     {
         for(let i: number = 0; i < this._models.getSize(); i++)
         {
-            this._models.set(i, void 0);
+            this._models.at(i).release();
+            this._models.set(i, null);
         }
 
         this._models.clear();
@@ -153,13 +154,13 @@ export class LAppLive2DManager
             projection.multiplyByMatrix(this._viewMatrix);
         }
 
-        const saveProjection: Csm_CubismMatrix44 = projection;
+        const saveProjection: Csm_CubismMatrix44 = projection.clone();
         let modelCount: number = this._models.getSize();
 
         for(let i: number = 0; i < modelCount; ++i)
         {
             let model: LAppModel = this.getModel(i);
-            projection = saveProjection;
+            projection = saveProjection.clone();
 
             model.update();
             model.draw(projection); // 参照渡しなのでprojectionは変質する。

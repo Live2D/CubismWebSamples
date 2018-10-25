@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -8,6 +8,7 @@
 import {Live2DCubismFramework as csmmap} from "../type/csmmap";
 import {Live2DCubismFramework as cubismmatrix44} from "./cubismmatrix44";
 import csmMap = csmmap.csmMap;
+import iterator = csmmap.iterator;
 import CubismMatrix44 = cubismmatrix44.CubismMatrix44;
 
 
@@ -202,7 +203,7 @@ export namespace Live2DCubismFramework
             const keyLeft = "left";
             const keyRight = "right";
             
-            for(const ite: csmMap.iterator<string, number> = layout.begin(); ite.notEqual(layout.end()); ite.preIncrement())
+            for(const ite: iterator<string, number> = layout.begin(); ite.notEqual(layout.end()); ite.preIncrement())
             {
                 const key: string = ite.ptr().first;
                 const value: number = ite.ptr().second;
@@ -217,7 +218,7 @@ export namespace Live2DCubismFramework
                 }
             }
 
-            for(const ite: csmMap.iterator<string, number> = layout.begin(); ite.notEqual(layout.end()); ite.preIncrement())
+            for(const ite: iterator<string, number> = layout.begin(); ite.notEqual(layout.end()); ite.preIncrement())
             {
                 const key: string = ite.ptr().first;
                 const value: number = ite.ptr().second;

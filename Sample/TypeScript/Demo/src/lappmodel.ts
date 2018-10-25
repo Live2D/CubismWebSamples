@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -6,7 +6,7 @@
 */
 
 import {Live2DCubismFramework as live2dcubismframework} from "../../../../Framework/live2dcubismframework";
-import {Live2DCubismFramework as cubismid} from "../../../../Framework/id/CubismId";
+import {Live2DCubismFramework as cubismid} from "../../../../Framework/id/cubismid";
 import {Live2DCubismFramework as cubismusermodel} from "../../../../Framework/model/cubismusermodel";
 import {Live2DCubismFramework as icubismmodelsetting} from "../../../../Framework/icubismmodelsetting";
 import {Live2DCubismFramework as cubismmodelsettingjson} from "../../../../Framework/cubismmodelsettingjson";
@@ -21,7 +21,8 @@ import {Live2DCubismFramework as cubismstring} from "../../../../Framework/utils
 import {Live2DCubismFramework as cubismmotion} from "../../../../Framework/motion/cubismmotion";
 import {Live2DCubismFramework as cubismmotionqueuemanager} from "../../../../Framework/motion/cubismmotionqueuemanager";
 import {Live2DCubismFramework as csmstring} from "../../../../Framework/type/csmstring";
-import {Live2DCubismFramework as csmrect} from "../../../../Framework/type/csmrectf";
+import {Live2DCubismFramework as csmrect } from "../../../../Framework/type/csmrectf";
+import { Live2DCubismFramework as CubismRenderer_WebGL } from "../../../../Framework/rendering/cubismrenderer_WebGL";
 import {CubismLogInfo} from "../../../../Framework/utils/cubismdebug";
 import csmRect = csmrect.csmRect;
 import csmString = csmstring.csmString;
@@ -33,6 +34,7 @@ import CubismMatrix44 = cubismmatrix44.CubismMatrix44;
 import csmMap = csmmap.csmMap;
 import csmVector = csmvector.csmVector;
 import CubismBreath = cubismbreath.CubismBreath;
+import BreathParameterData = cubismbreath.BreathParameterData;
 import CubismEyeBlink = cubismeyeblink.CubismEyeBlink;
 import ACubismMotion = acubismmotion.ACubismMotion;
 import CubismFramework = live2dcubismframework.CubismFramework;
@@ -44,7 +46,7 @@ import CubismDefaultParameterId = cubismdefaultparameterid;
 
 import {LAppDefine} from "./lappdefine";
 import {LAppPal} from "./lapppal";
-import {gl} from "./lappdelegate";
+import { gl, canvas, frameBuffer} from "./lappdelegate";
 
 function createBuffer(path: string, callBack: any): void
 {
@@ -323,12 +325,12 @@ export class LAppModel extends CubismUserModel {
         {
             this._breath = CubismBreath.create();
     
-            let breathParameters: csmVector<CubismBreath.BreathParameterData> = new csmVector();
-            breathParameters.pushBack(new CubismBreath.BreathParameterData(this._idParamAngleX, 0.0, 15.0, 6.5345, 0.5));
-            breathParameters.pushBack(new CubismBreath.BreathParameterData(this._idParamAngleY, 0.0, 8.0, 3.5345, 0.5));
-            breathParameters.pushBack(new CubismBreath.BreathParameterData(this._idParamAngleZ, 0.0, 10.0, 5.5345, 0.5));
-            breathParameters.pushBack(new CubismBreath.BreathParameterData(this._idParamBodyAngleX, 0.0, 4.0, 15.5345, 0.5));
-            breathParameters.pushBack(new CubismBreath.BreathParameterData(CubismFramework.getIdManager().getId(CubismDefaultParameterId.ParamBreath), 0.0, 0.5, 3.2345, 0.5));
+            let breathParameters: csmVector<BreathParameterData> = new csmVector();
+            breathParameters.pushBack(new BreathParameterData(this._idParamAngleX, 0.0, 15.0, 6.5345, 0.5));
+            breathParameters.pushBack(new BreathParameterData(this._idParamAngleY, 0.0, 8.0, 3.5345, 0.5));
+            breathParameters.pushBack(new BreathParameterData(this._idParamAngleZ, 0.0, 10.0, 5.5345, 0.5));
+            breathParameters.pushBack(new BreathParameterData(this._idParamBodyAngleX, 0.0, 4.0, 15.5345, 0.5));
+            breathParameters.pushBack(new BreathParameterData(CubismFramework.getIdManager().getId(CubismDefaultParameterId.ParamBreath), 0.0, 0.5, 3.2345, 0.5));
     
             this._breath.setParameters(breathParameters);
             this._state = LoadStep.LoadUserData;
@@ -467,6 +469,9 @@ export class LAppModel extends CubismUserModel {
      */
     private setupTextures(): void
     {
+        // iPhoneでのアルファ品質向上のためTypescriptではpremultipliedAlphaを採用 
+        let usePremultiply: boolean = true;
+
         if(this._state == LoadStep.LoadTexture)
         {
             // テクスチャ読み込み用
@@ -500,6 +505,12 @@ export class LAppModel extends CubismUserModel {
                     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
                     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
                     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+                    // Premult処理を行わせる 
+                    if(usePremultiply)
+                    {
+                        gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+                    }
     
                     // テクスチャにピクセルを書き込む
                     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img[modelTextureNumber]);
@@ -519,7 +530,7 @@ export class LAppModel extends CubismUserModel {
                 }
                 img[modelTextureNumber].src = texturePath;
     
-                this.getRenderer().setIsPremultipliedAlpha(false);
+                this.getRenderer().setIsPremultipliedAlpha(usePremultiply);
             }
 
             this._state = LoadStep.WaitLoadTexture;
@@ -907,6 +918,15 @@ export class LAppModel extends CubismUserModel {
     {
         if(this._model == null) return;
 
+        // キャンバスサイズを渡す
+        let viewport: number[] = [
+            0, 
+            0, 
+            canvas.width,
+            canvas.height
+        ];
+
+        this.getRenderer().setRenderState(frameBuffer, viewport);
         this.getRenderer().drawModel();
     }
 

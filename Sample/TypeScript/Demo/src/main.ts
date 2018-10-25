@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright(c) Live2D Inc. All rights reserved.
 *
 * Use of this source code is governed by the Live2D Open Software license
@@ -12,7 +12,6 @@ let main: any = () =>
     // create the application instance
     if(LAppDelegate.getInstance().initialize() == false)
     {
-        console.log("application iniitalize");
         return;
     }
 
@@ -27,6 +26,5 @@ main();
  */
 window.onbeforeunload = () =>
 {
-    LAppDelegate.getInstance().release();
     LAppDelegate.releaseInstance();
 };
