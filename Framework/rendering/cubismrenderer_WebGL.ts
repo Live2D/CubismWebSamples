@@ -283,7 +283,8 @@ export namespace Live2DCubismFramework
             this._channelColors = null;
 
             // テクスチャ解放
-            this.gl.deleteTexture(this._channelColors);
+            this.gl.deleteTexture(this._colorBuffer);
+            this._colorBuffer = null;
         }
 
         /**
@@ -1478,8 +1479,14 @@ export namespace Live2DCubismFramework
             this._bufferData.uv = null;
             this.gl.deleteBuffer(this._bufferData.index);
             this._bufferData.index = null;
-
             this._bufferData = null;
+
+            for (const ite: csmmap.iterator<number, WebGLTexture> = this._textures.begin(); ite.notEqual(this._textures.end()); ite.preIncrement())
+            {
+                this.gl.deleteTexture(ite.ptr().second);
+            }
+            this._textures.clear();
+            this._textures = null;
         }
 
         /**
