@@ -22,6 +22,7 @@ export namespace Live2DCubismFramework
     const CSM_JSON_ERROR_TYPE_MISMATCH: string = "Error: type mismatch";
     const CSM_JSON_ERROR_INDEX_OF_BOUNDS: string = "Error: index out of bounds";
 
+
     /**
      * パースしたJSONエレメントの要素の基底クラス。
      */
@@ -308,26 +309,16 @@ export namespace Live2DCubismFramework
         }
 
         /**
-         *  UnicodeのバイナリをStringに変換・長い文字のスライスバージョン
-         */
-        public LongArrayBufferToString(buffer: ArrayBuffer, len: number) : string
-        {
-            let tmp: string[] = [];
-            for (let p: number = 0; p < buffer.byteLength; p += len)
-            {
-                tmp.push(this.ArrayBufferToString(buffer.slice(p, p + len)));
-            }
-          
-            return tmp.join("");
-          }
-
-        /**
          *  UnicodeのバイナリをStringに変換
+         * 
+         * @param buffer 変換するバイナリデータ
+         * @return 変換後の文字列
          */
-        public ArrayBufferToString( buffer: ArrayBuffer ): string
+        public arrayBufferToString(buffer: ArrayBuffer): string
         {
-            // 8ビット変換 
-            return String.fromCharCode.apply("", new Uint8Array(buffer));
+            let encodedString: string = String.fromCharCode.apply(null, new Uint8Array(buffer));
+            let decodedString: string = decodeURIComponent(escape(encodedString));
+            return decodedString;
         }
 
         /**
@@ -340,7 +331,7 @@ export namespace Live2DCubismFramework
         public parseBytes(buffer: ArrayBuffer, size: number): boolean
         {
             let endPos: number[] = new Array(1); // 参照渡しにするため配列
-            let decodeBuffer: string = this.LongArrayBufferToString(buffer, 1024);
+            let decodeBuffer: string = this.arrayBufferToString(buffer);
             this._root = this.parseValue(decodeBuffer, size, 0, endPos);
 
             if(this._error)
