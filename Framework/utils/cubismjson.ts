@@ -316,10 +316,27 @@ export namespace Live2DCubismFramework
          */
         public arrayBufferToString(buffer: ArrayBuffer): string
         {
-            let encodedString: string = String.fromCharCode.apply(null, new Uint8Array(buffer));
-            let decodedString: string = decodeURIComponent(escape(encodedString));
-            return decodedString;
+            let uint8Array: Uint8Array = new Uint8Array(buffer);
+            let str: string = "";
+
+            for(let i: number = 0, len: number = uint8Array.length; i < len; ++i)
+            {
+                str += ("%" + this.pad(uint8Array[i].toString(16)));
+            }
+
+            str = decodeURIComponent(str);
+            return str;
         }
+
+        /**
+         * エンコード、パディング
+         */
+        private pad(n: string): string
+        {
+            return n.length < 2
+                ? "0" + n
+                : n;
+        };
 
         /**
          * JSONのパースを実行する
