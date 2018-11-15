@@ -22,6 +22,7 @@ export namespace Live2DCubismFramework
     const CSM_JSON_ERROR_TYPE_MISMATCH: string = "Error: type mismatch";
     const CSM_JSON_ERROR_INDEX_OF_BOUNDS: string = "Error: index out of bounds";
 
+
     /**
      * パースしたJSONエレメントの要素の基底クラス。
      */
@@ -308,27 +309,34 @@ export namespace Live2DCubismFramework
         }
 
         /**
-         *  UnicodeのバイナリをStringに変換・長い文字のスライスバージョン
+         *  UnicodeのバイナリをStringに変換
+         * 
+         * @param buffer 変換するバイナリデータ
+         * @return 変換後の文字列
          */
-        public LongArrayBufferToString(buffer: ArrayBuffer, len: number) : string
+        public arrayBufferToString(buffer: ArrayBuffer): string
         {
-            let tmp: string[] = [];
-            for (let p: number = 0; p < buffer.byteLength; p += len)
+            let uint8Array: Uint8Array = new Uint8Array(buffer);
+            let str: string = "";
+
+            for(let i: number = 0, len: number = uint8Array.length; i < len; ++i)
             {
-                tmp.push(this.ArrayBufferToString(buffer.slice(p, p + len)));
+                str += ("%" + this.pad(uint8Array[i].toString(16)));
             }
-          
-            return tmp.join("");
-          }
+
+            str = decodeURIComponent(str);
+            return str;
+        }
 
         /**
-         *  UnicodeのバイナリをStringに変換
+         * エンコード、パディング
          */
-        public ArrayBufferToString( buffer: ArrayBuffer ): string
+        private pad(n: string): string
         {
-            // 8ビット変換 
-            return String.fromCharCode.apply("", new Uint8Array(buffer));
-        }
+            return n.length < 2
+                ? "0" + n
+                : n;
+        };
 
         /**
          * JSONのパースを実行する
@@ -340,7 +348,7 @@ export namespace Live2DCubismFramework
         public parseBytes(buffer: ArrayBuffer, size: number): boolean
         {
             let endPos: number[] = new Array(1); // 参照渡しにするため配列
-            let decodeBuffer: string = this.LongArrayBufferToString(buffer, 1024);
+            let decodeBuffer: string = this.arrayBufferToString(buffer);
             this._root = this.parseValue(decodeBuffer, size, 0, endPos);
 
             if(this._error)
