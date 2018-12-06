@@ -179,8 +179,10 @@ export namespace Live2DCubismFramework
                         this._options.gravity
                     );
 
-                    let destinationParameterIndex = currentOutput[i].destinationParameterIndex;
-                    let outParameterValue = parameterValue.slice(destinationParameterIndex);
+                    let destinationParameterIndex: number = currentOutput[i].destinationParameterIndex;
+                    let outParameterValue: Float32Array = (!Float32Array.prototype.slice && 'subarray' in Float32Array.prototype)
+                        ? JSON.parse(JSON.stringify(parameterValue.subarray(destinationParameterIndex))) // 値渡しするため、JSON.parse, JSON.stringify
+                        : parameterValue.slice(destinationParameterIndex);
 
                     updateOutputParameterValue(
                         outParameterValue,
