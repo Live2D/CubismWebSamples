@@ -98,14 +98,15 @@ F5で実行し、remote web site with sourcemapを選択します。
 
 # 動作確認環境
 
-- Windows Chrome 70.0.3538.67  
-- Windows Firefox 63.0  
+- Windows Google Chrome 70.0.3538.67  
+- Windows Mozilla Firefox 63.0  
 - Windows Microsoft Edge 17.17134  
-- macOS Chrome 70.0.3538.77  
-- macOS Firefox 63.0  
+- Windows Internet Explorer11 11.407.17134.0  ※（こちらのコミット以降に限ります。: [923b2398266be6f98b9fdbbdeb0bf3fd1d27a2b5](https://github.com/Live2D/CubismWebSamples/commit/923b2398266be6f98b9fdbbdeb0bf3fd1d27a2b5)）
+- macOS Google Chrome 70.0.3538.77  
+- macOS Mozilla Firefox 63.0  
 - macOS Safari 12.0  
 - iOS Safari 12.0  
-- Android Chrome 70.0.3538.64  
+- Android Google Chrome 70.0.3538.64  
 
 
 # TODO
