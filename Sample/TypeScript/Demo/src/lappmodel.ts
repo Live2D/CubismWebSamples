@@ -22,7 +22,6 @@ import {Live2DCubismFramework as cubismmotion} from "../../../../Framework/motio
 import {Live2DCubismFramework as cubismmotionqueuemanager} from "../../../../Framework/motion/cubismmotionqueuemanager";
 import {Live2DCubismFramework as csmstring} from "../../../../Framework/type/csmstring";
 import {Live2DCubismFramework as csmrect } from "../../../../Framework/type/csmrectf";
-import { Live2DCubismFramework as CubismRenderer_WebGL } from "../../../../Framework/rendering/cubismrenderer_WebGL";
 import {CubismLogInfo} from "../../../../Framework/utils/cubismdebug";
 import csmRect = csmrect.csmRect;
 import csmString = csmstring.csmString;
@@ -47,6 +46,7 @@ import CubismDefaultParameterId = cubismdefaultparameterid;
 import {LAppDefine} from "./lappdefine";
 import {LAppPal} from "./lapppal";
 import { gl, canvas, frameBuffer} from "./lappdelegate";
+import "whatwg-fetch";
 
 function createBuffer(path: string, callBack: any): void
 {
