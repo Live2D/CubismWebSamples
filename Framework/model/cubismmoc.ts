@@ -5,6 +5,7 @@
  * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
+/// <reference path="../../Core/live2dcubismcore.d.ts" />
 import {Live2DCubismFramework as cubismmodel} from "./cubismmodel";
 import CubismModel = cubismmodel.CubismModel;
 import { CSM_ASSERT } from "../utils/cubismdebug";

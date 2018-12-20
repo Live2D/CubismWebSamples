@@ -51,9 +51,9 @@ export namespace Live2DCubismFramework
             let root: Value = json.getRoot();
 
             // フェード時間の指定
-            if(root.getMap().isExist(FadeIn))
+            if(!root.getValueByString(FadeIn).isNull())
             {
-                ret._fadeTimeSeconds = root.getMap().getValue(FadeIn).toFloat(DefaultFadeInSeconds);
+                ret._fadeTimeSeconds = root.getValueByString(FadeIn).toFloat(DefaultFadeInSeconds);
 
                 if(ret._fadeTimeSeconds <= 0.0)
                 {
@@ -62,33 +62,33 @@ export namespace Live2DCubismFramework
             }
 
             // パーツグループ
-            let poseListInfo: Value = root.getMap().getValue(Groups);
+            let poseListInfo: Value = root.getValueByString(Groups);
             const poseCount: number = poseListInfo.getSize();
 
             for(let poseIndex: number = 0; poseIndex < poseCount; ++poseIndex)
             {
-                let idListInfo: Value = poseListInfo.getVector().at(poseIndex);
+                let idListInfo: Value = poseListInfo.getValueByIndex(poseIndex);
                 const idCount: number = idListInfo.getSize();
                 let groupCount: number = 0;
 
                 for(let groupIndex: number = 0; groupIndex < idCount; ++groupIndex)
                 {
-                    let partInfo: Value = idListInfo.getVector().at(groupIndex);
+                    let partInfo: Value = idListInfo.getValueByIndex(groupIndex);
                     let partData: PartData = new PartData();
-                    const parameterId: CubismIdHandle = CubismFramework.getIdManager().getId(partInfo.getMap().getValue(Id).getRawString());
+                    const parameterId: CubismIdHandle = CubismFramework.getIdManager().getId(partInfo.getValueByString(Id).getRawString());
 
                     partData.partId = parameterId;
 
                     // リンクするパーツの設定
-                    if(partInfo.getMap().isExist(Link))
+                    if(!partInfo.getValueByString(Link).isNull())
                     {
-                        let linkListInfo: Value = partInfo.getMap().getValue(Link);
+                        let linkListInfo: Value = partInfo.getValueByString(Link);
                         const linkCount: number = linkListInfo.getSize();
 
                         for(let linkIndex: number = 0; linkIndex < linkCount; ++linkIndex)
                         {
                             let linkPart: PartData = new PartData();
-                            const linkId: CubismIdHandle = CubismFramework.getIdManager().getId(linkListInfo.getVector().at(linkIndex).getString());
+                            const linkId: CubismIdHandle = CubismFramework.getIdManager().getId(linkListInfo.getValueByIndex(linkIndex).getString());
 
                             linkPart.partId = linkId;
 
