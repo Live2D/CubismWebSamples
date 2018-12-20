@@ -49,7 +49,7 @@ export namespace Live2DCubismFramework
          */
         public getUserDataCount(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(UserDataCount).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(UserDataCount).toInt();
         }
 
         /**
@@ -59,7 +59,7 @@ export namespace Live2DCubismFramework
          */
         public getTotalUserDataSize(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(TotalUserDataSize).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(TotalUserDataSize).toInt();
         }
 
         /**
@@ -69,7 +69,7 @@ export namespace Live2DCubismFramework
          */
         public getUserDataTargetType(i: number): string
         {
-            return this._json.getRoot().getMap().getValue(UserData).getVector().at(i).getMap().getValue(Target).getRawString();
+            return this._json.getRoot().getValueByString(UserData).getValueByIndex(i).getValueByString(Target).getRawString();
         }
 
         /**
@@ -80,7 +80,7 @@ export namespace Live2DCubismFramework
          */
         public getUserDataId(i: number): CubismIdHandle
         {
-            return CubismFramework.getIdManager().getId(this._json.getRoot().getMap().getValue(UserData).getVector().at(i).getMap().getValue(Id).getRawString());
+            return CubismFramework.getIdManager().getId(this._json.getRoot().getValueByString(UserData).getValueByIndex(i).getValueByString(Id).getRawString());
         }
 
         /**
@@ -91,7 +91,7 @@ export namespace Live2DCubismFramework
          */
         public getUserDataValue(i: number): string
         {
-            return this._json.getRoot().getMap().getValue(UserData).getVector().at(i).getMap().getValue(Value).getRawString();
+            return this._json.getRoot().getValueByString(UserData).getValueByIndex(i).getValueByString(Value).getRawString();
         }
 
         private _json: CubismJson;

@@ -65,7 +65,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionDuration(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(Duration).toFloat();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(Duration).toFloat();
         }
 
         /**
@@ -75,7 +75,7 @@ export namespace Live2DCubismFramework
          */
         public isMotionLoop(): boolean
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(Loop).toBoolean();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(Loop).toBoolean();
         }
 
         /**
@@ -84,7 +84,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveCount(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(CurveCount).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(CurveCount).toInt();
         }
 
         /**
@@ -93,7 +93,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionFps(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(Fps).toFloat();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(Fps).toFloat();
         }
 
         /**
@@ -102,7 +102,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionTotalSegmentCount(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(TotalSegmentCount).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(TotalSegmentCount).toInt();
         }
         
         /**
@@ -111,7 +111,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionTotalPointCount(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(TotalPointCount).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(TotalPointCount).toInt();
         }
 
         /**
@@ -121,7 +121,7 @@ export namespace Live2DCubismFramework
          */
         public isExistMotionFadeInTime(): boolean
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().isExist(FadeInTime);
+            return !this._json.getRoot().getValueByString(Meta).getValueByString(FadeInTime).isNull();
         }
 
         /**
@@ -131,7 +131,7 @@ export namespace Live2DCubismFramework
          */
         public isExistMotionFadeOutTime(): boolean
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().isExist(FadeOutTime);
+            return !this._json.getRoot().getValueByString(Meta).getValueByString(FadeOutTime).isNull();
         }
 
         /**
@@ -140,7 +140,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionFadeInTime(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(FadeInTime).toFloat();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(FadeInTime).toFloat();
         }
 
         /**
@@ -149,7 +149,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionFadeOutTime(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(FadeOutTime).toFloat();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(FadeOutTime).toFloat();
         }
 
         /**
@@ -159,7 +159,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveTarget(curveIndex: number): string
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().getValue(Target).getRawString();
+            return this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(Target).getRawString();
         }
 
         /**
@@ -169,7 +169,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveId(curveIndex: number): CubismIdHandle
         {
-            return CubismFramework.getIdManager().getId(this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().getValue(Id).getRawString());
+            return CubismFramework.getIdManager().getId(this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(Id).getRawString());
         }
 
         /**
@@ -180,7 +180,7 @@ export namespace Live2DCubismFramework
          */
         public isExistMotionCurveFadeInTime(curveIndex: number): boolean
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().isExist(FadeInTime);
+            return !this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(FadeInTime).isNull();
         }
 
         /**
@@ -191,7 +191,7 @@ export namespace Live2DCubismFramework
          */
         public isExistMotionCurveFadeOutTime(curveIndex: number): boolean
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().isExist(FadeOutTime);
+            return !this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(FadeOutTime).isNull();
         }
 
         /**
@@ -201,7 +201,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveFadeInTime(curveIndex: number): number
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().getValue(FadeInTime).toFloat();
+            return this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(FadeInTime).toFloat();
         }
 
         /**
@@ -211,7 +211,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveFadeOutTime(curveIndex: number): number
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().getValue(FadeOutTime).toFloat();
+            return this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(FadeOutTime).toFloat();
         }
 
         /**
@@ -221,7 +221,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveSegmentCount(curveIndex: number): number
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().getValue(Segments).getVector().getSize();
+            return this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(Segments).getVector().getSize();
         }
 
         /**
@@ -232,7 +232,7 @@ export namespace Live2DCubismFramework
          */
         public getMotionCurveSegment(curveIndex: number, segmentIndex: number): number
         {
-            return this._json.getRoot().getMap().getValue(Curves).getVector().at(curveIndex).getMap().getValue(Segments).getVector().at(segmentIndex).toFloat();
+            return this._json.getRoot().getValueByString(Curves).getValueByIndex(curveIndex).getValueByString(Segments).getValueByIndex(segmentIndex).toFloat();
         }
 
         /**
@@ -241,11 +241,7 @@ export namespace Live2DCubismFramework
          */
         public getEventCount(): number
         {
-            if(!this._json.getRoot().getMap().getValue(Meta).getMap().isExist(UserDataCount))
-            {
-                return 0;
-            }
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(UserDataCount).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(UserDataCount).toInt();
         }
 
         /**
@@ -254,7 +250,7 @@ export namespace Live2DCubismFramework
          */
         public getTotalEventValueSize(): number
         {
-            return this._json.getRoot().getMap().getValue(Meta).getMap().getValue(TotalUserDataSize).toInt();
+            return this._json.getRoot().getValueByString(Meta).getValueByString(TotalUserDataSize).toInt();
         }
 
         /**
@@ -264,7 +260,7 @@ export namespace Live2DCubismFramework
          */
         public getEventTime(userDataIndex: number): number
         {
-            return this._json.getRoot().getMap().getValue(UserData).getVector().at(userDataIndex).getMap().getValue(Time).toInt();
+            return this._json.getRoot().getValueByString(UserData).getValueByIndex(userDataIndex).getValueByString(Time).toInt();
         }
 
         /**
@@ -274,7 +270,7 @@ export namespace Live2DCubismFramework
          */
         public getEventValue(userDataIndex: number): csmString
         {
-            return new csmString(this._json.getRoot().getMap().getValue(UserData).getVector().at(userDataIndex).getMap().getValue(Value).getRawString());
+            return new csmString(this._json.getRoot().getValueByString(UserData).getValueByIndex(userDataIndex).getValueByString(Value).getRawString());
         }
 
         _json: CubismJson;  // motion3.jsonのデータ

@@ -55,42 +55,33 @@ export namespace Live2DCubismFramework
 
             let json: CubismJson = CubismJson.create(buffer, size);
             let root: Value = json.getRoot();
-
-            // typescriptではnullを許容していないため仮の値を入れる
-            if(root.getMap().getValue(ExpressionKeyFadeIn) == null)
-            {
-                root.getMap().setValue(ExpressionKeyFadeIn, new JsonFloat(DefaultFadeTime));
-            }
-            if(root.getMap().getValue(ExpressionKeyFadeOut) == null)
-            {
-                root.getMap().setValue(ExpressionKeyFadeOut, new JsonFloat(DefaultFadeTime));
-            }
             
-            expression.setFadeInTime(root.getMap().getValue(ExpressionKeyFadeIn).toFloat(DefaultFadeTime));  // フェードイン
-            expression.setFadeOutTime(root.getMap().getValue(ExpressionKeyFadeOut).toFloat(DefaultFadeTime)); // フェードアウト
+            expression.setFadeInTime(root.getValueByString(ExpressionKeyFadeIn).toFloat(DefaultFadeTime));  // フェードイン
+            expression.setFadeOutTime(root.getValueByString(ExpressionKeyFadeOut).toFloat(DefaultFadeTime)); // フェードアウト
 
             // 各パラメータについて
-            const parameterCount = root.getMap().getValue(ExpressionKeyParameters).getSize();
+            const parameterCount = root.getValueByString(ExpressionKeyParameters).getSize();
+            expression._parameters.prepareCapacity(parameterCount);
 
             for(let i: number = 0; i < parameterCount; ++i)
             {
-                let param: Value = root.getMap().getValue(ExpressionKeyParameters).getVector().at(i);
-                const parameterId: CubismIdHandle = CubismFramework.getIdManager().getId(param.getMap().getValue(ExpressionKeyId).getRawString());  // パラメータID
+                let param: Value = root.getValueByString(ExpressionKeyParameters).getValueByIndex(i);
+                const parameterId: CubismIdHandle = CubismFramework.getIdManager().getId(param.getValueByString(ExpressionKeyId).getRawString());  // パラメータID
 
-                const value: number = param.getMap().getValue(ExpressionKeyValue).toFloat(); // 値
+                const value: number = param.getValueByString(ExpressionKeyValue).toFloat(); // 値
 
                 // 計算方法の設定
                 let blendType: ExpressionBlendType;
 
-                if(param.getMap().getValue(ExpressionKeyBlend).isNull() || param.getMap().getValue(ExpressionKeyBlend).getString() == BlendValueAdd)
+                if(param.getValueByString(ExpressionKeyBlend).isNull() || param.getValueByString(ExpressionKeyBlend).getString() == BlendValueAdd)
                 {
                     blendType = ExpressionBlendType.ExpressionBlendType_Add;
                 }
-                else if(param.getMap().getValue(ExpressionKeyBlend).getString() == BlendValueMultiply)
+                else if(param.getValueByString(ExpressionKeyBlend).getString() == BlendValueMultiply)
                 {
                     blendType = ExpressionBlendType.ExpressionBlendType_Multiply;
                 }
-                else if(param.getMap().getValue(ExpressionKeyBlend).getString() == BlendValueOverwrite)
+                else if(param.getValueByString(ExpressionKeyBlend).getString() == BlendValueOverwrite)
                 {
                     blendType = ExpressionBlendType.ExpressionBlendType_Overwrite;
                 }
