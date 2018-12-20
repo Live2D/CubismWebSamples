@@ -86,12 +86,10 @@ export namespace Live2DCubismFramework
     export class CubismFramework
     {
         /**
-         * @brief    Cubism FrameworkのAPIを使用可能にする。<br>
-         *            APIを実行する前に必ずこの関数を実行すること。<br>
-         *            引数に必ずメモリアロケータを渡してください。<br>
-         *            一度準備が完了して以降は、再び実行しても内部処理がスキップされます。
+         * Cubism FrameworkのAPIを使用可能にする。
+         *  APIを実行する前に必ずこの関数を実行すること。
+         *  一度準備が完了して以降は、再び実行しても内部処理がスキップされます。
          *
-         * @param    allocator   ICubismAllocatorクラスのインスタンス
          * @param    option      Optionクラスのインスタンス
          *
          * @return   準備処理が完了したらtrueが返ります。

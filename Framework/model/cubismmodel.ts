@@ -5,7 +5,7 @@
  * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-/// <reference path="../../Core/live2dcubismcore" />
+/// <reference path="../../Core/live2dcubismcore.d.ts" />
 import {Live2DCubismFramework as cubismrenderer} from "../rendering/cubismrenderer";
 import {Live2DCubismFramework as cubismid} from "../id/cubismid";
 import {Live2DCubismFramework as cubismframework} from "../live2dcubismframework";
@@ -722,6 +722,7 @@ export namespace Live2DCubismFramework
                 const parameterIds: string[] = this._model.parameters.ids;
                 const parameterCount: number = this._model.parameters.count;
 
+                this._parameterIds.prepareCapacity(parameterCount);
                 for(let i: number = 0; i < parameterCount; ++i)
                 {
                     this._parameterIds.pushBack(CubismFramework.getIdManager().getId(parameterIds[i]));
@@ -732,6 +733,7 @@ export namespace Live2DCubismFramework
                 const partIds: string[] = this._model.parts.ids;
                 const partCount: number = this._model.parts.count;
 
+                this._partIds.prepareCapacity(partCount);
                 for(let i: number = 0; i < partCount; ++i)
                 {
                     this._partIds.pushBack(CubismFramework.getIdManager().getId(partIds[i]));
@@ -742,6 +744,7 @@ export namespace Live2DCubismFramework
                 const drawableIds: string[] = this._model.drawables.ids;
                 const drawableCount: number = this._model.drawables.count;
 
+                this._drawableIds.prepareCapacity(drawableCount);
                 for(let i: number = 0; i < drawableCount; ++i)
                 {
                     this._drawableIds.pushBack(CubismFramework.getIdManager().getId(drawableIds[i]));

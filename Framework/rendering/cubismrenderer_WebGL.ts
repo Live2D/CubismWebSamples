@@ -1272,7 +1272,6 @@ export namespace Live2DCubismFramework
         "varying vec2       v_texCoord;" +
         "varying vec4       v_myPos;" +
         "uniform mat4       u_clipMatrix;" +
-        "uniform sampler2D  s_texture0;" +
         "void main()" +
         "{" +
         "   gl_Position = u_clipMatrix * a_position;" +
@@ -1304,7 +1303,6 @@ export namespace Live2DCubismFramework
         "attribute vec2     a_texCoord;" + //v.texcoord
         "varying vec2       v_texCoord;" + //v2f.texcoord
         "uniform mat4       u_matrix;" +
-        "uniform sampler2D  s_texture0;" +
         "void main()" +
         "{" +
         "   gl_Position = u_matrix * a_position;" +
@@ -1320,8 +1318,6 @@ export namespace Live2DCubismFramework
         "varying vec4       v_clipPos;" +
         "uniform mat4       u_matrix;" +
         "uniform mat4       u_clipMatrix;" +
-        "uniform sampler2D  s_texture0;" +
-        "uniform sampler2D  s_texture1;" +
         "void main()" +
         "{" +
         "   gl_Position = u_matrix * a_position;" +

@@ -106,6 +106,22 @@ export namespace Live2DCubismFramework
         }
 
         /**
+         * 添字演算子[index]
+         */
+        public getValueByIndex(index: number): Value
+        {
+            return Value.errorValue.setErrorNotForClientCall(CSM_JSON_ERROR_TYPE_MISMATCH);
+        }
+
+        /**
+         * 添字演算子[string | csmString]
+         */
+        public getValueByString(s: string | csmString): Value
+        {
+            return Value.nullValue.setErrorNotForClientCall(CSM_JSON_ERROR_TYPE_MISMATCH);
+        }
+
+        /**
          * マップのキー一覧をコンテナで返す
          * 
          * @return マップのキーの一覧
@@ -1119,6 +1135,34 @@ export namespace Live2DCubismFramework
         }
 
         /**
+         * 添字演算子[index]
+         */
+        public getValueByIndex(index: number): Value
+        {
+            if(index < 0 || this._array.getSize() <= index)
+            {
+                return Value.errorValue.setErrorNotForClientCall(CSM_JSON_ERROR_INDEX_OF_BOUNDS);
+            }
+
+            let v: Value = this._array.at(index);
+
+            if(v == null)
+            {
+                return Value.nullValue;
+            }
+
+            return v;
+        }
+
+        /**
+         * 添字演算子[string | csmString]
+         */
+        public getValueByString(s: string | csmString): Value
+        {
+            return Value.errorValue.setErrorNotForClientCall(CSM_JSON_ERROR_TYPE_MISMATCH);
+        }
+
+        /**
          * 要素を文字列で返す(csmString型)
          */
         public getString(defaultValue: string, indent: string): string
@@ -1175,7 +1219,6 @@ export namespace Live2DCubismFramework
         public constructor()
         {
             super();
-            //this._keys = new csmVector<string>();
             this._map = new csmMap<string, Value>();
         }
 
@@ -1206,6 +1249,44 @@ export namespace Live2DCubismFramework
         public isMap(): boolean
         {
             return true;
+        }
+
+        /**
+         * 添字演算子[string | csmString]
+         */
+        public getValueByString(s: string | csmString): Value
+        {
+            if(s instanceof csmString)
+            {
+                let ret: Value = this._map.getValue(s.s);
+                if(ret == null)
+                {
+                    return Value.nullValue;
+                }
+                return ret;
+            }
+
+            for(let iter: csmMap_iterator<string, Value> = this._map.begin(); iter.notEqual(this._map.end()); iter.preIncrement())
+            {
+                if(iter.ptr().first == s)
+                {
+                    if(iter.ptr().second == null)
+                    {
+                        return Value.nullValue;
+                    }
+                    return iter.ptr().second;
+                }
+            }
+
+            return Value.nullValue;
+        }
+
+        /**
+         * 添字演算子[index]
+         */
+        public getValueByIndex(index: number): Value
+        {
+            return Value.errorValue.setErrorNotForClientCall(CSM_JSON_ERROR_TYPE_MISMATCH);
         }
 
         /**

@@ -51,7 +51,7 @@ CoreライブラリはTypeScript用に以下プロジェクトでバインドし
 https://github.com/Live2D/CubismBindings
 
 動作確認バージョン
-- emscripten 1.37.40, 1.38.12  
+- emscripten 1.37.40, 1.38.12, 1.38.21  
 - Python 2.7.15  
 - PyYAML 3.12  
 - Pystache 0.5.4  
@@ -98,14 +98,15 @@ F5で実行し、remote web site with sourcemapを選択します。
 
 # 動作確認環境
 
-- Windows Chrome 70.0.3538.67  
-- Windows Firefox 63.0  
+- Windows Google Chrome 70.0.3538.67  
+- Windows Mozilla Firefox 63.0  
 - Windows Microsoft Edge 17.17134  
-- macOS Chrome 70.0.3538.77  
-- macOS Firefox 63.0  
+- Windows Internet Explorer11 11.407.17134.0  ※（こちらのコミット以降に限ります。: [923b2398266be6f98b9fdbbdeb0bf3fd1d27a2b5](https://github.com/Live2D/CubismWebSamples/commit/923b2398266be6f98b9fdbbdeb0bf3fd1d27a2b5)）
+- macOS Google Chrome 70.0.3538.77  
+- macOS Mozilla Firefox 63.0  
 - macOS Safari 12.0  
 - iOS Safari 12.0  
-- Android Chrome 70.0.3538.64  
+- Android Google Chrome 70.0.3538.64  
 
 
 # TODO
@@ -135,9 +136,9 @@ Live2D のサンプルモデルは Free Material License で提供していま�
 - Free Material License 
 [日本語](http://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html) 
 [English](http://www.live2d.com/eula/live2d-free-material-license-agreement_en.html) 
-   - Resources/Haru/*
-   - Resources/Hiyori/*
-   - Resources/Mark/*
+   - Samples/Resources/Haru/*
+   - Samples/Resources/Hiyori/*
+   - Samples/Resources/Mark/*
 
 
 直近会計年度の売上高が 1000 万円以上の事業者様がご利用になる場合は、SDKリリース(出版許諾)ライセンスに同意していただく必要がございます。 

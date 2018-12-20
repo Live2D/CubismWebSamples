@@ -9,7 +9,9 @@ import {Live2DCubismFramework as cubismframework} from "./live2dcubismframework"
 import {Live2DCubismFramework as icubismmodelsetting} from "./icubismmodelsetting";
 import {Live2DCubismFramework as cubismid} from "./id/cubismid";
 import {Live2DCubismFramework as cubismjson} from "./utils/cubismjson";
-import {Live2DCubismFramework as csmmap} from"./type/csmmap";
+import {Live2DCubismFramework as csmmap} from "./type/csmmap";
+import {Live2DCubismFramework as csmvector} from "./type/csmvector";
+import csmVector = csmvector.csmVector;
 import csmMap = csmmap.csmMap;
 import iterator = csmmap.iterator;
 import CubismFramework = cubismframework.CubismFramework;
@@ -74,6 +76,18 @@ export namespace Live2DCubismFramework
      const InitPartsVisible: string = "init_parts_visible";
      const Val: string = "val";
 
+     enum FrequestNode
+     {
+         FrequestNode_Groups,       // getRoot().getValueByString(Groups)
+         FrequestNode_Moc,          // getRoot().getValueByString(FileReferences).getValueByString(Moc)
+         FrequestNode_Motions,      // getRoot().getValueByString(FileReferences).getValueByString(Motions)
+         FrequestNode_Expressions,  // getRoot().getValueByString(FileReferences).getValueByString(Expressions)
+         FrequestNode_Textures,     // getRoot().getValueByString(FileReferences).getValueByString(Textures)
+         FrequestNode_Physics,      // getRoot().getValueByString(FileReferences).getValueByString(Physics)
+         FrequestNode_Pose,         // getRoot().getValueByString(FileReferences).getValueByString(Pose)
+         FrequestNode_HitAreas      // getRoot().getValueByString(HitAreas)
+     };
+
 
      /**
       * Model3Jsonパーサー
@@ -92,6 +106,21 @@ export namespace Live2DCubismFramework
         {
             super();
             this._json = CubismJson.create(buffer, size);
+
+            if(this._json)
+            {
+                this._jsonValue = new csmVector<Value>();
+
+                // 順番はenum FrequestNodeと一致させる
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(Groups));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(FileReferences).getValueByString(Moc));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(FileReferences).getValueByString(Motions));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(FileReferences).getValueByString(Expressions));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(FileReferences).getValueByString(Textures));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(FileReferences).getValueByString(Physics));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(FileReferences).getValueByString(Pose));
+                this._jsonValue.pushBack(this._json.getRoot().getValueByString(HitAreas));
+            }
         }
 
         /**
@@ -100,6 +129,8 @@ export namespace Live2DCubismFramework
         public release(): void
         {
             CubismJson.delete(this._json);
+
+            this._jsonValue = null;
         }
 
         /**
@@ -122,7 +153,7 @@ export namespace Live2DCubismFramework
             {
                 return "";
             }
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Moc).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Moc).getRawString();
         }
 
         /**
@@ -136,7 +167,7 @@ export namespace Live2DCubismFramework
                 return 0;
             }
             
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Textures).getSize();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Textures).getSize();
         }
 
         /**
@@ -145,7 +176,7 @@ export namespace Live2DCubismFramework
          */
         public getTextureDirectory(): string
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Textures).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Textures).getRawString();
         }
 
         /**
@@ -155,7 +186,7 @@ export namespace Live2DCubismFramework
          */
         public getTextureFileName(index: number): string
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Textures).getVector().at(index).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Textures).getValueByIndex(index).getRawString();
         }
 
         /**
@@ -169,7 +200,7 @@ export namespace Live2DCubismFramework
                 return 0;
             }
 
-            return this._json.getRoot().getMap().getValue(HitAreas).getSize();
+            return this._jsonValue.at(FrequestNode.FrequestNode_HitAreas).getSize();
         }
 
         /**
@@ -180,7 +211,7 @@ export namespace Live2DCubismFramework
          */
         public getHitAreaId(index: number): CubismIdHandle
         {
-            return CubismFramework.getIdManager().getId(this._json.getRoot().getMap().getValue(HitAreas).getVector().at(index).getMap().getValue(Id).getRawString());
+            return CubismFramework.getIdManager().getId(this._jsonValue.at(FrequestNode.FrequestNode_HitAreas).getValueByIndex(index).getValueByString(Id).getRawString());
         }
 
         /**
@@ -190,7 +221,7 @@ export namespace Live2DCubismFramework
          */
         public getHitAreaName(index: number): string
         {
-            return this._json.getRoot().getMap().getValue(HitAreas).getVector().at(index).getMap().getValue(Name).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_HitAreas).getValueByIndex(index).getValueByString(Name).getRawString();
         }
 
         /**
@@ -204,7 +235,7 @@ export namespace Live2DCubismFramework
                 return "";
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Physics).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Physics).getRawString();
         }
 
         /**
@@ -218,7 +249,7 @@ export namespace Live2DCubismFramework
                 return "";
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Pose).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Pose).getRawString();
         }
 
         /**
@@ -232,7 +263,7 @@ export namespace Live2DCubismFramework
                 return 0;
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Expressions).getSize();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Expressions).getSize();
         }
 
         /**
@@ -242,7 +273,7 @@ export namespace Live2DCubismFramework
          */
         public getExpressionName(index: number): string
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Expressions).getVector().at(index).getMap().getValue(Name).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Expressions).getValueByIndex(index).getValueByString(Name).getRawString();
         }
 
         /**
@@ -252,7 +283,7 @@ export namespace Live2DCubismFramework
          */
         public getExpressionFileName(index: number): string
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Expressions).getVector().at(index).getMap().getValue(FilePath).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Expressions).getValueByIndex(index).getValueByString(FilePath).getRawString();
         }
 
         /**
@@ -266,7 +297,7 @@ export namespace Live2DCubismFramework
                 return 0;
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getSize();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getKeys().getSize();
         }
 
         /**
@@ -281,7 +312,7 @@ export namespace Live2DCubismFramework
                 return null;
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getKeys().at(index);
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getKeys().at(index);
         }
 
         /**
@@ -296,7 +327,7 @@ export namespace Live2DCubismFramework
                 return 0;
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getSize();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getSize();
         }
 
         /**
@@ -312,7 +343,7 @@ export namespace Live2DCubismFramework
                 return "";
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().getValue(FilePath).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(FilePath).getRawString();
         }
 
         /**
@@ -328,7 +359,7 @@ export namespace Live2DCubismFramework
                 return "";
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().getValue(SoundPath).getRawString();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(SoundPath).getRawString();
         }
 
         /**
@@ -344,7 +375,7 @@ export namespace Live2DCubismFramework
                 return -1.0;
             }
             
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().getValue(FadeInTime).toFloat();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(FadeInTime).toFloat();
         }
 
         /**
@@ -360,7 +391,7 @@ export namespace Live2DCubismFramework
                 return -1.0;
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().getValue(FadeOutTime).toFloat();
+            return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(FadeOutTime).toFloat();
         }
 
         /**
@@ -374,7 +405,7 @@ export namespace Live2DCubismFramework
                 return "";
             }
 
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(UserData).getRawString();
+            return this._json.getRoot().getValueByString(FileReferences).getValueByString(UserData).getRawString();
         }
 
         /**
@@ -386,9 +417,7 @@ export namespace Live2DCubismFramework
         public getLayoutMap(outLayoutMap: csmMap<string, number>): boolean
         {
             // 存在しない要素にアクセスするとエラーになるためValueがnullの場合はnullを代入する
-            let map: csmMap<string, Value> = (this._json.getRoot().getMap().isExist(Layout))
-                ? this._json.getRoot().getMap().getValue(Layout).getMap()
-                : null;
+            let map: csmMap<string, Value> = this._json.getRoot().getValueByString(Layout).getMap();
 
             if(map == null)
             {
@@ -418,11 +447,17 @@ export namespace Live2DCubismFramework
             }
         
             let num: number = 0;
-            for (let i = 0; i < this._json.getRoot().getMap().getValue(Groups).getSize(); i++)
+            for (let i = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
-                if (this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Name).getRawString() == EyeBlink)
+                let refI: Value = this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i);
+                if(refI.isNull() || refI.isError())
                 {
-                    num = this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Ids).getVector().getSize();
+                    continue;
+                }
+
+                if (refI.getValueByString(Name).getRawString() == EyeBlink)
+                {
+                    num = refI.getValueByString(Ids).getVector().getSize();
                     break;
                 }
             }
@@ -442,11 +477,17 @@ export namespace Live2DCubismFramework
                 return null;
             }
         
-            for (let i = 0; i < this._json.getRoot().getMap().getValue(Groups).getSize(); i++)
+            for (let i = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
-                if (this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Name).getRawString() == EyeBlink)
+                let refI: Value = this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i);
+                if(refI.isNull() || refI.isError())
                 {
-                    return CubismFramework.getIdManager().getId(this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Ids).getVector().at(index).getRawString());
+                    continue;
+                }
+
+                if (refI.getValueByString(Name).getRawString() == EyeBlink)
+                {
+                    return CubismFramework.getIdManager().getId(refI.getValueByString(Ids).getValueByIndex(index).getRawString());
                 }
             }
             return null;
@@ -464,11 +505,17 @@ export namespace Live2DCubismFramework
             }
         
             let num: number = 0;
-            for (let i: number = 0; i < this._json.getRoot().getMap().getValue(Groups).getSize(); i++)
+            for (let i: number = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
-                if (this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Name).getRawString() == LipSync)
+                let refI: Value = this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i);
+                if(refI.isNull() || refI.isError())
                 {
-                    num = this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Ids).getVector().getSize();
+                    continue;
+                }
+
+                if (refI.getValueByString(Name).getRawString() == LipSync)
+                {
+                    num = refI.getValueByString(Ids).getVector().getSize();
                     break;
                 }
             }
@@ -488,11 +535,17 @@ export namespace Live2DCubismFramework
                 return null;
             }
         
-            for (let i: number = 0; i < this._json.getRoot().getMap().getValue(Groups).getSize(); i++)
+            for (let i: number = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
-                if (this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Name).getRawString() == LipSync)
+                let refI: Value = this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i);
+                if(refI.isNull() || refI.isError())
                 {
-                    return CubismFramework.getIdManager().getId(this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Ids).getVector().at(index).getRawString());
+                    continue;
+                }
+
+                if (refI.getValueByString(Name).getRawString() == LipSync)
+                {
+                    return CubismFramework.getIdManager().getId(refI.getValueByString(Ids).getValueByIndex(index).getRawString());
                 }
             }
             return null;
@@ -505,7 +558,8 @@ export namespace Live2DCubismFramework
          */
         private isExistModelFile(): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Moc);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Moc);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -515,7 +569,8 @@ export namespace Live2DCubismFramework
          */
         private isExistTextureFiles(): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Textures);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Textures);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -525,7 +580,8 @@ export namespace Live2DCubismFramework
          */
         private isExistHitAreas(): boolean
         {
-            return this._json.getRoot().getMap().isExist(HitAreas);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_HitAreas);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -535,7 +591,8 @@ export namespace Live2DCubismFramework
          */
         private isExistPhysicsFile(): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Physics);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Physics);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -545,7 +602,8 @@ export namespace Live2DCubismFramework
          */
         private isExistPoseFile(): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Pose);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Pose);
+            return !node.isNull() && !node.isError();
         }
         
         /**
@@ -555,7 +613,8 @@ export namespace Live2DCubismFramework
          */
         private isExistExpressionFile(): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Expressions);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Expressions);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -565,7 +624,8 @@ export namespace Live2DCubismFramework
          */
         private isExistMotionGroups(): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Motions);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Motions);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -576,11 +636,8 @@ export namespace Live2DCubismFramework
          */
         private isExistMotionGroupName(groupName: string): boolean
         {
-            if(!this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(Motions))
-            {
-                return false;
-            }
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().isExist(groupName);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -592,7 +649,8 @@ export namespace Live2DCubismFramework
          */
         private isExistMotionSoundFile(groupName: string, index: number): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().isExist(SoundPath);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(SoundPath);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -604,7 +662,8 @@ export namespace Live2DCubismFramework
          */
         private isExistMotionFadeIn(groupName: string, index: number): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().isExist(FadeInTime);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(FadeInTime);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -616,7 +675,8 @@ export namespace Live2DCubismFramework
          */
         private isExistMotionFadeOut(groupName: string, index: number): boolean
         {
-            return this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(Motions).getMap().getValue(groupName).getVector().at(index).getMap().isExist(FadeOutTime);
+            let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(FadeOutTime);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -626,11 +686,8 @@ export namespace Live2DCubismFramework
          */
         private isExistUserDataFile(): boolean
         {
-            if(!this._json.getRoot().getMap().getValue(FileReferences).getMap().isExist(UserData))
-            {
-                return false;
-            }
-            return !this._json.getRoot().getMap().getValue(FileReferences).getMap().getValue(UserData).isNull();
+            let node: Value = this._json.getRoot().getValueByString(FileReferences).getValueByString(UserData);
+            return !node.isNull() && !node.isError();
         }
 
         /**
@@ -640,13 +697,14 @@ export namespace Live2DCubismFramework
          */
         private isExistEyeBlinkParameters(): boolean
         {
-            if(!this._json.getRoot().getMap().isExist(Groups))
+            if(this._jsonValue.at(FrequestNode.FrequestNode_Groups).isNull() || this._jsonValue.at(FrequestNode.FrequestNode_Groups).isError())
             {
                 return false;
             }
-            for (let i: number = 0; i < this._json.getRoot().getMap().getValue(Groups).getSize(); ++i)
+
+            for (let i: number = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); ++i)
             {
-                if (this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Name).getRawString() == EyeBlink)
+                if (this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i).getValueByString(Name).getRawString() == EyeBlink)
                 {
                     return true;
                 }
@@ -662,13 +720,13 @@ export namespace Live2DCubismFramework
          */
         private isExistLipSyncParameters(): boolean
         {
-            if(!this._json.getRoot().getMap().isExist(Groups))
+            if(this._jsonValue.at(FrequestNode.FrequestNode_Groups).isNull() || this._jsonValue.at(FrequestNode.FrequestNode_Groups).isError())
             {
                 return false;
             }
-            for (let i: number = 0; i < this._json.getRoot().getMap().getValue(Groups).getSize(); ++i)
+            for (let i: number = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); ++i)
             {
-                if (this._json.getRoot().getMap().getValue(Groups).getVector().at(i).getMap().getValue(Name).getRawString() == LipSync)
+                if (this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i).getValueByString(Name).getRawString() == LipSync)
                 {
                     return true;
                 }
@@ -678,5 +736,6 @@ export namespace Live2DCubismFramework
         
         
         private _json: CubismJson;
+        private _jsonValue: csmVector<Value>;
      }
 }
