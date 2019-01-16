@@ -1477,11 +1477,6 @@ export namespace Live2DCubismFramework
             this._bufferData.index = null;
             this._bufferData = null;
 
-            for (const ite: csmmap.iterator<number, WebGLTexture> = this._textures.begin(); ite.notEqual(this._textures.end()); ite.preIncrement())
-            {
-                this.gl.deleteTexture(ite.ptr().second);
-            }
-            this._textures.clear();
             this._textures = null;
         }
 

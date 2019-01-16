@@ -144,7 +144,7 @@ export class LAppView
             this._back = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
         };
 
-        textureManager.createTextureFromPngFile(resourcesPath + imageName, initBackGroundTexture);
+        textureManager.createTextureFromPngFile(resourcesPath + imageName, false, initBackGroundTexture);
         
         // 歯車画像初期化
         imageName = LAppDefine.GearImageName;
@@ -157,7 +157,7 @@ export class LAppView
             this._gear = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
         };
 
-        textureManager.createTextureFromPngFile(resourcesPath + imageName, initGearTexture);
+        textureManager.createTextureFromPngFile(resourcesPath + imageName, false, initGearTexture);
 
         // シェーダーを作成
         if(this._programId == null)
