@@ -79,7 +79,7 @@ export class LAppPal
                 /\{(\d+)\}/g,
                 (m, k) =>
                 {
-                        return args[k];
+                    return args[k];
                 }
             )
         );
@@ -91,7 +91,7 @@ export class LAppPal
      */
     public static printMessage(message: string): void
     {
-        this.printLog(message);
+        LAppPal.printLog(message);
     }
 
     static lastUpdate = Date.now();
