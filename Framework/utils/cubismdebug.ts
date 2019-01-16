@@ -5,16 +5,16 @@
  * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import {Live2DCubismFramework as live2dcubismframework, LogLevel} from "../live2dcubismframework";
-import CubismFramework = live2dcubismframework.CubismFramework;
-import { CSM_LOG_LEVEL, CSM_LOG_LEVEL_VERBOSE, CSM_LOG_LEVEL_DEBUG, CSM_LOG_LEVEL_INFO, CSM_LOG_LEVEL_WARNING, CSM_LOG_LEVEL_ERROR } from "../cubismframeworkconfig";
+import {Live2DCubismFramework as cubismframework, LogLevel} from "../live2dcubismframework";
+import {CSM_LOG_LEVEL, CSM_LOG_LEVEL_VERBOSE, CSM_LOG_LEVEL_DEBUG, CSM_LOG_LEVEL_INFO, CSM_LOG_LEVEL_WARNING, CSM_LOG_LEVEL_ERROR} from "../cubismframeworkconfig";
 
-export const CubismLogPrint = (level: LogLevel, fmt: string, ... args: any[]) => 
+
+export const CubismLogPrint = (level: LogLevel, fmt: string, args: any[]) => 
 {
     Live2DCubismFramework.CubismDebug.print(level, "[CSM]" + fmt, args);
 }
 
-export const CubismLogPrintIn = (level: LogLevel, fmt: string, ... args: any[]) =>
+export const CubismLogPrintIn = (level: LogLevel, fmt: string, args: any[]) =>
 {
     CubismLogPrint(level, fmt + "\n", args);
 }
@@ -133,32 +133,30 @@ export namespace Live2DCubismFramework
          * 
          * @param logLevel ログレベルの設定
          * @param format 書式付き文字列
-         * @param ... args 可変長引数
+         * @param args 可変長引数
          */
-        public static print(logLevel: LogLevel, format: string, ... args: any[]): void
+        public static print(logLevel: LogLevel, format: string, args?: any[]): void
         {
             // オプションで設定されたログ出力レベルを下回る場合はログに出さない
-            // if(logLevel < CubismFramework.getLoggingLevel())
-            // {
-            //     return;
-            // }
-            
-            // TODO
-            // const Core::csmLogFunction logPrint = CubismFramework::CoreLogFunction;
+            if(logLevel < cubismframework.CubismFramework.getLoggingLevel())
+            {
+                return;
+            }
 
-            // if (!logPrint)
-            //     return;
+            const logPrint: Live2DCubismCore.csmLogFunction = cubismframework.CubismFramework.coreLogFunction;
 
-            let buffer: string = format;
-            buffer = buffer.replace(
-                /\{(\d+)\}/g,
-                (m, k) =>   // m="{0}", k="0"
-                {
-                    return args[k];
-                }
-            );
-        
-            // logPrint(buffer);
+            if (!logPrint)
+                return;
+
+            let buffer: string = 
+                format.replace(
+                    /\{(\d+)\}/g,
+                    (m, k) =>
+                    {
+                        return args[k];
+                    }
+                );
+            logPrint(buffer);
         }
 
         /**
@@ -175,7 +173,7 @@ export namespace Live2DCubismFramework
             {
                 if (i % 16 == 0 && i > 0) this.print(logLevel, "\n");
                 else if (i % 8 == 0 && i > 0) this.print(logLevel, "  ");
-                this.print(logLevel, "{0} ", (data[i] & 0xFF));
+                this.print(logLevel, "{0} ", [(data[i] & 0xFF)]);
             }
         
             this.print(logLevel, "\n");

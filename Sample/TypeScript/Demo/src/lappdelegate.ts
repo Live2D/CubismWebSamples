@@ -1,18 +1,19 @@
 ﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as live2dcubismframework, Option as Csm_Option} from "../../../../Framework/live2dcubismframework";
 import {Live2DCubismFramework as cubismmatrix44} from "../../../../Framework/math/cubismmatrix44";
 import Csm_CubismMatrix44 = cubismmatrix44.CubismMatrix44;
 import Csm_CubismFramework = live2dcubismframework.CubismFramework;
-import { LAppView } from "./lappview";
-import { LAppPal } from "./lapppal";
-import { LAppTextureManager } from "./lapptexturemanager";
-import { LAppLive2DManager } from "./lapplive2dmanager";
+import {LAppView} from "./lappview";
+import {LAppPal} from "./lapppal";
+import {LAppTextureManager} from "./lapptexturemanager";
+import {LAppLive2DManager} from "./lapplive2dmanager";
+import {LAppDefine} from "./lappdefine";
 
 export let canvas: HTMLCanvasElement = null;
 export let s_instance: LAppDelegate = null;
@@ -271,7 +272,9 @@ export class LAppDelegate
     public initializeCubism(): void
     {
         // setup cubism
-        Csm_CubismFramework.startUp();
+        this._cubismOption.logFunction = LAppPal.printMessage;
+        this._cubismOption.loggingLevel = LAppDefine.CubismLoggingLevel;
+        Csm_CubismFramework.startUp(this._cubismOption);
 
         // initialize cubism
         Csm_CubismFramework.initialize();
