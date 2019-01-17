@@ -110,12 +110,7 @@ F5で実行し、remote web site with sourcemapを選択します。
 
 
 # TODO
-
-以下Core内関数の実装
-- csmSetLogFunction
-- csmGetLogFunction
-- csmSetLogFunction
-- csmGetVersion
+- 無し
 
 
 # ライセンス
