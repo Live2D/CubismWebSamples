@@ -203,10 +203,10 @@ export namespace Live2DCubismFramework
             Value.staticReleaseNotForClientCall();
 
             s_cubismIdManager.release();
-            s_cubismIdManager = void 0;
+            s_cubismIdManager = null;
 
             // レンダラの静的リソース（シェーダプログラム他）を解放する
-            CubismRenderer.StaticRelease();
+            CubismRenderer.staticRelease();
 
             s_isInitialized = false;
 
