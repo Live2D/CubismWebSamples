@@ -42,7 +42,8 @@ export namespace LAppDefine
     export const ModelDir: string[] = [
         "Haru",
         "Hiyori",
-        "Mark"
+        "Mark",
+        "Natori"
     ]
     export const ModelDirSize: number = ModelDir.length;
 
