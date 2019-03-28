@@ -110,12 +110,7 @@ F5で実行し、remote web site with sourcemapを選択します。
 
 
 # TODO
-
-以下Core内関数の実装
-- csmSetLogFunction
-- csmGetLogFunction
-- csmSetLogFunction
-- csmGetVersion
+- 無し
 
 
 # ライセンス
@@ -139,7 +134,9 @@ Live2D のサンプルモデルは Free Material License で提供していま�
    - Samples/Resources/Haru/*
    - Samples/Resources/Hiyori/*
    - Samples/Resources/Mark/*
+   - Samples/Res/Natori/
 
+上記のモデルをご利用になられる場合、[こちら](https://docs.live2d.com/cubism-editor-manual/sample-model/)で各モデルに設定された利用条件に同意して頂く必要がございます。
 
 直近会計年度の売上高が 1000 万円以上の事業者様がご利用になる場合は、SDKリリース(出版許諾)ライセンスに同意していただく必要がございます。 
 - [SDKリリース(出版許諾)ライセンス](http://www.live2d.com/ja/products/releaselicense) 

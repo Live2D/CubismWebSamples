@@ -212,7 +212,7 @@ export namespace Live2DCubismFramework
          */
         public setErrorNotForClientCall(errorStr: string): Value
         {
-            return Value.errorValue;
+            return JsonError.errorValue;
         }
 
         /**
@@ -234,11 +234,11 @@ export namespace Live2DCubismFramework
          */
         public static staticReleaseNotForClientCall(): void
         {
-            JsonBoolean.trueValue = void 0;
-            JsonBoolean.falseValue = void 0;
-            JsonError.errorValue = void 0;
-            Value.nullValue = void 0;
-            Value.s_dummyKeys = void 0;
+            JsonBoolean.trueValue = null;
+            JsonBoolean.falseValue = null;
+            JsonError.errorValue = null;
+            Value.nullValue = null;
+            Value.s_dummyKeys = null;
 
             JsonBoolean.trueValue = null;
             JsonBoolean.falseValue = null;
@@ -296,7 +296,6 @@ export namespace Live2DCubismFramework
             if(!succeeded) 
             {
                 CubismJson.delete(json);
-                console.log("parseBytes is failed");
                 return null;
             }
             else
@@ -312,7 +311,6 @@ export namespace Live2DCubismFramework
          */
         public static delete(instance: CubismJson)
         {
-            instance = void 0;
             instance = null;
         }
 
@@ -369,7 +367,6 @@ export namespace Live2DCubismFramework
 
             if(this._error)
             {
-                console.log(this._error);
                 let strbuf: string = '\0';
                 strbuf = "Json parse error : @line " + (this._lineCount + 1) + "\n";
                 this._root = new JsonString(strbuf);

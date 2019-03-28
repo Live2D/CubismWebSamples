@@ -34,16 +34,7 @@ export namespace Live2DCubismFramework
          */
         public static delete(renderer: CubismRenderer): void
         {
-            renderer = void 0;
             renderer = null;
-        }
-
-        /**
-         * レンダラが保持する静的なリソースを開放する
-         */
-        public static StaticRelease(): void
-        {
-            //CubismRenderer_WebGL.doStaticRelease();
         }
 
         /**
@@ -251,11 +242,16 @@ export namespace Live2DCubismFramework
                                     indexArray: Uint16Array, vertexArray: Float32Array, uvArray: Float32Array,
                                     opacity: number, colorBlendMode: CubismBlendMode): void;
 
+        /**
+         * レンダラが保持する静的なリソースを開放する
+         */
+        public static staticRelease: Function;
+
         protected _mvpMatrix4x4: CubismMatrix44;                  // Model-View-Projection 行列
-        protected _modelColor: CubismTextureColor; // モデル自体のカラー（RGBA）
+        protected _modelColor: CubismTextureColor;                // モデル自体のカラー（RGBA）
         protected _isCulling: boolean;                            // カリングが有効ならtrue
         protected _isPremultipliedAlpha: boolean;                 // 乗算済みαならtrue
-        protected _anisortopy: any;                            // テクスチャの異方性フィルタリングのパラメータ
+        protected _anisortopy: any;                               // テクスチャの異方性フィルタリングのパラメータ
         protected _model: CubismModel;                            // レンダリング対象のモデル
     }
 

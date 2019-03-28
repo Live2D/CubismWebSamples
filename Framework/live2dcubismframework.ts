@@ -5,6 +5,7 @@
  * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
+/// <reference path="../Core/live2dcubismcore.d.ts" />
 import {Live2DCubismFramework as cubismjson} from "./utils/cubismjson";
 import {Live2DCubismFramework as cubismidmanager} from "./id/cubismidmanager";
 import {Live2DCubismFramework as cubismrenderer} from "./rendering/cubismrenderer";
@@ -98,7 +99,7 @@ export namespace Live2DCubismFramework
         {
             if(s_isStarted)
             {
-                CubismLogInfo("CubismFramework::StartUp() is already done.");
+                CubismLogInfo("CubismFramework.startUp() is already done.");
                 return s_isStarted;
             }
 
@@ -106,7 +107,7 @@ export namespace Live2DCubismFramework
 
             if(s_option != null)
             {
-                // TODO Core::csmSetLogFunction(s_option->LogFunction);
+                Live2DCubismCore.Logging.csmSetLogFunction(s_option.logFunction);
             }
 
             s_isStarted = true;
@@ -114,16 +115,21 @@ export namespace Live2DCubismFramework
             // Live2D Cubism Coreバージョン情報を表示
             if(s_isStarted)
             {
-                const version: number = 1; // TODO Core::csmGetVersion()
+                const version: number = Live2DCubismCore.Version.csmGetVersion();
                 const major: number = ((version & 0xFF000000) >> 24);
                 const minor: number = ((version & 0x00FF0000) >> 16);
                 const patch: number = ((version & 0x0000FFFF));
                 const versionNumber: number = version;
 
-                CubismLogInfo("Live2D Cubism Core version: %02d.%02d.%04d (%d)", major, minor, patch, versionNumber);
+                CubismLogInfo(`Live2D Cubism Core version: {0}.{1}.{2} ({3})`, 
+                    ('00' + major).slice(-2),
+                    ('00' + minor).slice(-2),
+                    ('0000' + patch).slice(-4),
+                    versionNumber
+                );
             }
 
-            CubismLogInfo("CubismFramework::StartUp() is complete.");
+            CubismLogInfo("CubismFramework.startUp() is complete.");
 
             return s_isStarted;
         }
@@ -158,7 +164,7 @@ export namespace Live2DCubismFramework
             // 再度Initialize()するには先にDispose()を実行する必要がある。
             if (s_isInitialized)
             {
-                CubismLogWarning("CubismFramework::Initialize() skipped, already initialized.");
+                CubismLogWarning("CubismFramework.initialize() skipped, already initialized.");
                 return;
             }
 
@@ -169,7 +175,7 @@ export namespace Live2DCubismFramework
 
             s_isInitialized = true;
 
-            CubismLogInfo("CubismFramework::Initialize() is complete.");
+            CubismLogInfo("CubismFramework.initialize() is complete.");
         }
 
         /**
@@ -190,23 +196,58 @@ export namespace Live2DCubismFramework
             // dispose()するには先にinitialize()を実行する必要がある。
             if(!s_isInitialized)    // false...リソース未確保の場合
             {
-                CubismLogWarning("CubismFramework::Dispose() skipped, not initialized.");
+                CubismLogWarning("CubismFramework.dispose() skipped, not initialized.");
                 return;
             }
 
             Value.staticReleaseNotForClientCall();
 
             s_cubismIdManager.release();
-            s_cubismIdManager = void 0;
+            s_cubismIdManager = null;
 
             // レンダラの静的リソース（シェーダプログラム他）を解放する
-            CubismRenderer.StaticRelease();
+            CubismRenderer.staticRelease();
 
             s_isInitialized = false;
 
-            CubismLogInfo("CubismFramework::Dispose() is complete.");
+            CubismLogInfo("CubismFramework.dispose() is complete.");
         }
 
+        
+        /**
+         * Cubism FrameworkのAPIを使用する準備が完了したかどうか
+         * @return APIを使用する準備が完了していればtrueが返ります。
+         */
+        public static isStarted(): boolean
+        {
+            return s_isStarted;
+        }
+        
+        /**
+         * Cubism Frameworkのリソース初期化がすでに行われているかどうか
+         * @return リソース確保が完了していればtrueが返ります
+         */
+        public static isInitialized(): boolean
+        {
+            return s_isInitialized;
+        }
+
+        /**
+         * Core APIにバインドしたログ関数を実行する
+         * 
+         * @praram message ログメッセージ
+         */
+        public static coreLogFunction(message: string): void
+        {
+            // Return if logging not possible.
+            if(!Live2DCubismCore.Logging.csmGetLogFunction())
+            {
+                return;
+            }
+
+            Live2DCubismCore.Logging.csmGetLogFunction()(message);
+        }
+        
         /**
          * 現在のログ出力レベル設定の値を返す。
          *
@@ -219,24 +260,6 @@ export namespace Live2DCubismFramework
                 return s_option.loggingLevel;
             }
             return LogLevel.LogLevel_Off;
-        }
-
-        /**
-         * Cubism FrameworkのAPIを使用する準備が完了したかどうか
-         * @return APIを使用する準備が完了していればtrueが返ります。
-         */
-        public static isStarted(): boolean
-        {
-            return s_isStarted;
-        }
-
-        /**
-         * Cubism Frameworkのリソース初期化がすでに行われているかどうか
-         * @return リソース確保が完了していればtrueが返ります
-         */
-        public static isInitialized(): boolean
-        {
-            return s_isInitialized;
         }
 
         /**
@@ -261,6 +284,7 @@ export namespace Live2DCubismFramework
 
 export class Option
 {
+    logFunction: Live2DCubismCore.csmLogFunction;   // ログ出力の関数オブジェクト
     loggingLevel: LogLevel;  // ログ出力レベルの設定
 }
 

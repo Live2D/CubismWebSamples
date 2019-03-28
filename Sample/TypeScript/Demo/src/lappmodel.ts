@@ -45,7 +45,8 @@ import CubismDefaultParameterId = cubismdefaultparameterid;
 
 import {LAppDefine} from "./lappdefine";
 import {LAppPal} from "./lapppal";
-import { gl, canvas, frameBuffer} from "./lappdelegate";
+import {gl, canvas, frameBuffer, LAppDelegate} from "./lappdelegate";
+import {TextureInfo} from "./lapptexturemanager";
 import "whatwg-fetch";
 
 function createBuffer(path: string, callBack: any): void
@@ -166,7 +167,7 @@ export class LAppModel extends CubismUserModel {
         }
         else
         {
-            console.log("ModelData is not exist");
+            LAppPal.printLog("Model data does not exist.");
         }
 
         // Expression
@@ -476,7 +477,6 @@ export class LAppModel extends CubismUserModel {
         {
             // テクスチャ読み込み用
             let textureCount: number = this._modelSetting.getTextureCount();
-            let img: HTMLImageElement[] = new Array(textureCount);
 
             for(let modelTextureNumber = 0; modelTextureNumber < textureCount; modelTextureNumber++)
             {
@@ -491,34 +491,10 @@ export class LAppModel extends CubismUserModel {
                 let texturePath = this._modelSetting.getTextureFileName(modelTextureNumber);
                 texturePath = this._modelHomeDir + texturePath;
 
-                // データのオンロードをトリガーにする
-                img[modelTextureNumber] = new Image();
-                img[modelTextureNumber].onload = () =>
+                // ロード完了時に呼び出すコールバック関数
+                let onLoad = (textureInfo: TextureInfo) : void => 
                 {
-                    // テクスチャオブジェクトの作成
-                    let tex: WebGLTexture = gl.createTexture();
-    
-                    // テクスチャを選択
-                    gl.bindTexture(gl.TEXTURE_2D, tex);
-    
-                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
-                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-
-                    // Premult処理を行わせる 
-                    if(usePremultiply)
-                    {
-                        gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
-                    }
-    
-                    // テクスチャにピクセルを書き込む
-                    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img[modelTextureNumber]);
-    
-                    // ミップマップを生成
-                    gl.generateMipmap(gl.TEXTURE_2D);
-    
-                    this.getRenderer().bindTexture(modelTextureNumber, tex);
+                    this.getRenderer().bindTexture(modelTextureNumber, textureInfo.id);
                     
                     this._textureCount++;
                     
@@ -527,9 +503,10 @@ export class LAppModel extends CubismUserModel {
                         // ロード完了
                         this._state = LoadStep.CompleteSetup;
                     }
-                }
-                img[modelTextureNumber].src = texturePath;
-    
+                };
+                
+                // 読み込み
+                LAppDelegate.getInstance().getTextureManager().createTextureFromPngFile(texturePath, usePremultiply, onLoad);
                 this.getRenderer().setIsPremultipliedAlpha(usePremultiply);
             }
 

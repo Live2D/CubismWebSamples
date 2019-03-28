@@ -816,7 +816,6 @@ export namespace Live2DCubismFramework
             if(s_instance)
             {
                 s_instance.release();
-                s_instance = void 0;
                 s_instance = null;
             }
         }
@@ -1477,11 +1476,6 @@ export namespace Live2DCubismFramework
             this._bufferData.index = null;
             this._bufferData = null;
 
-            for (const ite: csmmap.iterator<number, WebGLTexture> = this._textures.begin(); ite.notEqual(this._textures.end()); ite.preIncrement())
-            {
-                this.gl.deleteTexture(ite.ptr().second);
-            }
-            this._textures.clear();
             this._textures = null;
         }
 
@@ -1722,4 +1716,11 @@ export namespace Live2DCubismFramework
         gl: WebGLRenderingContext;  // webglコンテキスト
     }
 
+    /**
+     * レンダラが保持する静的なリソースを開放する
+     */
+    CubismRenderer.staticRelease = (): void =>
+    {
+        CubismRenderer_WebGL.doStaticRelease();
+    }
 }
