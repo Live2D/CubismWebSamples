@@ -333,7 +333,7 @@ function onMouseMoved(e: MouseEvent): void
         return;
     }
 
-    let rect = e.srcElement.getBoundingClientRect();
+    let rect = (<Element>e.target).getBoundingClientRect();
     let posX: number = e.clientX - rect.left;
     let posY: number = e.clientY - rect.top;
 
@@ -353,7 +353,7 @@ function onClickEnded(e: MouseEvent): void
     }
     
     
-    let rect = e.srcElement.getBoundingClientRect();
+    let rect = (<Element>e.target).getBoundingClientRect();
     let posX: number = e.clientX - rect.left;
     let posY: number = e.clientY - rect.top;
 
@@ -396,7 +396,7 @@ function onTouchMoved(e: TouchEvent): void
         return;
     }
     
-    let rect = e.srcElement.getBoundingClientRect();
+    let rect = (<Element>e.target).getBoundingClientRect();
 
     let posX = e.changedTouches[0].clientX - rect.left;
     let posY = e.changedTouches[0].clientY - rect.top;
@@ -417,7 +417,7 @@ function onTouchEnded(e: TouchEvent): void
         return;
     }
 
-    let rect = e.srcElement.getBoundingClientRect();
+    let rect = (<Element>e.target).getBoundingClientRect();
     
     let posX = e.changedTouches[0].clientX - rect.left;
     let posY = e.changedTouches[0].clientY - rect.top;
@@ -438,7 +438,7 @@ function onTouchCancel(e: TouchEvent): void
         return;
     }
 
-    let rect = e.srcElement.getBoundingClientRect();
+    let rect = (<Element>e.target).getBoundingClientRect();
     
     let posX = e.changedTouches[0].clientX - rect.left;
     let posY = e.changedTouches[0].clientY - rect.top;
