@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "es5",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"pretty": true,
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"declaration": true,
+		"alwaysStrict": true,
+		"allowJs": false,
+		"listFiles": true,
+		"removeComments": true,
+		"experimentalDecorators": true,
+		"lib": [
+			"dom",
+			"dom",
+			"es6",
+			"es7",
+		],
+		"paths": {
+			"@/*": [
+				"src/*"
+			],
+		},
+	},
+	"exclude": [
+		"node_modules/**",
+		"Core/**",
+		"Sample/TypeScript/Demo/dist/**"
+	]
+}

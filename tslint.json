@@ -1,0 +1,51 @@
+{
+	"defaultSeverity": "warning",
+	"extends": ["tslint:recommended"],
+	"linterOptions": {
+		"exclude": ["node_modules/**"]
+	},
+	"rules": {
+		"quotemark": [true, "single"],
+		"indent": [true, "tabs", 4],
+		"linebreak-style": [true, "LF"],
+		"max-line-length": [
+			true,
+			{
+				"limit": 140,
+				"ignore-pattern": "(^.*//)|(^.*'.*')|(^.*\".*\")|(^.*`.*`)"
+			}
+		],
+		"ban-types": false,
+		"interface-name": false,
+		"ordered-imports": [
+			true,
+			{
+				"import-sources-order": "any",
+				"named-imports-order": "case-insensitive"
+			}
+		],
+		"object-literal-sort-keys": false,
+		"no-consecutive-blank-lines": false,
+		"no-angle-bracket-type-assertion": false,
+		"forin": false,
+		"variable-name": [
+			true,
+			"ban-keywords",
+			"check-format",
+			"allow-snake-case",
+			"allow-pascal-case",
+			"allow-leading-underscore"
+		],
+		"curly": [true, "ignore-same-line"],
+		"no-namespace": false,
+		"arrow-parens": [true, "ban-single-arg-parens"],
+		"max-classes-per-file": false,
+		"no-empty": [true, "allow-empty-functions"],
+		"no-unused-expression": false,
+		"no-shadowed-variable": false,
+		"no-console": false,
+		"no-empty-interface": false,
+		"no-string-literal": false,
+		"member-ordering": false
+	}
+}
