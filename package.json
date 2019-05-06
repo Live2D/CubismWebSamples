@@ -9,7 +9,6 @@
 		"watch:all": "npm-run-all watch:framework watch:sample"
 	},
 	"dependencies": {
-		"core-js": "^3.0.1",
 		"tslint": "^5.16.0",
 		"whatwg-fetch": "^3.0.0"
 	},
