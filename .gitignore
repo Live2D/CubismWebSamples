@@ -3,3 +3,6 @@
 
 node_modules/
 Sample/TypeScript/Demo/dist/
+
+*.d.ts
+!Core/*.d.ts
