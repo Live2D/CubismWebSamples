@@ -9,7 +9,7 @@
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
-		"declaration": true,
+		"declaration": false,
 		"alwaysStrict": true,
 		"allowJs": false,
 		"listFiles": true,
