@@ -6,7 +6,9 @@
 		"build:sample": "npx webpack --config build/sample.webpack.config.js",
 		"watch:sample": "npx webpack --watch --config build/sample.webpack.config.js",
 		"build:all": "npm-run-all build:framework build:sample",
-		"watch:all": "npm-run-all watch:framework watch:sample"
+		"watch:all": "npm-run-all watch:framework watch:sample",
+		"lint": "tslint -p . Sample/TypeScript/Demo/src/**/*.ts -t verbose",
+		"lint:fix": "tslint --fix -p . Sample/TypeScript/Demo/src/**/*.ts -t stylish"
 	},
 	"dependencies": {
 		"whatwg-fetch": "^3.0.0"
