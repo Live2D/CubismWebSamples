@@ -104,12 +104,12 @@ import { gl, canvas } from "./lappdelegate";
 
             // uvバッファ、座標初期化
             {
-                this._uvArray = [
+                this._uvArray = new Float32Array([
                     1.0, 0.0,
                     0.0, 0.0,
                     0.0, 1.0,
                     1.0, 1.0
-                ];
+                ]);
     
                 // uvバッファを作成
                 this._uvBuffer = gl.createBuffer();
@@ -121,12 +121,12 @@ import { gl, canvas } from "./lappdelegate";
                 let maxHeight = canvas.height;
                 
                 // 頂点データ
-                this._positionArray = [
+                this._positionArray = new Float32Array([
                     (this._rect.right - maxWidth * 0.5) / (maxWidth * 0.5), (this._rect.up   - maxHeight * 0.5) / (maxHeight * 0.5),
                     (this._rect.left  - maxWidth * 0.5) / (maxWidth * 0.5), (this._rect.up   - maxHeight * 0.5) / (maxHeight * 0.5),
                     (this._rect.left  - maxWidth * 0.5) / (maxWidth * 0.5), (this._rect.down - maxHeight * 0.5) / (maxHeight * 0.5),
                     (this._rect.right - maxWidth * 0.5) / (maxWidth * 0.5), (this._rect.down - maxHeight * 0.5) / (maxHeight * 0.5)
-                ];
+                ]);
 
                 // 頂点バッファを作成
                 this._vertexBuffer = gl.createBuffer();
@@ -135,10 +135,10 @@ import { gl, canvas } from "./lappdelegate";
             // 頂点インデックスバッファ、初期化
             {
                 // インデックスデータ
-                this._indexArray = [
+                this._indexArray = new Uint16Array([
                     0, 1, 2,
                     3, 2, 0
-                ];
+                ]);
 
                 // インデックスバッファを作成
                 this._indexBuffer = gl.createBuffer();
@@ -149,21 +149,21 @@ import { gl, canvas } from "./lappdelegate";
 
         // UV座標登録
         gl.bindBuffer(gl.ARRAY_BUFFER, this._uvBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._uvArray), gl.STATIC_DRAW);
+        gl.bufferData(gl.ARRAY_BUFFER, this._uvArray, gl.STATIC_DRAW);
 
         // attribute属性を登録
         gl.vertexAttribPointer(this._uvLocation, 2, gl.FLOAT, false, 0, 0);
 
         // 頂点座標を登録
         gl.bindBuffer(gl.ARRAY_BUFFER, this._vertexBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._positionArray), gl.STATIC_DRAW);
+        gl.bufferData(gl.ARRAY_BUFFER, this._positionArray, gl.STATIC_DRAW);
 
         // attribute属性を登録
         gl.vertexAttribPointer(this._positionLocation, 2, gl.FLOAT, false, 0, 0);
 
         // 頂点インデックスを作成
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._indexBuffer);
-        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._indexArray), gl.DYNAMIC_DRAW);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this._indexArray, gl.DYNAMIC_DRAW);
 
         // モデルの描画
         gl.bindTexture(gl.TEXTURE_2D, this._texture);
@@ -198,9 +198,9 @@ import { gl, canvas } from "./lappdelegate";
      _uvLocation: number;
      _textureLocation: WebGLUniformLocation;
 
-     _positionArray: number[];
-     _uvArray: number[];
-     _indexArray: number[];
+     _positionArray: Float32Array;
+     _uvArray: Float32Array;
+     _indexArray: Uint16Array;
 
      _firstDraw: boolean;
  }
