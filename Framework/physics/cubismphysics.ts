@@ -762,14 +762,14 @@ export namespace Live2DCubismFramework
 
         if(maxValue < value)
         {
-            return result;
+            value = maxValue;
         }
 
         const minValue: number = CubismMath.min(parameterMaximum, parameterMinimum);
 
         if(minValue > value)
         {
-            return result;
+            value = minValue;
         }
 
         const minNormValue: number = CubismMath.min(normalizedMinimum, normalizedMaximum);
