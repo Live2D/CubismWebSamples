@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as acubismmotion} from './acubismmotion';
@@ -64,7 +64,7 @@ export namespace Live2DCubismFramework
 
         /**
          * モーションの終了の確認
-         * 
+         *
          * @return true モーションが終了した
          * @return false 終了していない
          */
@@ -184,7 +184,7 @@ export namespace Live2DCubismFramework
             this._stateTimeSeconds = timeSeconds;
             this._stateWeight = weight;
         }
-        
+
         /**
          * モーションの現在時刻の取得
          * @return モーションの現在時刻[秒]
@@ -205,7 +205,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 最後にイベントの発火をチェックした時間を取得
-         * 
+         *
          * @return 最後にイベントの発火をチェックした時間[秒]
          */
         public getLastCheckEventTime(): number

@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismvector2} from '../math/cubismvector2';
@@ -34,7 +34,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief 物理演算で使用する外部の力
-     * 
+     *
      * 物理演算で使用する外部の力。
      */
     export class PhysicsJsonEffectiveForces
@@ -174,7 +174,7 @@ export namespace Live2DCubismFramework
             translationScale: CubismVector2,
             angleScale: number
         ): number;
-    } 
+    }
 
     /**
      * 物理演算の入力情報
@@ -195,7 +195,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief 物理演算の出力情報
-     * 
+     *
      * 物理演算の出力情報。
      */
     export class CubismPhysicsOutput
@@ -222,7 +222,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief 物理演算のデータ
-     * 
+     *
      * 物理演算のデータ。
      */
     export class CubismPhysicsRig

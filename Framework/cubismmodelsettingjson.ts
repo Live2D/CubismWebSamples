@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismframework} from "./live2dcubismframework";
@@ -33,21 +33,21 @@ export namespace Live2DCubismFramework
      const Groups: string = "Groups";
      const Layout: string = "Layout";
      const HitAreas: string = "HitAreas";
-     
+
      const Moc: string = "Moc";
      const Textures: string = "Textures";
      const Physics: string = "Physics";
      const Pose: string = "Pose";
      const Expressions: string = "Expressions";
      const Motions: string = "Motions";
-     
+
      const UserData: string = "UserData";
      const Name: string = "Name";
      const FilePath: string = "File";
      const Id: string = "Id";
      const Ids: string = "Ids";
      const Target: string = "Target";
-     
+
      // Motions
      const Idle: string = "Idle";
      const TapBody: string = "TapBody";
@@ -56,11 +56,11 @@ export namespace Live2DCubismFramework
      const Shake: string = "Shake";
      const FlickHead: string = "FlickHead";
      const Parameter: string = "Parameter";
-     
+
      const SoundPath: string = "Sound";
      const FadeInTime: string = "FadeInTime";
      const FadeOutTime: string = "FadeOutTime";
-     
+
      // Layout
      const CenterX: string = "CenterX";
      const CenterY: string = "CenterY";
@@ -68,10 +68,10 @@ export namespace Live2DCubismFramework
      const Y: string = "Y";
      const Width: string = "Width";
      const Height: string = "Height";
-     
+
      const LipSync: string = "LipSync";
      const EyeBlink: string = "EyeBlink";
-     
+
      const InitParameter: string = "init_param";
      const InitPartsVisible: string = "init_parts_visible";
      const Val: string = "val";
@@ -91,14 +91,14 @@ export namespace Live2DCubismFramework
 
      /**
       * Model3Jsonパーサー
-      * 
+      *
       * model3.jsonファイルをパースして値を取得する
       */
      export class CubismModelSettingJson extends ICubismModelSetting
      {
         /**
          * 引数付きコンストラクタ
-         * 
+         *
          * @param buffer    Model3Jsonをバイト配列として読み込んだデータバッファ
          * @param size      Model3Jsonのデータサイズ
          */
@@ -135,7 +135,7 @@ export namespace Live2DCubismFramework
 
         /**
          * CubismJsonオブジェクトを取得する
-         * 
+         *
          * @return CubismJson
          */
         public GetJson(): CubismJson
@@ -166,7 +166,7 @@ export namespace Live2DCubismFramework
             {
                 return 0;
             }
-            
+
             return this._jsonValue.at(FrequestNode.FrequestNode_Textures).getSize();
         }
 
@@ -205,7 +205,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 当たり判定に設定されたIDを取得する
-         * 
+         *
          * @param index 配列のindex
          * @return 当たり判定に設定されたID
          */
@@ -374,7 +374,7 @@ export namespace Live2DCubismFramework
             {
                 return -1.0;
             }
-            
+
             return this._jsonValue.at(FrequestNode.FrequestNode_Motions).getValueByString(groupName).getValueByIndex(index).getValueByString(FadeInTime).toFloat();
         }
 
@@ -445,7 +445,7 @@ export namespace Live2DCubismFramework
             {
                 return 0;
             }
-        
+
             let num: number = 0;
             for (let i = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
@@ -461,7 +461,7 @@ export namespace Live2DCubismFramework
                     break;
                 }
             }
-        
+
             return num;
         }
 
@@ -476,7 +476,7 @@ export namespace Live2DCubismFramework
             {
                 return null;
             }
-        
+
             for (let i = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
                 let refI: Value = this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i);
@@ -503,7 +503,7 @@ export namespace Live2DCubismFramework
             {
                 return 0;
             }
-        
+
             let num: number = 0;
             for (let i: number = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
@@ -519,7 +519,7 @@ export namespace Live2DCubismFramework
                     break;
                 }
             }
-        
+
             return num;
         }
 
@@ -534,7 +534,7 @@ export namespace Live2DCubismFramework
             {
                 return null;
             }
-        
+
             for (let i: number = 0; i < this._jsonValue.at(FrequestNode.FrequestNode_Groups).getSize(); i++)
             {
                 let refI: Value = this._jsonValue.at(FrequestNode.FrequestNode_Groups).getValueByIndex(i);
@@ -605,7 +605,7 @@ export namespace Live2DCubismFramework
             let node: Value = this._jsonValue.at(FrequestNode.FrequestNode_Pose);
             return !node.isNull() && !node.isError();
         }
-        
+
         /**
          * 表情設定ファイルのキーが存在するかどうかを確認する
          * @return true キーが存在する
@@ -709,7 +709,7 @@ export namespace Live2DCubismFramework
                     return true;
                 }
             }
-            
+
             return false;
         }
 
@@ -733,8 +733,8 @@ export namespace Live2DCubismFramework
             }
             return false;
         }
-        
-        
+
+
         private _json: CubismJson;
         private _jsonValue: csmVector<Value>;
      }

@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismmatrix44} from "./cubismmatrix44";
@@ -12,12 +12,12 @@ export namespace Live2DCubismFramework
 {
     /**
      * カメラの位置変更に使うと便利な4x4行列
-     * 
+     *
      * カメラの位置変更に使うと便利な4x4行列のクラス。
      */
     export class CubismViewMatrix extends CubismMatrix44
     {
-        
+
         /**
          * コンストラクタ
          */
@@ -38,7 +38,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 移動を調整
-         * 
+         *
          * @param x X軸の移動量
          * @param y Y軸の移動量
          */
@@ -78,7 +78,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 拡大率を調整
-         * 
+         *
          * @param cx 拡大を行うX軸の中心位置
          * @param cy 拡大を行うY軸の中心位置
          * @param scale　拡大率
@@ -139,7 +139,7 @@ export namespace Live2DCubismFramework
 
         /**
          * デバイスに対応する論理座養生の範囲の設定
-         * 
+         *
          * @param left      左辺のX軸の位置
          * @param right     右辺のX軸の位置
          * @param bottom    下辺のY軸の位置
@@ -206,7 +206,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 拡大率が最大になっているかを確認する
-         * 
+         *
          * @return true 拡大率は最大
          * @return false 拡大率は最大ではない
          */
@@ -217,7 +217,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 拡大率が最小になっているかを確認する
-         * 
+         *
          * @return true 拡大率は最小
          * @return false 拡大率は最小ではない
          */

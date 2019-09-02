@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as csmmap} from "../type/csmmap";
@@ -16,14 +16,14 @@ export namespace Live2DCubismFramework
 {
     /**
      * モデル座標設定用の4x4行列
-     * 
+     *
      * モデル座標設定用の4x4行列クラス
      */
     export class CubismModelMatrix extends CubismMatrix44
     {
         /**
          * コンストラクタ
-         * 
+         *
          * @param w 横幅
          * @param h 縦幅
          */
@@ -31,27 +31,19 @@ export namespace Live2DCubismFramework
         {
             super();
 
-            this._width = (w !== undefined) 
+            this._width = (w !== undefined)
                 ? w
                 : 0.0;
             this._height = (h !== undefined)
                 ? h
                 : 0.0;
 
-            // 原点(0, 0)を中心にして、画面に納まるような大きさで初期化
-            if (this._width > this._height)
-            {
-                this.setWidth(this._height / this._width);
-            }
-            else
-            {
-                this.setHeight(1.0);
-            }
+            this.setHeight(1.0);
         }
 
         /**
          * 横幅を設定
-         * 
+         *
          * @param w 横幅
          */
         public setWidth(w: number): void
@@ -74,7 +66,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 位置を設定
-         * 
+         *
          * @param x X軸の位置
          * @param y Y軸の位置
          */
@@ -85,10 +77,10 @@ export namespace Live2DCubismFramework
 
         /**
          * 中心位置を設定
-         * 
+         *
          * @param x X軸の中心位置
          * @param y Y軸の中心位置
-         * 
+         *
          * @note widthかheightを設定したあとでないと、拡大率が正しく取得できないためずれる。
          */
         public setCenterPosition(x: number, y: number)
@@ -99,17 +91,17 @@ export namespace Live2DCubismFramework
 
         /**
          * 上辺の位置を設定する
-         * 
+         *
          * @param y 上辺のY軸位置
          */
         public top(y: number): void
         {
             this.setY(y);
         }
-        
+
         /**
          * 下辺の位置を設定する
-         * 
+         *
          * @param y 下辺のY軸位置
          */
         public bottom(y: number)
@@ -121,7 +113,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 左辺の位置を設定
-         * 
+         *
          * @param x 左辺のX軸位置
          */
         public left(x: number): void
@@ -131,7 +123,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 右辺の位置を設定
-         * 
+         *
          * @param x 右辺のX軸位置
          */
         public right(x: number): void
@@ -143,7 +135,7 @@ export namespace Live2DCubismFramework
 
         /**
          * X軸の中心位置を設定
-         * 
+         *
          * @param x X軸の中心位置
          */
         public centerX(x: number): void
@@ -155,7 +147,7 @@ export namespace Live2DCubismFramework
 
         /**
          * X軸の位置を設定
-         * 
+         *
          * @param x X軸の位置
          */
         public setX(x: number): void
@@ -165,7 +157,7 @@ export namespace Live2DCubismFramework
 
         /**
          * Y軸の中心位置を設定
-         * 
+         *
          * @param y Y軸の中心位置
          */
         public centerY(y: number): void
@@ -177,7 +169,7 @@ export namespace Live2DCubismFramework
 
         /**
          * Y軸の位置を設定する
-         * 
+         *
          * @param y Y軸の位置
          */
         public setY(y: number): void
@@ -187,7 +179,7 @@ export namespace Live2DCubismFramework
 
         /**
          * レイアウト情報から位置を設定
-         * 
+         *
          * @param layout レイアウト情報
          */
         public setupFromLayout(layout: csmMap<string, number>): void
@@ -202,7 +194,7 @@ export namespace Live2DCubismFramework
             const keyBottom = "bottom";
             const keyLeft = "left";
             const keyRight = "right";
-            
+
             for(const ite: iterator<string, number> = layout.begin(); ite.notEqual(layout.end()); ite.preIncrement())
             {
                 const key: string = ite.ptr().first;

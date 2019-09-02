@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismid} from '../id/cubismid';
@@ -16,7 +16,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * @brief モーションカーブの種類
-     * 
+     *
      * モーションカーブの種類。
      */
     export enum CubismMotionCurveTarget
@@ -29,7 +29,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief モーションカーブのセグメントの種類
-     * 
+     *
      * モーションカーブのセグメントの種類。
      */
     export enum CubismMotionSegmentType
@@ -42,7 +42,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief モーションカーブの制御点
-     * 
+     *
      * モーションカーブの制御点。
      */
     export class CubismMotionPoint
@@ -54,7 +54,7 @@ export namespace Live2DCubismFramework
 
     /**
      * モーションカーブのセグメントの評価関数
-     * 
+     *
      * @param   points      モーションカーブの制御点リスト
      * @param   time        評価する時間[秒]
      */
@@ -68,14 +68,14 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief モーションカーブのセグメント
-     * 
+     *
      * モーションカーブのセグメント。
      */
     export class CubismMotionSegment
     {
         /**
          * @brief コンストラクタ
-         * 
+         *
          * コンストラクタ。
          */
         public constructor()
@@ -92,7 +92,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief モーションカーブ
-     * 
+     *
      * モーションカーブ。
      */
     export class CubismMotionCurve
@@ -125,7 +125,7 @@ export namespace Live2DCubismFramework
 
     /**
      * @brief モーションデータ
-     * 
+     *
      * モーションデータ。
      */
     export class CubismMotionData

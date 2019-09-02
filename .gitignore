@@ -1,4 +1,17 @@
-.idea/
+# Cubism Core
+/Core/*
+!/Core/Please_copy_cubism_core_for_web
 
-node_modules/
-Sample/TypeScript/Demo/dist/
+# IDE/Editor files
+.idea/
+.vs/
+.vscode/*
+!/.vscode/launch.json
+!/.vscode/tasks.json
+*.iml
+
+# Package files
+/node_modules/
+
+# Build files
+/Sample/TypeScript/Demo/dist/

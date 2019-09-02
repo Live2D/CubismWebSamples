@@ -1,5 +1,19 @@
-*.ts    text
-*.js    text
-*.json  text
-*.html  text
-*.md    text
+# Auto detect text files and perform LF normalization
+*                   text=auto
+
+# Explicitly declare files as LF
+*.ts                text eol=lf
+*.js                text eol=lf
+*.json              text eol=lf
+*.html              text eol=lf
+*.md                text eol=lf
+*.map               text eol=lf
+*.lock              text eol=lf
+.editorconfig       text eol=lf
+.gitattributes      text eol=lf
+*.gitignore         text eol=lf
+
+# Library and media files as binary
+*.moc3              binary
+*.jpg               binary
+*.png               binary

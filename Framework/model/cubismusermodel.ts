@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismframework} from "../live2dcubismframework";
@@ -22,7 +22,7 @@ import {Live2DCubismFramework as csmstring} from "../type/csmstring";
 import {Live2DCubismFramework as cubismmotionqueuemanager} from "../motion/cubismmotionqueuemanager";
 import {Live2DCubismFramework as cubismbreath} from "../effect/cubismbreath";
 import {Live2DCubismFramework as cubismeyeblink} from "../effect/cubismeyeblink";
-import {Live2DCubismFramework as cubismrenderer_webgl} from "../rendering/cubismrenderer_WebGL";
+import {Live2DCubismFramework as cubismrenderer_webgl} from "../rendering/cubismrenderer_webgl";
 import {CubismLogError, CubismLogInfo} from "../utils/cubismdebug";
 import CubismRenderer_WebGL = cubismrenderer_webgl.CubismRenderer_WebGL;
 import CubismEyeBlink = cubismeyeblink.CubismEyeBlink;
@@ -47,16 +47,16 @@ export namespace Live2DCubismFramework
 {
     /**
      * ユーザーが実際に使用するモデル
-     * 
+     *
      * ユーザーが実際に使用するモデルの基底クラス。これを継承してユーザーが実装する。
      */
     export class CubismUserModel
     {
         /**
          * 初期化状態の取得
-         * 
+         *
          * 初期化されている状態か？
-         * 
+         *
          * @return true     初期化されている
          * @return false    初期化されていない
          */
@@ -67,9 +67,9 @@ export namespace Live2DCubismFramework
 
         /**
          * 初期化状態の設定
-         * 
+         *
          * 初期化状態を設定する。
-         * 
+         *
          * @param v 初期化状態
          */
         public setInitialized(v: boolean): void
@@ -79,9 +79,9 @@ export namespace Live2DCubismFramework
 
         /**
          * 更新状態の取得
-         * 
+         *
          * 更新されている状態か？
-         * 
+         *
          * @return true     更新されている
          * @return false    更新されていない
          */
@@ -92,9 +92,9 @@ export namespace Live2DCubismFramework
 
         /**
          * 更新状態の設定
-         * 
+         *
          * 更新状態を設定する
-         * 
+         *
          * @param v 更新状態
          */
         public setUpdating(v: boolean): void
@@ -154,7 +154,7 @@ export namespace Live2DCubismFramework
 
         /**
          * モデルデータを読み込む
-         * 
+         *
          * @param buffer    moc3ファイルが読み込まれているバッファ
          */
         public loadModel(buffer: ArrayBuffer)
@@ -241,7 +241,7 @@ export namespace Live2DCubismFramework
             {
                 return false; // 存在しない場合はfalse
             }
-            
+
             const count: number = this._model.getDrawableVertexCount(drawIndex);
             const vertices: Float32Array = this._model.getDrawableVertices(drawIndex);
 
@@ -259,7 +259,7 @@ export namespace Live2DCubismFramework
                 {
                     left = x; // Min x
                 }
-                
+
                 if(x > right)
                 {
                     right = x; // Max x
@@ -328,11 +328,11 @@ export namespace Live2DCubismFramework
 
         /**
          * イベント発火時の標準処理
-         * 
+         *
          * Eventが再生処理時にあった場合の処理をする。
          * 継承で上書きすることを想定している。
          * 上書きしない場合はログ出力をする。
-         * 
+         *
          * @param eventValue 発火したイベントの文字列データ
          */
         public motionEventFired(eventValue: csmString): void
@@ -342,10 +342,10 @@ export namespace Live2DCubismFramework
 
         /**
          * イベント用のコールバック
-         * 
+         *
          * CubismMotionQueueManagerにイベント用に登録するためのCallback。
          * CubismUserModelの継承先のEventFiredを呼ぶ。
-         * 
+         *
          * @param caller 発火したイベントを管理していたモーションマネージャー、比較用
          * @param eventValue 発火したイベントの文字列データ
          * @param customData CubismUserModelを継承したインスタンスを想定
@@ -417,22 +417,22 @@ export namespace Live2DCubismFramework
                 this._expressionManager.release();
                 this._expressionManager = null;
             }
-            
+
             if(this._moc != null)
             {
                 this._moc.deleteModel(this._model);
                 this._moc.release();
                 this._moc = null;
             }
-            
+
             this._modelMatrix = null;
 
             CubismPose.delete(this._pose);
             CubismEyeBlink.delete(this._eyeBlink);
             CubismBreath.delete(this._breath);
-            
+
             this._dragManager = null;
-            
+
             CubismPhysics.delete(this._physics);
             CubismModelUserData.delete(this._modelUserData);
 
@@ -441,7 +441,7 @@ export namespace Live2DCubismFramework
 
         protected _moc:                 CubismMoc;              // Mocデータ
         protected _model:               CubismModel;            // Modelインスタンス
- 
+
         protected _motionManager:       CubismMotionManager;    // モーション管理
         protected _expressionManager:   CubismMotionManager;    // 表情管理
         protected _eyeBlink:            CubismEyeBlink;         // 自動まばたき
@@ -451,7 +451,7 @@ export namespace Live2DCubismFramework
         protected _dragManager:         CubismTargetPoint;      // マウスドラッグ
         protected _physics:             CubismPhysics;          // 物理演算
         protected _modelUserData:       CubismModelUserData;    // ユーザーデータ
- 
+
         protected _initialized:         boolean;    // 初期化されたかどうか
         protected _updating:            boolean;    // 更新されたかどうか
         protected _opacity:             number;     // 不透明度

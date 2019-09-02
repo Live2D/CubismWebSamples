@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismmath} from "./cubismmath";
@@ -16,7 +16,7 @@ export namespace Live2DCubismFramework
 
     /**
      * 顔の向きの制御機能
-     * 
+     *
      * 顔の向きの制御機能を提供するクラス。
      */
     export class CubismTargetPoint
@@ -35,7 +35,7 @@ export namespace Live2DCubismFramework
             this._lastTimeSeconds = 0.0;
             this._userTimeSeconds = 0.0;
         }
-        
+
         /**
          * 更新処理
          */
@@ -48,7 +48,7 @@ export namespace Live2DCubismFramework
             // 顔の振り具合を、中央（0.0）から、左右は（+-1.0）とする
             const faceParamMaxV: number = 40.0 / 10.0;              // 7.5秒間に40分移動(5.3/sc)
             const maxV: number = faceParamMaxV * 1.0 / FrameRate;   // 1frameあたりに変化できる速度の上限
-            
+
             if(this._lastTimeSeconds == 0.0)
             {
                 this._lastTimeSeconds = this._userTimeSeconds;
@@ -113,7 +113,7 @@ export namespace Live2DCubismFramework
 
                 const maxV: number = 0.5 * (CubismMath.sqrt((maxA * maxA) + 16.0 * maxA * d - 8.0 * maxA * d) - maxA);
                 const curV: number = CubismMath.sqrt((this._faceVX * this._faceVX) + (this._faceVY * this._faceVY));
-                
+
                 if(curV > maxV)
                 {
                     // 現在の速度 > 最高速度のとき、最高速度まで減速
@@ -128,7 +128,7 @@ export namespace Live2DCubismFramework
 
         /**
          * X軸の顔の向きの値を取得
-         * 
+         *
          * @return X軸の顔の向きの値（-1.0 ~ 1.0）
          */
         public getX(): number
@@ -138,7 +138,7 @@ export namespace Live2DCubismFramework
 
         /**
          * Y軸の顔の向きの値を取得
-         * 
+         *
          * @return Y軸の顔の向きの値（-1.0 ~ 1.0）
          */
         public getY(): number
@@ -148,7 +148,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 顔の向きの目標値を設定
-         * 
+         *
          * @param x X軸の顔の向きの値（-1.0 ~ 1.0）
          * @param y Y軸の顔の向きの値（-1.0 ~ 1.0）
          */

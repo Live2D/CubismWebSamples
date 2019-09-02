@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as live2dcubismframework, Option as Csm_Option} from "../../../../Framework/live2dcubismframework";
@@ -22,14 +22,14 @@ export let frameBuffer: WebGLFramebuffer = null;
 
 /**
  * アプリケーションクラス。
- * Cubism3の管理を行う。
+ * Cubism SDKの管理を行う。
  */
 export class LAppDelegate
 {
     /**
      * クラスのインスタンス（シングルトン）を返す。
      * インスタンスが生成されていない場合は内部でインスタンスを生成する。
-     * 
+     *
      * @return クラスのインスタンス
      */
     public static getInstance(): LAppDelegate
@@ -77,7 +77,7 @@ export class LAppDelegate
 
         if (!frameBuffer)
         {
-            frameBuffer = gl.getParameter(gl.FRAMEBUFFER_BINDING);    
+            frameBuffer = gl.getParameter(gl.FRAMEBUFFER_BINDING);
         }
 
         // 透過設定
@@ -104,8 +104,8 @@ export class LAppDelegate
 
         // AppViewの初期化
         this._view.initialize();
-        
-        // Cubism3の初期化
+
+        // Cubism SDKの初期化
         this.initializeCubism();
 
         return true;
@@ -125,7 +125,7 @@ export class LAppDelegate
         // リソースを解放
         LAppLive2DManager.releaseInstance();
 
-        // Cubism3の解放
+        // Cubism SDKの解放
         Csm_CubismFramework.dispose();
     }
 
@@ -203,7 +203,7 @@ export class LAppDelegate
 
         // フラグメントシェーダのコンパイル
         let fragmentShaderId = gl.createShader(gl.FRAGMENT_SHADER);
-        
+
         if(fragmentShaderId == null)
         {
             LAppPal.printLog("failed to create fragmentShader");
@@ -250,7 +250,7 @@ export class LAppDelegate
      {
         return this._textureManager;
      }
-    
+
     /**
      * コンストラクタ
      */
@@ -267,7 +267,7 @@ export class LAppDelegate
     }
 
     /**
-     * Cubism3の初期化
+     * Cubism SDKの初期化
      */
     public initializeCubism(): void
     {
@@ -290,7 +290,7 @@ export class LAppDelegate
         this._view.initializeSprite();
     }
 
-    _cubismOption: Csm_Option;          // Cubism3 Option
+    _cubismOption: Csm_Option;          // Cubism SDK Option
     _view: LAppView;                    // View情報
     _captured: boolean;                 // クリックしているか
     _mouseX: number;                    // マウスX座標
@@ -310,7 +310,7 @@ function onClickBegan(e: MouseEvent): void
         return;
     }
     LAppDelegate.getInstance()._captured = true;
-    
+
     let posX: number = e.pageX;
     let posY: number = e.pageY;
 
@@ -326,7 +326,7 @@ function onMouseMoved(e: MouseEvent): void
     {
         return;
     }
-    
+
     if(!LAppDelegate.getInstance()._view)
     {
         LAppPal.printLog("view notfound");
@@ -351,8 +351,8 @@ function onClickEnded(e: MouseEvent): void
         LAppPal.printLog("view notfound");
         return;
     }
-    
-    
+
+
     let rect = (<Element>e.target).getBoundingClientRect();
     let posX: number = e.clientX - rect.left;
     let posY: number = e.clientY - rect.top;
@@ -395,7 +395,7 @@ function onTouchMoved(e: TouchEvent): void
         LAppPal.printLog("view notfound");
         return;
     }
-    
+
     let rect = (<Element>e.target).getBoundingClientRect();
 
     let posX = e.changedTouches[0].clientX - rect.left;
@@ -418,7 +418,7 @@ function onTouchEnded(e: TouchEvent): void
     }
 
     let rect = (<Element>e.target).getBoundingClientRect();
-    
+
     let posX = e.changedTouches[0].clientX - rect.left;
     let posY = e.changedTouches[0].clientY - rect.top;
 
@@ -439,7 +439,7 @@ function onTouchCancel(e: TouchEvent): void
     }
 
     let rect = (<Element>e.target).getBoundingClientRect();
-    
+
     let posX = e.changedTouches[0].clientX - rect.left;
     let posY = e.changedTouches[0].clientY - rect.top;
 

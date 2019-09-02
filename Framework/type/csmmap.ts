@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import { CubismLogDebug } from "../utils/cubismdebug";
@@ -22,13 +22,13 @@ export namespace Live2DCubismFramework
          */
         public constructor(key?: _KeyT, value?: _ValT)
         {
-            this.first = (key == undefined) 
-                ? null 
+            this.first = (key == undefined)
+                ? null
                 : key;
 
             this.second = (value == undefined)
                 ? null
-                : value;   
+                : value;
         }
 
         public first: _KeyT;   // keyとして用いる変数
@@ -75,7 +75,7 @@ export namespace Live2DCubismFramework
         {
             this.clear();
         }
-        
+
         /**
          * キーを追加する
          * @param key 新たに追加するキー
@@ -97,7 +97,7 @@ export namespace Live2DCubismFramework
         public getValue(key: _KeyT): _ValT
         {
             let found = -1;
-            
+
             for(let i: number = 0; i < this._size; i++)
             {
                 if(this._keyValues[i].first == key)
@@ -106,7 +106,7 @@ export namespace Live2DCubismFramework
                     break;
                 }
             }
-            
+
             if(found >= 0)
             {
                 return this._keyValues[found].second;
@@ -117,7 +117,7 @@ export namespace Live2DCubismFramework
                 return this._keyValues[this._size - 1].second;
             }
         }
-        
+
         /**
          * 添字演算子[key]のオーバーロード(set)
          * @param key 添字から特定されるValue値
@@ -126,7 +126,7 @@ export namespace Live2DCubismFramework
         public setValue(key: _KeyT, value: _ValT): void
         {
             let found = -1;
-            
+
             for(let i: number = 0; i < this._size; i++)
             {
                 if(this._keyValues[i].first == key)
@@ -135,7 +135,7 @@ export namespace Live2DCubismFramework
                     break;
                 }
             }
-            
+
             if(found >= 0)
             {
                 this._keyValues[found].second = value;
@@ -146,7 +146,7 @@ export namespace Live2DCubismFramework
                 this._keyValues[this._size - 1].second = value;
             }
         }
-        
+
         /**
          * 引数で渡したKeyを持つ要素が存在するか
          * @param key 存在を確認するkey
@@ -164,7 +164,7 @@ export namespace Live2DCubismFramework
             }
             return false;
         }
-        
+
         /**
          * keyValueのポインタを全て解放する
          */
@@ -173,13 +173,13 @@ export namespace Live2DCubismFramework
             this._keyValues = void 0;
             this._keyValues = null;
             this._keyValues = new Array();
-            
+
             this._size = 0;
         }
-        
+
         /**
          * コンテナのサイズを取得する
-         * 
+         *
          * @return コンテナのサイズ
          */
         public getSize(): number
@@ -229,7 +229,7 @@ export namespace Live2DCubismFramework
 
         /**
          * コンテナから要素を削除する
-         * 
+         *
          * @param ite 削除する要素
          */
         public erase(ite: iterator<_KeyT, _ValT>): iterator<_KeyT, _ValT>

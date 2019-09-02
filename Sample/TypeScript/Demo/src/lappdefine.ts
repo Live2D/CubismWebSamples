@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {LogLevel} from "../../../../Framework/live2dcubismframework";
 
@@ -43,7 +43,8 @@ export namespace LAppDefine
         "Haru",
         "Hiyori",
         "Mark",
-        "Natori"
+        "Natori",
+        "Rice"
     ]
     export const ModelDirSize: number = ModelDir.length;
 

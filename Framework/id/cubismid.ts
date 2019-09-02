@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as csmstring} from "../type/csmstring";
@@ -12,7 +12,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * パラメータ名・パーツ名・Drawable名を保持
-     * 
+     *
      * パラメータ名・パーツ名・Drawable名を保持するクラス。
      */
     export class CubismId
@@ -24,7 +24,7 @@ export namespace Live2DCubismFramework
         {
             return this._id;
         }
-        
+
         /**
          * コンストラクタ
          */
@@ -35,7 +35,7 @@ export namespace Live2DCubismFramework
                 this._id = new csmString(id);
                 return;
             }
-            
+
             this._id = id;
         }
 

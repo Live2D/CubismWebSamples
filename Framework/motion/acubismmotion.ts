@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismmath} from '../math/cubismmath';
@@ -21,7 +21,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * モーションの抽象基底クラス
-     * 
+     *
      * モーションの抽象基底クラス。MotionQueueManagerによってモーションの再生を管理する。
      */
     export abstract class ACubismMotion
@@ -171,7 +171,7 @@ export namespace Live2DCubismFramework
         /**
          * モーションの長さの取得
          * @return モーションの長さ[秒]
-         * 
+         *
          * @note ループの時は「-1」。
          *       ループでない場合は、オーバーライドする。
          *       正の値の時は取得される時間で終了する。
@@ -185,7 +185,7 @@ export namespace Live2DCubismFramework
         /**
          * モーションのループ1回分の長さの取得
          * @return モーションのループ一回分の長さ[秒]
-         * 
+         *
          * @note ループしない場合は、getDuration()と同じ値を返す
          *       ループ一回分の長さが定義できない場合(プログラム的に動き続けるサブクラスなど)の場合は「-1」を返す
          */
@@ -205,10 +205,10 @@ export namespace Live2DCubismFramework
 
         /**
          * モデルのパラメータ更新
-         * 
+         *
          * イベント発火のチェック。
          * 入力する時間は呼ばれるモーションタイミングを０とした秒数で行う。
-         * 
+         *
          * @param beforeCheckTimeSeconds 前回のイベントチェック時間[秒]
          * @param motionTimeSeconds 今回の再生時間[秒]
          */
