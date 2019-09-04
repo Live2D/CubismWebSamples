@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismid} from "../id/cubismid";
@@ -23,7 +23,7 @@ export namespace Live2DCubismFramework
 {
     const Epsilon: number = 0.001;
     const DefaultFadeInSeconds: number = 0.5;
-    
+
     // Pose.jsonのタグ
     const FadeIn: string = "FadeInTime";
     const Link: string = "Link";
@@ -33,7 +33,7 @@ export namespace Live2DCubismFramework
 
     /**
      * パーツの不透明度の設定
-     * 
+     *
      * パーツの不透明度の管理と設定を行う。
      */
     export class CubismPose
@@ -197,7 +197,7 @@ export namespace Live2DCubismFramework
 
         /**
          * パーツの不透明度をコピー
-         * 
+         *
          * @param model 対象のモデル
          */
         public copyPartOpacities(model: CubismModel): void
@@ -349,7 +349,7 @@ export namespace Live2DCubismFramework
             this.parameterIndex = 0;
             this.partIndex = 0;
             this.link = new csmVector<PartData>();
-            
+
             if(v != undefined)
             {
                 this.partId = v.partId;
@@ -407,7 +407,7 @@ export namespace Live2DCubismFramework
 
             return clonePartData;
         }
-        
+
         partId: CubismIdHandle;   // パーツID
         parameterIndex: number; // パラメータのインデックス
         partIndex: number;  // パーツのインデックス

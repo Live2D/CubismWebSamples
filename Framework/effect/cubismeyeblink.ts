@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as csmvector} from "../type/csmvector";
@@ -18,7 +18,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * 自動まばたき機能
-     * 
+     *
      * 自動まばたき機能を提供する。
      */
     export class CubismEyeBlink
@@ -101,7 +101,7 @@ export namespace Live2DCubismFramework
             {
                 case EyeState.EyeState_Closing:
                     t = ((this._userTimeSeconds - this._stateStartTimeSeconds) / this._closingSeconds);
-                    
+
                     if(t >= 1.0)
                     {
                         t = 1.0;
@@ -196,7 +196,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 次の瞬きのタイミングの決定
-         * 
+         *
          * @return 次のまばたきを行う時刻[秒]
          */
         public determinNextBlinkingTiming(): number
@@ -217,13 +217,13 @@ export namespace Live2DCubismFramework
 
         /**
          * IDで指定された目のパラメータが、0のときに閉じるなら true 、1の時に閉じるなら false 。
-         */ 
+         */
         static readonly CloseIfZero: boolean = true;
     }
 
     /**
      * まばたきの状態
-     * 
+     *
      * まばたきの状態を表す列挙型
      */
     export enum EyeState

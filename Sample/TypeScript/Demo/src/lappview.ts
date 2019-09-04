@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as cubismMatrix44} from "../../../../Framework/math/cubismmatrix44";
 import {Live2DCubismFramework as cubismviewmatrix} from "../../../../Framework/math/cubismviewmatrix";
@@ -80,13 +80,13 @@ export class LAppView
      */
     public release(): void
     {
-        this._viewMatrix = null;        
+        this._viewMatrix = null;
         this._touchManager = null;
         this._deviceToScreen = null;
-        
+
         this._gear.release();
         this._gear = null;
-        
+
         this._back.release();
         this._back = null;
 
@@ -113,7 +113,7 @@ export class LAppView
         gl.flush();
 
         let live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
-        
+
         live2DManager.onUpdate();
     }
 
@@ -145,7 +145,7 @@ export class LAppView
         };
 
         textureManager.createTextureFromPngFile(resourcesPath + imageName, false, initBackGroundTexture);
-        
+
         // 歯車画像初期化
         imageName = LAppDefine.GearImageName;
         let initGearTexture = (textureInfo: TextureInfo): void =>
@@ -168,7 +168,7 @@ export class LAppView
 
     /**
      * タッチされた時に呼ばれる。
-     * 
+     *
      * @param pointX スクリーンX座標
      * @param pointY スクリーンY座標
      */
@@ -179,7 +179,7 @@ export class LAppView
 
     /**
      * タッチしているときにポインタが動いたら呼ばれる。
-     * 
+     *
      * @param pointX スクリーンX座標
      * @param pointY スクリーンY座標
      */
@@ -196,7 +196,7 @@ export class LAppView
 
     /**
      * タッチが終了したら呼ばれる。
-     * 
+     *
      * @param pointX スクリーンX座標
      * @param pointY スクリーンY座標
      */
@@ -227,7 +227,7 @@ export class LAppView
 
     /**
      * X座標をView座標に変換する。
-     * 
+     *
      * @param deviceX デバイスX座標
      */
     public transformViewX(deviceX: number): number
@@ -238,7 +238,7 @@ export class LAppView
 
     /**
      * Y座標をView座標に変換する。
-     * 
+     *
      * @param deviceY デバイスY座標
      */
     public transformViewY(deviceY: number): number
@@ -258,7 +258,7 @@ export class LAppView
 
     /**
      * Y座標をScreen座標に変換する。
-     * 
+     *
      * @param deviceY デバイスY座標
      */
     public transformScreenY(deviceY: number): number

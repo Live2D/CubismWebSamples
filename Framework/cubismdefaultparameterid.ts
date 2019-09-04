@@ -1,14 +1,14 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 /**
  * @brief パラメータIDのデフォルト値を保持する定数<br>
  *         デフォルト値の仕様は以下のマニュアルに基づく<br>
- *         http://docs.live2d.com/cubism-editor-manual/standard-parametor-list/
+ *         https://docs.live2d.com/cubism-editor-manual/standard-parametor-list/
  */
 export namespace Live2DCubismFramework
 {

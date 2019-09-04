@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 export namespace Live2DCubismFramework
@@ -74,7 +74,7 @@ export namespace Live2DCubismFramework
             {
                 this.prepareCapacity(this._capacity == 0 ? csmVector.s_defaultSize : this._capacity * 2);
             }
-            
+
             this._ptr[this._size++] = value;
         }
 
@@ -132,7 +132,7 @@ export namespace Live2DCubismFramework
         public updateSize(newSize: number, value: any = null, callPlacementNew: boolean = true): void
         {
             let curSize: number = this._size;
-            
+
             if(curSize < newSize)
             {
                 this.prepareCapacity(newSize);  // capacity更新
@@ -194,7 +194,7 @@ export namespace Live2DCubismFramework
                     this._ptr.splice(dstSi + i, 0, null);
                 }
             }
-            
+
             for(let i: number = srcSi; i < srcEi; i++, dstSi++)
             {
                 this._ptr[dstSi] = begin._vector._ptr[i];
@@ -268,7 +268,7 @@ export namespace Live2DCubismFramework
          */
         public begin(): iterator<T>
         {
-            let ite: iterator<T> = (this._size == 0) 
+            let ite: iterator<T> = (this._size == 0)
                                 ? this.end()
                                 : new iterator<T>(this, 0);
             return ite;
@@ -329,7 +329,7 @@ export namespace Live2DCubismFramework
             ++this._index;
             return this;
         }
-        
+
         /**
          * 前置き--演算
          */

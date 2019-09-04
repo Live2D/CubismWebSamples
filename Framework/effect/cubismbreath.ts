@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as csmvector} from "../type/csmvector";
 import {Live2DCubismFramework as cubismmodel} from "../model/cubismmodel";
@@ -17,7 +17,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * 呼吸機能
-     * 
+     *
      * 呼吸機能を提供する。
      */
     export class CubismBreath
@@ -96,7 +96,7 @@ export namespace Live2DCubismFramework
          _breathParameters: csmVector<BreathParameterData>; // 呼吸にひもづいているパラメータのリスト
          _currentTime: number;  // 積算時間[秒]
     }
-    
+
     /**
      * 呼吸のパラメータ情報
      */
@@ -112,11 +112,11 @@ export namespace Live2DCubismFramework
          */
         constructor(parameterId?: CubismIdHandle, offset?: number, peak?: number, cycle?: number, weight?: number)
         {
-            this.parameterId = (parameterId == undefined) 
-                    ? null 
+            this.parameterId = (parameterId == undefined)
+                    ? null
                     : parameterId;
             this.offset = (offset == undefined)
-                    ? 0.0 
+                    ? 0.0
                     : offset;
             this.peak = (peak == undefined)
                     ? 0.0
@@ -125,7 +125,7 @@ export namespace Live2DCubismFramework
                     ? 0.0
                     : cycle;
             this.weight = (weight == undefined)
-                    ? 0.0 
+                    ? 0.0
                     : weight;
         }
 

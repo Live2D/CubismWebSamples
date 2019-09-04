@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as csmvector} from "../type/csmvector";
 import {Live2DCubismFramework as cubismid} from "./cubismid";
@@ -16,7 +16,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * ID名の管理
-     * 
+     *
      * ID名を管理する。
      */
     export class CubismIdManager
@@ -40,10 +40,10 @@ export namespace Live2DCubismFramework
             }
             this._ids =  null;
         }
-        
+
         /**
          * ID名をリストから登録
-         * 
+         *
          * @param ids ID名リスト
          * @param count IDの個数
          */
@@ -57,7 +57,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ID名を登録
-         * 
+         *
          * @param id ID名
          */
         public registerId(id: string | csmString): CubismId
@@ -84,7 +84,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ID名からIDを取得する
-         * 
+         *
          * @param id ID名
          */
         public getId(id: csmString | string): CubismId
@@ -94,13 +94,13 @@ export namespace Live2DCubismFramework
 
         /**
          * ID名からIDの確認
-         * 
+         *
          * @return true 存在する
          * @return false 存在しない
          */
         public isExist(id: csmString | string): boolean
         {
-            if ('string' == typeof(id)) 
+            if ('string' == typeof(id))
             {
                 return (this.findId(id) != null);
             }
@@ -109,7 +109,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ID名からIDを検索する。
-         * 
+         *
          * @param id ID名
          * @return 登録されているID。なければNULL。
          */

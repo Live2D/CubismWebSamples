@@ -1,15 +1,15 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismframework, LogLevel} from "../live2dcubismframework";
 import {CSM_LOG_LEVEL, CSM_LOG_LEVEL_VERBOSE, CSM_LOG_LEVEL_DEBUG, CSM_LOG_LEVEL_INFO, CSM_LOG_LEVEL_WARNING, CSM_LOG_LEVEL_ERROR} from "../cubismframeworkconfig";
 
 
-export const CubismLogPrint = (level: LogLevel, fmt: string, args: any[]) => 
+export const CubismLogPrint = (level: LogLevel, fmt: string, args: any[]) =>
 {
     Live2DCubismFramework.CubismDebug.print(level, "[CSM]" + fmt, args);
 }
@@ -130,7 +130,7 @@ export namespace Live2DCubismFramework
         /**
          * ログを出力する。第一引数にログレベルを設定する。
          * CubismFramework.initialize()時にオプションで設定されたログ出力レベルを下回る場合はログに出さない。
-         * 
+         *
          * @param logLevel ログレベルの設定
          * @param format 書式付き文字列
          * @param args 可変長引数
@@ -148,7 +148,7 @@ export namespace Live2DCubismFramework
             if (!logPrint)
                 return;
 
-            let buffer: string = 
+            let buffer: string =
                 format.replace(
                     /\{(\d+)\}/g,
                     (m, k) =>
@@ -162,7 +162,7 @@ export namespace Live2DCubismFramework
         /**
          * データから指定した長さだけダンプ出力する。
          * CubismFramework.initialize()時にオプションで設定されたログ出力レベルを下回る場合はログに出さない。
-         * 
+         *
          * @param logLevel ログレベルの設定
          * @param data ダンプするデータ
          * @param length ダンプする長さ
@@ -175,7 +175,7 @@ export namespace Live2DCubismFramework
                 else if (i % 8 == 0 && i > 0) this.print(logLevel, "  ");
                 this.print(logLevel, "{0} ", [(data[i] & 0xFF)]);
             }
-        
+
             this.print(logLevel, "\n");
         }
 

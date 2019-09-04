@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 export class TouchManager
 {
@@ -32,7 +32,7 @@ export class TouchManager
     {
         return this._lastX;
     }
-    
+
     public getCenterY(): number
     {
         return this._lastY;
@@ -148,7 +148,7 @@ export class TouchManager
 
     /**
      * 点１から点２への距離を求める
-     * 
+     *
      * @param x1 １つ目のタッチした画面のxの値
      * @param y1 １つ目のタッチした画面のyの値
      * @param x2 ２つ目のタッチした画面のxの値
@@ -162,15 +162,15 @@ export class TouchManager
     /**
      * ２つ目の値から、移動量を求める。
      * 違う方向の場合は移動量０。同じ方向の場合は、絶対値が小さい方の値を参照する。
-     * 
+     *
      * @param v1 １つ目の移動量
      * @param v2 ２つ目の移動量
-     * 
+     *
      * @return 小さい方の移動量
      */
     public calculateMovingAmount(v1: number, v2: number): number
     {
-        if ((v1 > 0.0) != (v2 > 0.0)) 
+        if ((v1 > 0.0) != (v2 > 0.0))
         {
             return 0.0;
         }

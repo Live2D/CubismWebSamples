@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 /// <reference path="../../Core/live2dcubismcore.d.ts" />
@@ -22,7 +22,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * モデル
-     * 
+     *
      * Mocデータから生成されるモデルのクラス。
      */
     export class CubismModel
@@ -47,7 +47,7 @@ export namespace Live2DCubismFramework
             {
                 return 0.0;
             }
-            
+
             return this._model.canvasinfo.CanvasWidth / this._model.canvasinfo.PixelsPerUnit;
         }
 
@@ -121,7 +121,7 @@ export namespace Live2DCubismFramework
             partIndex = partCount + this._notExistPartId.getSize();
             this._notExistPartId.setValue(partId, partIndex);
             this._notExistPartOpacities.appendKey(partIndex);
-            
+
             return partIndex;
         }
 
@@ -297,7 +297,7 @@ export namespace Live2DCubismFramework
 
             // インデックスの範囲内検知
             CSM_ASSERT(0 <= parameterIndex && parameterIndex < this.getParameterCount());
-    
+
             return this._parameterValues[parameterIndex];
         }
 
@@ -573,7 +573,7 @@ export namespace Live2DCubismFramework
 
             return !Live2DCubismCore.Utils.hasIsDoubleSidedBit(constantFlags[drawableIndex]);
         }
-        
+
         /**
          * Drawableのブレンドモードを取得
          * @param drawableIndex Drawableのインデックス
@@ -582,12 +582,28 @@ export namespace Live2DCubismFramework
         public getDrawableBlendMode(drawableIndex: number): CubismBlendMode
         {
             const constantFlags = this._model.drawables.constantFlags;
-            
+
             return (Live2DCubismCore.Utils.hasBlendAdditiveBit(constantFlags[drawableIndex]))
                         ? CubismBlendMode.CubismBlendMode_Additive
                         : (Live2DCubismCore.Utils.hasBlendMultiplicativeBit(constantFlags[drawableIndex]))
                         ? CubismBlendMode.CubismBlendMode_Multiplicative
                         : CubismBlendMode.CubismBlendMode_Normal;
+        }
+
+        /**
+         * Drawableのマスクの反転使用の取得
+         *
+         * Drawableのマスク使用時の反転設定を取得する。
+         * マスクを使用しない場合は無視される。
+         *
+         * @param drawableIndex Drawableのインデックス
+         * @return Drawableの反転設定
+         */
+        public getDrawableInvertedMaskBit(drawableIndex: number): boolean
+        {
+            const constantFlags: Uint8Array = this._model.drawables.constantFlags;
+
+            return (Live2DCubismCore.Utils.hasIsInvertedMaskBit(constantFlags[drawableIndex]));
         }
 
         /**
@@ -612,7 +628,7 @@ export namespace Live2DCubismFramework
 
         /**
          * クリッピングマスクの使用状態
-         * 
+         *
          * @return true クリッピングマスクを使用している
          * @return false クリッピングマスクを使用していない
          */
@@ -631,7 +647,7 @@ export namespace Live2DCubismFramework
 
         /**
          * Drawableの表示情報を取得する
-         * 
+         *
          * @param drawableIndex Drawableのインデックス
          * @return true Drawableが表示
          * @return false Drawableが非表示
@@ -644,7 +660,7 @@ export namespace Live2DCubismFramework
 
         /**
          * DrawableのDrawOrderの変化情報の取得
-         * 
+         *
          * 直近のCubismModel.update関数でdrawableのdrawOrderが変化したかを取得する。
          * drawOrderはartMesh上で指定する0から1000の情報
          * @param drawableIndex drawableのインデックス
@@ -659,9 +675,9 @@ export namespace Live2DCubismFramework
 
         /**
          * Drawableの不透明度の変化情報の取得
-         * 
+         *
          * 直近のCubismModel.update関数でdrawableの不透明度が変化したかを取得する。
-         * 
+         *
          * @param drawableIndex drawableのインデックス
          * @return true Drawableの不透明度が直近のCubismModel.update関数で変化した
          * @return false Drawableの不透明度が直近のCubismModel.update関数で変化してない
@@ -674,9 +690,9 @@ export namespace Live2DCubismFramework
 
         /**
          * Drawableの描画順序の変化情報の取得
-         * 
+         *
          * 直近のCubismModel.update関数でDrawableの描画の順序が変化したかを取得する。
-         * 
+         *
          * @param drawableIndex Drawableのインデックス
          * @return true Drawableの描画の順序が直近のCubismModel.update関数で変化した
          * @return false Drawableの描画の順序が直近のCubismModel.update関数で変化してない

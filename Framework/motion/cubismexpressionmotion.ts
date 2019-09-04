@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as acubismmotion} from './acubismmotion';
@@ -38,7 +38,7 @@ export namespace Live2DCubismFramework
 
     /**
      * 表情のモーション
-     * 
+     *
      * 表情のモーションクラス。
      */
     export class CubismExpressionMotion extends ACubismMotion
@@ -55,7 +55,7 @@ export namespace Live2DCubismFramework
 
             let json: CubismJson = CubismJson.create(buffer, size);
             let root: Value = json.getRoot();
-            
+
             expression.setFadeInTime(root.getValueByString(ExpressionKeyFadeIn).toFloat(DefaultFadeTime));  // フェードイン
             expression.setFadeOutTime(root.getValueByString(ExpressionKeyFadeOut).toFloat(DefaultFadeTime)); // フェードアウト
 

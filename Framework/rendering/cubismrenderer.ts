@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismmatrix44} from '../math/cubismmatrix44';
@@ -14,14 +14,14 @@ export namespace Live2DCubismFramework
 {
     /**
      * モデル描画を処理するレンダラ
-     * 
+     *
      * サブクラスに環境依存の描画命令を記述する。
      */
     export abstract class CubismRenderer
     {
         /**
          * レンダラのインスタンスを生成して取得する
-         * 
+         *
          * @return レンダラのインスタンス
          */
         public static create(): CubismRenderer
@@ -131,7 +131,7 @@ export namespace Live2DCubismFramework
         /**
          * モデルの色を取得する
          * 各色0.0~1.0の間で指定する(1.0が標準の状態)
-         * 
+         *
          * @return RGBAのカラー情報
          */
         public getModelColor(): CubismTextureColor
@@ -186,7 +186,7 @@ export namespace Live2DCubismFramework
         {
             this._anisortopy = n;
         }
-        
+
         /**
          * テクスチャの異方性フィルタリングのパラメータをセットする
          * @return 異方性フィルタリングのパラメータ
@@ -237,10 +237,11 @@ export namespace Live2DCubismFramework
          * @param uvArray uv配列
          * @param opacity 不透明度
          * @param colorBlendMode カラーブレンディングのタイプ
+         * @param invertedMask マスク使用時のマスクの反転使用
          */
         public abstract drawMesh(textureNo: number, indexCount: number, vertexCount: number,
                                     indexArray: Uint16Array, vertexArray: Float32Array, uvArray: Float32Array,
-                                    opacity: number, colorBlendMode: CubismBlendMode): void;
+                                    opacity: number, colorBlendMode: CubismBlendMode, invertedMask: boolean): void;
 
         /**
          * レンダラが保持する静的なリソースを開放する

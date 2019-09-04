@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismphysicsinternal} from './cubismphysicsinternal';
@@ -30,13 +30,13 @@ export namespace Live2DCubismFramework
     const PhysicsTypeTagX: string = "X";
     const PhysicsTypeTagY: string = "Y";
     const PhysicsTypeTagAngle: string = "Angle";
-    
+
     /// Constant of air resistance.
     const AirResistance: number = 5.0;
-    
+
     /// Constant of maximum weight of input and output ratio.
     const MaximumWeight: number = 100.0;
-    
+
     /// Constant of threshold of movement.
     const MovementThreshold: number = 0.001;
 
@@ -90,7 +90,7 @@ export namespace Live2DCubismFramework
             let currentInput: CubismPhysicsInput[];
             let currentOutput: CubismPhysicsOutput[];
             let currentParticles: CubismPhysicsParticle[];
-        
+
             let parameterValue: Float32Array;
             let parameterMaximumValue: Float32Array;
             let parameterMinimumValue: Float32Array;
@@ -139,7 +139,7 @@ export namespace Live2DCubismFramework
 
                 totalTranslation.x = (totalTranslation.x * CubismMath.cos(radAngle) - totalTranslation.y * CubismMath.sin(radAngle));
                 totalTranslation.y = (totalTranslation.x * CubismMath.sin(radAngle) + totalTranslation.y * CubismMath.cos(radAngle));
-        
+
                 // Calculate particles position.
                 updateParticles(
                     currentParticles,
@@ -251,7 +251,7 @@ export namespace Live2DCubismFramework
         public parse(physicsJson: ArrayBuffer, size: number): void
         {
             this._physicsRig = new CubismPhysicsRig();
-            
+
             let json: CubismPhysicsJson = new CubismPhysicsJson(physicsJson, size);
 
             this._physicsRig.gravity = json.getGravity();
@@ -278,7 +278,7 @@ export namespace Live2DCubismFramework
                 // Input
                 this._physicsRig.settings.at(i).inputCount = json.getInputCount(i);
                 this._physicsRig.settings.at(i).baseInputIndex = inputIndex;
-                
+
                 for(let j: number = 0; j < this._physicsRig.settings.at(i).inputCount; ++j)
                 {
                     this._physicsRig.inputs.at(inputIndex + j).sourceParameterIndex = -1;
@@ -379,7 +379,7 @@ export namespace Live2DCubismFramework
             {
                 currentSetting = this._physicsRig.settings.at(settingIndex);
                 strand = this._physicsRig.particles.get(currentSetting.baseParticleIndex);
-        
+
                 // Initialize the top of particle.
                 strand[0].initialPosition = new CubismVector2(0.0, 0.0);
                 strand[0].lastPosition = new CubismVector2(strand[0].initialPosition.x, strand[0].initialPosition.y);
@@ -387,7 +387,7 @@ export namespace Live2DCubismFramework
                 strand[0].lastGravity.y *= -1.0;
                 strand[0].velocity = new CubismVector2(0.0, 0.0);
                 strand[0].force = new CubismVector2(0.0, 0.0);
-        
+
                 // Initialize paritcles.
                 for (let i: number = 1; i < currentSetting.particleCount; ++i)
                 {
@@ -425,9 +425,9 @@ export namespace Live2DCubismFramework
 
     /**
      * Gets sign.
-     * 
+     *
      * @param value Evaluation target value.
-     * 
+     *
      * @return Sign of value.
      */
     function sign(value: number): number
@@ -611,7 +611,7 @@ export namespace Live2DCubismFramework
 
     /**
      * Updates particles.
-     * 
+     *
      * @param strand                Target array of particle.
      * @param strandCount           Count of particle.
      * @param totalTranslation      Total translation value.
@@ -684,11 +684,11 @@ export namespace Live2DCubismFramework
                 strand[i].velocity = strand[i].velocity.divisionByScalar(delay);
                 strand[i].velocity = strand[i].velocity.multiplyByScaler(strand[i].mobility);
             }
-    
+
             strand[i].force = new CubismVector2(0.0, 0.0);
             strand[i].lastGravity = new CubismVector2(currentGravity.x, currentGravity.y);
         }
-    
+
     }
 
     /**
@@ -708,9 +708,9 @@ export namespace Live2DCubismFramework
         let outputScale: number;
         let value: number;
         let weight: number;
-    
+
         outputScale = output.getScale(output.translationScale, output.angleScale);
-    
+
         value = translation * outputScale;
 
         if (value < parameterValueMinimum)
@@ -719,7 +719,7 @@ export namespace Live2DCubismFramework
             {
                 output.valueBelowMinimum = value;
             }
-    
+
             value = parameterValueMinimum;
         }
         else if (value > parameterValueMaximum)
@@ -728,7 +728,7 @@ export namespace Live2DCubismFramework
             {
                 output.valueExceededMaximum = value;
             }
-    
+
             value = parameterValueMaximum;
         }
 
@@ -798,7 +798,7 @@ export namespace Live2DCubismFramework
                 {
                     const nLength: number = minNormValue - middleNormValue;
                     const pLength: number = minValue - middleValue;
-                    
+
                     if(pLength != 0.0)
                     {
                         result = paramValue * (nLength / pLength);

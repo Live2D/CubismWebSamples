@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismmotionqueuemanager} from "./cubismmotionqueuemanager";
@@ -17,7 +17,7 @@ export namespace Live2DCubismFramework
 {
     /**
      * モーションの管理
-     * 
+     *
      * モーションの管理を行うクラス
      */
     export class CubismMotionManager extends CubismMotionQueueManager
@@ -92,7 +92,7 @@ export namespace Live2DCubismFramework
             this._userTimeSeconds += deltaTimeSeconds;
 
             const updated: boolean = super.doUpdateMotion(model, this._userTimeSeconds);
-            
+
             if(this.isFinished())
             {
                 this._currentPriority = 0;  // 再生中のモーションの優先度を解除
@@ -123,5 +123,5 @@ export namespace Live2DCubismFramework
         _currentPriority: number;   // 現在再生中のモーションの優先度
         _reservePriority: number;   // 再生予定のモーションの優先度。再生中は0になる。モーションファイルを別スレッドで読み込むときの機能。
     }
-    
+
 }

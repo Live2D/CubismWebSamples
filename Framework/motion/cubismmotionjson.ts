@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismjson} from '../utils/cubismjson';
@@ -104,7 +104,7 @@ export namespace Live2DCubismFramework
         {
             return this._json.getRoot().getValueByString(Meta).getValueByString(TotalSegmentCount).toInt();
         }
-        
+
         /**
          * モーションのカーブの制御店の総合計の取得
          * @return モーションのカーブの制御点の総合計

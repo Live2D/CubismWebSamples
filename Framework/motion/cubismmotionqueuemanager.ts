@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as acubismmotion} from './acubismmotion';
@@ -216,7 +216,7 @@ export namespace Live2DCubismFramework
                 {
                     continue;
                 }
-                
+
                 if(motionQueueEntry._motionQueueEntryHandle == motionQueueEntryNumber)
                 {
                     return motionQueueEntry;
@@ -228,7 +228,7 @@ export namespace Live2DCubismFramework
 
         /**
          * イベントを受け取るCallbackの登録
-         * 
+         *
          * @param callback コールバック関数
          * @param customData コールバックに返されるデータ
          */
@@ -281,7 +281,7 @@ export namespace Live2DCubismFramework
 
                 // ------ ユーザトリガーイベントを検査する ----
                 const firedList: csmVector<csmString> = motion.getFiredEvent(
-                    motionQueueEntry.getLastCheckEventTime() - motionQueueEntry.getStartTime(), 
+                    motionQueueEntry.getLastCheckEventTime() - motionQueueEntry.getStartTime(),
                     userTimeSeconds - motionQueueEntry.getStartTime()
                 );
 
@@ -318,7 +318,7 @@ export namespace Live2DCubismFramework
 
     /**
      * イベントのコールバック関数を定義
-     * 
+     *
      * イベントのコールバックに登録できる関数の型情報
      * @param caller        発火したイベントを再生させたCubismMotionQueueManager
      * @param eventValue    発火したイベントの文字列データ
@@ -335,7 +335,7 @@ export namespace Live2DCubismFramework
 
     /**
      * モーションの識別番号
-     * 
+     *
      * モーションの識別番号の定義
      */
     export declare type CubismMotionQueueEntryHandle = any;

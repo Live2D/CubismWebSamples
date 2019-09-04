@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as csmvector} from "../../../../Framework/type/csmvector";
@@ -38,7 +38,7 @@ export class LAppTextureManager
 
     /**
      * 画像読み込み
-     * 
+     *
      * @param fileName 読み込む画像ファイルパス名
      * @param usePremultiply Premult処理を有効にするか
      * @return 画像情報、読み込み失敗時はnullを返す
@@ -50,7 +50,10 @@ export class LAppTextureManager
         {
             if(ite.ptr().fileName == fileName && ite.ptr().usePremultply == usePremultiply)
             {
-                // 2回目以降はキャッシュが使用される(待ち時間なし) 
+                // 2回目以降はキャッシュが使用される(待ち時間なし)
+                // WebKitでは同じImageのonloadを再度呼ぶには再インスタンスが必要
+                // 詳細：https://stackoverflow.com/a/5024181
+                ite.ptr().img = new Image();
                 ite.ptr().img.onload = () =>
                 {
                     callback(ite.ptr());
@@ -69,12 +72,12 @@ export class LAppTextureManager
 
             // テクスチャを選択
             gl.bindTexture(gl.TEXTURE_2D, tex);
-            
+
             // テクスチャにピクセルを書き込む
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
-            // Premult処理を行わせる 
+            // Premult処理を行わせる
             if(usePremultiply)
             {
                 gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
@@ -108,7 +111,7 @@ export class LAppTextureManager
 
     /**
      * 画像の解放
-     * 
+     *
      * 配列に存在する画像全てを解放する。
      */
     public releaseTextures(): void
@@ -123,7 +126,7 @@ export class LAppTextureManager
 
     /**
      * 画像の解放
-     * 
+     *
      * 指定したテクスチャの画像を解放する。
      * @param texture 解放するテクスチャ
      */
@@ -144,7 +147,7 @@ export class LAppTextureManager
 
     /**
      * 画像の解放
-     * 
+     *
      * 指定した名前の画像を解放する。
      * @param fileName 解放する画像ファイルパス名
      */
@@ -174,5 +177,5 @@ export class TextureInfo
     width: number = 0;          // 横幅
     height: number = 0;         // 高さ
     usePremultply: boolean;     // Premult処理を有効にするか
-    fileName: string;           // ファイル名 
+    fileName: string;           // ファイル名
 }

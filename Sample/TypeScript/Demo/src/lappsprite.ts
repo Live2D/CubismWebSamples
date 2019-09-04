@@ -1,15 +1,15 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import { gl, canvas } from "./lappdelegate";
 
 /**
  * スプライトを実装するクラス
- * 
+ *
  * テクスチャＩＤ、Rectの管理
  */
  export class LAppSprite
@@ -37,11 +37,11 @@ import { gl, canvas } from "./lappdelegate";
         this._positionLocation = null;
         this._uvLocation = null;
         this._textureLocation = null;
-        
+
         this._positionArray = null;
         this._uvArray = null;
         this._indexArray = null;
-        
+
         this._firstDraw = true;
     }
 
@@ -98,7 +98,7 @@ import { gl, canvas } from "./lappdelegate";
 
             // 何番目のuniform変数か取得
             this._textureLocation = gl.getUniformLocation(programId, "texture");
-            
+
             // uniform属性の登録
             gl.uniform1i(this._textureLocation, 0);
 
@@ -110,7 +110,7 @@ import { gl, canvas } from "./lappdelegate";
                     0.0, 1.0,
                     1.0, 1.0
                 ]);
-    
+
                 // uvバッファを作成
                 this._uvBuffer = gl.createBuffer();
             }
@@ -119,7 +119,7 @@ import { gl, canvas } from "./lappdelegate";
             {
                 let maxWidth = canvas.width;
                 let maxHeight = canvas.height;
-                
+
                 // 頂点データ
                 this._positionArray = new Float32Array([
                     (this._rect.right - maxWidth * 0.5) / (maxWidth * 0.5), (this._rect.up   - maxHeight * 0.5) / (maxHeight * 0.5),
@@ -169,7 +169,7 @@ import { gl, canvas } from "./lappdelegate";
         gl.bindTexture(gl.TEXTURE_2D, this._texture);
         gl.drawElements(gl.TRIANGLES, this._indexArray.length, gl.UNSIGNED_SHORT, 0);
     }
-    
+
     /**
      * 当たり判定
      * @param pointX x座標

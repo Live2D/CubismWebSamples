@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as cubismmatrix44} from "../../../../Framework/math/cubismmatrix44";
 import {Live2DCubismFramework as csmvector} from "../../../../Framework/type/csmvector";
@@ -27,7 +27,7 @@ export class LAppLive2DManager
     /**
      * クラスのインスタンス（シングルトン）を返す。
      * インスタンスが生成されていない場合は内部でインスタンスを生成する。
-     * 
+     *
      * @return クラスのインスタンス
      */
     public static getInstance(): LAppLive2DManager
@@ -49,13 +49,13 @@ export class LAppLive2DManager
         {
             s_instance = void 0;
         }
-        
+
         s_instance = null;
     }
 
     /**
      * 現在のシーンで保持しているモデルを返す。
-     * 
+     *
      * @param no モデルリストのインデックス値
      * @return モデルのインスタンスを返す。インデックス値が範囲外の場合はNULLを返す。
      */
@@ -85,7 +85,7 @@ export class LAppLive2DManager
 
     /**
      * 画面をドラッグした時の処理
-     * 
+     *
      * @param x 画面のX座標
      * @param y 画面のY座標
      */
@@ -104,7 +104,7 @@ export class LAppLive2DManager
 
     /**
      * 画面をタップした時の処理
-     * 
+     *
      * @param x 画面のX座標
      * @param y 画面のY座標
      */

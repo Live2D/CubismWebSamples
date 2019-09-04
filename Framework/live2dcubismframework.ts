@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 /// <reference path="../Core/live2dcubismcore.d.ts" />
@@ -55,12 +55,12 @@ export function strtod(s: string, endPtr: string[]): number
 export namespace Live2DCubismFramework
 {
     // ファイルスコープの変数を初期化
-    
+
     let s_isStarted: boolean = false;
     let s_isInitialized: boolean = false;
     let s_option: Option = null;
     let s_cubismIdManager: CubismIdManager = null;
-    
+
     /**
      * Framework内で使う定数の宣言
      */
@@ -81,7 +81,7 @@ export namespace Live2DCubismFramework
     }
 
     /**
-     * Live2D Cubism3 Original Workflow SDKのエントリポイント
+     * Live2D Cubism SDK Original Workflow SDKのエントリポイント
      * 利用開始時はCubismFramework.initialize()を呼び、CubismFramework.dispose()で終了する。
      */
     export class CubismFramework
@@ -121,7 +121,7 @@ export namespace Live2DCubismFramework
                 const patch: number = ((version & 0x0000FFFF));
                 const versionNumber: number = version;
 
-                CubismLogInfo(`Live2D Cubism Core version: {0}.{1}.{2} ({3})`, 
+                CubismLogInfo(`Live2D Cubism Core version: {0}.{1}.{2} ({3})`,
                     ('00' + major).slice(-2),
                     ('00' + minor).slice(-2),
                     ('0000' + patch).slice(-4),
@@ -213,7 +213,7 @@ export namespace Live2DCubismFramework
             CubismLogInfo("CubismFramework.dispose() is complete.");
         }
 
-        
+
         /**
          * Cubism FrameworkのAPIを使用する準備が完了したかどうか
          * @return APIを使用する準備が完了していればtrueが返ります。
@@ -222,7 +222,7 @@ export namespace Live2DCubismFramework
         {
             return s_isStarted;
         }
-        
+
         /**
          * Cubism Frameworkのリソース初期化がすでに行われているかどうか
          * @return リソース確保が完了していればtrueが返ります
@@ -234,7 +234,7 @@ export namespace Live2DCubismFramework
 
         /**
          * Core APIにバインドしたログ関数を実行する
-         * 
+         *
          * @praram message ログメッセージ
          */
         public static coreLogFunction(message: string): void
@@ -247,7 +247,7 @@ export namespace Live2DCubismFramework
 
             Live2DCubismCore.Logging.csmGetLogFunction()(message);
         }
-        
+
         /**
          * 現在のログ出力レベル設定の値を返す。
          *

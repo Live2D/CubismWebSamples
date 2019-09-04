@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as live2dcubismframework} from "../../../../Framework/live2dcubismframework";
 import {Live2DCubismFramework as cubismid} from "../../../../Framework/id/cubismid";
@@ -93,10 +93,10 @@ enum LoadStep
 export class LAppModel extends CubismUserModel {
     /**
      * model3.jsonが置かれたディレクトリとファイルパスからモデルを生成する
-     * @param dir 
-     * @param fileName 
+     * @param dir
+     * @param fileName
      */
-    public loadAssets(dir: string, fileName: string): void 
+    public loadAssets(dir: string, fileName: string): void
     {
         this._modelHomeDir = dir;
 
@@ -157,7 +157,7 @@ export class LAppModel extends CubismUserModel {
                     this.loadModel(buffer);
                     deleteBuffer(buffer, path);
                     this._state = LoadStep.LoadExpression;
-        
+
                     // callback
                     loadCubismExpression();
                 }
@@ -176,15 +176,15 @@ export class LAppModel extends CubismUserModel {
             if(this._modelSetting.getExpressionCount() > 0)
             {
                 const count: number = this._modelSetting.getExpressionCount();
-    
+
                 for(let i: number = 0; i < count; i++)
                 {
                     let name: string = this._modelSetting.getExpressionName(i);
                     let path: string = this._modelSetting.getExpressionFileName(i);
                     path = this._modelHomeDir + path;
-    
+
                     fetch(path).then(
-                        (response) => 
+                        (response) =>
                         {
                             return response.arrayBuffer();
                         }
@@ -193,21 +193,21 @@ export class LAppModel extends CubismUserModel {
                         {
                             let buffer: ArrayBuffer = arrayBuffer;
                             let size: number = buffer.byteLength;
-        
+
                             let motion: ACubismMotion = this.loadExpression(buffer, size, name);
-        
+
                             if(this._expressions.getValue(name) != null)
                             {
                                 ACubismMotion.delete(this._expressions.getValue(name));
                                 this._expressions.setValue(name, null);
                             }
-        
+
                             this._expressions.setValue(name, motion);
-        
+
                             deleteBuffer(buffer, path);
-    
+
                             this._expressionCount++;
-    
+
                             if(this._expressionCount >= count)
                             {
                                 this._state = LoadStep.LoadPhysics;
@@ -238,7 +238,7 @@ export class LAppModel extends CubismUserModel {
                 path = this._modelHomeDir + path;
 
                 fetch(path).then(
-                    (response) => 
+                    (response) =>
                     {
                         return response.arrayBuffer();
                     }
@@ -247,10 +247,10 @@ export class LAppModel extends CubismUserModel {
                     {
                         let buffer: ArrayBuffer = arrayBuffer;
                         let size: number = buffer.byteLength;
-        
+
                         this.loadPhysics(buffer, size);
                         deleteBuffer(buffer, path);
-        
+
                         this._state = LoadStep.LoadPose;
 
                         // callback
@@ -277,7 +277,7 @@ export class LAppModel extends CubismUserModel {
                 path = this._modelHomeDir + path;
 
                 fetch(path).then(
-                    (response) => 
+                    (response) =>
                     {
                         return response.arrayBuffer();
                     }
@@ -286,10 +286,10 @@ export class LAppModel extends CubismUserModel {
                     {
                         let buffer: ArrayBuffer = arrayBuffer;
                         let size: number = buffer.byteLength;
-        
+
                         this.loadPose(buffer, size);
                         deleteBuffer(buffer, path);
-        
+
                         this._state = LoadStep.SetupEyeBlink;
 
                         // callback
@@ -301,7 +301,7 @@ export class LAppModel extends CubismUserModel {
             else
             {
                 this._state = LoadStep.SetupEyeBlink;
-                
+
                 // callback
                 setupEyeBlink();
             }
@@ -325,18 +325,18 @@ export class LAppModel extends CubismUserModel {
         let setupBreath = () =>
         {
             this._breath = CubismBreath.create();
-    
+
             let breathParameters: csmVector<BreathParameterData> = new csmVector();
             breathParameters.pushBack(new BreathParameterData(this._idParamAngleX, 0.0, 15.0, 6.5345, 0.5));
             breathParameters.pushBack(new BreathParameterData(this._idParamAngleY, 0.0, 8.0, 3.5345, 0.5));
             breathParameters.pushBack(new BreathParameterData(this._idParamAngleZ, 0.0, 10.0, 5.5345, 0.5));
             breathParameters.pushBack(new BreathParameterData(this._idParamBodyAngleX, 0.0, 4.0, 15.5345, 0.5));
             breathParameters.pushBack(new BreathParameterData(CubismFramework.getIdManager().getId(CubismDefaultParameterId.ParamBreath), 0.0, 0.5, 3.2345, 0.5));
-    
+
             this._breath.setParameters(breathParameters);
             this._state = LoadStep.LoadUserData;
 
-            // callback 
+            // callback
             loadUserData();
         };
 
@@ -349,7 +349,7 @@ export class LAppModel extends CubismUserModel {
                 path = this._modelHomeDir + path;
 
                 fetch(path).then(
-                    (response) => 
+                    (response) =>
                     {
                         return response.arrayBuffer();
                     }
@@ -358,10 +358,10 @@ export class LAppModel extends CubismUserModel {
                     {
                         let buffer: ArrayBuffer = arrayBuffer;
                         let size: number = buffer.byteLength;
-        
+
                         this.loadUserData(buffer, size);
                         deleteBuffer(buffer, path);
-    
+
                         this._state = LoadStep.SetupEyeBlinkIds;
 
                         // callback
@@ -400,13 +400,13 @@ export class LAppModel extends CubismUserModel {
         let setupLipSyncIds = () =>
         {
             let lipSyncIdCount = this._modelSetting.getLipSyncParameterCount();
-            
+
             for(let i: number = 0; i < lipSyncIdCount; ++i)
             {
                 this._lipSyncIds.pushBack(this._modelSetting.getLipSyncParameterId(i));
             }
             this._state = LoadStep.SetupLayout;
-            
+
             // callback
             setupLayout();
         };
@@ -431,9 +431,9 @@ export class LAppModel extends CubismUserModel {
             this._allMotionCount = 0;
             this._motionCount = 0;
             let group: string[] = [];
-            
+
             let motionGroupCount: number = this._modelSetting.getMotionGroupCount();
-            
+
             // モーションの総数を求める
             for(let i: number = 0; i < motionGroupCount; i++)
             {
@@ -451,7 +451,7 @@ export class LAppModel extends CubismUserModel {
             if(motionGroupCount == 0)
             {
                 this._state = LoadStep.LoadTexture;
-    
+
                 // 全てのモーションを停止する
                 this._motionManager.stopAllMotions();
 
@@ -470,7 +470,7 @@ export class LAppModel extends CubismUserModel {
      */
     private setupTextures(): void
     {
-        // iPhoneでのアルファ品質向上のためTypescriptではpremultipliedAlphaを採用 
+        // iPhoneでのアルファ品質向上のためTypescriptではpremultipliedAlphaを採用
         let usePremultiply: boolean = true;
 
         if(this._state == LoadStep.LoadTexture)
@@ -486,25 +486,25 @@ export class LAppModel extends CubismUserModel {
                     console.log("getTextureFileName null");
                     continue;
                 }
-    
+
                 // WebGLのテクスチャユニットにテクスチャをロードする
                 let texturePath = this._modelSetting.getTextureFileName(modelTextureNumber);
                 texturePath = this._modelHomeDir + texturePath;
 
                 // ロード完了時に呼び出すコールバック関数
-                let onLoad = (textureInfo: TextureInfo) : void => 
+                let onLoad = (textureInfo: TextureInfo) : void =>
                 {
                     this.getRenderer().bindTexture(modelTextureNumber, textureInfo.id);
-                    
+
                     this._textureCount++;
-                    
+
                     if(this._textureCount >= textureCount)
                     {
                         // ロード完了
                         this._state = LoadStep.CompleteSetup;
                     }
                 };
-                
+
                 // 読み込み
                 LAppDelegate.getInstance().getTextureManager().createTextureFromPngFile(texturePath, usePremultiply, onLoad);
                 this.getRenderer().setIsPremultipliedAlpha(usePremultiply);
@@ -530,11 +530,11 @@ export class LAppModel extends CubismUserModel {
     public update(): void
     {
         if(this._state != LoadStep.CompleteSetup) return;
-        
+
         const deltaTimeSeconds: number = LAppPal.getDeltaTime();
         this._userTimeSeconds += deltaTimeSeconds;
 
-        
+
         this._dragManager.update(deltaTimeSeconds);
         this._dragX = this._dragManager.getX();
         this._dragY = this._dragManager.getY();
@@ -548,7 +548,7 @@ export class LAppModel extends CubismUserModel {
         {
             // モーションの再生がない場合、待機モーションの中からランダムで再生する
             this.startRandomMotion(LAppDefine.MotionGroupIdle, LAppDefine.PriorityIdle);
-            
+
         }
         else
         {
@@ -607,7 +607,7 @@ export class LAppModel extends CubismUserModel {
                 this._model.addParameterValueById(this._lipSyncIds.at(i), value, 0.8);
             }
         }
-        
+
         // ポーズの設定
         if(this._pose != null)
         {
@@ -661,24 +661,24 @@ export class LAppModel extends CubismUserModel {
                 {
                     let buffer: ArrayBuffer = arrayBuffer;
                     let size = buffer.byteLength;
-    
+
                     motion = <CubismMotion>this.loadMotion(buffer, size, null);
                     let fadeTime: number = this._modelSetting.getMotionFadeInTimeValue(group, no);
-    
+
                     if(fadeTime >= 0.0)
                     {
                         motion.setFadeInTime(fadeTime);
                     }
-    
+
                     fadeTime = this._modelSetting.getMotionFadeOutTimeValue(group, no);
                     if(fadeTime >= 0.0)
                     {
                         motion.setFadeOutTime(fadeTime);
                     }
-    
+
                     motion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
                     autoDelete = true;  // 終了時にメモリから削除
-    
+
                     deleteBuffer(buffer, path);
                 }
             );
@@ -711,7 +711,7 @@ export class LAppModel extends CubismUserModel {
 
     /**
      * 引数で指定した表情モーションをセットする
-     * 
+     *
      * @param expressionId 表情モーションのID
      */
     public setExpression(expressionId: string): void
@@ -770,7 +770,7 @@ export class LAppModel extends CubismUserModel {
     /**
      * 当たり判定テスト
      * 指定ＩＤの頂点リストから矩形を計算し、座標をが矩形範囲内か判定する。
-     * 
+     *
      * @param hitArenaName  当たり判定をテストする対象のID
      * @param x             判定を行うX座標
      * @param y             判定を行うY座標
@@ -800,7 +800,7 @@ export class LAppModel extends CubismUserModel {
     /**
      * モーションデータをグループ名から一括でロードする。
      * モーションデータの名前は内部でModelSettingから取得する。
-     * 
+     *
      * @param group モーションデータのグループ名
      */
     public preLoadMotionGroup(group: string): void
@@ -816,9 +816,9 @@ export class LAppModel extends CubismUserModel {
             {
                 LAppPal.printLog("[APP]load motion: {0} => [{1}_{2}]", path, group, i);
             }
-            
+
             fetch(path).then(
-                (response) => 
+                (response) =>
                 {
                     return response.arrayBuffer();
                 }
@@ -827,22 +827,22 @@ export class LAppModel extends CubismUserModel {
                 {
                     let buffer: ArrayBuffer = arrayBuffer;
                     let size = buffer.byteLength;
-                    
+
                     let tmpMotion: CubismMotion = <CubismMotion>this.loadMotion(buffer, size, name);
-                    
+
                     let fadeTime = this._modelSetting.getMotionFadeInTimeValue(group, i);
                     if(fadeTime >= 0.0)
                     {
                         tmpMotion.setFadeInTime(fadeTime);
                     }
-    
+
                     fadeTime = this._modelSetting.getMotionFadeOutTimeValue(group, i);
                     if(fadeTime >= 0.0)
                     {
                         tmpMotion.setFadeOutTime(fadeTime);
                     }
                     tmpMotion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
-    
+
                     if(this._motions.getValue(name) != null)
                     {
                         ACubismMotion.delete(this._motions.getValue(name));
@@ -851,7 +851,7 @@ export class LAppModel extends CubismUserModel {
                     this._motions.setValue(name, tmpMotion);
 
                     deleteBuffer(buffer, path);
-    
+
                     this._motionCount++;
                     if(this._motionCount >= this._allMotionCount)
                     {
@@ -897,8 +897,8 @@ export class LAppModel extends CubismUserModel {
 
         // キャンバスサイズを渡す
         let viewport: number[] = [
-            0, 
-            0, 
+            0,
+            0,
             canvas.width,
             canvas.height
         ];
@@ -912,7 +912,7 @@ export class LAppModel extends CubismUserModel {
      */
     public draw(matrix: CubismMatrix44): void
     {
-        if(this._model == null) 
+        if(this._model == null)
         {
             return;
         }
@@ -921,9 +921,9 @@ export class LAppModel extends CubismUserModel {
         if(this._state == LoadStep.CompleteSetup)
         {
             matrix.multiplyByMatrix(this._modelMatrix);
-            
+
             this.getRenderer().setMvpMatrix(matrix);
-            
+
             this.doDraw();
         }
     }
@@ -931,7 +931,7 @@ export class LAppModel extends CubismUserModel {
     /**
      * コンストラクタ
      */
-    public constructor() 
+    public constructor()
     {
         super();
 
@@ -947,7 +947,7 @@ export class LAppModel extends CubismUserModel {
 
         this._hitArea = new csmVector<csmRect>();
         this._userArea = new csmVector<csmRect>();
-        
+
         this._idParamAngleX = CubismFramework.getIdManager().getId(CubismDefaultParameterId.ParamAngleX);
         this._idParamAngleY = CubismFramework.getIdManager().getId(CubismDefaultParameterId.ParamAngleY);
         this._idParamAngleZ = CubismFramework.getIdManager().getId(CubismDefaultParameterId.ParamAngleZ);

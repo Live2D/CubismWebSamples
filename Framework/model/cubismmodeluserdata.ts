@@ -1,9 +1,9 @@
-﻿/*
-* Copyright(c) Live2D Inc. All rights reserved.
-*
-* Use of this source code is governed by the Live2D Open Software license
-* that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
-*/
+/**
+ * Copyright(c) Live2D Inc. All rights reserved.
+ *
+ * Use of this source code is governed by the Live2D Open Software license
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ */
 
 import {Live2DCubismFramework as cubismmodeluserdatajson} from "./cubismmodeluserdatajson";
 import {Live2DCubismFramework as cubismid} from "../id/cubismid";
@@ -22,7 +22,7 @@ export namespace Live2DCubismFramework
 
     /**
      * ユーザーデータインターフェース
-     * 
+     *
      * Jsonから読み込んだユーザーデータを記録しておくための構造体
      */
     export class CubismModelUserDataNode
@@ -34,14 +34,14 @@ export namespace Live2DCubismFramework
 
     /**
      * ユーザデータの管理クラス
-     * 
+     *
      * ユーザデータをロード、管理、検索インターフェイス、解放までを行う。
      */
     export class CubismModelUserData
     {
         /**
          * インスタンスの作成
-         * 
+         *
          * @param buffer    userdata3.jsonが読み込まれているバッファ
          * @param size      バッファのサイズ
          * @return 作成されたインスタンス
@@ -57,7 +57,7 @@ export namespace Live2DCubismFramework
 
         /**
          * インスタンスを破棄する
-         * 
+         *
          * @param modelUserData 破棄するインスタンス
          */
         public static delete(modelUserData: CubismModelUserData): void
@@ -71,7 +71,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ArtMeshのユーザーデータのリストの取得
-         * 
+         *
          * @return ユーザーデータリスト
          */
         public getArtMeshUserDatas(): csmVector<CubismModelUserDataNode>
@@ -81,7 +81,7 @@ export namespace Live2DCubismFramework
 
         /**
          * userdata3.jsonのパース
-         * 
+         *
          * @param buffer    userdata3.jsonが読み込まれているバッファ
          * @param size      バッファのサイズ
          */
@@ -106,7 +106,7 @@ export namespace Live2DCubismFramework
                     this._artMeshUserDataNode.pushBack(addNode);
                 }
             }
-            
+
             json.release();
             json = void 0;
         }
@@ -122,7 +122,7 @@ export namespace Live2DCubismFramework
 
         /**
          * デストラクタ相当の処理
-         * 
+         *
          * ユーザーデータ構造体配列を解放する
          */
         public release(): void

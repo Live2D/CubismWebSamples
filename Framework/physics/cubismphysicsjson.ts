@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismjson} from '../utils/cubismjson';
@@ -115,7 +115,7 @@ export namespace Live2DCubismFramework
         {
             return this._json.getRoot().getValueByString(Meta).getValueByString(PhysicsSettingCount).toInt();
         }
-        
+
         /**
          * 入力の総合計の取得
          * @return 入力の総合計
@@ -142,7 +142,7 @@ export namespace Live2DCubismFramework
         {
             return this._json.getRoot().getValueByString(Meta).getValueByString(VertexCount).toInt();
         }
-        
+
         /**
          * 正規化された位置の最小値の取得
          * @param physicsSettingIndex 物理演算の設定のインデックス

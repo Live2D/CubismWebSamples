@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as csmstring} from "../type/csmstring";
@@ -123,7 +123,7 @@ export namespace Live2DCubismFramework
 
         /**
          * マップのキー一覧をコンテナで返す
-         * 
+         *
          * @return マップのキーの一覧
          */
         public getKeys(): csmVector<string>
@@ -228,7 +228,7 @@ export namespace Live2DCubismFramework
 
             Value.s_dummyKeys = new csmVector<string>();
         }
-        
+
         /**
          * リリース用メソッド
          */
@@ -259,7 +259,7 @@ export namespace Live2DCubismFramework
      * Ascii文字のみ対応した最小限の軽量JSONパーサ。
      * 仕様はJSONのサブセットとなる。
      * 設定ファイル(model3.json)などのロード用
-     * 
+     *
      * [未対応項目]
      * ・日本語などの非ASCII文字
      * ・eによる指数表現
@@ -283,7 +283,7 @@ export namespace Live2DCubismFramework
 
         /**
          * バイトデータから直接ロードしてパースする
-         * 
+         *
          * @param buffer バッファ
          * @param size バッファサイズ
          * @return CubismJsonクラスのインスタンス。失敗したらNULL
@@ -293,7 +293,7 @@ export namespace Live2DCubismFramework
             let json = new CubismJson();
             const succeeded: boolean = json.parseBytes(buffer, size);
 
-            if(!succeeded) 
+            if(!succeeded)
             {
                 CubismJson.delete(json);
                 return null;
@@ -306,7 +306,7 @@ export namespace Live2DCubismFramework
 
         /**
          * パースしたJSONオブジェクトの解放処理
-         * 
+         *
          * @param instance CubismJsonクラスのインスタンス
          */
         public static delete(instance: CubismJson)
@@ -324,7 +324,7 @@ export namespace Live2DCubismFramework
 
         /**
          *  UnicodeのバイナリをStringに変換
-         * 
+         *
          * @param buffer 変換するバイナリデータ
          * @return 変換後の文字列
          */
@@ -385,7 +385,7 @@ export namespace Live2DCubismFramework
         /**
          * パース時のエラー値を返す
          */
-        public getParseError(): string 
+        public getParseError(): string
         {
             return this._error;
         }
@@ -411,7 +411,7 @@ export namespace Live2DCubismFramework
         protected parseValue(buffer: string, length: number, begin: number, outEndPos: number[])
         {
             if (this._error)    return null;
-            
+
             let o: Value = null;
             let i: number = begin;
             let f: number;
@@ -486,7 +486,7 @@ export namespace Live2DCubismFramework
                 case ']': // 不正な｝だがスキップする。配列の最後に不要な , があると思われる
                     outEndPos[0] = i;  // 同じ文字を再処理
                     return null;
-                case '\n': 
+                case '\n':
                     this._lineCount++;
                 case ' ':
                 case '\t':
@@ -502,7 +502,7 @@ export namespace Live2DCubismFramework
 
         /**
          * 次の「"」までの文字列をパースする。
-         *      
+         *
          * @param   string  ->  パース対象の文字列
          * @param   length  ->  パースする長さ
          * @param   begin   ->  パースを開始する位置
@@ -525,7 +525,7 @@ export namespace Live2DCubismFramework
                 switch(c)
                 {
                 case '\"':　// 終端の”、エスケープ文字は別に処理されるのでここに来ない
-                    { 
+                    {
                         outEndPos[0] = i + 1;  // ”の次の文字
                         ret.append(string.slice(bufStart), (i - bufStart)); // 前の文字までを登録する
                         return ret.s;
@@ -533,17 +533,17 @@ export namespace Live2DCubismFramework
                 case '//':  // エスケープの場合
                     {
                         i++; // ２文字をセットで扱う
-    
+
                         if(i - 1 > bufStart)
                         {
                             ret.append(string.slice(bufStart), (i - bufStart)); // 前の文字までを登録する
                         }
                         bufStart = i + 1; // エスケープ（２文字)の次の文字から
-    
+
                         if (i < length)
                         {
                             c2 = string[i];
-    
+
                             switch(c2)
                             {
                             case '\\':
@@ -595,7 +595,7 @@ export namespace Live2DCubismFramework
 
         /**
          * JSONのオブジェクトエレメントをパースしてValueオブジェクトを返す
-         * 
+         *
          * @param buffer    JSONエレメントのバッファ
          * @param length    パースする長さ
          * @param begin     パースを開始する位置
@@ -639,7 +639,7 @@ export namespace Live2DCubismFramework
                     case ':':
                         this._error = "illegal ':' position";
                         break;
-                    case '\n': 
+                    case '\n':
                         this._lineCount++;
                     default:
                         break;  // スキップする文字
@@ -685,7 +685,7 @@ export namespace Live2DCubismFramework
                 if(this._error)
                 {
                     return null;
-                } 
+                }
 
                 i = localRetEndPos2[0];
 
@@ -768,7 +768,7 @@ export namespace Live2DCubismFramework
                         case '\n':
                             ++this._lineCount;
                             //case ' ': case '\t': case '\r':
-                        default: 
+                        default:
                             break; // スキップ
                     }
                 }
@@ -815,7 +815,7 @@ export namespace Live2DCubismFramework
             let strbuf: string = '\0';
             this._value = parseFloat(strbuf);
             this._stringBuffer = strbuf;
-            
+
             return this._stringBuffer;
         }
 
@@ -936,7 +936,7 @@ export namespace Live2DCubismFramework
 
         private _boolValue: boolean; // JSON要素の値
     }
-    
+
     /**
      * パースしたJSONの要素を文字列として扱う
      */
@@ -955,7 +955,7 @@ export namespace Live2DCubismFramework
             {
                 this._stringBuffer = s;
             }
-            
+
             if(s instanceof csmString)
             {
                 this._stringBuffer = s.s;
@@ -1114,7 +1114,7 @@ export namespace Live2DCubismFramework
             for(let ite: csmVector_iterator<Value> = this._array.begin(); ite.notEqual(this._array.end()); ite.preIncrement())
             {
                 let v: Value = ite.ptr();
-                
+
                 if(v && !v.isStatic())
                 {
                     v = void 0;
@@ -1171,7 +1171,7 @@ export namespace Live2DCubismFramework
                 let v: Value = ite.ptr();
                 this._stringBuffer += indent + "" + v.getString(indent + " ") + "\n";
             }
-            
+
             this._stringBuffer = stringBuffer + indent + "]\n";
 
             return this._stringBuffer;
@@ -1229,7 +1229,7 @@ export namespace Live2DCubismFramework
             while(ite.notEqual(this._map.end()))
             {
                 let v: Value = ite.ptr().second;
-                
+
                 if(v && !v.isStatic())
                 {
                     v = void 0;
@@ -1352,7 +1352,7 @@ export namespace Live2DCubismFramework
         {
             return this._keys.getSize();
         }
-        
+
 
         private _map: csmMap<string, Value>;   // JSON要素の値
         private _keys: csmVector<string>;               // JSON要素の値

@@ -1,8 +1,8 @@
-﻿/*
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
- * that can be found at http://live2d.com/eula/live2d-open-software-license-agreement_en.html.
+ * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
 import {Live2DCubismFramework as cubismjson} from "../utils/cubismjson";
@@ -54,7 +54,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ユーザーデータ総文字列数の取得
-         * 
+         *
          * @return ユーザーデータ総文字列数
          */
         public getTotalUserDataSize(): number
@@ -64,7 +64,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ユーザーデータのタイプの取得
-         * 
+         *
          * @return ユーザーデータのタイプ
          */
         public getUserDataTargetType(i: number): string
@@ -74,7 +74,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ユーザーデータのターゲットIDの取得
-         * 
+         *
          * @param i インデックス
          * @return ユーザーデータターゲットID
          */
@@ -85,7 +85,7 @@ export namespace Live2DCubismFramework
 
         /**
          * ユーザーデータの文字列の取得
-         * 
+         *
          * @param i インデックス
          * @return ユーザーデータ
          */
