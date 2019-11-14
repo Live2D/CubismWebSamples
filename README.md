@@ -5,6 +5,13 @@ Live2D Cubism 4 Editorで出力したモデルを表示するアプリケーシ�
 Cubism Coreライブラリと組み合わせて使用します。
 
 
+## 注意事項
+
+本SDKを使用する前に、注意事項をご確認ください。
+
+[こちら](./NOTICE.md)
+
+
 ## ディレクトリ構成
 
 ```
@@ -98,25 +105,25 @@ ctrl+shift+P(macOSでは⌘+⇧+P)で`Tasks: Run Task`から`npm: serve`を選�
 
 | Node.js | バージョン |
 | --- | --- |
-| Current | 12.9.1 |
-| LTS | 10.16.3 |
+| Latest | 13.1.0 |
+| LTS | 12.13.0 |
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 76.0.3809.89 |
-| Android | Microsoft Edge | 42.0.2.3819 |
-| Android | Mozilla Firefox | 68.0 |
-| iOS | Google Chrome | 76.0.3809.81 |
-| iOS | Microsoft Edge | 44.5.3 |
-| iOS | Mozilla Firefox | 18.1 |
-| iOS | Safari | 604.1 |
-| macOS | Google Chrome | 76.0.3809.87 |
-| macOS | Mozilla Firefox | 68.0.1 |
-| macOS | Safari | 12.1.2 |
-| Windows | Google Chrome | 76.0.3809.100 |
-| Windows | Internet Explorer 11 | 11.885.17134.0 |
-| Windows | Microsoft Edge | 44.18362.1.0 |
-| Windows | Mozilla Firefox | 68.0.1 |
+| Android | Google Chrome | 78.0.3904.96 |
+| Android | Microsoft Edge | 42.0.4.3989 |
+| Android | Mozilla Firefox | 68.2.0 |
+| iOS / iPadOS | Google Chrome | 78.0.3904.84 |
+| iOS / iPadOS | Microsoft Edge | 44.10.7 |
+| iOS / iPadOS | Mozilla Firefox | 20.1 |
+| iOS / iPadOS | Safari | 13.0.3 |
+| macOS | Google Chrome | 78.0.3904.97 |
+| macOS | Mozilla Firefox | 70.0.1 |
+| macOS | Safari | 13.0.3 |
+| Windows | Google Chrome | 78.0.3904.97 |
+| Windows | Internet Explorer 11 | 11.476.18362.0 |
+| Windows | Microsoft Edge | 44.18362.449.0 |
+| Windows | Mozilla Firefox | 70.0.1 |
 
 Note: 動作確認時のサーバの起動は[検証時](/README.md#検証時)の方法で行っています。
 
