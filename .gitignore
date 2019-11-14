@@ -1,11 +1,11 @@
 # Cubism Core
-/Core/*
+/Core/**/*
 !/Core/Please_copy_cubism_core_for_web
 
 # IDE/Editor files
 .idea/
 .vs/
-.vscode/*
+.vscode/**/*
 !/.vscode/launch.json
 !/.vscode/tasks.json
 *.iml
