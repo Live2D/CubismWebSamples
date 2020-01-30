@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --progress",
+    "build": "webpack -d --hide-modules",
+    "build:prod": "webpack -p --hide-modules",
+    "test": "tsc --noEmit",
+    "lint": "eslint src -f codeframe --ext .ts",
+    "lint:fix": "eslint src -f codeframe --ext .ts --fix",
+    "serve": "serve ../../.. -p 5000",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.1",
+    "serve": "^11.3.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.0.0"
+  }
+}
