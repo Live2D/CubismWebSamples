@@ -1,29 +1,30 @@
 # Cubism Web Samples
 
-Live2D Cubism 4 Editorで出力したモデルを表示するアプリケーションのサンプル実装です。
+Live2D Cubism 4 Editor で出力したモデルを表示するアプリケーションのサンプル実装です。
 
-Cubism Coreライブラリと組み合わせて使用します。
+Cubism Web Framework および Live2D Cubism Core と組み合わせて使用します。
+
+
+## ライセンス
+
+本 SDK を使用する前に、[ライセンス](LICENSE.md)をご確認ください。
 
 
 ## 注意事項
 
-本SDKを使用する前に、注意事項をご確認ください。
-
-[こちら](./NOTICE.md)
+本 SDK を使用する前に、[注意事項](NOTICE.md)をご確認ください。
 
 
 ## ディレクトリ構成
 
 ```
 .
-├─ .vscode              # Visual Studio Codeのタスクや設定が含まれるディレクトリ
-├─ Core                 # Cubism Coreが含まれるディレクトリ
-├─ Framework            # レンダリングやアニメーション機能などのソースコードが含まれるディレクトリ
+├─ .vscode          # Visual Studio Code 用プロジェクト設定ディレクトリ
+├─ Core             # Live2D Cubism Core が含まれるディレクトリ
+├─ Framework        # レンダリングやアニメーション機能などのソースコードが含まれるディレクトリ
 └─ Samples
-   └─ TypeScript
-      └─ Demo           # サンプルプロジェクトが含まれるディレクトリ
-         ├─ Resources   # モデルのファイルや画像などのリソースが含まれるディレクトリ
-         └─ src
+   ├─ Resources     # モデルのファイルや画像などのリソースが含まれるディレクトリ
+   └─ TypeScript    # TypeScript のサンプルプロジェクトが含まれるディレクトリ
 ```
 
 
@@ -36,59 +37,33 @@ Cubism Coreライブラリと組み合わせて使用します。
 Coreディレクトリのファイルをコピーしてください。
 
 
-## 開発環境の構築方法
+## 開発環境構築
 
-1. [Node.js](https://nodejs.org/)をインストールします。
+1. [Node.js] と [Visual Studio Code] をインストールします
+1. Visual Studio Code で **本 SDK のトップディレクトリ** を開き、推奨拡張機能をインストールします
+    * ポップアップ通知の他、拡張機能タブから `@recommended` を入力することで確認できます
 
-1. [Visual Studio Code](https://code.visualstudio.com/)をインストールします。
+### サンプルデモの動作確認
 
-1. Visual Studio Codeの拡張機能として下記を追加します。
-   - [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
-   - [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+コマンドパレット（*View > Command Palette...*）で `>Tasks: Run Task` を入力することで、タスク一覧が表示されます。
 
+1. タスク一覧から　`npm: install - Samples/TypeScript/Demo` を選択して依存パッケージのダウンロードを行います
+1. タスク一覧から `npm: build - Samples/TypeScript/Demo` を選択してサンプルデモのビルドを行います
+1. タスク一覧から `npm: serve - Samples/TypeScript/Demo` を選択して動作確認用の簡易サーバを起動します
+1. ブラウザの URL 欄に `http://localhost:5000/Samples/TypeScript/Demo/` と入力してアクセスします
+1. コマンドパレットから `>Tasks: Terminate Task` を入力して `npm: serve` を選択すると簡易サーバが終了します
 
-## ビルド方法
+その他のタスクに関してはサンプルプロジェクトの [README.md](Samples/TypeScript/README.md) を参照ください。
 
-1. Visual Studio Codeでプロジェクトディレクトリを開きます。
+NOTE: デバック用の設定は、`.vscode/tasks.json` に記述しています。
 
-1. ビルドに必要な物をインストールします。
-   ctrl+shift+P(macOSでは⌘+⇧+P)で`Tasks: Run Task`から`npm: install`を選択、
-   または、`package.json`があるディレクトリ上にてターミナル上で`npm install`でサーバが起動します。
+### プロジェクトのデバック
 
-1. ビルドを行います。
-   ctrl+shift+B(macOSでは⌘+⇧+B)でビルドタスクを選択、またはターミナル上でnpmコマンドを実行してJavaScriptを生成します。
+Visual Studio Code で **本 SDK のトップディレクトリ** を開き、 *F5* キーを入力すると Debugger for Chrome が起動します。
 
-### ビルドタスクの説明
+Visual Studio Code 上でブレイクポイントを貼って Chrome ブラウザと連動してデバックを行うことができます。
 
-| コマンド | 説明 |
-| --- | --- |
-| `npm: build-framework` | フレームワークのみをビルドし、JavaScriptファイルを生成します |
-| `npm: watch-framework` | フレームワークのみをウォッチし、変更が保存された際にJavaScriptファイルを再生成します |
-| `npm: build-sample` | サンプルをビルドします |
-| `npm: watch-sample` | サンプルをウォッチします |
-| `npm: build-all` | フレームワークとサンプルをビルドします |
-| `npm: watch-all` | フレームワークとサンプルをウォッチします |
-
-
-## ローカルサーバの起動方法
-
-ビルドした成果物はそのままファイルを開くだけでは正常に動作しないため、ローカルサーバを起動する必要があります。
-
-### 開発時
-
-Visual Studio Codeの画面下の水色のフッターから「Go Live」をクリックするとサーバが起動します。
-ブラウザ上で`index.html`のパスまで進むと動作を確認することが出来ます。
-
-ファイルの更新が行われると自動でブラウザのリロードが行われます。
-また、`F5`を押すとでDebugger for Chromeの拡張が起動してデバッグを行うことが出来ます。
-
-### 検証時
-
-ctrl+shift+P(macOSでは⌘+⇧+P)で`Tasks: Run Task`から`npm: serve`を選択、
-または、`package.json`があるディレクトリ上にてターミナル上で`npm run serve`でサーバが起動します。
-ブラウザ上で`index.html`のパスまで進むと動作を確認することが出来ます。
-
-シンプルな構成のサーバのため検証時におすすめです。
+NOTE: デバック用の設定は、`.vscode/launch.json` に記述しています。
 
 
 ## SDKマニュアル
@@ -98,65 +73,38 @@ ctrl+shift+P(macOSでは⌘+⇧+P)で`Tasks: Run Task`から`npm: serve`を選�
 
 ## 変更履歴
 
-当リポジトリの変更履歴については[CHANGELOG.md](/CHANGELOG.md)を参照ください。
+当リポジトリの変更履歴については [CHANGELOG.md](CHANGELOG.md) を参照ください。
+
+
+## 開発環境
+
+### Node.js
+
+* 13.7.0
+* 12.14.1
+* 10.18.1
 
 
 ## 動作確認環境
 
-| Node.js | バージョン |
-| --- | --- |
-| Latest | 13.1.0 |
-| LTS | 12.13.0 |
-
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 78.0.3904.96 |
+| Android | Google Chrome | 79.0.3945.136 |
 | Android | Microsoft Edge | 42.0.4.3989 |
 | Android | Mozilla Firefox | 68.2.0 |
-| iOS / iPadOS | Google Chrome | 78.0.3904.84 |
-| iOS / iPadOS | Microsoft Edge | 44.10.7 |
-| iOS / iPadOS | Mozilla Firefox | 20.1 |
-| iOS / iPadOS | Safari | 13.0.3 |
-| macOS | Google Chrome | 78.0.3904.97 |
-| macOS | Mozilla Firefox | 70.0.1 |
-| macOS | Safari | 13.0.3 |
-| Windows | Google Chrome | 78.0.3904.97 |
-| Windows | Internet Explorer 11 | 11.476.18362.0 |
-| Windows | Microsoft Edge | 44.18362.449.0 |
-| Windows | Mozilla Firefox | 70.0.1 |
+| iOS / iPadOS | Google Chrome | 79.0.3945.73 |
+| iOS / iPadOS | Microsoft Edge | 44.11.15 |
+| iOS / iPadOS | Mozilla Firefox | 21.0 |
+| iOS / iPadOS | Safari | 13.0.4 |
+| Linux | Google Chrome | 79.0.3945.130 |
+| Linux | Mozilla Firefox | 72.0.1 |
+| macOS | Google Chrome | 79.0.3945.130 |
+| macOS | Microsoft Edge | 79.0.309.71 |
+| macOS | Mozilla Firefox | 72.0.2 |
+| macOS | Safari | 13.0.4 |
+| Windows | Google Chrome | 79.0.3945.130 |
+| Windows | Internet Explorer 11 | 11.592.18362.0 |
+| Windows | Microsoft Edge | 79.0.309.71 |
+| Windows | Mozilla Firefox | 72.0.2 |
 
-Note: 動作確認時のサーバの起動は[検証時](/README.md#検証時)の方法で行っています。
-
-
-## ライセンス
-
-Cubism Web Samples は Live2D Open Software License で提供しています。
-- Live2D Open Software License
-
-  [日本語](https://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html)
-  [English](https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html)
-
-Live2D Cubism Core for Web は Live2D Proprietary Software License で提供しています。
-- Live2D Proprietary Software License
-
-  [日本語](https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_jp.html)
-  [English](https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_en.html)
-
-Live2D のサンプルモデルは Free Material License で提供しています。
-- Free Material License
-
-  [日本語](https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html)
-  [English](https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html)
-  - `./Sample/TypeScript/Demo/Resources/Haru`
-  - `./Sample/TypeScript/Demo/Resources/Hiyori`
-  - `./Sample/TypeScript/Demo/Resources/Mark`
-  - `./Sample/TypeScript/Demo/Resources/Natori`
-  - `./Sample/TypeScript/Demo/Resources/Rice`
-
-上記のモデルをご利用になられる場合、[こちら](https://docs.live2d.com/cubism-editor-manual/sample-model/)で各モデルに設定された利用条件に同意して頂く必要がございます。
-
-直近会計年度の売上高が 1000 万円以上の事業者様がご利用になる場合は、SDKリリース(出版許諾)ライセンスに同意していただく必要がございます。
-- [SDKリリース(出版許諾)ライセンス](https://www.live2d.com/ja/products/releaselicense)
-
-*All business* users must obtain a Publication License. "Business" means an entity with the annual gross revenue more than ten million (10,000,000) JPY for the most recent fiscal year.
-- [SDK Release (Publication) License](https://www.live2d.com/en/products/releaselicense)
+Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。

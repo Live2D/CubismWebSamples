@@ -2,8 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+
+## [4-r.1] - 2020-01-30
+
+### Added
+
+* Add development workflow using *Webpack Dev Server*.
+* Add `README.md` to Sample project.
+* Add Prettier and ESLint for format and check code quality.
+
+### Changed
+
+* `/Framework` directory is now git submodule.
+  * See [Cubism Web Framework CHANGELOG](/Framework/CHANGELOG.md) about framework changes.
+* Rename `/Sample` directory to `/Samples`
+* Move `/Resources` directory to just below `/Samples` directory.
+* Move `package.json` and `tsconfig.json` to Sample project.
+* Reformat code using Prettier and ESLint.
+
+### Removed
+
+* Remove some unused functions in Demo project.
+* Remove Webpack settings for framework.
 
 
 ## [4-beta.2] - 2019-11-14
@@ -40,5 +62,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fix issue with reloading model images in WebKit.
 
 
+[4-r.1]: https://github.com/Live2D/CubismWebSamples/compare/4-beta.2...4-r.1
 [4-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/4-beta.1...4-beta.2
 [4-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/e36ab2233a89de9225f64e5a02d521bc7235bd03...4-beta.1
