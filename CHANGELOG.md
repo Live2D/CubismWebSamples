@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [Unreleased]
+
+
 ## [4-r.1] - 2020-01-30
 
 ### Added
@@ -62,6 +65,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[Unreleased]: https://github.com/Live2D/CubismWebSamples/compare/4-r.1...HEAD
 [4-r.1]: https://github.com/Live2D/CubismWebSamples/compare/4-beta.2...4-r.1
 [4-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/4-beta.1...4-beta.2
 [4-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/e36ab2233a89de9225f64e5a02d521bc7235bd03...4-beta.1
