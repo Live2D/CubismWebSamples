@@ -5,8 +5,8 @@
     "build": "webpack -d --hide-modules",
     "build:prod": "webpack -p --hide-modules",
     "test": "tsc --noEmit",
-    "lint": "eslint src -f codeframe --ext .ts",
-    "lint:fix": "eslint src -f codeframe --ext .ts --fix",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
     "serve": "serve ../../.. -p 5000",
     "clean": "rimraf dist"
   },
