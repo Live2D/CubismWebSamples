@@ -5,17 +5,16 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { Live2DCubismFramework as cubismMatrix44 } from '@framework/math/cubismmatrix44';
-import { Live2DCubismFramework as cubismviewmatrix } from '@framework/math/cubismviewmatrix';
-import Csm_CubismViewMatrix = cubismviewmatrix.CubismViewMatrix;
-import Csm_CubismMatrix44 = cubismMatrix44.CubismMatrix44;
-import { TouchManager } from './touchmanager';
+import { CubismMatrix44 } from '@framework/math/cubismmatrix44';
+import { CubismViewMatrix } from '@framework/math/cubismviewmatrix';
+
+import * as LAppDefine from './lappdefine';
+import { canvas, gl, LAppDelegate } from './lappdelegate';
 import { LAppLive2DManager } from './lapplive2dmanager';
-import { LAppDelegate, canvas, gl } from './lappdelegate';
+import { LAppPal } from './lapppal';
 import { LAppSprite } from './lappsprite';
 import { TextureInfo } from './lapptexturemanager';
-import { LAppPal } from './lapppal';
-import * as LAppDefine from './lappdefine';
+import { TouchManager } from './touchmanager';
 
 /**
  * 描画クラス。
@@ -33,10 +32,10 @@ export class LAppView {
     this._touchManager = new TouchManager();
 
     // デバイス座標からスクリーン座標に変換するための
-    this._deviceToScreen = new Csm_CubismMatrix44();
+    this._deviceToScreen = new CubismMatrix44();
 
     // 画面の表示の拡大縮小や移動の変換を行う行列
-    this._viewMatrix = new Csm_CubismViewMatrix();
+    this._viewMatrix = new CubismViewMatrix();
   }
 
   /**
@@ -257,8 +256,8 @@ export class LAppView {
   }
 
   _touchManager: TouchManager; // タッチマネージャー
-  _deviceToScreen: Csm_CubismMatrix44; // デバイスからスクリーンへの行列
-  _viewMatrix: Csm_CubismViewMatrix; // viewMatrix
+  _deviceToScreen: CubismMatrix44; // デバイスからスクリーンへの行列
+  _viewMatrix: CubismViewMatrix; // viewMatrix
   _programId: WebGLProgram; // シェーダID
   _back: LAppSprite; // 背景画像
   _gear: LAppSprite; // ギア画像

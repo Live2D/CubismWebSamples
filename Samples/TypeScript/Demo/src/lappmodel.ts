@@ -5,48 +5,39 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { Live2DCubismFramework as live2dcubismframework } from '@framework/live2dcubismframework';
-import { Live2DCubismFramework as cubismid } from '@framework/id/cubismid';
-import { Live2DCubismFramework as cubismusermodel } from '@framework/model/cubismusermodel';
-import { Live2DCubismFramework as icubismmodelsetting } from '@framework/icubismmodelsetting';
-import { Live2DCubismFramework as cubismmodelsettingjson } from '@framework/cubismmodelsettingjson';
-import { Live2DCubismFramework as cubismdefaultparameterid } from '@framework/cubismdefaultparameterid';
-import { Live2DCubismFramework as acubismmotion } from '@framework/motion/acubismmotion';
-import { Live2DCubismFramework as cubismeyeblink } from '@framework/effect/cubismeyeblink';
-import { Live2DCubismFramework as cubismbreath } from '@framework/effect/cubismbreath';
-import { Live2DCubismFramework as csmvector } from '@framework/type/csmvector';
-import { Live2DCubismFramework as csmmap } from '@framework/type/csmmap';
-import { Live2DCubismFramework as cubismmatrix44 } from '@framework/math/cubismmatrix44';
-import { Live2DCubismFramework as cubismmotion } from '@framework/motion/cubismmotion';
-import { Live2DCubismFramework as cubismmotionqueuemanager } from '@framework/motion/cubismmotionqueuemanager';
-import { Live2DCubismFramework as csmstring } from '@framework/type/csmstring';
-import { Live2DCubismFramework as csmrect } from '@framework/type/csmrectf';
-import { CubismLogInfo } from '@framework/utils/cubismdebug';
-import csmRect = csmrect.csmRect;
-import csmString = csmstring.csmString;
-import InvalidMotionQueueEntryHandleValue = cubismmotionqueuemanager.InvalidMotionQueueEntryHandleValue;
-import CubismMotionQueueEntryHandle = cubismmotionqueuemanager.CubismMotionQueueEntryHandle;
-import CubismMotion = cubismmotion.CubismMotion;
-import CubismMatrix44 = cubismmatrix44.CubismMatrix44;
-import csmMap = csmmap.csmMap;
-import csmVector = csmvector.csmVector;
-import CubismBreath = cubismbreath.CubismBreath;
-import BreathParameterData = cubismbreath.BreathParameterData;
-import CubismEyeBlink = cubismeyeblink.CubismEyeBlink;
-import ACubismMotion = acubismmotion.ACubismMotion;
-import FinishedMotionCallback = acubismmotion.FinishedMotionCallback;
-import CubismFramework = live2dcubismframework.CubismFramework;
-import CubismIdHandle = cubismid.CubismIdHandle;
-import CubismUserModel = cubismusermodel.CubismUserModel;
-import ICubismModelSetting = icubismmodelsetting.ICubismModelSetting;
-import CubismModelSettingJson = cubismmodelsettingjson.CubismModelSettingJson;
-import CubismDefaultParameterId = cubismdefaultparameterid;
-
-import { LAppPal } from './lapppal';
-import { gl, canvas, frameBuffer, LAppDelegate } from './lappdelegate';
-import { TextureInfo } from './lapptexturemanager';
-import * as LAppDefine from './lappdefine';
 import 'whatwg-fetch';
+
+import { CubismDefaultParameterId } from '@framework/cubismdefaultparameterid';
+import { CubismModelSettingJson } from '@framework/cubismmodelsettingjson';
+import {
+  BreathParameterData,
+  CubismBreath
+} from '@framework/effect/cubismbreath';
+import { CubismEyeBlink } from '@framework/effect/cubismeyeblink';
+import { ICubismModelSetting } from '@framework/icubismmodelsetting';
+import { CubismIdHandle } from '@framework/id/cubismid';
+import { CubismFramework } from '@framework/live2dcubismframework';
+import { CubismMatrix44 } from '@framework/math/cubismmatrix44';
+import { CubismUserModel } from '@framework/model/cubismusermodel';
+import {
+  ACubismMotion,
+  FinishedMotionCallback
+} from '@framework/motion/acubismmotion';
+import { CubismMotion } from '@framework/motion/cubismmotion';
+import {
+  CubismMotionQueueEntryHandle,
+  InvalidMotionQueueEntryHandleValue
+} from '@framework/motion/cubismmotionqueuemanager';
+import { csmMap } from '@framework/type/csmmap';
+import { csmRect } from '@framework/type/csmrectf';
+import { csmString } from '@framework/type/csmstring';
+import { csmVector } from '@framework/type/csmvector';
+import { CubismLogInfo } from '@framework/utils/cubismdebug';
+
+import * as LAppDefine from './lappdefine';
+import { canvas, frameBuffer, gl, LAppDelegate } from './lappdelegate';
+import { LAppPal } from './lapppal';
+import { TextureInfo } from './lapptexturemanager';
 
 enum LoadStep {
   LoadAssets,

@@ -5,17 +5,14 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { Live2DCubismFramework as cubismmatrix44 } from '@framework/math/cubismmatrix44';
-import { Live2DCubismFramework as csmvector } from '@framework/type/csmvector';
-import { Live2DCubismFramework as acubismmotion } from '@framework/motion/acubismmotion';
-import Csm_csmVector = csmvector.csmVector;
-import Csm_CubismMatrix44 = cubismmatrix44.CubismMatrix44;
-import ACubismMotion = acubismmotion.ACubismMotion;
+import { CubismMatrix44 } from '@framework/math/cubismmatrix44';
+import { ACubismMotion } from '@framework/motion/acubismmotion';
+import { csmVector } from '@framework/type/csmvector';
 
+import * as LAppDefine from './lappdefine';
+import { canvas } from './lappdelegate';
 import { LAppModel } from './lappmodel';
 import { LAppPal } from './lapppal';
-import { canvas } from './lappdelegate';
-import * as LAppDefine from './lappdefine';
 
 export let s_instance: LAppLive2DManager = null;
 
@@ -134,7 +131,7 @@ export class LAppLive2DManager {
    * モデルの更新処理及び描画処理を行う
    */
   public onUpdate(): void {
-    let projection: Csm_CubismMatrix44 = new Csm_CubismMatrix44();
+    let projection: CubismMatrix44 = new CubismMatrix44();
 
     const { width, height } = canvas;
     projection.scale(1.0, width / height);
@@ -143,7 +140,7 @@ export class LAppLive2DManager {
       projection.multiplyByMatrix(this._viewMatrix);
     }
 
-    const saveProjection: Csm_CubismMatrix44 = projection.clone();
+    const saveProjection: CubismMatrix44 = projection.clone();
     const modelCount: number = this._models.getSize();
 
     for (let i = 0; i < modelCount; ++i) {
@@ -191,14 +188,14 @@ export class LAppLive2DManager {
    * コンストラクタ
    */
   constructor() {
-    this._viewMatrix = new Csm_CubismMatrix44();
-    this._models = new Csm_csmVector<LAppModel>();
+    this._viewMatrix = new CubismMatrix44();
+    this._models = new csmVector<LAppModel>();
     this._sceneIndex = 0;
     this.changeScene(this._sceneIndex);
   }
 
-  _viewMatrix: Csm_CubismMatrix44; // モデル描画に用いるview行列
-  _models: Csm_csmVector<LAppModel>; // モデルインスタンスのコンテナ
+  _viewMatrix: CubismMatrix44; // モデル描画に用いるview行列
+  _models: csmVector<LAppModel>; // モデルインスタンスのコンテナ
   _sceneIndex: number; // 表示するシーンのインデックス値
   // モーション再生終了のコールバック関数
   _finishedMotion = (self: ACubismMotion): void => {

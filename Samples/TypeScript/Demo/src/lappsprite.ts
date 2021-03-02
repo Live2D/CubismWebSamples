@@ -5,7 +5,7 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { gl, canvas } from './lappdelegate';
+import { canvas, gl } from './lappdelegate';
 
 /**
  * スプライトを実装するクラス
