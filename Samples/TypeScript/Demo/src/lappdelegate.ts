@@ -54,8 +54,12 @@ export class LAppDelegate {
   public initialize(): boolean {
     // キャンバスの作成
     canvas = document.createElement('canvas');
-    canvas.width = LAppDefine.RenderTargetWidth;
-    canvas.height = LAppDefine.RenderTargetHeight;
+    if (LAppDefine.CanvasSize === 'auto') {
+      this._resizeCanvas();
+    } else {
+      canvas.width = LAppDefine.CanvasSize.width;
+      canvas.height = LAppDefine.CanvasSize.height;
+    }
 
     // glコンテキストを初期化
     // @ts-ignore
@@ -105,6 +109,15 @@ export class LAppDelegate {
     this.initializeCubism();
 
     return true;
+  }
+
+  /**
+   * Resize canvas and re-initialize view.
+   */
+  public onResize(): void {
+    this._resizeCanvas();
+    this._view.initialize();
+    this._view.initializeSprite();
   }
 
   /**
@@ -270,6 +283,14 @@ export class LAppDelegate {
     LAppPal.updateTime();
 
     this._view.initializeSprite();
+  }
+
+  /**
+   * Resize the canvas to fill the screen.
+   */
+  private _resizeCanvas(): void {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
 
   _cubismOption: Option; // Cubism SDK Option

@@ -131,21 +131,28 @@ export class LAppLive2DManager {
    * モデルの更新処理及び描画処理を行う
    */
   public onUpdate(): void {
-    let projection: CubismMatrix44 = new CubismMatrix44();
-
     const { width, height } = canvas;
-    projection.scale(1.0, width / height);
 
-    if (this._viewMatrix != null) {
-      projection.multiplyByMatrix(this._viewMatrix);
-    }
-
-    const saveProjection: CubismMatrix44 = projection.clone();
+    const projection: CubismMatrix44 = new CubismMatrix44();
     const modelCount: number = this._models.getSize();
 
     for (let i = 0; i < modelCount; ++i) {
       const model: LAppModel = this.getModel(i);
-      projection = saveProjection.clone();
+
+      if (model.getModel()) {
+        if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
+          // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
+          model.getModelMatrix().setWidth(2.0);
+          projection.scale(1.0, width / height);
+        } else {
+          projection.scale(height / width, 1.0);
+        }
+
+        // 必要があればここで乗算
+        if (this._viewMatrix != null) {
+          projection.multiplyByMatrix(this._viewMatrix);
+        }
+      }
 
       model.update();
       model.draw(projection); // 参照渡しなのでprojectionは変質する。
@@ -182,6 +189,12 @@ export class LAppLive2DManager {
     this.releaseAllModel();
     this._models.pushBack(new LAppModel());
     this._models.at(0).loadAssets(modelPath, modelJsonName);
+  }
+
+  public setViewMatrix(m: CubismMatrix44) {
+    for (let i = 0; i < 16; i++) {
+      this._viewMatrix.getArray()[i] = m.getArray()[i];
+    }
   }
 
   /**

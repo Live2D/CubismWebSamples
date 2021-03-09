@@ -44,16 +44,23 @@ export class LAppView {
   public initialize(): void {
     const { width, height } = canvas;
 
-    const ratio: number = height / width;
-    const left: number = LAppDefine.ViewLogicalLeft;
-    const right: number = LAppDefine.ViewLogicalRight;
-    const bottom: number = -ratio;
-    const top: number = ratio;
+    const ratio: number = width / height;
+    const left: number = -ratio;
+    const right: number = ratio;
+    const bottom: number = LAppDefine.ViewLogicalLeft;
+    const top: number = LAppDefine.ViewLogicalRight;
 
     this._viewMatrix.setScreenRect(left, right, bottom, top); // デバイスに対応する画面の範囲。 Xの左端、Xの右端、Yの下端、Yの上端
+    this._viewMatrix.scale(LAppDefine.ViewScale, LAppDefine.ViewScale);
 
-    const screenW: number = Math.abs(left - right);
-    this._deviceToScreen.scaleRelative(screenW / width, -screenW / width);
+    this._deviceToScreen.loadIdentity();
+    if (width > height) {
+      const screenW: number = Math.abs(right - left);
+      this._deviceToScreen.scaleRelative(screenW / width, -screenW / width);
+    } else {
+      const screenH: number = Math.abs(top - bottom);
+      this._deviceToScreen.scaleRelative(screenH / height, -screenH / height);
+    }
     this._deviceToScreen.translateRelative(-width * 0.5, -height * 0.5);
 
     // 表示範囲の設定
@@ -103,6 +110,8 @@ export class LAppView {
     gl.flush();
 
     const live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
+
+    live2DManager.setViewMatrix(this._viewMatrix);
 
     live2DManager.onUpdate();
   }

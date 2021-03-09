@@ -1,11 +1,13 @@
 # Core directory files
-/Core/*
-!Please_copy_cubism_core_for_web
+/Core/**/.js
+/Core/**/.ts
 # Package files
 node_modules/
 # Build files
+build/
 dist/
 # Other files
+temp/
 .vs/
 .idea/
 *.iml
