@@ -5,9 +5,8 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { Live2DCubismFramework as csmvector } from '@framework/type/csmvector';
-import Csm_csmVector = csmvector.csmVector;
-import csmVector_iterator = csmvector.iterator;
+import { csmVector, iterator } from '@framework/type/csmvector';
+
 import { gl } from './lappdelegate';
 
 /**
@@ -19,7 +18,7 @@ export class LAppTextureManager {
    * コンストラクタ
    */
   constructor() {
-    this._textures = new Csm_csmVector<TextureInfo>();
+    this._textures = new csmVector<TextureInfo>();
   }
 
   /**
@@ -27,7 +26,7 @@ export class LAppTextureManager {
    */
   public release(): void {
     for (
-      let ite: csmVector_iterator<TextureInfo> = this._textures.begin();
+      let ite: iterator<TextureInfo> = this._textures.begin();
       ite.notEqual(this._textures.end());
       ite.preIncrement()
     ) {
@@ -50,7 +49,7 @@ export class LAppTextureManager {
   ): void {
     // search loaded texture already
     for (
-      let ite: csmVector_iterator<TextureInfo> = this._textures.begin();
+      let ite: iterator<TextureInfo> = this._textures.begin();
       ite.notEqual(this._textures.end());
       ite.preIncrement()
     ) {
@@ -162,7 +161,7 @@ export class LAppTextureManager {
     }
   }
 
-  _textures: Csm_csmVector<TextureInfo>;
+  _textures: csmVector<TextureInfo>;
 }
 
 /**

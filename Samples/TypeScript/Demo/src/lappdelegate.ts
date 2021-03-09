@@ -5,16 +5,13 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import {
-  Live2DCubismFramework as live2dcubismframework,
-  Option as Csm_Option
-} from '@framework/live2dcubismframework';
-import Csm_CubismFramework = live2dcubismframework.CubismFramework;
-import { LAppView } from './lappview';
+import { CubismFramework, Option } from '@framework/live2dcubismframework';
+
+import * as LAppDefine from './lappdefine';
+import { LAppLive2DManager } from './lapplive2dmanager';
 import { LAppPal } from './lapppal';
 import { LAppTextureManager } from './lapptexturemanager';
-import { LAppLive2DManager } from './lapplive2dmanager';
-import * as LAppDefine from './lappdefine';
+import { LAppView } from './lappview';
 
 export let canvas: HTMLCanvasElement = null;
 export let s_instance: LAppDelegate = null;
@@ -57,8 +54,12 @@ export class LAppDelegate {
   public initialize(): boolean {
     // キャンバスの作成
     canvas = document.createElement('canvas');
-    canvas.width = LAppDefine.RenderTargetWidth;
-    canvas.height = LAppDefine.RenderTargetHeight;
+    if (LAppDefine.CanvasSize === 'auto') {
+      this._resizeCanvas();
+    } else {
+      canvas.width = LAppDefine.CanvasSize.width;
+      canvas.height = LAppDefine.CanvasSize.height;
+    }
 
     // glコンテキストを初期化
     // @ts-ignore
@@ -111,6 +112,15 @@ export class LAppDelegate {
   }
 
   /**
+   * Resize canvas and re-initialize view.
+   */
+  public onResize(): void {
+    this._resizeCanvas();
+    this._view.initialize();
+    this._view.initializeSprite();
+  }
+
+  /**
    * 解放する。
    */
   public release(): void {
@@ -124,7 +134,7 @@ export class LAppDelegate {
     LAppLive2DManager.releaseInstance();
 
     // Cubism SDKの解放
-    Csm_CubismFramework.dispose();
+    CubismFramework.dispose();
   }
 
   /**
@@ -250,7 +260,7 @@ export class LAppDelegate {
     this._mouseY = 0.0;
     this._isEnd = false;
 
-    this._cubismOption = new Csm_Option();
+    this._cubismOption = new Option();
     this._view = new LAppView();
     this._textureManager = new LAppTextureManager();
   }
@@ -262,10 +272,10 @@ export class LAppDelegate {
     // setup cubism
     this._cubismOption.logFunction = LAppPal.printMessage;
     this._cubismOption.loggingLevel = LAppDefine.CubismLoggingLevel;
-    Csm_CubismFramework.startUp(this._cubismOption);
+    CubismFramework.startUp(this._cubismOption);
 
     // initialize cubism
-    Csm_CubismFramework.initialize();
+    CubismFramework.initialize();
 
     // load model
     LAppLive2DManager.getInstance();
@@ -275,7 +285,15 @@ export class LAppDelegate {
     this._view.initializeSprite();
   }
 
-  _cubismOption: Csm_Option; // Cubism SDK Option
+  /**
+   * Resize the canvas to fill the screen.
+   */
+  private _resizeCanvas(): void {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  _cubismOption: Option; // Cubism SDK Option
   _view: LAppView; // View情報
   _captured: boolean; // クリックしているか
   _mouseX: number; // マウスX座標
