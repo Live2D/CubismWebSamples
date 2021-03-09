@@ -4,7 +4,7 @@ extends:
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:prettier/recommended
-  - prettier/@typescript-eslint
+  - prettier
 plugins:
   - '@typescript-eslint'
 parser: '@typescript-eslint/parser'
@@ -16,7 +16,12 @@ rules:
   prettier/prettier:
     - error
     - singleQuote: true
-  '@typescript-eslint/camelcase': warn
+      trailingComma: none
+      arrowParens: avoid
+  'camelcase': warn
   '@typescript-eslint/no-use-before-define': off
-  '@typescript-eslint/ban-ts-ignore': off
+  '@typescript-eslint/ban-ts-comment': off
   '@typescript-eslint/unbound-method': off
+  '@typescript-eslint/no-unsafe-assignment': off
+  '@typescript-eslint/no-unsafe-return': off
+  '@typescript-eslint/no-floating-promises': off
