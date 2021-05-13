@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## 2021-03-09
+
+### Added
+* Add funtcions for Viewer.
+
+  * `csmGetParameterKeyCounts`
+  * `csmGetParameterKeyValues`
+
+### Changed
+
+* Update Core version to `04.01.0000`.
+
+
 ## 2020-01-30
 
 ### Added

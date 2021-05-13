@@ -1,8 +1,12 @@
-# Cubism Web Samples
+#  \[Beta Version\] Cubism Web Samples
 
 Live2D Cubism 4 Editor で出力したモデルを表示するアプリケーションのサンプル実装です。
 
 Cubism Web Framework および Live2D Cubism Core と組み合わせて使用します。
+
+**本 SDK は、 Beta バージョンとなります。先行して新機能を取り込んでいるため、不安定な挙動を示す場合がございます。安定した製品をお求めの方は、公式サイトから配布されている正式版のパッケージ又は `develop` `master` ブランチをご利用ください。**
+
+**[Beta Version] の SDK の不具合、各種ご意見等に関しましては、 Live2D コミュニティ にてご連絡ください。直接のコードに対する指摘、修正等は、直接 Pull requests としてご投稿ください。**
 
 
 ## ライセンス
@@ -80,10 +84,10 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 15.11.0
-* 14.16.0
-* 12.21.0
-* 10.24.0
+* 15.14.0
+* 14.16.1
+* 12.22.1
+* 10.24.1
 
 
 ## 動作確認環境
