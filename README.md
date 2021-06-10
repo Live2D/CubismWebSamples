@@ -1,12 +1,8 @@
-#  \[Beta Version\] Cubism Web Samples
+# Cubism Web Samples
 
 Live2D Cubism 4 Editor で出力したモデルを表示するアプリケーションのサンプル実装です。
 
 Cubism Web Framework および Live2D Cubism Core と組み合わせて使用します。
-
-**本 SDK は、 Beta バージョンとなります。先行して新機能を取り込んでいるため、不安定な挙動を示す場合がございます。安定した製品をお求めの方は、公式サイトから配布されている正式版のパッケージ又は `develop` `master` ブランチをご利用ください。**
-
-**[Beta Version] の SDK の不具合、各種ご意見等に関しましては、 Live2D コミュニティ にてご連絡ください。直接のコードに対する指摘、修正等は、直接 Pull requests としてご投稿ください。**
 
 
 ## ライセンス
@@ -84,32 +80,29 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 15.14.0
-* 14.16.1
+* 16.1.0
+* 14.17.0
 * 12.22.1
-* 10.24.1
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 88.0.4324.181 |
-| Android | Microsoft Edge | 46.01.4.5140 |
-| Android | Mozilla Firefox | 86.1.1 |
-| iOS / iPadOS | Google Chrome | 87.0.4280.77 |
-| iOS / iPadOS | Microsoft Edge | 46.1.10 |
-| iOS / iPadOS | Mozilla Firefox | 32.0 |
-| iOS / iPadOS | Safari | 604.1 |
-| Linux | Google Chrome | 89.0.4389.72 |
-| Linux | Mozilla Firefox | 86.0 |
-| macOS | Google Chrome | 88.0.4324.192 |
-| macOS | Microsoft Edge | 88.0.705.81 |
-| macOS | Mozilla Firefox | 86.0 |
-| macOS | Safari | 14.0.2 |
-| Windows | Google Chrome | 88.0.4324.190 |
-| Windows | Internet Explorer 11 | 20H2(19042.685) |
-| Windows | Microsoft Edge | 88.0.705.74 |
-| Windows | Mozilla Firefox | 86.0 |
+| Android | Google Chrome | 90.0.4430.210 |
+| Android | Microsoft Edge | 46.04.4.5157 |
+| Android | Mozilla Firefox | 88.1.4 |
+| iOS / iPadOS | Google Chrome | 90.0.4430.216 |
+| iOS / iPadOS | Microsoft Edge | 46.3.13 |
+| iOS / iPadOS | Mozilla Firefox | 33.1 |
+| iOS / iPadOS | Safari | 14.1 |
+| macOS | Google Chrome | 91.0.4472.77 |
+| macOS | Microsoft Edge | 90.0.818.66 |
+| macOS | Mozilla Firefox | 88.0.1 |
+| macOS | Safari | 14.1 |
+| Windows | Google Chrome | 91.0.4472.77 |
+| Windows | Internet Explorer 11 | 19041.928 |
+| Windows | Microsoft Edge | 90.0.818.66 |
+| Windows | Mozilla Firefox | 88.0.1 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
