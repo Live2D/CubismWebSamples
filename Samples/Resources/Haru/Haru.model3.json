@@ -23,10 +23,14 @@
 			  {"File":"motions/haru_g_m15.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5}
 			],
 			"TapBody": [
-			  {"File":"motions/haru_g_m06.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5},
-			  {"File":"motions/haru_g_m09.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5},
-			  {"File":"motions/haru_g_m20.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5},
-			  {"File":"motions/haru_g_m26.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5}
+			  {"File":"motions/haru_g_m06.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5
+				,"Sound": "sounds/haru_normal_01.wav"},
+			  {"File":"motions/haru_g_m09.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5
+				,"Sound": "sounds/haru_normal_02.wav"},
+			  {"File":"motions/haru_g_m20.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5
+				,"Sound": "sounds/haru_normal_03.wav"},
+			  {"File":"motions/haru_g_m26.motion3.json" ,"FadeInTime":0.5, "FadeOutTime":0.5
+				,"Sound": "sounds/haru_normal_04.wav"}
 			]
 		},
 		"UserData": "Haru.userdata3.json"
