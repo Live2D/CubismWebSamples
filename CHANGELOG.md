@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4-r.3] - 2021-06-10
+
+### Fixed
+
+* Fixed the model path. It was causing a 404 when an exact path was required.
+
+## [4-r.3-beta.1] - 2021-05-13
+
+### Added
+
+* Add the sample to manipulate the lip-sync from a waveform on the audio file(.wav).
+* Add sample voices to `Haru`.
+
+
 ## [4-r.2] - 2021-03-09
 
 ### Added
@@ -73,7 +87,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 * Fix issue with reloading model images in WebKit.
 
-
+[4-r.3]: https://github.com/Live2D/CubismWebSamples/compare/4-r.3-beta.1...4-r.3
+[4-r.3-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.2...4-r.3-beta.1
 [4-r.2]: https://github.com/Live2D/CubismWebSamples/compare/4-r.1...4-r.2
 [4-r.1]: https://github.com/Live2D/CubismWebSamples/compare/4-beta.2...4-r.1
 [4-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/4-beta.1...4-beta.2

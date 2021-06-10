@@ -38,6 +38,7 @@ import * as LAppDefine from './lappdefine';
 import { canvas, frameBuffer, gl, LAppDelegate } from './lappdelegate';
 import { LAppPal } from './lapppal';
 import { TextureInfo } from './lapptexturemanager';
+import { LAppWavFileHandler } from './lappwavfilehandler';
 
 enum LoadStep {
   LoadAssets,
@@ -78,7 +79,7 @@ export class LAppModel extends CubismUserModel {
   public loadAssets(dir: string, fileName: string): void {
     this._modelHomeDir = dir;
 
-    fetch(`${this._modelHomeDir}/${fileName}`)
+    fetch(`${this._modelHomeDir}${fileName}`)
       .then(response => response.arrayBuffer())
       .then(arrayBuffer => {
         const setting: ICubismModelSetting = new CubismModelSettingJson(
@@ -110,7 +111,7 @@ export class LAppModel extends CubismUserModel {
     if (this._modelSetting.getModelFileName() != '') {
       const modelFileName = this._modelSetting.getModelFileName();
 
-      fetch(`${this._modelHomeDir}/${modelFileName}`)
+      fetch(`${this._modelHomeDir}${modelFileName}`)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
           this.loadModel(arrayBuffer);
@@ -136,7 +137,7 @@ export class LAppModel extends CubismUserModel {
             i
           );
 
-          fetch(`${this._modelHomeDir}/${expressionFileName}`)
+          fetch(`${this._modelHomeDir}${expressionFileName}`)
             .then(response => response.arrayBuffer())
             .then(arrayBuffer => {
               const motion: ACubismMotion = this.loadExpression(
@@ -178,7 +179,7 @@ export class LAppModel extends CubismUserModel {
       if (this._modelSetting.getPhysicsFileName() != '') {
         const physicsFileName = this._modelSetting.getPhysicsFileName();
 
-        fetch(`${this._modelHomeDir}/${physicsFileName}`)
+        fetch(`${this._modelHomeDir}${physicsFileName}`)
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => {
             this.loadPhysics(arrayBuffer, arrayBuffer.byteLength);
@@ -202,7 +203,7 @@ export class LAppModel extends CubismUserModel {
       if (this._modelSetting.getPoseFileName() != '') {
         const poseFileName = this._modelSetting.getPoseFileName();
 
-        fetch(`${this._modelHomeDir}/${poseFileName}`)
+        fetch(`${this._modelHomeDir}${poseFileName}`)
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => {
             this.loadPose(arrayBuffer, arrayBuffer.byteLength);
@@ -273,7 +274,7 @@ export class LAppModel extends CubismUserModel {
       if (this._modelSetting.getUserDataFile() != '') {
         const userDataFile = this._modelSetting.getUserDataFile();
 
-        fetch(`${this._modelHomeDir}/${userDataFile}`)
+        fetch(`${this._modelHomeDir}${userDataFile}`)
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => {
             this.loadUserData(arrayBuffer, arrayBuffer.byteLength);
@@ -507,7 +508,10 @@ export class LAppModel extends CubismUserModel {
 
     // リップシンクの設定
     if (this._lipsync) {
-      const value = 0; // リアルタイムでリップシンクを行う場合、システムから音量を取得して、0~1の範囲で値を入力します。
+      let value = 0.0; // リアルタイムでリップシンクを行う場合、システムから音量を取得して、0~1の範囲で値を入力します。
+
+      this._wavFileHandler.update(deltaTimeSeconds);
+      value = this._wavFileHandler.getRms();
 
       for (let i = 0; i < this._lipSyncIds.getSize(); ++i) {
         this._model.addParameterValueById(this._lipSyncIds.at(i), value, 0.8);
@@ -553,7 +557,7 @@ export class LAppModel extends CubismUserModel {
     let autoDelete = false;
 
     if (motion == null) {
-      fetch(`${this._modelHomeDir}/${motionFileName}`)
+      fetch(`${this._modelHomeDir}${motionFileName}`)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
           motion = this.loadMotion(
@@ -581,6 +585,14 @@ export class LAppModel extends CubismUserModel {
         });
     } else {
       motion.setFinishedMotionHandler(onFinishedMotionHandler);
+    }
+
+    //voice
+    const voice = this._modelSetting.getMotionSoundFileName(group, no);
+    if (voice.localeCompare('') != 0) {
+      let path = voice;
+      path = this._modelHomeDir + path;
+      this._wavFileHandler.start(path);
     }
 
     if (this._debugMode) {
@@ -711,7 +723,7 @@ export class LAppModel extends CubismUserModel {
         );
       }
 
-      fetch(`${this._modelHomeDir}/${motionFileName}`)
+      fetch(`${this._modelHomeDir}${motionFileName}`)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
           const tmpMotion: CubismMotion = this.loadMotion(
@@ -843,6 +855,7 @@ export class LAppModel extends CubismUserModel {
     this._textureCount = 0;
     this._motionCount = 0;
     this._allMotionCount = 0;
+    this._wavFileHandler = new LAppWavFileHandler();
   }
 
   _modelSetting: ICubismModelSetting; // モデルセッティング情報
@@ -870,4 +883,5 @@ export class LAppModel extends CubismUserModel {
   _textureCount: number; // テクスチャカウント
   _motionCount: number; // モーションデータカウント
   _allMotionCount: number; // モーション総数
+  _wavFileHandler: LAppWavFileHandler; //wavファイルハンドラ
 }

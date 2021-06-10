@@ -80,32 +80,29 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 15.11.0
-* 14.16.0
-* 12.21.0
-* 10.24.0
+* 16.1.0
+* 14.17.0
+* 12.22.1
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 88.0.4324.181 |
-| Android | Microsoft Edge | 46.01.4.5140 |
-| Android | Mozilla Firefox | 86.1.1 |
-| iOS / iPadOS | Google Chrome | 87.0.4280.77 |
-| iOS / iPadOS | Microsoft Edge | 46.1.10 |
-| iOS / iPadOS | Mozilla Firefox | 32.0 |
-| iOS / iPadOS | Safari | 604.1 |
-| Linux | Google Chrome | 89.0.4389.72 |
-| Linux | Mozilla Firefox | 86.0 |
-| macOS | Google Chrome | 88.0.4324.192 |
-| macOS | Microsoft Edge | 88.0.705.81 |
-| macOS | Mozilla Firefox | 86.0 |
-| macOS | Safari | 14.0.2 |
-| Windows | Google Chrome | 88.0.4324.190 |
-| Windows | Internet Explorer 11 | 20H2(19042.685) |
-| Windows | Microsoft Edge | 88.0.705.74 |
-| Windows | Mozilla Firefox | 86.0 |
+| Android | Google Chrome | 90.0.4430.210 |
+| Android | Microsoft Edge | 46.04.4.5157 |
+| Android | Mozilla Firefox | 88.1.4 |
+| iOS / iPadOS | Google Chrome | 90.0.4430.216 |
+| iOS / iPadOS | Microsoft Edge | 46.3.13 |
+| iOS / iPadOS | Mozilla Firefox | 33.1 |
+| iOS / iPadOS | Safari | 14.1 |
+| macOS | Google Chrome | 91.0.4472.77 |
+| macOS | Microsoft Edge | 90.0.818.66 |
+| macOS | Mozilla Firefox | 88.0.1 |
+| macOS | Safari | 14.1 |
+| Windows | Google Chrome | 91.0.4472.77 |
+| Windows | Internet Explorer 11 | 19041.928 |
+| Windows | Microsoft Edge | 90.0.818.66 |
+| Windows | Mozilla Firefox | 88.0.1 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
