@@ -11,7 +11,7 @@
 		"Motions": {
 			"Idle": [
 				{
-					"File": "motions/mtn_00.motion3.json"
+					"File": "motions/idle.motion3.json"
 				}
 			],
 			"TapBody": [

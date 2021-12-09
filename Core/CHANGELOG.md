@@ -4,14 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2021-12-09
+
+### Added
+
+* Add static library(.a) for Mac Catalyst.
+
+
+## 2021-10-07
+
+### Added
+
+* Add `x86_64` library for Android.
+* Add `arm64` library for macOS.
+
 
 ## 2021-03-09
 
 ### Added
-* Add funtcions for Viewer.
 
+* Add funtcions for Viewer.
   * `csmGetParameterKeyCounts`
   * `csmGetParameterKeyValues`
+
 
 ### Changed
 

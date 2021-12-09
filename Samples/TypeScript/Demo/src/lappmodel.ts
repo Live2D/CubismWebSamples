@@ -133,9 +133,8 @@ export class LAppModel extends CubismUserModel {
 
         for (let i = 0; i < count; i++) {
           const expressionName = this._modelSetting.getExpressionName(i);
-          const expressionFileName = this._modelSetting.getExpressionFileName(
-            i
-          );
+          const expressionFileName =
+            this._modelSetting.getExpressionFileName(i);
 
           fetch(`${this._modelHomeDir}${expressionFileName}`)
             .then(response => response.arrayBuffer())
@@ -255,10 +254,10 @@ export class LAppModel extends CubismUserModel {
           CubismFramework.getIdManager().getId(
             CubismDefaultParameterId.ParamBreath
           ),
-          0.0,
+          0.5,
           0.5,
           3.2345,
-          0.5
+          1
         )
       );
 
@@ -296,7 +295,8 @@ export class LAppModel extends CubismUserModel {
 
     // EyeBlinkIds
     const setupEyeBlinkIds = (): void => {
-      const eyeBlinkIdCount: number = this._modelSetting.getEyeBlinkParameterCount();
+      const eyeBlinkIdCount: number =
+        this._modelSetting.getEyeBlinkParameterCount();
 
       for (let i = 0; i < eyeBlinkIdCount; ++i) {
         this._eyeBlinkIds.pushBack(
@@ -395,9 +395,8 @@ export class LAppModel extends CubismUserModel {
         }
 
         // WebGLのテクスチャユニットにテクスチャをロードする
-        let texturePath = this._modelSetting.getTextureFileName(
-          modelTextureNumber
-        );
+        let texturePath =
+          this._modelSetting.getTextureFileName(modelTextureNumber);
         texturePath = this._modelHomeDir + texturePath;
 
         // ロード完了時に呼び出すコールバック関数

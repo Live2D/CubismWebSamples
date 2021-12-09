@@ -133,10 +133,10 @@ export class LAppLive2DManager {
   public onUpdate(): void {
     const { width, height } = canvas;
 
-    const projection: CubismMatrix44 = new CubismMatrix44();
     const modelCount: number = this._models.getSize();
 
     for (let i = 0; i < modelCount; ++i) {
+      const projection: CubismMatrix44 = new CubismMatrix44();
       const model: LAppModel = this.getModel(i);
 
       if (model.getModel()) {

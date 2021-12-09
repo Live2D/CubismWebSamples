@@ -4,7 +4,7 @@
 		{
 			"Id": "ParamEyeLOpen",
 			"Value": 0,
-			"Blend": "Multiply"
+			"Blend": "Add"
 		},
 		{
 			"Id": "ParamEyeLSmile",
@@ -19,7 +19,7 @@
 		{
 			"Id": "ParamEyeROpen",
 			"Value": 0,
-			"Blend": "Multiply"
+			"Blend": "Add"
 		},
 		{
 			"Id": "ParamEyeRSmile",
@@ -28,6 +28,11 @@
 		},
 		{
 			"Id": "ParamEyeRForm",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallForm",
 			"Value": 0,
 			"Blend": "Add"
 		},
@@ -63,7 +68,7 @@
 		},
 		{
 			"Id": "ParamBrowLForm",
-			"Value": 1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -73,7 +78,7 @@
 		},
 		{
 			"Id": "ParamBrowRForm",
-			"Value": 1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -83,7 +88,7 @@
 		},
 		{
 			"Id": "ParamMouthForm",
-			"Value": -3,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -93,7 +98,7 @@
 		},
 		{
 			"Id": "ParamMouthForm2",
-			"Value": 1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -123,11 +128,6 @@
 		},
 		{
 			"Id": "ParamGrassHighlightMove",
-			"Value": 0,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeBallForm",
 			"Value": 0,
 			"Blend": "Add"
 		}

@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4-r.4] - 2021-12-09
+
+### Changed
+
+* Update sample models. (Made with Cubism Editor 4.1.02)
+
+### Fixed
+
+* Fix a bug where the move process would affect other models while displaying multiple models. by [@catCoder](https://community.live2d.com/discussion/1043/multiple-models-when-using-translaterelative)
+* Fix breathing behavior was different from Cubism Viewer (for OW).
+
+
 ## [4-r.3] - 2021-06-10
 
 ### Fixed
@@ -87,6 +99,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 * Fix issue with reloading model images in WebKit.
 
+[4-r.4]: https://github.com/Live2D/CubismWebSamples/compare/4-r.3...4-r.4
 [4-r.3]: https://github.com/Live2D/CubismWebSamples/compare/4-r.3-beta.1...4-r.3
 [4-r.3-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.2...4-r.3-beta.1
 [4-r.2]: https://github.com/Live2D/CubismWebSamples/compare/4-r.1...4-r.2

@@ -52,7 +52,7 @@
     },
     {
       "type": "npm",
-      "script": "clear",
+      "script": "clean",
       "path": "Samples/TypeScript/Demo/",
       "problemMatcher": []
     },
@@ -93,7 +93,7 @@
     },
     {
       "type": "npm",
-      "script": "clear",
+      "script": "clean",
       "path": "Framework/",
       "problemMatcher": []
     }

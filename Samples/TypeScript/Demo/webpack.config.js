@@ -26,15 +26,20 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, '../../..'),
-    watchContentBase: true,
-    inline: true,
+    static: [
+      {
+        directory: path.resolve(__dirname, '../../..'),
+        serveIndex: true,
+        watch: true,
+      }
+    ],
     hot: true,
     port: 5000,
     host: '0.0.0.0',
     compress: true,
-    useLocalIp: true,
-    writeToDisk: true
+    devMiddleware: {
+      writeToDisk: true,
+    },
   },
   devtool: 'inline-source-map'
 }
