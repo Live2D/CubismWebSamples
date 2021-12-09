@@ -13,7 +13,7 @@
 		},
 		{
 			"Id": "ParamEyeLForm",
-			"Value": 1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -28,17 +28,22 @@
 		},
 		{
 			"Id": "ParamEyeRForm",
-			"Value": 1,
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallForm",
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamBrowLY",
-			"Value": 0.1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamBrowRY",
-			"Value": 0.1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -53,37 +58,37 @@
 		},
 		{
 			"Id": "ParamBrowLAngle",
-			"Value": 0.1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamBrowRAngle",
-			"Value": 0.1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamBrowLForm",
-			"Value": 0,
+			"Value": -1,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamBrowLForm2",
-			"Value": 1,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamBrowRForm",
 			"Value": 0,
 			"Blend": "Add"
 		},
 		{
+			"Id": "ParamBrowRForm",
+			"Value": -1,
+			"Blend": "Add"
+		},
+		{
 			"Id": "ParamBrowRForm2",
-			"Value": 1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamMouthForm",
-			"Value": 1,
+			"Value": -2,
 			"Blend": "Add"
 		},
 		{
@@ -93,12 +98,12 @@
 		},
 		{
 			"Id": "ParamMouthForm2",
-			"Value": 0,
+			"Value": 1,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamTeethOn",
-			"Value": 1,
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{
@@ -123,11 +128,6 @@
 		},
 		{
 			"Id": "ParamGrassHighlightMove",
-			"Value": 0,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeBallForm",
 			"Value": 0,
 			"Blend": "Add"
 		}

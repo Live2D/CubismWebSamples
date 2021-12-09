@@ -158,7 +158,8 @@ export class LAppWavFileHandler {
           throw new Error('File is not linear PCM.');
         }
         // チャンネル数
-        this._wavFileInfo._numberOfChannels = this._byteReader.get16LittleEndian();
+        this._wavFileInfo._numberOfChannels =
+          this._byteReader.get16LittleEndian();
         // サンプリングレート
         this._wavFileInfo._samplingRate = this._byteReader.get32LittleEndian();
         // データ速度[byte/sec]（読み飛ばし）
