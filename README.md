@@ -80,31 +80,31 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 17.2.0
-* 16.13.1
-* 14.18.2
-* 12.22.7
+* 18.1.0
+* 17.9.0
+* 16.15.0
+* 14.19.2
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 96.0.4664.45 |
-| Android | Microsoft Edge | 96.0.1054.36 |
-| Android | Mozilla Firefox | 94.1.2 |
-| iOS / iPadOS | Google Chrome | 96.0.4664.53 |
-| iOS / iPadOS | Microsoft Edge | 95.0.1020.60 |
-| iOS / iPadOS | Mozilla Firefox | 39.0 |
+| Android | Google Chrome | 101.0.4951.61 |
+| Android | Microsoft Edge | 101.0.1210.47 |
+| Android | Mozilla Firefox | 100.1.2 |
+| iOS / iPadOS | Google Chrome | 101.0.4951.58 |
+| iOS / iPadOS | Microsoft Edge | 101.1210.47 |
+| iOS / iPadOS | Mozilla Firefox | 100.1 |
 | iOS / iPadOS | Safari | 604.1 |
-| macOS | Google Chrome | 96.0.4664.55 |
-| macOS | Microsoft Edge | 96.0.1054.34 |
-| macOS | Mozilla Firefox | 94.0.2 |
-| macOS | Safari | 15.1 |
-| Windows | Google Chrome | 96.0.4664.45 |
-| Windows | Internet Explorer 11 | 19043.1387 |
-| Windows | Microsoft Edge | 96.0.1054.41 |
-| Windows | Mozilla Firefox | 94.0.2 |
+| macOS | Google Chrome | 101.0.4951.64 |
+| macOS | Microsoft Edge | 101.0.1210.47 |
+| macOS | Mozilla Firefox | 100.0.1 |
+| macOS | Safari | 15.4 |
+| Windows | Google Chrome | 101.0.4951.67 |
+| Windows | Internet Explorer 11 | 19044.1645 |
+| Windows | Microsoft Edge | 101.0.1210.47 |
+| Windows | Mozilla Firefox | 100.0 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
 
@@ -114,4 +114,4 @@ Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package
 ユーザー同士でCubism SDKの活用方法の提案や質問をしたい場合は、是非コミュニティをご活用ください。
 
 - [Live2D 公式コミュニティ](https://creatorsforum.live2d.com/)
-- [Live2D community(English)](http://community.live2d.com/)
+- [Live2D community(English)](https://community.live2d.com/)

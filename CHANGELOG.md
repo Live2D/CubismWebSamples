@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4-r.5-beta.1] - 2022-05-19
+
+### Added
+
+* Support multiply colors and screen colors added in Cubism 4.2.
+  * See Framework and Core.
+
+
 ## [4-r.4] - 2021-12-09
 
 ### Changed
@@ -99,6 +107,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 * Fix issue with reloading model images in WebKit.
 
+
+[4-r.5-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.4...4-r.5-beta.1
 [4-r.4]: https://github.com/Live2D/CubismWebSamples/compare/4-r.3...4-r.4
 [4-r.3]: https://github.com/Live2D/CubismWebSamples/compare/4-r.3-beta.1...4-r.3
 [4-r.3-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.2...4-r.3-beta.1
