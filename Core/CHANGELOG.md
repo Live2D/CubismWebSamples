@@ -5,11 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## 2022-06-02
+
+### Changed
+
+* Upgrade Core version to 04.02.0001.
+
+### Fixed
+
+* Fixed a bug that caused Multiply Color / Screen Color of different objects to be applied.
+
+
 ## 2022-05-19
 
 ### Added
 
-* Support new Multiply Color & Screen Color features.
+* Support new Multiply Color / Screen Color features.
 * Support new Blend Shape features.
 
 ### Changed
