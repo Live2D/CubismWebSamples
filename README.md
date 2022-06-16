@@ -90,7 +90,7 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 101.0.4951.61 |
+| Android | Google Chrome | 102.0.5005.115 |
 | Android | Microsoft Edge | 101.0.1210.47 |
 | Android | Mozilla Firefox | 100.1.2 |
 | iOS / iPadOS | Google Chrome | 101.0.4951.58 |
@@ -100,9 +100,8 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 | macOS | Google Chrome | 101.0.4951.64 |
 | macOS | Microsoft Edge | 101.0.1210.47 |
 | macOS | Mozilla Firefox | 100.0.1 |
-| macOS | Safari | 15.4 |
-| Windows | Google Chrome | 101.0.4951.67 |
-| Windows | Internet Explorer 11 | 19044.1645 |
+| macOS | Safari | 15.5 |
+| Windows | Google Chrome | 102.0.5005.115 |
 | Windows | Microsoft Edge | 101.0.1210.47 |
 | Windows | Mozilla Firefox | 100.0 |
 

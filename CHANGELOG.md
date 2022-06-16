@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4-r.5-beta.3] - 2022-06-16
+
+### Fixed
+
+* Fix a problem in which ViewPort was sometimes not set correctly.
+
+### Removed
+
+* End support for Internet Explorer.
+
+
 ## [4-r.5-beta.2] - 2022-06-02
 
 ### Fixed
@@ -117,6 +128,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[4-r.5-beta.3]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5-beta.2...4-r.5-beta.3
 [4-r.5-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5-beta.1...4-r.5-beta.2
 [4-r.5-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.4...4-r.5-beta.1
 [4-r.4]: https://github.com/Live2D/CubismWebSamples/compare/4-r.3...4-r.4
