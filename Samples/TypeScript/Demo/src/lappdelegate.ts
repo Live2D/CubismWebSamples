@@ -118,6 +118,11 @@ export class LAppDelegate {
     this._resizeCanvas();
     this._view.initialize();
     this._view.initializeSprite();
+
+    // キャンバスサイズを渡す
+    const viewport: number[] = [0, 0, canvas.width, canvas.height];
+
+    gl.viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
   }
 
   /**
