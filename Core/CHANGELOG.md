@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## 2022-07-07
+
+### Added
+
+* Add functions
+  * `csmGetParameterTypes`
+  * `csmGetDrawableParentPartIndices`
+
+* Add type `csmMocVersion` and enum. This type is the return value of `csmGetMocVersion`, `csmGetLatestMocVersion`.
+
+### Changed
+
+* Upgrade Core version to 04.02.0002.
+
+
 ## 2022-06-02
 
 ### Changed
