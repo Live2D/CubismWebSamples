@@ -767,7 +767,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmAL01",
+			"Id": "ParamArmLA01",
 			"Segments": [
 				0,
 				0,
@@ -876,7 +876,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmAL02",
+			"Id": "ParamArmLA02",
 			"Segments": [
 				0,
 				0,
@@ -950,7 +950,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmAL03",
+			"Id": "ParamArmLA03",
 			"Segments": [
 				0,
 				0,
@@ -1031,7 +1031,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHandAL",
+			"Id": "ParamHandLA",
 			"Segments": [
 				0,
 				0,
@@ -1056,7 +1056,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmAR01",
+			"Id": "ParamArmRA01",
 			"Segments": [
 				0,
 				0,
@@ -1165,7 +1165,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmAR02",
+			"Id": "ParamArmRA02",
 			"Segments": [
 				0,
 				0,
@@ -1239,7 +1239,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmAR03",
+			"Id": "ParamArmRA03",
 			"Segments": [
 				0,
 				0,
@@ -1331,7 +1331,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHandAR",
+			"Id": "ParamHandRA",
 			"Segments": [
 				0,
 				0,
@@ -1389,7 +1389,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBL01",
+			"Id": "ParamArmLB01",
 			"Segments": [
 				0,
 				0,
@@ -1400,7 +1400,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBL02",
+			"Id": "ParamArmLB02",
 			"Segments": [
 				0,
 				0,
@@ -1411,7 +1411,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBL03",
+			"Id": "ParamArmLB03",
 			"Segments": [
 				0,
 				0,
@@ -1422,7 +1422,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHandBL",
+			"Id": "ParamHandLB",
 			"Segments": [
 				0,
 				0,
@@ -1444,7 +1444,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBR01",
+			"Id": "ParamArmRB01",
 			"Segments": [
 				0,
 				0,
@@ -1455,7 +1455,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBR02",
+			"Id": "ParamArmRB02",
 			"Segments": [
 				0,
 				0,
@@ -1466,7 +1466,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBR02Y",
+			"Id": "ParamArmRB02Y",
 			"Segments": [
 				0,
 				0,
@@ -1477,7 +1477,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamArmBR03",
+			"Id": "ParamArmRB03",
 			"Segments": [
 				0,
 				0,
@@ -1488,7 +1488,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHandBR",
+			"Id": "ParamHandRB",
 			"Segments": [
 				0,
 				0,
@@ -1796,7 +1796,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "Param",
+			"Id": "ParamExplosionOn",
 			"Segments": [
 				0,
 				0,
@@ -2071,7 +2071,7 @@
 		},
 		{
 			"Target": "PartOpacity",
-			"Id": "PartArmAL",
+			"Id": "PartArmLA",
 			"Segments": [
 				0,
 				1,
@@ -2082,7 +2082,7 @@
 		},
 		{
 			"Target": "PartOpacity",
-			"Id": "PartArmAR",
+			"Id": "PartArmRA",
 			"Segments": [
 				0,
 				1,
@@ -2093,7 +2093,7 @@
 		},
 		{
 			"Target": "PartOpacity",
-			"Id": "PartArmBL",
+			"Id": "PartArmLB",
 			"Segments": [
 				0,
 				0,
@@ -2104,7 +2104,7 @@
 		},
 		{
 			"Target": "PartOpacity",
-			"Id": "PartArmBR",
+			"Id": "PartArmRB",
 			"Segments": [
 				0,
 				0,

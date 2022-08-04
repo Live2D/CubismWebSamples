@@ -80,28 +80,28 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 18.4.0
-* 16.15.1
-* 14.19.3
+* 18.7.0
+* 16.16.0
+* 14.20.0
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 103.0.5060.70 |
+| Android | Google Chrome | 103.0.5060.129 |
 | Android | Microsoft Edge | 101.0.1210.47 |
 | Android | Mozilla Firefox | 100.1.2 |
 | iOS / iPadOS | Google Chrome | 101.0.4951.58 |
 | iOS / iPadOS | Microsoft Edge | 101.1210.47 |
 | iOS / iPadOS | Mozilla Firefox | 100.1 |
-| iOS / iPadOS | Safari | 605.1.15 |
+| iOS / iPadOS | Safari | 15.6 |
 | macOS | Google Chrome | 101.0.4951.64 |
 | macOS | Microsoft Edge | 101.0.1210.47 |
 | macOS | Mozilla Firefox | 100.0.1 |
-| macOS | Safari | 15.5 |
+| macOS | Safari | 15.6 |
 | Windows | Google Chrome | 102.0.5005.115 |
-| Windows | Microsoft Edge | 103.0.1264.44 |
+| Windows | Microsoft Edge | 103.0.1264.71 |
 | Windows | Mozilla Firefox | 100.0 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
