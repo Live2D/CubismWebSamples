@@ -3,21 +3,21 @@
 	"Groups": [
 		[
 			{
-				"Id": "PartArmAL",
+				"Id": "PartArmLA",
 				"Link": []
 			},
 			{
-				"Id": "PartArmBL",
+				"Id": "PartArmLB",
 				"Link": []
 			}
 		],
 		[
 			{
-				"Id": "PartArmAR",
+				"Id": "PartArmRA",
 				"Link": []
 			},
 			{
-				"Id": "PartArmBR",
+				"Id": "PartArmRB",
 				"Link": []
 			}
 		]

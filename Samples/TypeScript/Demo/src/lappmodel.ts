@@ -32,7 +32,7 @@ import { csmMap } from '@framework/type/csmmap';
 import { csmRect } from '@framework/type/csmrectf';
 import { csmString } from '@framework/type/csmstring';
 import { csmVector } from '@framework/type/csmvector';
-import { CubismLogInfo } from '@framework/utils/cubismdebug';
+import { CubismLogError, CubismLogInfo } from '@framework/utils/cubismdebug';
 
 import * as LAppDefine from './lappdefine';
 import { canvas, frameBuffer, gl, LAppDelegate } from './lappdelegate';
@@ -326,6 +326,12 @@ export class LAppModel extends CubismUserModel {
     // Layout
     const setupLayout = (): void => {
       const layout: csmMap<string, number> = new csmMap<string, number>();
+
+      if (this._modelSetting == null || this._modelMatrix == null) {
+        CubismLogError('Failed to setupLayout().');
+        return;
+      }
+
       this._modelSetting.getLayoutMap(layout);
       this._modelMatrix.setupFromLayout(layout);
       this._state = LoadStep.LoadMotion;

@@ -10,8 +10,8 @@
 		},
 		{
 			"Id": "ParamEyeLOpen",
-			"Value": 1,
-			"Blend": "Multiply"
+			"Value": 0,
+			"Blend": "Add"
 		},
 		{
 			"Id": "ParamEyeLSmile",
@@ -25,8 +25,8 @@
 		},
 		{
 			"Id": "ParamEyeROpen",
-			"Value": 1,
-			"Blend": "Multiply"
+			"Value": 0,
+			"Blend": "Add"
 		},
 		{
 			"Id": "ParamEyeRSmile",
@@ -36,6 +36,16 @@
 		{
 			"Id": "ParamEyeRForm",
 			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallY",
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{

@@ -19,6 +19,11 @@
 			"Blend": "Add"
 		},
 		{
+			"Id": "ParamEyeLForm",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
 			"Id": "ParamEyeROpen",
 			"Value": 1.2,
 			"Blend": "Multiply"
@@ -26,6 +31,21 @@
 		{
 			"Id": "ParamEyeRSmile",
 			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeRForm",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallY",
+			"Value": 0,
 			"Blend": "Add"
 		},
 		{

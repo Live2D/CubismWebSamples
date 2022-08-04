@@ -192,37 +192,37 @@
 			"Name": "右肩の上下"
 		},
 		{
-			"Id": "ParamArmAL01",
+			"Id": "ParamArmLA01",
 			"GroupId": "ParamGroupArmLA",
 			"Name": "左腕A　肩の回転"
 		},
 		{
-			"Id": "ParamArmAL02",
+			"Id": "ParamArmLA02",
 			"GroupId": "ParamGroupArmLA",
 			"Name": "左腕A　肘の回転"
 		},
 		{
-			"Id": "ParamArmAL03",
+			"Id": "ParamArmLA03",
 			"GroupId": "ParamGroupArmLA",
 			"Name": "左腕A　手首の回転"
 		},
 		{
-			"Id": "ParamHandAL",
+			"Id": "ParamHandLA",
 			"GroupId": "ParamGroupArmLA",
 			"Name": "左手A"
 		},
 		{
-			"Id": "ParamArmAR01",
+			"Id": "ParamArmRA01",
 			"GroupId": "ParamGroupArmRA",
 			"Name": "右腕A　肩の回転"
 		},
 		{
-			"Id": "ParamArmAR02",
+			"Id": "ParamArmRA02",
 			"GroupId": "ParamGroupArmRA",
 			"Name": "右腕A　肘の回転"
 		},
 		{
-			"Id": "ParamArmAR03",
+			"Id": "ParamArmRA03",
 			"GroupId": "ParamGroupArmRA",
 			"Name": "右腕A　手首の回転"
 		},
@@ -232,7 +232,7 @@
 			"Name": "杖の回転"
 		},
 		{
-			"Id": "ParamHandAR",
+			"Id": "ParamHandRA",
 			"GroupId": "ParamGroupArmRA",
 			"Name": "右手A"
 		},
@@ -252,22 +252,22 @@
 			"Name": "インク垂れ　表示"
 		},
 		{
-			"Id": "ParamArmBL01",
+			"Id": "ParamArmLB01",
 			"GroupId": "ParamGroupArmLB",
 			"Name": "左腕B　肩の回転"
 		},
 		{
-			"Id": "ParamArmBL02",
+			"Id": "ParamArmLB02",
 			"GroupId": "ParamGroupArmLB",
 			"Name": "左腕B　肘の回転"
 		},
 		{
-			"Id": "ParamArmBL03",
+			"Id": "ParamArmLB03",
 			"GroupId": "ParamGroupArmLB",
 			"Name": "左腕B　手首の回転"
 		},
 		{
-			"Id": "ParamHandBL",
+			"Id": "ParamHandLB",
 			"GroupId": "ParamGroupArmLB",
 			"Name": "左手B"
 		},
@@ -277,27 +277,27 @@
 			"Name": "帽子の変形"
 		},
 		{
-			"Id": "ParamArmBR01",
+			"Id": "ParamArmRB01",
 			"GroupId": "ParamGroupArmRB",
 			"Name": "右腕B　肩の回転"
 		},
 		{
-			"Id": "ParamArmBR02",
+			"Id": "ParamArmRB02",
 			"GroupId": "ParamGroupArmRB",
 			"Name": "右腕B　肘の回転"
 		},
 		{
-			"Id": "ParamArmBR02Y",
+			"Id": "ParamArmRB02Y",
 			"GroupId": "ParamGroupArmRB",
 			"Name": "右腕B　腕のY"
 		},
 		{
-			"Id": "ParamArmBR03",
+			"Id": "ParamArmRB03",
 			"GroupId": "ParamGroupArmRB",
 			"Name": "右腕B　手首の回転"
 		},
 		{
-			"Id": "ParamHandBR",
+			"Id": "ParamHandRB",
 			"GroupId": "ParamGroupArmRB",
 			"Name": "右手B"
 		},
@@ -437,7 +437,7 @@
 			"Name": "爆発光溜め"
 		},
 		{
-			"Id": "Param",
+			"Id": "ParamExplosionOn",
 			"GroupId": "ParamGroupEffectsMistake",
 			"Name": "爆発　表示"
 		},
@@ -734,19 +734,19 @@
 			"Name": "脚"
 		},
 		{
-			"Id": "PartArmAL",
+			"Id": "PartArmLA",
 			"Name": "左腕A"
 		},
 		{
-			"Id": "PartArmAR",
+			"Id": "PartArmRA",
 			"Name": "右腕A"
 		},
 		{
-			"Id": "PartArmBL",
+			"Id": "PartArmLB",
 			"Name": "左腕B"
 		},
 		{
-			"Id": "PartArmBR",
+			"Id": "PartArmRB",
 			"Name": "右腕B"
 		},
 		{
