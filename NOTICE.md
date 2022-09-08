@@ -1,12 +1,19 @@
-## [注意事項] Cubism 4 SDK for Web R1 以降へのアップデートに伴う注意
+[English](NOTICE.md) / [日本語](NOTICE.ja.md)
 
-Cubism 4 SDK for Web R1 にてそれ以前のベータ版から正式版のリリースに伴い、
-利便性向上のためパッケージ及びリポジトリの構造変更がおこなわれました。
+---
 
-この変更は Cubism 4 SDK for Native と構造を変えずに運用がなされるほか、
-ユーザに管理が不必要なファイルが混在することを避けることが理由です。
+# Notices
 
-構造の変更点、及び Cubism 4 SDK for Web beta2 以前のプロジェクトからの更新方法に関して、
-[Cubism SDK Manual] に詳細を記載しています。アップデートを行う際は必ずご確認ください。
+## [Caution] Precautions for updating to Cubism 4 SDK for Web R1 or later
+
+With the release of the official version of the Cubism 4 SDK for Web R1 from the previous beta version, the structure of packages and repositories has been changed to improve usability.
+
+The reason for this change is to operate without changing the structure of Cubism 4 SDK for Native, and to avoid mixing files that do not require management by users.
+
+Details on structural changes and how to update from projects prior to Cubism 4 SDK for Web beta2 are described in the [Cubism SDK Manual]. Please be sure to check it when updating.
 
 [Cubism SDK Manual]: https://docs.live2d.com/cubism-sdk-manual/warning-for-cubism4-web-r1-update/
+
+---
+
+©Live2D
