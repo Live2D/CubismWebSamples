@@ -1,68 +1,71 @@
+[English](README.md) / [日本語](README.ja.md)
+
+---
+
 # Cubism Web Samples for TypeScript
 
-TypeScript で実装したアプリケーションのサンプル実装です。
+This is a sample implementation of an application implemented with TypeScript.
 
 
-## 開発環境
+## Development environment
 
-| パッケージ | バージョン |
+| Package | Version |
 | --- | --- |
-| TypeScript | 4.6.4 |
-| Webpack | 5.72.1 |
+| TypeScript | 4.8.2 |
+| Webpack | 5.74.0 |
 
-その他のパッケージに関しては、各プロジェクトの `package.json` を確認してください。
-また、その他の開発環境・動作確認環境はトップディレクトリにある [README.md](/README.md) を参照してください。
+For other packages, check the `package.json` for each project.
+For other development environments and operation environments, see [README.md](/README.md) in the top directory.
 
 
-## タスク一覧
+## Task list
 
 ### `npm: start`
 
-開発用のローカルサーバが起動され、プロジェクトの監視ビルドが行われます。
-プロジェクトの変更を行うと自動的に再ビルドが行われ、ブラウザのリロードが発生します。
-[プロジェクトのデバック]から Visual Studio Code 上でデバックを行うことができます。
+Starts a local server for development and creates a project monitor build.
+Any changes you make to the project will automatically rebuild and cause the browser to reload.
+You can debug in Visual Studio Code from [Debug Project].
 
-Visual Studio Code 上で終了する場合は、
-コマンドパレットから `>Tasks: Terminate Task` を入力してタスクを選択します。
+To terminate in Visual Studio Code, type `>Tasks: Terminate Task` and select the task from the command palette.
 
 ### `npm: build`
 
-`dist` ディレクトリに、TypeScript のビルド成果物を出力します。
-Webpack を用いて1つにまとめられた JavaScript ファイルが出力されます。
+Outputs a TypeScript build deliverable to the `dist` directory.
+The output is a JavaScript file that has been bundled into one using Webpack.
 
-`tsconfig.json` 及び `webpack.config.js` を編集することで設定内容を変更できます。
+You can change the settings by editing `tsconfig.json` and `webpack.config.js`.
 
 ### `npm: build:prod`
 
-上記のビルドを最適化した上で行います。
-ビルドサイズが削減されるため、本番環境用の成果物の出力に使用します。
+Creates above build after optimizing it.
+It is used to output deliverables for production environments as it reduces the build size.
 
 ### `npm: test`
 
-TypeScript の型チェックテストを行います。
+Performs a TypeScript type check test.
 
-`tsconfig.json` を編集することで設定内容を変更できます。
+You can change the settings by editing `tsconfig.json`.
 
 ### `npm: lint`
 
-`src` ディレクトリ内の TypeScript ファイルの静的解析を行います。
+Performs static analysis of TypeScript files in the `src` directory.
 
-`.eslintrc.yml` を編集することで設定内容を変更できます。
+You can change the settings by editing `.eslintrc.yml`.
 
 ### `npm: lint:fix`
 
-`src` ディレクトリ内の TypeScript ファイルの静的解析及び自動修正を行います。
+Performs static analysis and automatic modification of TypeScript files in the `src` directory.
 
-`.eslintrc.yml` を編集することで設定内容を変更できます。
+You can change the settings by editing `.eslintrc.yml`.
 
 ### `npm: serve`
 
-簡易ローカルサーバを起動します。
-ブラウザからサーバ内の `/Samples/TypeScript/Demo` にアクセスすることで index.html の確認ができます。
-事前にプロジェクトのビルドを行なっている必要があります。
+Starts a simple local server.
+You can check the index.html by accessing `/Samples/TypeScript/Demo` in the server from your browser.
+The project needs to be built in advance.
 
-本番環境に近い環境で成果物の検証を行うことができます。
+Deliverables can be verified in an environment close to the production environment.
 
 ### `npm: clean`
 
-ビルド成果物ディレクトリ（`dist`）を削除します。
+Deletes the build deliverable directory (`dist`).

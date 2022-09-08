@@ -1,115 +1,135 @@
+[English](README.md) / [日本語](README.ja.md)
+
+---
+
 # Cubism Web Samples
 
-Live2D Cubism 4 Editor で出力したモデルを表示するアプリケーションのサンプル実装です。
+This is a sample implementation of an application that displays models output by Live2D Cubism 4 Editor.
 
-Cubism Web Framework および Live2D Cubism Core と組み合わせて使用します。
-
-
-## ライセンス
-
-本 SDK を使用する前に、[ライセンス](LICENSE.md)をご確認ください。
+It is used in conjunction with the Cubism Web Framework and Live2D Cubism Core.
 
 
-## 注意事項
+## License
 
-本 SDK を使用する前に、[注意事項](NOTICE.md)をご確認ください。
+Please check the [license](LICENSE.md) before using this SDK.
 
 
-## ディレクトリ構成
+## Notices
+
+Please check the [notices](NOTICE.md) before using this SDK.
+
+
+## Directory structure
 
 ```
 .
-├─ .vscode          # Visual Studio Code 用プロジェクト設定ディレクトリ
-├─ Core             # Live2D Cubism Core が含まれるディレクトリ
-├─ Framework        # レンダリングやアニメーション機能などのソースコードが含まれるディレクトリ
+├─ .vscode          # Project settings directory for Visual Studio Code
+├─ Core             # Directory containing Live2D Cubism Core
+├─ Framework        # Directory containing source code such as rendering and animation functions
 └─ Samples
-   ├─ Resources     # モデルのファイルや画像などのリソースが含まれるディレクトリ
-   └─ TypeScript    # TypeScript のサンプルプロジェクトが含まれるディレクトリ
+   ├─ Resources     # Directory containing resources such as model files and images
+   └─ TypeScript    # Directory containing TypeScript sample projects
 ```
 
 
 ## Live2D Cubism Core for Web
 
-モデルをロードするためのライブラリです。
+A library for loading the model.
 
-当リポジトリではCubism Coreを管理していません。
-[こちら](https://www.live2d.com/download/cubism-sdk/download-web/)からCubism SDK for Webをダウンロードして、
-Coreディレクトリのファイルをコピーしてください。
-
-
-## 開発環境構築
-
-1. [Node.js] と [Visual Studio Code] をインストールします
-1. Visual Studio Code で **本 SDK のトップディレクトリ** を開き、推奨拡張機能をインストールします
-    * ポップアップ通知の他、拡張機能タブから `@recommended` を入力することで確認できます
-
-### サンプルデモの動作確認
-
-コマンドパレット（*View > Command Palette...*）で `>Tasks: Run Task` を入力することで、タスク一覧が表示されます。
-
-1. タスク一覧から　`npm: install - Samples/TypeScript/Demo` を選択して依存パッケージのダウンロードを行います
-1. タスク一覧から `npm: build - Samples/TypeScript/Demo` を選択してサンプルデモのビルドを行います
-1. タスク一覧から `npm: serve - Samples/TypeScript/Demo` を選択して動作確認用の簡易サーバを起動します
-1. ブラウザの URL 欄に `http://localhost:5000/Samples/TypeScript/Demo/` と入力してアクセスします
-1. コマンドパレットから `>Tasks: Terminate Task` を入力して `npm: serve` を選択すると簡易サーバが終了します
-
-その他のタスクに関してはサンプルプロジェクトの [README.md](Samples/TypeScript/README.md) を参照ください。
-
-NOTE: デバック用の設定は、`.vscode/tasks.json` に記述しています。
-
-### プロジェクトのデバック
-
-Visual Studio Code で **本 SDK のトップディレクトリ** を開き、 *F5* キーを入力すると Debugger for Chrome が起動します。
-
-Visual Studio Code 上でブレイクポイントを貼って Chrome ブラウザと連動してデバックを行うことができます。
-
-NOTE: デバック用の設定は、`.vscode/launch.json` に記述しています。
+This repository does not manage Cubism Core.
+Download the Cubism SDK for Web from [here](https://www.live2d.com/download/cubism-sdk/download-web/) and copy the files in the Core directory.
 
 
-## SDKマニュアル
+## Development environment construction
+
+1. Install [Node.js] and [Visual Studio Code]
+1. Open **the top directory of this SDK** in Visual Studio Code and install the recommended extensions
+    * In addition to pop-up notifications, you can check the others by typing `@recommended` from the Extensions tab
+
+### Operation check of sample demo
+
+Enter `>Tasks: Run Task` in the command palette (*View > Command Palette...*) to display the task list.
+
+1. Select `npm: install - Samples/TypeScript/Demo` from the task list to download the dependent packages
+1. Select `npm: build - Samples/TypeScript/Demo` from the task list to build the sample demo
+1. Select `npm: serve - Samples/TypeScript/Demo` from the task list to start the simple server for operation check
+1. Enter `http://localhost:5000/Samples/TypeScript/Demo/` in the URL field of your browser to access it
+1. Enter `>Tasks: Terminate Task` from the command palette and select `npm: serve` to terminate the simple server
+
+For other tasks, see [README.md](Samples/TypeScript/README.md) of the sample project.
+
+NOTE: Settings for debugging are described in `.vscode/tasks.json`.
+
+### Project debugging
+
+Open **the top directory of this SDK** in Visual Studio Code and enter the *F5* key to start Debugger for Chrome.
+
+You can place breakpoints in Visual Studio Code to debug in conjunction with the Chrome browser.
+
+NOTE: Settings for debugging are described in `.vscode/launch.json`.
+
+
+## SDK manual
 
 [Cubism SDK Manual](https://docs.live2d.com/cubism-sdk-manual/top/)
 
 
-## 変更履歴
+## Changelog
 
-当リポジトリの変更履歴については [CHANGELOG.md](CHANGELOG.md) を参照ください。
+Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repository.
 
 
-## 開発環境
+## Development environment
 
 ### Node.js
 
-* 18.7.0
-* 16.16.0
+* 18.8.0
+* 16.17.0
 * 14.20.0
 
 
-## 動作確認環境
+## Operation environment
 
-| プラットフォーム | ブラウザ | バージョン |
+| Platform | Browser | Version |
 | --- | --- | --- |
-| Android | Google Chrome | 103.0.5060.129 |
-| Android | Microsoft Edge | 101.0.1210.47 |
-| Android | Mozilla Firefox | 100.1.2 |
-| iOS / iPadOS | Google Chrome | 101.0.4951.58 |
-| iOS / iPadOS | Microsoft Edge | 101.1210.47 |
-| iOS / iPadOS | Mozilla Firefox | 100.1 |
-| iOS / iPadOS | Safari | 15.6 |
-| macOS | Google Chrome | 101.0.4951.64 |
-| macOS | Microsoft Edge | 101.0.1210.47 |
-| macOS | Mozilla Firefox | 100.0.1 |
-| macOS | Safari | 15.6 |
-| Windows | Google Chrome | 102.0.5005.115 |
-| Windows | Microsoft Edge | 103.0.1264.71 |
-| Windows | Mozilla Firefox | 100.0 |
+| Android | Google Chrome | 104.0.5112.97 |
+| Android | Microsoft Edge | 104.0.1293.63 |
+| Android | Mozilla Firefox | 104.1.0 |
+| iOS / iPadOS | Google Chrome | 104.0.5112.99 |
+| iOS / iPadOS | Microsoft Edge | 104.0.1293.63 |
+| iOS / iPadOS | Mozilla Firefox | 104.0 |
+| iOS / iPadOS | Safari | 15.6.1 |
+| macOS | Google Chrome | 104.0.5112.101 |
+| macOS | Microsoft Edge | 104.0.1293.70 |
+| macOS | Mozilla Firefox | 104.0 |
+| macOS | Safari | 15.6.1 |
+| Windows | Google Chrome | 104.0.5112.102 |
+| Windows | Microsoft Edge | 104.0.1293.70 |
+| Windows | Mozilla Firefox | 104.0 |
 
-Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
+Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 
 
-## コミュニティ
+## Contributing
 
-ユーザー同士でCubism SDKの活用方法の提案や質問をしたい場合は、是非コミュニティをご活用ください。
+There are many ways to contribute to the project: logging bugs, submitting pull requests on this GitHub, and reporting issues and making suggestions in Live2D Community.
 
-- [Live2D 公式コミュニティ](https://creatorsforum.live2d.com/)
-- [Live2D community(English)](https://community.live2d.com/)
+### Forking And Pull Requests
+
+We very much appreciate your pull requests, whether they bring fixes, improvements, or even new features. Note, however, that the wrapper is designed to be as lightweight and shallow as possible and should therefore only be subject to bug fixes and memory/performance improvements. To keep the main repository as clean as possible, create a personal fork and feature branches there as needed.
+
+### Bugs
+
+We are regularly checking issue-reports and feature requests at Live2D Community. Before filing a bug report, please do a search in Live2D Community to see if the issue-report or feature request has already been posted. If you find your issue already exists, make relevant comments and add your reaction.
+
+### Suggestions
+
+We're also interested in your feedback for the future of the SDK. You can submit a suggestion or feature request at Live2D Community. To make this process more effective, we're asking that you include more information to help define them more clearly.
+
+
+## Community
+
+If you want to suggest or ask questions about how to use the Cubism SDK between users, please use the community.
+
+- [Live2D community](https://community.live2d.com/)
+- [Live2D 公式コミュニティ (Japanese)](https://creatorsforum.live2d.com/)
