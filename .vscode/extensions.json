@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "editorconfig.editorconfig",
-    "msjsdiag.debugger-for-chrome"
+    "editorconfig.editorconfig"
   ]
 }

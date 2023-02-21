@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4-r.6] - 2023-02-21
+
+### Removed
+
+* Remove Debugger for Chrome from recommended extensions.
+  * Use `Javascript Debugger`, a built-in feature of Visual Studio Code.
+
+
 ## [4-r.5] - 2022-09-08
 
 ### Added
@@ -153,6 +161,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[4-r.6]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5...4-r.6
 [4-r.5]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5-beta.5...4-r.5
 [4-r.5-beta.5]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5-beta.4...4-r.5-beta.5
 [4-r.5-beta.4]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5-beta.3...4-r.5-beta.4
