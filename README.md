@@ -83,29 +83,30 @@ Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repositor
 
 ### Node.js
 
-* 18.8.0
-* 16.17.0
-* 14.20.0
+* 19.6.0
+* 18.14.0
+* 16.19.0
+* 14.21.2
 
 
 ## Operation environment
 
 | Platform | Browser | Version |
 | --- | --- | --- |
-| Android | Google Chrome | 104.0.5112.97 |
-| Android | Microsoft Edge | 104.0.1293.63 |
-| Android | Mozilla Firefox | 104.1.0 |
-| iOS / iPadOS | Google Chrome | 104.0.5112.99 |
-| iOS / iPadOS | Microsoft Edge | 104.0.1293.63 |
-| iOS / iPadOS | Mozilla Firefox | 104.0 |
-| iOS / iPadOS | Safari | 15.6.1 |
-| macOS | Google Chrome | 104.0.5112.101 |
-| macOS | Microsoft Edge | 104.0.1293.70 |
-| macOS | Mozilla Firefox | 104.0 |
-| macOS | Safari | 15.6.1 |
-| Windows | Google Chrome | 104.0.5112.102 |
-| Windows | Microsoft Edge | 104.0.1293.70 |
-| Windows | Mozilla Firefox | 104.0 |
+| Android | Google Chrome | 109.0.5414.117 |
+| Android | Microsoft Edge | 109.0.1518.80 |
+| Android | Mozilla Firefox | 109.2.0 |
+| iOS / iPadOS | Google Chrome | 110.0.5481.83 |
+| iOS / iPadOS | Microsoft Edge | 109.0.1518.80 |
+| iOS / iPadOS | Mozilla Firefox | 109.0 |
+| iOS / iPadOS | Safari | 16.3 |
+| macOS | Google Chrome | 110.0.5481.77 |
+| macOS | Microsoft Edge | 110.0.1587.41 |
+| macOS | Mozilla Firefox | 109.0.1 |
+| macOS | Safari | 16.3 |
+| Windows | Google Chrome | 110.0.5481.78 |
+| Windows | Microsoft Edge | 110.0.1587.41 |
+| Windows | Mozilla Firefox | 109.0.1 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 

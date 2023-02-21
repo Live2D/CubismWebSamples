@@ -51,6 +51,7 @@ Live2D models listed below are available under Free Material License.
 ```
 Samples/Resources/Haru
 Samples/Resources/Hiyori
+Samples/Resources/Mao
 Samples/Resources/Mark
 Samples/Resources/Natori
 Samples/Resources/Rice
