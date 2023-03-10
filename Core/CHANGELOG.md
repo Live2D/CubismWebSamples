@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2023-03-10
+
+### Added
+
+* Add the function `csmHasMocConsistency`.
+  * This function verifies that the `MOC3` file is valid.
+
+### Changed
+
+* Upgrade Core version to 04.02.0003.
+
+
 ## 2023-02-21
 
 ### Added
