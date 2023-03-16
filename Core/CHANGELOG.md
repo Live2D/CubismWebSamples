@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2023-03-16
+
+### Fixed
+
+* Fix a case in which the index of the mask's drawable object was negative value for `csmGetDrawableMasks()`.
+* Fix a problem in which `csmHasMocConsistency()` was returned as 0 even though the MOC3 file was in the correct format.
+  * This problem was occurring in some models using the blendshape weight limit settings.
+* Fix a problem that could cause a crash if a MOC3 file that is not in the correct format is loaded with `csmHasMocConsistency()`.
+
+### Changed
+
+* Upgrade Core version to 04.02.0004.
+
+
 ## 2023-03-10
 
 ### Added
