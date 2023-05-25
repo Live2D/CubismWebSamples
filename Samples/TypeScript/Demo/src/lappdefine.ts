@@ -68,6 +68,9 @@ export const PriorityIdle = 1;
 export const PriorityNormal = 2;
 export const PriorityForce = 3;
 
+// MOC3の一貫性検証オプション
+export const MOCConsistencyValidationEnable = true;
+
 // デバッグ用ログの表示オプション
 export const DebugLogEnable = true;
 export const DebugTouchLogEnable = false;

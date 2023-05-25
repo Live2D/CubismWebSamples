@@ -11,7 +11,9 @@
     "baseUrl": "./",
     "paths": {
       "@framework/*": ["../../../Framework/src/*"]
-    }
+    },
+    "noImplicitAny": true,
+    "useUnknownInCatchVariables": true
   },
   "include": [
     "src/**/*.ts",
