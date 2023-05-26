@@ -61,25 +61,25 @@
 					"File": "motions/haru_g_m26.motion3.json",
 					"FadeInTime": 0.5,
 					"FadeOutTime": 0.5,
-					"Sound": "sounds/haru_normal_04.wav"
+					"Sound": "sounds/haru_talk_13.wav"
 				},
 				{
 					"File": "motions/haru_g_m06.motion3.json",
 					"FadeInTime": 0.5,
 					"FadeOutTime": 0.5,
-					"Sound": "sounds/haru_normal_01.wav"
+					"Sound": "sounds/haru_Info_14.wav"
 				},
 				{
 					"File": "motions/haru_g_m20.motion3.json",
 					"FadeInTime": 0.5,
 					"FadeOutTime": 0.5,
-					"Sound": "sounds/haru_normal_03.wav"
+					"Sound": "sounds/haru_normal_6.wav"
 				},
 				{
 					"File": "motions/haru_g_m09.motion3.json",
 					"FadeInTime": 0.5,
 					"FadeOutTime": 0.5,
-					"Sound": "sounds/haru_normal_02.wav"
+					"Sound": "sounds/haru_Info_04.wav"
 				}
 			]
 		},

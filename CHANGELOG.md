@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [4-r.7] - 2023-05-25
+
+### Added
+
+* Add compiler options `noImplicitAny` and `useUnknownInCatchVariables` to `tsconfig.json`.
+* Add some functions for checking consistency of MOC3 files.
+  * Add the function of checking consistency in `lappmodel.setupModel()`.
+  * Add the function of checking consistency before loading a model. (`lappmodel.hasMocConsistencyFromFile()`)
+  * This feature is enabled by default. Please see the following manual for more information.
+    * https://docs.live2d.com/cubism-sdk-manual/moc3-consistency/
+
+### Fixed
+
+* Fix a problem in which `haru` motion and voice were incorrect combination.
+
 ## [4-r.6.2] - 2023-03-16
 
 ### Fixed
@@ -177,6 +192,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[4-r.7]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6.2...4-r.7
 [4-r.6.2]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6.1...4-r.6.2
 [4-r.6.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6...4-r.6.1
 [4-r.6]: https://github.com/Live2D/CubismWebSamples/compare/4-r.5...4-r.6
