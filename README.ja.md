@@ -4,7 +4,7 @@
 
 # Cubism Web Samples
 
-Live2D Cubism 4 Editor で出力したモデルを表示するアプリケーションのサンプル実装です。
+Live2D Cubism Editor で出力したモデルを表示するアプリケーションのサンプル実装です。
 
 Cubism Web Framework および Live2D Cubism Core と組み合わせて使用します。
 
@@ -18,6 +18,12 @@ Cubism Web Framework および Live2D Cubism Core と組み合わせて使用し
 
 本 SDK を使用する前に、[お知らせ](NOTICE.ja.md)をご確認ください。
 
+
+## Cubism 5新機能や過去バージョンとの互換性について
+
+本 SDK はCubism 5に対応した製品です。  
+Cubism 5 Editorに搭載された新機能のSDK対応については [こちら](https://docs.live2d.com/cubism-sdk-manual/cubism-5-new-functions/)をご確認ください。  
+過去バージョンのCubism SDKとの互換性については [こちら](https://docs.live2d.com/cubism-sdk-manual/compatibility-with-cubism-5/)をご確認ください。
 
 ## ディレクトリ構成
 
@@ -84,9 +90,9 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 20.1.0
-* 18.16.0
-* 16.20.0
+* 20.5.1
+* 18.17.1
+* 16.20.2
 
 
 ## 動作確認環境

@@ -11,25 +11,37 @@ import * as LAppDefine from './lappdefine';
 /**
  * ブラウザロード後の処理
  */
-window.onload = (): void => {
-  // create the application instance
-  if (LAppDelegate.getInstance().initialize() == false) {
-    return;
-  }
+window.addEventListener(
+  'load',
+  (): void => {
+    // create the application instance
+    if (LAppDelegate.getInstance().initialize() == false) {
+      return;
+    }
 
-  LAppDelegate.getInstance().run();
-};
+    LAppDelegate.getInstance().run();
+  },
+  { passive: true }
+);
 
 /**
  * 終了時の処理
  */
-window.onbeforeunload = (): void => LAppDelegate.releaseInstance();
+window.addEventListener(
+  'beforeunload',
+  (): void => LAppDelegate.releaseInstance(),
+  { passive: true }
+);
 
 /**
  * Process when changing screen size.
  */
-window.onresize = () => {
-  if (LAppDefine.CanvasSize === 'auto') {
-    LAppDelegate.getInstance().onResize();
-  }
-};
+window.addEventListener(
+  'resize',
+  () => {
+    if (LAppDefine.CanvasSize === 'auto') {
+      LAppDelegate.getInstance().onResize();
+    }
+  },
+  { passive: true }
+);

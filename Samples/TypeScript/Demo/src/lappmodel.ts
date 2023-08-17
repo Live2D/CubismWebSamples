@@ -917,7 +917,7 @@ export class LAppModel extends CubismUserModel {
   _idParamEyeBallY: CubismIdHandle; // パラメータID: ParamEyeBAllY
   _idParamBodyAngleX: CubismIdHandle; // パラメータID: ParamBodyAngleX
 
-  _state: number; // 現在のステータス管理用
+  _state: LoadStep; // 現在のステータス管理用
   _expressionCount: number; // 表情データカウント
   _textureCount: number; // テクスチャカウント
   _motionCount: number; // モーションデータカウント
