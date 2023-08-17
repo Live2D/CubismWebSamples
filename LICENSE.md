@@ -55,6 +55,7 @@ Samples/Resources/Mao
 Samples/Resources/Mark
 Samples/Resources/Natori
 Samples/Resources/Rice
+Samples/Resources/Wanko
 ```
 
 If you use these models, you must agree to the terms of a contract set [here](https://docs.live2d.com/cubism-editor-manual/sample-model/) for each model.

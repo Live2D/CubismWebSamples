@@ -4,7 +4,7 @@
 
 # Cubism Web Samples
 
-This is a sample implementation of an application that displays models output by Live2D Cubism 4 Editor.
+This is a sample implementation of an application that displays models output by Live2D Cubism Editor.
 
 It is used in conjunction with the Cubism Web Framework and Live2D Cubism Core.
 
@@ -17,6 +17,14 @@ Please check the [license](LICENSE.md) before using this SDK.
 ## Notices
 
 Please check the [notices](NOTICE.md) before using this SDK.
+
+
+## Compatibility with Cubism 5 new features and previous Cubism SDK versions
+
+This SDK is compatible with Cubism 5.  
+For SDK compatibility with new features in Cubism 5 Editor, please refer to [here](https://docs.live2d.com/en/cubism-sdk-manual/cubism-5-new-functions/).  
+For compatibility with previous versions of Cubism SDK, please refer to [here](https://docs.live2d.com/en/cubism-sdk-manual/compatibility-with-cubism-5/).
+
 
 
 ## Directory structure
@@ -83,9 +91,9 @@ Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repositor
 
 ### Node.js
 
-* 20.1.0
-* 18.16.0
-* 16.20.0
+* 20.5.1
+* 18.17.1
+* 16.20.2
 
 
 ## Operation environment

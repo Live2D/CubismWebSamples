@@ -92,15 +92,15 @@ export class LAppDelegate {
 
     if (supportTouch) {
       // タッチ関連コールバック関数登録
-      canvas.ontouchstart = onTouchBegan;
-      canvas.ontouchmove = onTouchMoved;
-      canvas.ontouchend = onTouchEnded;
-      canvas.ontouchcancel = onTouchCancel;
+      canvas.addEventListener('touchstart', onTouchBegan, { passive: true });
+      canvas.addEventListener('touchmove', onTouchMoved, { passive: true });
+      canvas.addEventListener('touchend', onTouchEnded, { passive: true });
+      canvas.addEventListener('touchcancel', onTouchCancel, { passive: true });
     } else {
       // マウス関連コールバック関数登録
-      canvas.onmousedown = onClickBegan;
-      canvas.onmousemove = onMouseMoved;
-      canvas.onmouseup = onClickEnded;
+      canvas.addEventListener('mousedown', onClickBegan, { passive: true });
+      canvas.addEventListener('mousemove', onMouseMoved, { passive: true });
+      canvas.addEventListener('mouseup', onClickEnded, { passive: true });
     }
 
     // AppViewの初期化
@@ -290,7 +290,7 @@ export class LAppDelegate {
    * Resize the canvas to fill the screen.
    */
   private _resizeCanvas(): void {
-    canvas.width  = canvas.clientWidth  * window.devicePixelRatio;
+    canvas.width = canvas.clientWidth * window.devicePixelRatio;
     canvas.height = canvas.clientHeight * window.devicePixelRatio;
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
   }

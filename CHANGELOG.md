@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.1-beta.1] - 2023-08-17
+
+### Added
+
+* Add Wankoromochi as a model bundled with SDK.
+
+### Fixed
+* Fix blurry image and models on mobile devices. by [@Tsar](https://github.com/Tsar)
+* Fix a bug that caused scroll-blocking violations to appear in the log.
+
+
 ## [4-r.7] - 2023-05-25
 
 ### Added
@@ -192,6 +203,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.1-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.7...5-r.1-beta.1
 [4-r.7]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6.2...4-r.7
 [4-r.6.2]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6.1...4-r.6.2
 [4-r.6.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6...4-r.6.1

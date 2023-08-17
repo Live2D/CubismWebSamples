@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## 2023-08-17
+
+### Added
+
+* Enhance Blend Shape features.
+  * Please see [here](https://docs.live2d.com/en/cubism-editor-manual/blend-shape/).
+
+### Changed
+
+* Upgrade Core version to 05.00.0000.
+
+
+## 2023-05-09
+
+### Changed
+
+* Change the GCC version of the library for Linux from 6.5.0 to 8.3.0.
+
+
 ## 2023-03-16
 
 ### Fixed
