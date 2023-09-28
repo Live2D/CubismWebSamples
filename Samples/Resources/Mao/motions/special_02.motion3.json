@@ -7,9 +7,9 @@
 		"FadeOutTime": 0.25,
 		"Loop": true,
 		"AreBeziersRestricted": true,
-		"CurveCount": 116,
-		"TotalSegmentCount": 516,
-		"TotalPointCount": 1400,
+		"CurveCount": 136,
+		"TotalSegmentCount": 536,
+		"TotalPointCount": 1440,
 		"UserDataCount": 0,
 		"TotalUserDataSize": 0
 	},
@@ -57,7 +57,7 @@
 				-25.081,
 				1,
 				2.511,
-				-26.204,
+				-26.205,
 				2.689,
 				-26.911,
 				2.867,
@@ -1323,7 +1323,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthA",
+			"Id": "ParamA",
 			"Segments": [
 				0,
 				0,
@@ -1362,7 +1362,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthI",
+			"Id": "ParamI",
 			"Segments": [
 				0,
 				0,
@@ -1373,7 +1373,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthU",
+			"Id": "ParamU",
 			"Segments": [
 				0,
 				0,
@@ -1384,7 +1384,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthE",
+			"Id": "ParamE",
 			"Segments": [
 				0,
 				0,
@@ -1395,7 +1395,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthO",
+			"Id": "ParamO",
 			"Segments": [
 				0,
 				0,
@@ -3310,6 +3310,324 @@
 		},
 		{
 			"Target": "Parameter",
+			"Id": "ParamHeartMissOn",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.111,
+				0,
+				0.222,
+				0,
+				0.333,
+				0.01,
+				1,
+				0.444,
+				0.023,
+				0.556,
+				1,
+				0.667,
+				1,
+				1,
+				2.2,
+				1,
+				3.733,
+				1,
+				5.267,
+				1,
+				1,
+				5.411,
+				1,
+				5.556,
+				0,
+				5.7,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartBackMissOn",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.9,
+				0,
+				1.8,
+				0,
+				2.7,
+				0,
+				1,
+				3.156,
+				0,
+				3.611,
+				1,
+				4.067,
+				1,
+				1,
+				4.467,
+				1,
+				4.867,
+				1,
+				5.267,
+				1,
+				1,
+				5.411,
+				1,
+				5.556,
+				0,
+				5.7,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartColorRainbow",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.756,
+				0,
+				1.511,
+				0,
+				2.267,
+				0,
+				0,
+				3.6,
+				29.3,
+				2,
+				3.633,
+				0,
+				0,
+				4.967,
+				29.3,
+				2,
+				5,
+				0,
+				0,
+				6.333,
+				29.3,
+				0,
+				9.367,
+				29.3
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartHealOn",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartBackHealOn",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartColorHeal",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartDrow",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.567,
+				0,
+				1,
+				0.8,
+				13.228,
+				1.033,
+				14.173,
+				1.267,
+				15,
+				1,
+				1.611,
+				20.079,
+				1.956,
+				27.892,
+				2.3,
+				30,
+				0,
+				9.367,
+				30
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartSize",
+			"Segments": [
+				0,
+				0,
+				1,
+				1.611,
+				0,
+				3.222,
+				0,
+				4.833,
+				0,
+				1,
+				4.944,
+				0,
+				5.056,
+				0.3,
+				5.167,
+				0.3,
+				1,
+				5.333,
+				0.3,
+				5.5,
+				-0.9,
+				5.667,
+				-0.9,
+				0,
+				9.367,
+				-0.9
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartColorLight",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.9,
+				0,
+				1.8,
+				0,
+				2.7,
+				0,
+				1,
+				3.156,
+				0,
+				3.611,
+				1,
+				4.067,
+				1,
+				0,
+				9.367,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamWandInkColorRainbow",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.656,
+				0,
+				1.311,
+				0,
+				1.967,
+				0,
+				0,
+				2.267,
+				5,
+				0,
+				3.6,
+				34.3,
+				2,
+				3.633,
+				5,
+				0,
+				4.967,
+				34.3,
+				2,
+				5,
+				5,
+				0,
+				6.333,
+				34.3,
+				1,
+				6.344,
+				34.3,
+				6.356,
+				5.15,
+				6.367,
+				5,
+				1,
+				6.622,
+				1.548,
+				6.878,
+				0,
+				7.133,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamWandInkColorHeal",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamWandInk",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.5,
+				0,
+				1,
+				0.744,
+				0,
+				0.989,
+				0.25,
+				1.233,
+				0.489,
+				1,
+				1.489,
+				0.735,
+				1.744,
+				1,
+				2,
+				1,
+				0,
+				9.367,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
 			"Id": "ParamSmokeOn",
 			"Segments": [
 				0,
@@ -3545,168 +3863,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamWandInkColorRainbow",
-			"Segments": [
-				0,
-				0,
-				1,
-				0.656,
-				0,
-				1.311,
-				0,
-				1.967,
-				0,
-				0,
-				2.267,
-				5,
-				0,
-				3.6,
-				34.3,
-				2,
-				3.633,
-				5,
-				0,
-				4.967,
-				34.3,
-				2,
-				5,
-				5,
-				0,
-				6.333,
-				34.3,
-				1,
-				6.344,
-				34.3,
-				6.356,
-				5.15,
-				6.367,
-				5,
-				1,
-				6.622,
-				1.548,
-				6.878,
-				0,
-				7.133,
-				0,
-				0,
-				9.367,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartMissOn",
-			"Segments": [
-				0,
-				0,
-				1,
-				0.111,
-				0,
-				0.222,
-				0,
-				0.333,
-				0.01,
-				1,
-				0.444,
-				0.023,
-				0.556,
-				1,
-				0.667,
-				1,
-				1,
-				2.2,
-				1,
-				3.733,
-				1,
-				5.267,
-				1,
-				1,
-				5.411,
-				1,
-				5.556,
-				0,
-				5.7,
-				0,
-				0,
-				9.367,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartBackMissOn",
-			"Segments": [
-				0,
-				0,
-				1,
-				0.9,
-				0,
-				1.8,
-				0,
-				2.7,
-				0,
-				1,
-				3.156,
-				0,
-				3.611,
-				1,
-				4.067,
-				1,
-				1,
-				4.467,
-				1,
-				4.867,
-				1,
-				5.267,
-				1,
-				1,
-				5.411,
-				1,
-				5.556,
-				0,
-				5.7,
-				0,
-				0,
-				9.367,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartColorRainbow",
-			"Segments": [
-				0,
-				0,
-				1,
-				0.756,
-				0,
-				1.511,
-				0,
-				2.267,
-				0,
-				0,
-				3.6,
-				29.3,
-				2,
-				3.633,
-				0,
-				0,
-				4.967,
-				29.3,
-				2,
-				5,
-				0,
-				0,
-				6.333,
-				29.3,
-				0,
-				9.367,
-				29.3
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamWandInkColorHeal",
+			"Id": "ParamRabbitElimination",
 			"Segments": [
 				0,
 				0,
@@ -3717,7 +3874,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartHealOn",
+			"Id": "ParamRabbitAppearance",
 			"Segments": [
 				0,
 				0,
@@ -3728,7 +3885,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartBackHealOn",
+			"Id": "ParamRabbitSize",
 			"Segments": [
 				0,
 				0,
@@ -3739,7 +3896,128 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartColorHeal",
+			"Id": "ParamRabbitDraworder",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitEar",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitDirection",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitLight",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitLightSize",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitX",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitY",
+			"Segments": [
+				0,
+				1,
+				0,
+				9.367,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitRotate",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAuraOn",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAura",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAuraColor1",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAuraColor2",
 			"Segments": [
 				0,
 				0,
@@ -3783,6 +4061,61 @@
 		},
 		{
 			"Target": "Parameter",
+			"Id": "ParamHealLightOn",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHealLight",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamStrengthenLightOn",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamStrengthenLight",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamStrengthenLightMove",
+			"Segments": [
+				0,
+				0,
+				0,
+				9.367,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
 			"Id": "ParamMagicPositionX",
 			"Segments": [
 				0,
@@ -3805,120 +4138,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamWandInk",
-			"Segments": [
-				0,
-				0,
-				0,
-				0.5,
-				0,
-				1,
-				0.744,
-				0,
-				0.989,
-				0.25,
-				1.233,
-				0.489,
-				1,
-				1.489,
-				0.735,
-				1.744,
-				1,
-				2,
-				1,
-				0,
-				9.367,
-				1
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartDrow",
-			"Segments": [
-				0,
-				0,
-				0,
-				0.567,
-				0,
-				1,
-				0.8,
-				13.228,
-				1.033,
-				14.173,
-				1.267,
-				15,
-				1,
-				1.611,
-				20.079,
-				1.956,
-				27.892,
-				2.3,
-				30,
-				0,
-				9.367,
-				30
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartSize",
-			"Segments": [
-				0,
-				0,
-				1,
-				1.611,
-				0,
-				3.222,
-				0,
-				4.833,
-				0,
-				1,
-				4.944,
-				0,
-				5.056,
-				0.3,
-				5.167,
-				0.3,
-				1,
-				5.333,
-				0.3,
-				5.5,
-				-0.9,
-				5.667,
-				-0.9,
-				0,
-				9.367,
-				-0.9
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartColorLight",
-			"Segments": [
-				0,
-				0,
-				1,
-				0.9,
-				0,
-				1.8,
-				0,
-				2.7,
-				0,
-				1,
-				3.156,
-				0,
-				3.611,
-				1,
-				4.067,
-				1,
-				0,
-				9.367,
-				1
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamAllColor",
+			"Id": "ParamAllColor1",
 			"Segments": [
 				0,
 				0,
@@ -3929,7 +4149,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamAuraOn",
+			"Id": "ParamAllColor2",
 			"Segments": [
 				0,
 				0,
@@ -3940,7 +4160,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamAura",
+			"Id": "ParamSphereOn",
 			"Segments": [
 				0,
 				0,
@@ -3951,7 +4171,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamAuraColor",
+			"Id": "ParamSphereMove",
 			"Segments": [
 				0,
 				0,
@@ -3962,7 +4182,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHealOn",
+			"Id": "ParamSphereMultiplyColor",
 			"Segments": [
 				0,
 				0,
@@ -3973,7 +4193,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHealLight",
+			"Id": "ParamSphereScreenColor",
 			"Segments": [
 				0,
 				0,

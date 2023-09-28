@@ -11,7 +11,7 @@ This is a sample implementation of an application implemented with TypeScript.
 
 | Package | Version |
 | --- | --- |
-| TypeScript | 5.1.6 |
+| TypeScript | 5.2.2 |
 | Webpack | 5.88.2 |
 
 For other packages, check the `package.json` for each project.

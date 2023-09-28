@@ -10,8 +10,8 @@
 		},
 		{
 			"Id": "ParamEyeLOpen",
-			"Value": -1.2,
-			"Blend": "Add"
+			"Value": 0,
+			"Blend": "Multiply"
 		},
 		{
 			"Id": "ParamEyeLSmile",
@@ -25,8 +25,8 @@
 		},
 		{
 			"Id": "ParamEyeROpen",
-			"Value": -1.2,
-			"Blend": "Add"
+			"Value": 0,
+			"Blend": "Multiply"
 		},
 		{
 			"Id": "ParamEyeRSmile",
@@ -99,27 +99,27 @@
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamMouthA",
+			"Id": "ParamA",
 			"Value": 0,
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamMouthI",
+			"Id": "ParamI",
 			"Value": 0,
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamMouthU",
+			"Id": "ParamU",
 			"Value": 0,
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamMouthE",
+			"Id": "ParamE",
 			"Value": 0,
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamMouthO",
+			"Id": "ParamO",
 			"Value": 0,
 			"Blend": "Add"
 		},

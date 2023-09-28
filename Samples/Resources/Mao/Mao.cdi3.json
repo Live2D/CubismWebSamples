@@ -117,27 +117,27 @@
 			"Name": "右眉　変形"
 		},
 		{
-			"Id": "ParamMouthA",
+			"Id": "ParamA",
 			"GroupId": "ParamGroupMouth",
 			"Name": "あ"
 		},
 		{
-			"Id": "ParamMouthI",
+			"Id": "ParamI",
 			"GroupId": "ParamGroupMouth",
 			"Name": "い"
 		},
 		{
-			"Id": "ParamMouthU",
+			"Id": "ParamU",
 			"GroupId": "ParamGroupMouth",
 			"Name": "う"
 		},
 		{
-			"Id": "ParamMouthE",
+			"Id": "ParamE",
 			"GroupId": "ParamGroupMouth",
 			"Name": "え"
 		},
 		{
-			"Id": "ParamMouthO",
+			"Id": "ParamO",
 			"GroupId": "ParamGroupMouth",
 			"Name": "お"
 		},
@@ -417,149 +417,249 @@
 			"Name": "ローブのふわ"
 		},
 		{
-			"Id": "ParamSmokeOn",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "煙　表示"
-		},
-		{
-			"Id": "ParamSmoke",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "煙"
-		},
-		{
-			"Id": "ParamExplosionChargeOn",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "爆発光溜め　表示"
-		},
-		{
-			"Id": "ParamExplosionLightCharge",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "爆発光溜め"
-		},
-		{
-			"Id": "ParamExplosionOn",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "爆発　表示"
-		},
-		{
-			"Id": "ParamExplosion",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "爆発"
-		},
-		{
-			"Id": "ParamWandInkColorRainbow",
-			"GroupId": "ParamGroupEffectsMistake",
-			"Name": "杖インク　虹色"
-		},
-		{
 			"Id": "ParamHeartMissOn",
-			"GroupId": "ParamGroupEffectsMistake",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート失敗　表示"
 		},
 		{
 			"Id": "ParamHeartBackMissOn",
-			"GroupId": "ParamGroupEffectsMistake",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート失敗後ろ　表示"
 		},
 		{
 			"Id": "ParamHeartColorRainbow",
-			"GroupId": "ParamGroupEffectsMistake",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート失敗　虹色"
 		},
 		{
-			"Id": "ParamWandInkColorHeal",
-			"GroupId": "ParamGroupEffectsSuccess",
-			"Name": "杖インク　緑色"
-		},
-		{
 			"Id": "ParamHeartHealOn",
-			"GroupId": "ParamGroupEffectsSuccess",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート回復　表示"
 		},
 		{
 			"Id": "ParamHeartBackHealOn",
-			"GroupId": "ParamGroupEffectsSuccess",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート回復後ろ　表示"
 		},
 		{
 			"Id": "ParamHeartColorHeal",
-			"GroupId": "ParamGroupEffectsSuccess",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート回復　緑色"
 		},
 		{
-			"Id": "ParamHeartLightOn",
-			"GroupId": "ParamGroupEffectsSuccess",
-			"Name": "光　表示"
-		},
-		{
-			"Id": "ParamHeartLight",
-			"GroupId": "ParamGroupEffectsSuccess",
-			"Name": "光　星"
-		},
-		{
-			"Id": "ParamHeartLightColor",
-			"GroupId": "ParamGroupEffectsSuccess",
-			"Name": "光　色変化"
-		},
-		{
-			"Id": "ParamMagicPositionX",
-			"GroupId": "ParamGroupEffects",
-			"Name": "魔法の位置X"
-		},
-		{
-			"Id": "ParamMagicPositionY",
-			"GroupId": "ParamGroupEffects",
-			"Name": "魔法の位置Y"
-		},
-		{
-			"Id": "ParamWandInk",
-			"GroupId": "ParamGroupEffects",
-			"Name": "杖インク"
-		},
-		{
 			"Id": "ParamHeartDrow",
-			"GroupId": "ParamGroupEffects",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート　描画"
 		},
 		{
 			"Id": "ParamHeartSize",
-			"GroupId": "ParamGroupEffects",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート　拡縮"
 		},
 		{
 			"Id": "ParamHeartColorLight",
-			"GroupId": "ParamGroupEffects",
+			"GroupId": "ParamGroupHeart",
 			"Name": "ハート  色変化"
 		},
 		{
-			"Id": "ParamAllColor",
-			"GroupId": "ParamGroupEffectsHeal",
-			"Name": "全体の色"
+			"Id": "ParamWandInkColorRainbow",
+			"GroupId": "ParamGroupInk",
+			"Name": "杖インク　虹色"
+		},
+		{
+			"Id": "ParamWandInkColorHeal",
+			"GroupId": "ParamGroupInk",
+			"Name": "杖インク　緑色"
+		},
+		{
+			"Id": "ParamWandInk",
+			"GroupId": "ParamGroupInk",
+			"Name": "杖インク"
+		},
+		{
+			"Id": "ParamSmokeOn",
+			"GroupId": "ParamGroupExplosion",
+			"Name": "煙　表示"
+		},
+		{
+			"Id": "ParamSmoke",
+			"GroupId": "ParamGroupExplosion",
+			"Name": "煙"
+		},
+		{
+			"Id": "ParamExplosionChargeOn",
+			"GroupId": "ParamGroupExplosion",
+			"Name": "爆発光溜め　表示"
+		},
+		{
+			"Id": "ParamExplosionLightCharge",
+			"GroupId": "ParamGroupExplosion",
+			"Name": "爆発光溜め"
+		},
+		{
+			"Id": "ParamExplosionOn",
+			"GroupId": "ParamGroupExplosion",
+			"Name": "爆発　表示"
+		},
+		{
+			"Id": "ParamExplosion",
+			"GroupId": "ParamGroupExplosion",
+			"Name": "爆発"
+		},
+		{
+			"Id": "ParamRabbitElimination",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　消滅"
+		},
+		{
+			"Id": "ParamRabbitAppearance",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　出現"
+		},
+		{
+			"Id": "ParamRabbitSize",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　拡縮"
+		},
+		{
+			"Id": "ParamRabbitDraworder",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　描画順"
+		},
+		{
+			"Id": "ParamRabbitEar",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　耳"
+		},
+		{
+			"Id": "ParamRabbitDirection",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　向き"
+		},
+		{
+			"Id": "ParamRabbitLight",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ　色変化"
+		},
+		{
+			"Id": "ParamRabbitLightSize",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎ光　拡縮"
+		},
+		{
+			"Id": "ParamRabbitX",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎの移動　X"
+		},
+		{
+			"Id": "ParamRabbitY",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎの移動　Y"
+		},
+		{
+			"Id": "ParamRabbitRotate",
+			"GroupId": "ParamGroupRabbit",
+			"Name": "うさぎの回転"
 		},
 		{
 			"Id": "ParamAuraOn",
-			"GroupId": "ParamGroupEffectsHeal",
+			"GroupId": "ParamGroupAura",
 			"Name": "オーラ　表示"
 		},
 		{
 			"Id": "ParamAura",
-			"GroupId": "ParamGroupEffectsHeal",
+			"GroupId": "ParamGroupAura",
 			"Name": "オーラ"
 		},
 		{
-			"Id": "ParamAuraColor",
-			"GroupId": "ParamGroupEffectsHeal",
-			"Name": "オーラ　色変化"
+			"Id": "ParamAuraColor1",
+			"GroupId": "ParamGroupAura",
+			"Name": "オーラ　色変化1"
 		},
 		{
-			"Id": "ParamHealOn",
-			"GroupId": "ParamGroupEffectsHeal",
+			"Id": "ParamAuraColor2",
+			"GroupId": "ParamGroupAura",
+			"Name": "オーラ　色変化2"
+		},
+		{
+			"Id": "ParamHeartLightOn",
+			"GroupId": "ParamGroupLight",
+			"Name": "光　表示"
+		},
+		{
+			"Id": "ParamHeartLight",
+			"GroupId": "ParamGroupLight",
+			"Name": "光　星"
+		},
+		{
+			"Id": "ParamHeartLightColor",
+			"GroupId": "ParamGroupLight",
+			"Name": "光　色変化"
+		},
+		{
+			"Id": "ParamHealLightOn",
+			"GroupId": "ParamGroupLight",
 			"Name": "回復魔法光　表示"
 		},
 		{
 			"Id": "ParamHealLight",
-			"GroupId": "ParamGroupEffectsHeal",
+			"GroupId": "ParamGroupLight",
 			"Name": "回復魔法光"
+		},
+		{
+			"Id": "ParamStrengthenLightOn",
+			"GroupId": "ParamGroupLight",
+			"Name": "強化魔法光　表示"
+		},
+		{
+			"Id": "ParamStrengthenLight",
+			"GroupId": "ParamGroupLight",
+			"Name": "強化魔法光"
+		},
+		{
+			"Id": "ParamStrengthenLightMove",
+			"GroupId": "ParamGroupLight",
+			"Name": "強化魔法光　移動"
+		},
+		{
+			"Id": "ParamMagicPositionX",
+			"GroupId": "ParamGroupAllEffects",
+			"Name": "魔法の位置X"
+		},
+		{
+			"Id": "ParamMagicPositionY",
+			"GroupId": "ParamGroupAllEffects",
+			"Name": "魔法の位置Y"
+		},
+		{
+			"Id": "ParamAllColor1",
+			"GroupId": "ParamGroupAllEffects",
+			"Name": "全体の色1"
+		},
+		{
+			"Id": "ParamAllColor2",
+			"GroupId": "ParamGroupAllEffects",
+			"Name": "全体の色2"
+		},
+		{
+			"Id": "ParamSphereOn",
+			"GroupId": "ParamGroupColorSample",
+			"Name": "玉　表示"
+		},
+		{
+			"Id": "ParamSphereMove",
+			"GroupId": "ParamGroupColorSample",
+			"Name": "玉　移動"
+		},
+		{
+			"Id": "ParamSphereMultiplyColor",
+			"GroupId": "ParamGroupColorSample",
+			"Name": "玉　乗算色"
+		},
+		{
+			"Id": "ParamSphereScreenColor",
+			"GroupId": "ParamGroupColorSample",
+			"Name": "玉　スクリーン色"
 		}
 	],
 	"ParameterGroups": [
@@ -624,30 +724,58 @@
 			"Name": "揺れ"
 		},
 		{
-			"Id": "ParamGroupEffectsMistake",
+			"Id": "ParamGroupHeart",
 			"GroupId": "",
-			"Name": "魔法失敗エフェクト"
+			"Name": "ハート"
 		},
 		{
-			"Id": "ParamGroupEffectsSuccess",
+			"Id": "ParamGroupInk",
 			"GroupId": "",
-			"Name": "魔法成功エフェクト"
+			"Name": "インク"
 		},
 		{
-			"Id": "ParamGroupEffects",
+			"Id": "ParamGroupExplosion",
 			"GroupId": "",
-			"Name": "魔法共通エフェクト"
+			"Name": "爆発"
 		},
 		{
-			"Id": "ParamGroupEffectsHeal",
+			"Id": "ParamGroupRabbit",
 			"GroupId": "",
-			"Name": "回復エフェクト"
+			"Name": "うさぎ"
+		},
+		{
+			"Id": "ParamGroupAura",
+			"GroupId": "",
+			"Name": "オーラ"
+		},
+		{
+			"Id": "ParamGroupLight",
+			"GroupId": "",
+			"Name": "光"
+		},
+		{
+			"Id": "ParamGroupAllEffects",
+			"GroupId": "",
+			"Name": "全体エフェクト"
+		},
+		{
+			"Id": "ParamGroupColorSample",
+			"GroupId": "",
+			"Name": "乗算色・スクリーン色サンプル"
 		}
 	],
 	"Parts": [
 		{
 			"Id": "PartCore",
 			"Name": "コア"
+		},
+		{
+			"Id": "PartRabbit",
+			"Name": "うさぎ"
+		},
+		{
+			"Id": "PartEffect",
+			"Name": "エフェクト"
 		},
 		{
 			"Id": "PartInk",
@@ -748,6 +876,10 @@
 		{
 			"Id": "PartArmRB",
 			"Name": "右腕B"
+		},
+		{
+			"Id": "PartColorSample",
+			"Name": "乗算色・スクリーン色サンプル"
 		},
 		{
 			"Id": "PartSketch",

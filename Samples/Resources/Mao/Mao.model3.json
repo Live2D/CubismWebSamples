@@ -46,6 +46,9 @@
 			"Idle": [
 				{
 					"File": "motions/mtn_01.motion3.json"
+				},
+				{
+					"File": "motions/sample_01.motion3.json"
 				}
 			],
 			"TapBody": [
@@ -63,6 +66,9 @@
 				},
 				{
 					"File": "motions/special_02.motion3.json"
+				},
+				{
+					"File": "motions/special_03.motion3.json"
 				}
 			]
 		}
@@ -70,16 +76,18 @@
 	"Groups": [
 		{
 			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamA"
+			]
+		},
+		{
+			"Target": "Parameter",
 			"Name": "EyeBlink",
 			"Ids": [
 				"ParamEyeLOpen",
 				"ParamEyeROpen"
 			]
-		},
-		{
-			"Target": "Parameter",
-			"Name": "LipSync",
-			"Ids": []
 		}
 	],
 	"HitAreas": [

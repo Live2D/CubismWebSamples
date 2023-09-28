@@ -90,9 +90,8 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ### Node.js
 
-* 20.5.1
-* 18.17.1
-* 16.20.2
+* 20.7.0
+* 18.18.0
 
 
 ## 動作確認環境
@@ -105,13 +104,13 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 | iOS / iPadOS | Google Chrome | 113.0.5672.109 |
 | iOS / iPadOS | Microsoft Edge | 113.0.1774.42 |
 | iOS / iPadOS | Mozilla Firefox | 113.0 |
-| iOS / iPadOS | Safari | 16.4 |
-| macOS | Google Chrome | 113.0.5672.92 |
-| macOS | Microsoft Edge | 113.0.1774.42 |
+| iOS / iPadOS | Safari | 16.6.1 |
+| macOS | Google Chrome | 117.0.5938.92 |
+| macOS | Microsoft Edge | 117.0.2045.43 |
 | macOS | Mozilla Firefox | 113.0.1 |
-| macOS | Safari | 16.4 |
-| Windows | Google Chrome | 113.0.5672.93 |
-| Windows | Microsoft Edge | 113.0.1774.42 |
+| macOS | Safari | 16.6.1 |
+| Windows | Google Chrome | 117.0.5938.92 |
+| Windows | Microsoft Edge | 117.0.2045.43 |
 | Windows | Mozilla Firefox | 113.0 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
@@ -134,9 +133,9 @@ Live2Dコミュニティでは、問題のレポートと機能リクエスト�
 SDKの将来についてのフィードバックにも関心があります。Live2Dコミュニティで提案や機能のリクエストを送信できます。このプロセスをより効果的にするために、それらをより明確に定義するのに役立つより多くの情報を含めるようお願いしています。
 
 
-## コミュニティ
+## フォーラム
 
-ユーザー同士でCubism SDKの活用方法の提案や質問をしたい場合は、是非コミュニティをご活用ください。
+ユーザー同士でCubism SDKの活用方法の提案や質問をしたい場合は、是非フォーラムをご活用ください。
 
-- [Live2D 公式コミュニティ](https://creatorsforum.live2d.com/)
-- [Live2D community(English)](https://community.live2d.com/)
+- [Live2D 公式クリエイターズフォーラム](https://creatorsforum.live2d.com/)
+- [Live2D Creator's Forum(English)](https://community.live2d.com/)
