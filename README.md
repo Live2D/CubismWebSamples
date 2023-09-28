@@ -91,9 +91,8 @@ Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repositor
 
 ### Node.js
 
-* 20.5.1
-* 18.17.1
-* 16.20.2
+* 20.7.0
+* 18.18.0
 
 
 ## Operation environment
@@ -106,13 +105,13 @@ Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repositor
 | iOS / iPadOS | Google Chrome | 113.0.5672.109 |
 | iOS / iPadOS | Microsoft Edge | 113.0.1774.42 |
 | iOS / iPadOS | Mozilla Firefox | 113.0 |
-| iOS / iPadOS | Safari | 16.4 |
-| macOS | Google Chrome | 113.0.5672.92 |
-| macOS | Microsoft Edge | 113.0.1774.42 |
+| iOS / iPadOS | Safari | 16.6.1 |
+| macOS | Google Chrome | 117.0.5938.92 |
+| macOS | Microsoft Edge | 117.0.2045.43 |
 | macOS | Mozilla Firefox | 113.0.1 |
-| macOS | Safari | 16.4 |
-| Windows | Google Chrome | 113.0.5672.93 |
-| Windows | Microsoft Edge | 113.0.1774.42 |
+| macOS | Safari | 16.6.1 |
+| Windows | Google Chrome | 117.0.5938.92 |
+| Windows | Microsoft Edge | 117.0.2045.43 |
 | Windows | Mozilla Firefox | 113.0 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
@@ -135,9 +134,9 @@ We are regularly checking issue-reports and feature requests at Live2D Community
 We're also interested in your feedback for the future of the SDK. You can submit a suggestion or feature request at Live2D Community. To make this process more effective, we're asking that you include more information to help define them more clearly.
 
 
-## Community
+## Forum
 
-If you want to suggest or ask questions about how to use the Cubism SDK between users, please use the community.
+If you want to suggest or ask questions about how to use the Cubism SDK between users, please use the forum.
 
-- [Live2D community](https://community.live2d.com/)
-- [Live2D 公式コミュニティ (Japanese)](https://creatorsforum.live2d.com/)
+- [Live2D Creator's Forum](https://community.live2d.com/)
+- [Live2D 公式クリエイターズフォーラム (Japanese)](https://creatorsforum.live2d.com/)

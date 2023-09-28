@@ -7,9 +7,9 @@
 		"FadeOutTime": 1.0,
 		"Loop": true,
 		"AreBeziersRestricted": true,
-		"CurveCount": 116,
-		"TotalSegmentCount": 193,
-		"TotalPointCount": 503,
+		"CurveCount": 136,
+		"TotalSegmentCount": 213,
+		"TotalPointCount": 543,
 		"UserDataCount": 0,
 		"TotalUserDataSize": 0
 	},
@@ -542,7 +542,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthA",
+			"Id": "ParamA",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -555,7 +555,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthI",
+			"Id": "ParamI",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -568,7 +568,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthU",
+			"Id": "ParamU",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -581,7 +581,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthE",
+			"Id": "ParamE",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -594,7 +594,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamMouthO",
+			"Id": "ParamO",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -1714,6 +1714,162 @@
 		},
 		{
 			"Target": "Parameter",
+			"Id": "ParamHeartMissOn",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartBackMissOn",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartColorRainbow",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartHealOn",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartBackHealOn",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartColorHeal",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartDrow",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartSize",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartColorLight",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamWandInkColorRainbow",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamWandInkColorHeal",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamWandInk",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
 			"Id": "ParamSmokeOn",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
@@ -1790,7 +1946,128 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamWandInkColorRainbow",
+			"Id": "ParamRabbitElimination",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitAppearance",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitSize",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitDraworder",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitEar",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitDirection",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitLight",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitLightSize",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitX",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitY",
+			"Segments": [
+				0,
+				1,
+				0,
+				5.567,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamRabbitRotate",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamAuraOn",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -1803,7 +2080,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartMissOn",
+			"Id": "ParamAura",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -1816,7 +2093,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartBackMissOn",
+			"Id": "ParamAuraColor1",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -1829,61 +2106,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartColorRainbow",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamWandInkColorHeal",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartHealOn",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartBackHealOn",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHeartColorHeal",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
+			"Id": "ParamAuraColor2",
 			"Segments": [
 				0,
 				0,
@@ -1933,6 +2156,65 @@
 		},
 		{
 			"Target": "Parameter",
+			"Id": "ParamHealLightOn",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamHealLight",
+			"FadeInTime": 1.0,
+			"FadeOutTime": 1.0,
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamStrengthenLightOn",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamStrengthenLight",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamStrengthenLightMove",
+			"Segments": [
+				0,
+				0,
+				0,
+				5.567,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
 			"Id": "ParamMagicPositionX",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
@@ -1959,7 +2241,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamWandInk",
+			"Id": "ParamAllColor1",
 			"FadeInTime": 1.0,
 			"FadeOutTime": 1.0,
 			"Segments": [
@@ -1972,9 +2254,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartDrow",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
+			"Id": "ParamAllColor2",
 			"Segments": [
 				0,
 				0,
@@ -1985,9 +2265,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartSize",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
+			"Id": "ParamSphereOn",
 			"Segments": [
 				0,
 				0,
@@ -1998,9 +2276,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamHeartColorLight",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
+			"Id": "ParamSphereMove",
 			"Segments": [
 				0,
 				0,
@@ -2011,9 +2287,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamAllColor",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
+			"Id": "ParamSphereMultiplyColor",
 			"Segments": [
 				0,
 				0,
@@ -2024,61 +2298,7 @@
 		},
 		{
 			"Target": "Parameter",
-			"Id": "ParamAuraOn",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamAura",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamAuraColor",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHealOn",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
-			"Segments": [
-				0,
-				0,
-				0,
-				5.567,
-				0
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Id": "ParamHealLight",
-			"FadeInTime": 1.0,
-			"FadeOutTime": 1.0,
+			"Id": "ParamSphereScreenColor",
 			"Segments": [
 				0,
 				0,
