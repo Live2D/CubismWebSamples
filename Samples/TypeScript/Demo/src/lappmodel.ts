@@ -39,7 +39,8 @@ import {
 } from '@framework/utils/cubismdebug';
 
 import * as LAppDefine from './lappdefine';
-import { canvas, frameBuffer, gl, LAppDelegate } from './lappdelegate';
+import { frameBuffer, LAppDelegate } from './lappdelegate';
+import { canvas, gl } from './lappglmanager';
 import { LAppPal } from './lapppal';
 import { TextureInfo } from './lapptexturemanager';
 import { LAppWavFileHandler } from './lappwavfilehandler';

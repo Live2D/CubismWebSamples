@@ -12,10 +12,9 @@ import { LAppLive2DManager } from './lapplive2dmanager';
 import { LAppPal } from './lapppal';
 import { LAppTextureManager } from './lapptexturemanager';
 import { LAppView } from './lappview';
+import { canvas, gl } from './lappglmanager';
 
-export let canvas: HTMLCanvasElement = null;
 export let s_instance: LAppDelegate = null;
-export let gl: WebGLRenderingContext = null;
 export let frameBuffer: WebGLFramebuffer = null;
 
 /**
@@ -52,24 +51,6 @@ export class LAppDelegate {
    * APPに必要な物を初期化する。
    */
   public initialize(): boolean {
-    // キャンバスの作成
-    canvas = document.createElement('canvas');
-
-    // glコンテキストを初期化
-    // @ts-ignore
-    gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-
-    if (!gl) {
-      alert('Cannot initialize WebGL. This browser does not support.');
-      gl = null;
-
-      document.body.innerHTML =
-        'This browser does not support the <code>&lt;canvas&gt;</code> element.';
-
-      // gl初期化失敗
-      return false;
-    }
-
     // キャンバスを DOM に追加
     document.body.appendChild(canvas);
 

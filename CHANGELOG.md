@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.1-beta.3] - 2023-11-30
+
+### Added
+
+* Add `LAppGlManager` class. 
+
+### Changed
+
+* Change `LAppDelegate` so that it no longer holds the WebGLContext and moved its role to `LAppGlManager`.
+
+
 ## [5-r.1-beta.2] - 2023-09-28
 
 ### Changed
@@ -210,6 +221,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.1-beta.3]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.2...5-r.1-beta.3
 [5-r.1-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.1...5-r.1-beta.2
 [5-r.1-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.7...5-r.1-beta.1
 [4-r.7]: https://github.com/Live2D/CubismWebSamples/compare/4-r.6.2...4-r.7

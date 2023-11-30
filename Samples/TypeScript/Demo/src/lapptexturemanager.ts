@@ -7,7 +7,7 @@
 
 import { csmVector, iterator } from '@framework/type/csmvector';
 
-import { gl } from './lappdelegate';
+import { gl } from './lappglmanager';
 
 /**
  * テクスチャ管理クラス
