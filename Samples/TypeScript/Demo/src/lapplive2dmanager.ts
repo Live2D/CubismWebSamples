@@ -10,7 +10,7 @@ import { ACubismMotion } from '@framework/motion/acubismmotion';
 import { csmVector } from '@framework/type/csmvector';
 
 import * as LAppDefine from './lappdefine';
-import { canvas } from './lappdelegate';
+import { canvas } from './lappglmanager';
 import { LAppModel } from './lappmodel';
 import { LAppPal } from './lapppal';
 

@@ -91,8 +91,8 @@ Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repositor
 
 ### Node.js
 
-* 20.7.0
-* 18.18.0
+* 21.2.0
+* 20.10.0
 
 
 ## Operation environment
@@ -110,7 +110,7 @@ Please refer to [CHANGELOG.md](CHANGELOG.md) for the changelog of this repositor
 | macOS | Microsoft Edge | 117.0.2045.43 |
 | macOS | Mozilla Firefox | 113.0.1 |
 | macOS | Safari | 16.6.1 |
-| Windows | Google Chrome | 117.0.5938.92 |
+| Windows | Google Chrome | 119.0.6045.160 |
 | Windows | Microsoft Edge | 117.0.2045.43 |
 | Windows | Mozilla Firefox | 113.0 |
 

@@ -7,6 +7,7 @@
 
 import { LAppDelegate } from './lappdelegate';
 import * as LAppDefine from './lappdefine';
+import { LAppGlManager } from './lappglmanager';
 
 /**
  * ブラウザロード後の処理
@@ -14,8 +15,11 @@ import * as LAppDefine from './lappdefine';
 window.addEventListener(
   'load',
   (): void => {
-    // create the application instance
-    if (LAppDelegate.getInstance().initialize() == false) {
+    // Initialize WebGL and create the application instance
+    if (
+      !LAppGlManager.getInstance() ||
+      !LAppDelegate.getInstance().initialize()
+    ) {
       return;
     }
 
