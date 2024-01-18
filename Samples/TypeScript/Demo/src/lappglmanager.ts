@@ -44,7 +44,7 @@ export class LAppGlManager {
 
     // glコンテキストを初期化
     // @ts-ignore
-    gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    gl = canvas.getContext('webgl2');
 
     if (!gl) {
       // gl初期化失敗
