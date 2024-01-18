@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.1-beta.4] - 2024-01-18
+
+### Added
+
+* Add `getPcmDataChannel()` and `getWavSamplingRate()` functions to `LAppWavFileHandler`.
+
+### Changed
+
+* Change return type of `loadWavFile()` to `Promise<boolean>`.
+* Deprecate the use of the Singleton pattern in `LAppWavFileHandler`.
+  * This change marks the following functions and variables as deprecated.
+    * `s_instance`
+    * `getInstance()`
+    * `releaseInstance()`
+* Change target to `es6`.
+* Change to use `webgl2`.
+
+### Fixed
+
+* Fix to check for error when reading json.
+
+### Removed
+
+* Remove use of `polyfill`, `watwg-fetch` and `experimental-webgl`.
+
+
 ## [5-r.1-beta.3] - 2023-11-30
 
 ### Added
@@ -221,6 +247,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.1-beta.4]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.3...5-r.1-beta.4
 [5-r.1-beta.3]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.2...5-r.1-beta.3
 [5-r.1-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.1...5-r.1-beta.2
 [5-r.1-beta.1]: https://github.com/Live2D/CubismWebSamples/compare/4-r.7...5-r.1-beta.1

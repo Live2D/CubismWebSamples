@@ -11,8 +11,8 @@ This is a sample implementation of an application implemented with TypeScript.
 
 | Package | Version |
 | --- | --- |
-| TypeScript | 5.2.2 |
-| Webpack | 5.88.2 |
+| TypeScript | 5.3.3 |
+| Webpack | 5.89.0 |
 
 For other packages, check the `package.json` for each project.
 For other development environments and operation environments, see [README.md](/README.md) in the top directory.
