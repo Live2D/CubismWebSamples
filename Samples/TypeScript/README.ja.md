@@ -11,8 +11,8 @@ TypeScript で実装したアプリケーションのサンプル実装です。
 
 | パッケージ | バージョン |
 | --- | --- |
-| TypeScript | 5.3.3 |
-| Webpack | 5.89.0 |
+| TypeScript | 5.4.2 |
+| Vite | 5.1.6 |
 
 その他のパッケージに関しては、各プロジェクトの `package.json` を確認してください。
 また、その他の開発環境・動作確認環境はトップディレクトリにある [README.md](/README.ja.md) を参照してください。
@@ -32,9 +32,10 @@ Visual Studio Code 上で終了する場合は、
 ### `npm: build`
 
 `dist` ディレクトリに、TypeScript のビルド成果物を出力します。
-Webpack を用いて1つにまとめられた JavaScript ファイルが出力されます。
+Vite を用いて1つにまとめられた JavaScript ファイルが出力されます。
+動作に必要なファイルもコピーされます。
 
-`tsconfig.json` 及び `webpack.config.js` を編集することで設定内容を変更できます。
+`tsconfig.json` 及び `vite.config.mts` を編集することで設定内容を変更できます。
 
 ### `npm: build:prod`
 

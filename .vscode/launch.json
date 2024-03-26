@@ -5,14 +5,8 @@
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome",
-      "url": "http://localhost:5000/Samples/TypeScript/Demo/",
-      "webRoot": "${workspaceFolder}",
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "webpack:///./*": "${workspaceFolder}/Samples/TypeScript/Demo/*",
-        "webpack:///${workspaceFolder}/Framework/*": "${workspaceFolder}/Framework/*",
-      },
-      "trace": true
+      "url": "http://localhost:5000",
+      "webRoot": "${workspaceFolder}/Samples/TypeScript/Demo",
     }
   ]
 }

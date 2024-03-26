@@ -83,35 +83,39 @@ NOTE: デバック用の設定は、`.vscode/launch.json` に記述していま�
 
 ## 変更履歴
 
-当リポジトリの変更履歴については [CHANGELOG.md](CHANGELOG.md) を参照ください。
+Samples : [CHANGELOG.md](CHANGELOG.md)
+
+Framework : [CHANGELOG.md](Framework/CHANGELOG.md)
+
+Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 
 ## 開発環境
 
 ### Node.js
 
-* 21.5.0
-* 20.11.0
+* 21.7.1
+* 20.11.1
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 120.0.6099.210 |
-| Android | Microsoft Edge | 120.0.2210.115 |
-| Android | Mozilla Firefox | 121.1.0 |
-| iOS / iPadOS | Google Chrome | 120.0.6099.119 |
-| iOS / iPadOS | Microsoft Edge | 120.0.2210.126 |
-| iOS / iPadOS | Mozilla Firefox | 121.2 |
-| iOS / iPadOS | Safari | 17.2 |
-| macOS | Google Chrome | 120.0.6099.216 |
-| macOS | Microsoft Edge | 120.0.2210.121 |
-| macOS | Mozilla Firefox | 121.0.1 |
-| macOS | Safari | 17.2.1 |
-| Windows | Google Chrome | 120.0.6099.217 |
-| Windows | Microsoft Edge | 120.0.2210.121 |
-| Windows | Mozilla Firefox | 121.0.1 |
+| Android | Google Chrome | 122.0.6261.106 |
+| Android | Microsoft Edge | 122.0.2365.86 |
+| Android | Mozilla Firefox | 123.1.0 |
+| iOS / iPadOS | Google Chrome | 122.0.6261.89 |
+| iOS / iPadOS | Microsoft Edge | 122.0.2365.86 |
+| iOS / iPadOS | Mozilla Firefox | 123.4 |
+| iOS / iPadOS | Safari | 17.4 |
+| macOS | Google Chrome | 122.0.6261.129 |
+| macOS | Microsoft Edge | 122.0.2365.80 |
+| macOS | Mozilla Firefox | 123.0.1 |
+| macOS | Safari | 17.4 |
+| Windows | Google Chrome | 122.0.6261.129 |
+| Windows | Microsoft Edge | 122.0.2365.80 |
+| Windows | Mozilla Firefox | 123.0.1 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
 
