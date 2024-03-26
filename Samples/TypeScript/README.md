@@ -11,8 +11,8 @@ This is a sample implementation of an application implemented with TypeScript.
 
 | Package | Version |
 | --- | --- |
-| TypeScript | 5.3.3 |
-| Webpack | 5.89.0 |
+| TypeScript | 5.4.2 |
+| Vite | 5.1.6 |
 
 For other packages, check the `package.json` for each project.
 For other development environments and operation environments, see [README.md](/README.md) in the top directory.
@@ -31,9 +31,10 @@ To terminate in Visual Studio Code, type `>Tasks: Terminate Task` and select the
 ### `npm: build`
 
 Outputs a TypeScript build deliverable to the `dist` directory.
-The output is a JavaScript file that has been bundled into one using Webpack.
+The output is a JavaScript file that has been bundled into one using Vite.
+When you execute this command, it will also copy the necessary files for operation.
 
-You can change the settings by editing `tsconfig.json` and `webpack.config.js`.
+You can change the settings by editing `tsconfig.json` and `vite.config.mts`.
 
 ### `npm: build:prod`
 
