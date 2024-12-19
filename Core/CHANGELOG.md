@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## 2024-12-19
+
+### Removed
+
+* [Native] Remove Visual Studio 2013 (MSVC 120) static library.
+
+
+## 2024-11-07
+
+### Added
+
+* [Native] Add experimental support `arm64` library for linux.
+
+### Removed
+
+* [Unity,Native,Java] Remove Android ARM v7 library.
+
+
+## 2024-04-04
+
+### Added
+
+* [Unity] Add library(.so) for HarmonyOS build.
+
+
 ## 2024-03-26
 
 ### Remove

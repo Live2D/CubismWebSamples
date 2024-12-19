@@ -60,7 +60,7 @@ Coreディレクトリのファイルをコピーしてください。
 1. タスク一覧から　`npm: install - Samples/TypeScript/Demo` を選択して依存パッケージのダウンロードを行います
 1. タスク一覧から `npm: build - Samples/TypeScript/Demo` を選択してサンプルデモのビルドを行います
 1. タスク一覧から `npm: serve - Samples/TypeScript/Demo` を選択して動作確認用の簡易サーバを起動します
-1. ブラウザの URL 欄に `http://localhost:5000/Samples/TypeScript/Demo/` と入力してアクセスします
+1. ブラウザの URL 欄に `http://localhost:5000` と入力してアクセスします
 1. コマンドパレットから `>Tasks: Terminate Task` を入力して `npm: serve` を選択すると簡易サーバが終了します
 
 その他のタスクに関してはサンプルプロジェクトの [README.md](Samples/TypeScript/README.ja.md) を参照ください。
@@ -94,28 +94,28 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 21.7.1
-* 20.11.1
+* 23.4.0
+* 22.12.0
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 122.0.6261.106 |
-| Android | Microsoft Edge | 122.0.2365.86 |
-| Android | Mozilla Firefox | 123.1.0 |
-| iOS / iPadOS | Google Chrome | 122.0.6261.89 |
-| iOS / iPadOS | Microsoft Edge | 122.0.2365.86 |
-| iOS / iPadOS | Mozilla Firefox | 123.4 |
-| iOS / iPadOS | Safari | 17.4 |
-| macOS | Google Chrome | 122.0.6261.129 |
-| macOS | Microsoft Edge | 122.0.2365.80 |
-| macOS | Mozilla Firefox | 123.0.1 |
-| macOS | Safari | 17.4 |
-| Windows | Google Chrome | 122.0.6261.129 |
-| Windows | Microsoft Edge | 122.0.2365.80 |
-| Windows | Mozilla Firefox | 123.0.1 |
+| Android | Google Chrome | 131.0.6778.135 |
+| Android | Microsoft Edge | 131.0.2903.87 |
+| Android | Mozilla Firefox | 133.0.3 |
+| iOS / iPadOS | Google Chrome | 131.0.6778.134 |
+| iOS / iPadOS | Microsoft Edge | 131.0.2903.92 |
+| iOS / iPadOS | Mozilla Firefox | 133.3 |
+| iOS / iPadOS | Safari | 18.2 |
+| macOS | Google Chrome | 131.0.6778.140 |
+| macOS | Microsoft Edge | 131.0.2903.99 |
+| macOS | Mozilla Firefox | 133.0.3 |
+| macOS | Safari | 18.2 |
+| Windows | Google Chrome | 131.0.6778.140 |
+| Windows | Microsoft Edge | 131.0.2903.99 |
+| Windows | Mozilla Firefox | 133.0.3 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
 

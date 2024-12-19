@@ -6,13 +6,20 @@
   <title>TypeScript HTML App</title>
   <style>
     html, body {
-        margin: 0;
-        overflow: hidden;
+      overflow: hidden;
+      margin: 0;
     }
-    canvas {
-        width: 100vw;
-        height: 100vh;
-        display: block;
+    html {
+      overscroll-behavior-x: none;
+      touch-action: none;
+    }
+    body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    body > canvas:only-child {
+      width: 100vw;
+      height: 100vh;
     }
   </style>
   <!-- Live2DCubismCore script -->

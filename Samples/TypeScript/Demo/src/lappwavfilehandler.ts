@@ -296,7 +296,7 @@ export class LAppWavFileHandler {
       channelCount < this._wavFileInfo._numberOfChannels;
       channelCount++
     ) {
-      delete this._pcmData[channelCount];
+      this._pcmData[channelCount] = null;
     }
     delete this._pcmData;
     this._pcmData = null;
@@ -317,7 +317,7 @@ export class LAppWavFileHandler {
   _sampleOffset: number;
   _wavFileInfo: WavFileInfo;
   _byteReader: ByteReader;
-  _loadFiletoBytes = (arrayBuffer: ArrayBuffer, length: number): void => {
+  loadFiletoBytes = (arrayBuffer: ArrayBuffer, length: number): void => {
     this._byteReader._fileByte = arrayBuffer;
     this._byteReader._fileDataView = new DataView(this._byteReader._fileByte);
     this._byteReader._fileSize = length;

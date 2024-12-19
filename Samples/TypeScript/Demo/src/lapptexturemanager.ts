@@ -6,8 +6,7 @@
  */
 
 import { csmVector, iterator } from '@framework/type/csmvector';
-
-import { gl } from './lappglmanager';
+import { LAppGlManager } from './lappglmanager';
 
 /**
  * テクスチャ管理クラス
@@ -17,7 +16,7 @@ export class LAppTextureManager {
   /**
    * コンストラクタ
    */
-  constructor() {
+  public constructor() {
     this._textures = new csmVector<TextureInfo>();
   }
 
@@ -30,7 +29,7 @@ export class LAppTextureManager {
       ite.notEqual(this._textures.end());
       ite.preIncrement()
     ) {
-      gl.deleteTexture(ite.ptr().id);
+      this._glManager.getGl().deleteTexture(ite.ptr().id);
     }
     this._textures = null;
   }
@@ -77,39 +76,60 @@ export class LAppTextureManager {
       'load',
       (): void => {
         // テクスチャオブジェクトの作成
-        const tex: WebGLTexture = gl.createTexture();
+        const tex: WebGLTexture = this._glManager.getGl().createTexture();
 
         // テクスチャを選択
-        gl.bindTexture(gl.TEXTURE_2D, tex);
+        this._glManager
+          .getGl()
+          .bindTexture(this._glManager.getGl().TEXTURE_2D, tex);
 
         // テクスチャにピクセルを書き込む
-        gl.texParameteri(
-          gl.TEXTURE_2D,
-          gl.TEXTURE_MIN_FILTER,
-          gl.LINEAR_MIPMAP_LINEAR
-        );
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        this._glManager
+          .getGl()
+          .texParameteri(
+            this._glManager.getGl().TEXTURE_2D,
+            this._glManager.getGl().TEXTURE_MIN_FILTER,
+            this._glManager.getGl().LINEAR_MIPMAP_LINEAR
+          );
+        this._glManager
+          .getGl()
+          .texParameteri(
+            this._glManager.getGl().TEXTURE_2D,
+            this._glManager.getGl().TEXTURE_MAG_FILTER,
+            this._glManager.getGl().LINEAR
+          );
 
         // Premult処理を行わせる
         if (usePremultiply) {
-          gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+          this._glManager
+            .getGl()
+            .pixelStorei(
+              this._glManager.getGl().UNPACK_PREMULTIPLY_ALPHA_WEBGL,
+              1
+            );
         }
 
         // テクスチャにピクセルを書き込む
-        gl.texImage2D(
-          gl.TEXTURE_2D,
-          0,
-          gl.RGBA,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          img
-        );
+        this._glManager
+          .getGl()
+          .texImage2D(
+            this._glManager.getGl().TEXTURE_2D,
+            0,
+            this._glManager.getGl().RGBA,
+            this._glManager.getGl().RGBA,
+            this._glManager.getGl().UNSIGNED_BYTE,
+            img
+          );
 
         // ミップマップを生成
-        gl.generateMipmap(gl.TEXTURE_2D);
+        this._glManager
+          .getGl()
+          .generateMipmap(this._glManager.getGl().TEXTURE_2D);
 
         // テクスチャをバインド
-        gl.bindTexture(gl.TEXTURE_2D, null);
+        this._glManager
+          .getGl()
+          .bindTexture(this._glManager.getGl().TEXTURE_2D, null);
 
         const textureInfo: TextureInfo = new TextureInfo();
         if (textureInfo != null) {
@@ -119,7 +139,9 @@ export class LAppTextureManager {
           textureInfo.id = tex;
           textureInfo.img = img;
           textureInfo.usePremultply = usePremultiply;
-          this._textures.pushBack(textureInfo);
+          if (this._textures != null) {
+            this._textures.pushBack(textureInfo);
+          }
         }
 
         callback(textureInfo);
@@ -136,6 +158,7 @@ export class LAppTextureManager {
    */
   public releaseTextures(): void {
     for (let i = 0; i < this._textures.getSize(); i++) {
+      this._glManager.getGl().deleteTexture(this._textures.at(i).id);
       this._textures.set(i, null);
     }
 
@@ -154,6 +177,7 @@ export class LAppTextureManager {
         continue;
       }
 
+      this._glManager.getGl().deleteTexture(this._textures.at(i).id);
       this._textures.set(i, null);
       this._textures.remove(i);
       break;
@@ -169,6 +193,7 @@ export class LAppTextureManager {
   public releaseTextureByFilePath(fileName: string): void {
     for (let i = 0; i < this._textures.getSize(); i++) {
       if (this._textures.at(i).fileName == fileName) {
+        this._glManager.getGl().deleteTexture(this._textures.at(i).id);
         this._textures.set(i, null);
         this._textures.remove(i);
         break;
@@ -176,7 +201,16 @@ export class LAppTextureManager {
     }
   }
 
+  /**
+   * setter
+   * @param glManager
+   */
+  public setGlManager(glManager: LAppGlManager): void {
+    this._glManager = glManager;
+  }
+
   _textures: csmVector<TextureInfo>;
+  private _glManager: LAppGlManager;
 }
 
 /**

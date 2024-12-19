@@ -5,7 +5,7 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { canvas, gl } from './lappglmanager';
+import { LAppSubdelegate } from './lappsubdelegate';
 
 /**
  * スプライトを実装するクラス
@@ -21,7 +21,7 @@ export class LAppSprite {
    * @param height       高さ
    * @param textureId    テクスチャ
    */
-  constructor(
+  public constructor(
     x: number,
     y: number,
     width: number,
@@ -55,6 +55,8 @@ export class LAppSprite {
   public release(): void {
     this._rect = null;
 
+    const gl = this._subdelegate.getGlManager().getGl();
+
     gl.deleteTexture(this._texture);
     this._texture = null;
 
@@ -86,6 +88,8 @@ export class LAppSprite {
       return;
     }
 
+    const gl = this._subdelegate.getGlManager().getGl();
+
     // 初回描画時
     if (this._firstDraw) {
       // 何番目のattribute変数か取得
@@ -113,8 +117,8 @@ export class LAppSprite {
 
       // 頂点バッファ、座標初期化
       {
-        const maxWidth = canvas.width;
-        const maxHeight = canvas.height;
+        const maxWidth = this._subdelegate.getCanvas().width;
+        const maxHeight = this._subdelegate.getCanvas().height;
 
         // 頂点データ
         this._positionArray = new Float32Array([
@@ -179,7 +183,7 @@ export class LAppSprite {
    */
   public isHit(pointX: number, pointY: number): boolean {
     // 画面サイズを取得する。
-    const { height } = canvas;
+    const { height } = this._subdelegate.getCanvas();
 
     // Y座標は変換する必要あり
     const y = height - pointY;
@@ -190,6 +194,14 @@ export class LAppSprite {
       y <= this._rect.up &&
       y >= this._rect.down
     );
+  }
+
+  /**
+   * setter
+   * @param subdelegate
+   */
+  public setSubdelegate(subdelegate: LAppSubdelegate): void {
+    this._subdelegate = subdelegate;
   }
 
   _texture: WebGLTexture; // テクスチャ
@@ -207,6 +219,8 @@ export class LAppSprite {
   _indexArray: Uint16Array;
 
   _firstDraw: boolean;
+
+  private _subdelegate: LAppSubdelegate;
 }
 
 export class Rect {

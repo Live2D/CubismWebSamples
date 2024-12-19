@@ -19,6 +19,7 @@ import { CubismMatrix44 } from '@framework/math/cubismmatrix44';
 import { CubismUserModel } from '@framework/model/cubismusermodel';
 import {
   ACubismMotion,
+  BeganMotionCallback,
   FinishedMotionCallback
 } from '@framework/motion/acubismmotion';
 import { CubismMotion } from '@framework/motion/cubismmotion';
@@ -37,12 +38,12 @@ import {
 } from '@framework/utils/cubismdebug';
 
 import * as LAppDefine from './lappdefine';
-import { frameBuffer, LAppDelegate } from './lappdelegate';
-import { canvas, gl } from './lappglmanager';
 import { LAppPal } from './lapppal';
 import { TextureInfo } from './lapptexturemanager';
 import { LAppWavFileHandler } from './lappwavfilehandler';
 import { CubismMoc } from '@framework/model/cubismmoc';
+import { LAppDelegate } from './lappdelegate';
+import { LAppSubdelegate } from './lappsubdelegate';
 
 enum LoadStep {
   LoadAssets,
@@ -427,7 +428,7 @@ export class LAppModel extends CubismUserModel {
 
         this.createRenderer();
         this.setupTextures();
-        this.getRenderer().startUp(gl);
+        this.getRenderer().startUp(this._subdelegate.getGlManager().getGl());
       }
     };
   }
@@ -472,7 +473,7 @@ export class LAppModel extends CubismUserModel {
         };
 
         // 読み込み
-        LAppDelegate.getInstance()
+        this._subdelegate
           .getTextureManager()
           .createTextureFromPngFile(texturePath, usePremultiply, onLoad);
         this.getRenderer().setIsPremultipliedAlpha(usePremultiply);
@@ -597,7 +598,8 @@ export class LAppModel extends CubismUserModel {
     group: string,
     no: number,
     priority: number,
-    onFinishedMotionHandler?: FinishedMotionCallback
+    onFinishedMotionHandler?: FinishedMotionCallback,
+    onBeganMotionHandler?: BeganMotionCallback
   ): CubismMotionQueueEntryHandle {
     if (priority == LAppDefine.PriorityForce) {
       this._motionManager.setReservePriority(priority);
@@ -632,31 +634,22 @@ export class LAppModel extends CubismUserModel {
             arrayBuffer,
             arrayBuffer.byteLength,
             null,
-            onFinishedMotionHandler
+            onFinishedMotionHandler,
+            onBeganMotionHandler,
+            this._modelSetting,
+            group,
+            no
           );
 
           if (motion == null) {
             return;
           }
 
-          let fadeTime: number = this._modelSetting.getMotionFadeInTimeValue(
-            group,
-            no
-          );
-
-          if (fadeTime >= 0.0) {
-            motion.setFadeInTime(fadeTime);
-          }
-
-          fadeTime = this._modelSetting.getMotionFadeOutTimeValue(group, no);
-          if (fadeTime >= 0.0) {
-            motion.setFadeOutTime(fadeTime);
-          }
-
           motion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
           autoDelete = true; // 終了時にメモリから削除
         });
     } else {
+      motion.setBeganMotionHandler(onBeganMotionHandler);
       motion.setFinishedMotionHandler(onFinishedMotionHandler);
     }
 
@@ -688,7 +681,8 @@ export class LAppModel extends CubismUserModel {
   public startRandomMotion(
     group: string,
     priority: number,
-    onFinishedMotionHandler?: FinishedMotionCallback
+    onFinishedMotionHandler?: FinishedMotionCallback,
+    onBeganMotionHandler?: BeganMotionCallback
   ): CubismMotionQueueEntryHandle {
     if (this._modelSetting.getMotionCount(group) == 0) {
       return InvalidMotionQueueEntryHandleValue;
@@ -698,7 +692,13 @@ export class LAppModel extends CubismUserModel {
       Math.random() * this._modelSetting.getMotionCount(group)
     );
 
-    return this.startMotion(group, no, priority, onFinishedMotionHandler);
+    return this.startMotion(
+      group,
+      no,
+      priority,
+      onFinishedMotionHandler,
+      onBeganMotionHandler
+    );
   }
 
   /**
@@ -714,11 +714,7 @@ export class LAppModel extends CubismUserModel {
     }
 
     if (motion != null) {
-      this._expressionManager.startMotionPriority(
-        motion,
-        false,
-        LAppDefine.PriorityForce
-      );
+      this._expressionManager.startMotion(motion, false);
     } else {
       if (this._debugMode) {
         LAppPal.printMessage(`[APP]expression[${expressionId}] is null`);
@@ -811,22 +807,15 @@ export class LAppModel extends CubismUserModel {
           const tmpMotion: CubismMotion = this.loadMotion(
             arrayBuffer,
             arrayBuffer.byteLength,
-            name
+            name,
+            null,
+            null,
+            this._modelSetting,
+            group,
+            i
           );
 
           if (tmpMotion != null) {
-            let fadeTime = this._modelSetting.getMotionFadeInTimeValue(
-              group,
-              i
-            );
-            if (fadeTime >= 0.0) {
-              tmpMotion.setFadeInTime(fadeTime);
-            }
-
-            fadeTime = this._modelSetting.getMotionFadeOutTimeValue(group, i);
-            if (fadeTime >= 0.0) {
-              tmpMotion.setFadeOutTime(fadeTime);
-            }
             tmpMotion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
 
             if (this._motions.getValue(name) != null) {
@@ -847,7 +836,9 @@ export class LAppModel extends CubismUserModel {
 
               this.createRenderer();
               this.setupTextures();
-              this.getRenderer().startUp(gl);
+              this.getRenderer().startUp(
+                this._subdelegate.getGlManager().getGl()
+              );
             }
           } else {
             // loadMotionできなかった場合はモーションの総数がずれるので1つ減らす
@@ -878,9 +869,13 @@ export class LAppModel extends CubismUserModel {
     if (this._model == null) return;
 
     // キャンバスサイズを渡す
+    const canvas = this._subdelegate.getCanvas();
     const viewport: number[] = [0, 0, canvas.width, canvas.height];
 
-    this.getRenderer().setRenderState(frameBuffer, viewport);
+    this.getRenderer().setRenderState(
+      this._subdelegate.getFrameBuffer(),
+      viewport
+    );
     this.getRenderer().drawModel();
   }
 
@@ -924,6 +919,10 @@ export class LAppModel extends CubismUserModel {
     } else {
       LAppPal.printMessage('Model data does not exist.');
     }
+  }
+
+  public setSubdelegate(subdelegate: LAppSubdelegate): void {
+    this._subdelegate = subdelegate;
   }
 
   /**
@@ -976,6 +975,8 @@ export class LAppModel extends CubismUserModel {
     this._wavFileHandler = new LAppWavFileHandler();
     this._consistency = false;
   }
+
+  private _subdelegate: LAppSubdelegate;
 
   _modelSetting: ICubismModelSetting; // モデルセッティング情報
   _modelHomeDir: string; // モデルセッティングが置かれたディレクトリ

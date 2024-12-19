@@ -5,17 +5,14 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
+import { csmVector } from '@framework/type/csmvector';
 import { CubismFramework, Option } from '@framework/live2dcubismframework';
-
 import * as LAppDefine from './lappdefine';
-import { LAppLive2DManager } from './lapplive2dmanager';
 import { LAppPal } from './lapppal';
-import { LAppTextureManager } from './lapptexturemanager';
-import { LAppView } from './lappview';
-import { canvas, gl } from './lappglmanager';
+import { LAppSubdelegate } from './lappsubdelegate';
+import { CubismLogError } from '@framework/utils/cubismdebug';
 
 export let s_instance: LAppDelegate = null;
-export let frameBuffer: WebGLFramebuffer = null;
 
 /**
  * アプリケーションクラス。
@@ -48,75 +45,64 @@ export class LAppDelegate {
   }
 
   /**
-   * APPに必要な物を初期化する。
+   * ポインタがアクティブになるときに呼ばれる。
    */
-  public initialize(): boolean {
-    // キャンバスを DOM に追加
-    document.body.appendChild(canvas);
-
-    if (LAppDefine.CanvasSize === 'auto') {
-      this._resizeCanvas();
-    } else {
-      canvas.width = LAppDefine.CanvasSize.width;
-      canvas.height = LAppDefine.CanvasSize.height;
+  private onPointerBegan(e: PointerEvent): void {
+    for (
+      let ite = this._subdelegates.begin();
+      ite.notEqual(this._subdelegates.end());
+      ite.preIncrement()
+    ) {
+      ite.ptr().onPointBegan(e.pageX, e.pageY);
     }
+  }
 
-    if (!frameBuffer) {
-      frameBuffer = gl.getParameter(gl.FRAMEBUFFER_BINDING);
+  /**
+   * ポインタが動いたら呼ばれる。
+   */
+  private onPointerMoved(e: PointerEvent): void {
+    for (
+      let ite = this._subdelegates.begin();
+      ite.notEqual(this._subdelegates.end());
+      ite.preIncrement()
+    ) {
+      ite.ptr().onPointMoved(e.pageX, e.pageY);
     }
+  }
 
-    // 透過設定
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-    const supportTouch: boolean = 'ontouchend' in canvas;
-
-    if (supportTouch) {
-      // タッチ関連コールバック関数登録
-      canvas.addEventListener('touchstart', onTouchBegan, { passive: true });
-      canvas.addEventListener('touchmove', onTouchMoved, { passive: true });
-      canvas.addEventListener('touchend', onTouchEnded, { passive: true });
-      canvas.addEventListener('touchcancel', onTouchCancel, { passive: true });
-    } else {
-      // マウス関連コールバック関数登録
-      canvas.addEventListener('mousedown', onClickBegan, { passive: true });
-      canvas.addEventListener('mousemove', onMouseMoved, { passive: true });
-      canvas.addEventListener('mouseup', onClickEnded, { passive: true });
+  /**
+   * ポインタがアクティブでなくなったときに呼ばれる。
+   */
+  private onPointerEnded(e: PointerEvent): void {
+    for (
+      let ite = this._subdelegates.begin();
+      ite.notEqual(this._subdelegates.end());
+      ite.preIncrement()
+    ) {
+      ite.ptr().onPointEnded(e.pageX, e.pageY);
     }
+  }
 
-    // AppViewの初期化
-    this._view.initialize();
-
-    // Cubism SDKの初期化
-    this.initializeCubism();
-
-    return true;
+  /**
+   * ポインタがキャンセルされると呼ばれる。
+   */
+  private onPointerCancel(e: PointerEvent): void {
+    for (
+      let ite = this._subdelegates.begin();
+      ite.notEqual(this._subdelegates.end());
+      ite.preIncrement()
+    ) {
+      ite.ptr().onTouchCancel(e.pageX, e.pageY);
+    }
   }
 
   /**
    * Resize canvas and re-initialize view.
    */
   public onResize(): void {
-    this._resizeCanvas();
-    this._view.initialize();
-    this._view.initializeSprite();
-  }
-
-  /**
-   * 解放する。
-   */
-  public release(): void {
-    this._textureManager.release();
-    this._textureManager = null;
-
-    this._view.release();
-    this._view = null;
-
-    // リソースを解放
-    LAppLive2DManager.releaseInstance();
-
-    // Cubism SDKの解放
-    CubismFramework.dispose();
+    for (let i = 0; i < this._subdelegates.getSize(); i++) {
+      this._subdelegates.at(i).onResize();
+    }
   }
 
   /**
@@ -133,26 +119,9 @@ export class LAppDelegate {
       // 時間更新
       LAppPal.updateTime();
 
-      // 画面の初期化
-      gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
-      // 深度テストを有効化
-      gl.enable(gl.DEPTH_TEST);
-
-      // 近くにある物体は、遠くにある物体を覆い隠す
-      gl.depthFunc(gl.LEQUAL);
-
-      // カラーバッファや深度バッファをクリアする
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-      gl.clearDepth(1.0);
-
-      // 透過設定
-      gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-      // 描画更新
-      this._view.render();
+      for (let i = 0; i < this._subdelegates.getSize(); i++) {
+        this._subdelegates.at(i).update();
+      }
 
       // ループのために再帰呼び出し
       requestAnimationFrame(loop);
@@ -161,96 +130,91 @@ export class LAppDelegate {
   }
 
   /**
-   * シェーダーを登録する。
+   * 解放する。
    */
-  public createShader(): WebGLProgram {
-    // バーテックスシェーダーのコンパイル
-    const vertexShaderId = gl.createShader(gl.VERTEX_SHADER);
+  private release(): void {
+    this.releaseEventListener();
+    this.releaseSubdelegates();
 
-    if (vertexShaderId == null) {
-      LAppPal.printMessage('failed to create vertexShader');
-      return null;
-    }
+    // Cubism SDKの解放
+    CubismFramework.dispose();
 
-    const vertexShader: string =
-      'precision mediump float;' +
-      'attribute vec3 position;' +
-      'attribute vec2 uv;' +
-      'varying vec2 vuv;' +
-      'void main(void)' +
-      '{' +
-      '   gl_Position = vec4(position, 1.0);' +
-      '   vuv = uv;' +
-      '}';
-
-    gl.shaderSource(vertexShaderId, vertexShader);
-    gl.compileShader(vertexShaderId);
-
-    // フラグメントシェーダのコンパイル
-    const fragmentShaderId = gl.createShader(gl.FRAGMENT_SHADER);
-
-    if (fragmentShaderId == null) {
-      LAppPal.printMessage('failed to create fragmentShader');
-      return null;
-    }
-
-    const fragmentShader: string =
-      'precision mediump float;' +
-      'varying vec2 vuv;' +
-      'uniform sampler2D texture;' +
-      'void main(void)' +
-      '{' +
-      '   gl_FragColor = texture2D(texture, vuv);' +
-      '}';
-
-    gl.shaderSource(fragmentShaderId, fragmentShader);
-    gl.compileShader(fragmentShaderId);
-
-    // プログラムオブジェクトの作成
-    const programId = gl.createProgram();
-    gl.attachShader(programId, vertexShaderId);
-    gl.attachShader(programId, fragmentShaderId);
-
-    gl.deleteShader(vertexShaderId);
-    gl.deleteShader(fragmentShaderId);
-
-    // リンク
-    gl.linkProgram(programId);
-
-    gl.useProgram(programId);
-
-    return programId;
+    this._cubismOption = null;
   }
 
   /**
-   * View情報を取得する。
+   * イベントリスナーを解除する。
    */
-  public getView(): LAppView {
-    return this._view;
-  }
-
-  public getTextureManager(): LAppTextureManager {
-    return this._textureManager;
+  private releaseEventListener(): void {
+    document.removeEventListener('pointerup', this.pointBeganEventListener);
+    this.pointBeganEventListener = null;
+    document.removeEventListener('pointermove', this.pointMovedEventListener);
+    this.pointMovedEventListener = null;
+    document.removeEventListener('pointerdown', this.pointEndedEventListener);
+    this.pointEndedEventListener = null;
+    document.removeEventListener('pointerdown', this.pointCancelEventListener);
+    this.pointCancelEventListener = null;
   }
 
   /**
-   * コンストラクタ
+   * Subdelegate を解放する
    */
-  constructor() {
-    this._captured = false;
-    this._mouseX = 0.0;
-    this._mouseY = 0.0;
-    this._isEnd = false;
+  private releaseSubdelegates(): void {
+    for (
+      let ite = this._subdelegates.begin();
+      ite.notEqual(this._subdelegates.end());
+      ite.preIncrement()
+    ) {
+      ite.ptr().release();
+    }
 
-    this._cubismOption = new Option();
-    this._view = new LAppView();
-    this._textureManager = new LAppTextureManager();
+    this._subdelegates.clear();
+    this._subdelegates = null;
+  }
+
+  /**
+   * APPに必要な物を初期化する。
+   */
+  public initialize(): boolean {
+    // Cubism SDKの初期化
+    this.initializeCubism();
+
+    this.initializeSubdelegates();
+    this.initializeEventListener();
+
+    return true;
+  }
+
+  /**
+   * イベントリスナーを設定する。
+   */
+  private initializeEventListener(): void {
+    this.pointBeganEventListener = this.onPointerBegan.bind(this);
+    this.pointMovedEventListener = this.onPointerMoved.bind(this);
+    this.pointEndedEventListener = this.onPointerEnded.bind(this);
+    this.pointCancelEventListener = this.onPointerCancel.bind(this);
+
+    // ポインタ関連コールバック関数登録
+    document.addEventListener('pointerdown', this.pointBeganEventListener, {
+      passive: true
+    });
+    document.addEventListener('pointermove', this.pointMovedEventListener, {
+      passive: true
+    });
+    document.addEventListener('pointerup', this.pointEndedEventListener, {
+      passive: true
+    });
+    document.addEventListener('pointercancel', this.pointCancelEventListener, {
+      passive: true
+    });
   }
 
   /**
    * Cubism SDKの初期化
    */
-  public initializeCubism(): void {
+  private initializeCubism(): void {
+    LAppPal.updateTime();
+
     // setup cubism
     this._cubismOption.logFunction = LAppPal.printMessage;
     this._cubismOption.loggingLevel = LAppDefine.CubismLoggingLevel;
@@ -258,158 +222,91 @@ export class LAppDelegate {
 
     // initialize cubism
     CubismFramework.initialize();
-
-    // load model
-    LAppLive2DManager.getInstance();
-
-    LAppPal.updateTime();
-
-    this._view.initializeSprite();
   }
 
   /**
-   * Resize the canvas to fill the screen.
+   * Canvasを生成配置、Subdelegateを初期化する
    */
-  private _resizeCanvas(): void {
-    canvas.width = canvas.clientWidth * window.devicePixelRatio;
-    canvas.height = canvas.clientHeight * window.devicePixelRatio;
-    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+  private initializeSubdelegates(): void {
+    let width: number = 100;
+    let height: number = 100;
+    if (LAppDefine.CanvasNum > 3) {
+      const widthunit: number = Math.ceil(Math.sqrt(LAppDefine.CanvasNum));
+      const heightUnit = Math.ceil(LAppDefine.CanvasNum / widthunit);
+      width = 100.0 / widthunit;
+      height = 100.0 / heightUnit;
+    } else {
+      width = 100.0 / LAppDefine.CanvasNum;
+    }
+
+    this._canvases.prepareCapacity(LAppDefine.CanvasNum);
+    this._subdelegates.prepareCapacity(LAppDefine.CanvasNum);
+    for (let i = 0; i < LAppDefine.CanvasNum; i++) {
+      const canvas = document.createElement('canvas');
+      this._canvases.pushBack(canvas);
+      canvas.style.width = `${width}vw`;
+      canvas.style.height = `${height}vh`;
+
+      // キャンバスを DOM に追加
+      document.body.appendChild(canvas);
+    }
+
+    for (let i = 0; i < this._canvases.getSize(); i++) {
+      const subdelegate = new LAppSubdelegate();
+      subdelegate.initialize(this._canvases.at(i));
+      this._subdelegates.pushBack(subdelegate);
+    }
+
+    for (let i = 0; i < LAppDefine.CanvasNum; i++) {
+      if (this._subdelegates.at(i).isContextLost()) {
+        CubismLogError(
+          `The context for Canvas at index ${i} was lost, possibly because the acquisition limit for WebGLRenderingContext was reached.`
+        );
+      }
+    }
   }
 
-  _cubismOption: Option; // Cubism SDK Option
-  _view: LAppView; // View情報
-  _captured: boolean; // クリックしているか
-  _mouseX: number; // マウスX座標
-  _mouseY: number; // マウスY座標
-  _isEnd: boolean; // APP終了しているか
-  _textureManager: LAppTextureManager; // テクスチャマネージャー
-}
-
-/**
- * クリックしたときに呼ばれる。
- */
-function onClickBegan(e: MouseEvent): void {
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
-  LAppDelegate.getInstance()._captured = true;
-
-  const posX: number = e.pageX;
-  const posY: number = e.pageY;
-
-  LAppDelegate.getInstance()._view.onTouchesBegan(posX, posY);
-}
-
-/**
- * マウスポインタが動いたら呼ばれる。
- */
-function onMouseMoved(e: MouseEvent): void {
-  if (!LAppDelegate.getInstance()._captured) {
-    return;
+  /**
+   * Privateなコンストラクタ
+   */
+  private constructor() {
+    this._cubismOption = new Option();
+    this._subdelegates = new csmVector<LAppSubdelegate>();
+    this._canvases = new csmVector<HTMLCanvasElement>();
   }
 
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
+  /**
+   * Cubism SDK Option
+   */
+  private _cubismOption: Option;
 
-  const rect = (e.target as Element).getBoundingClientRect();
-  const posX: number = e.clientX - rect.left;
-  const posY: number = e.clientY - rect.top;
+  /**
+   * 操作対象のcanvas要素
+   */
+  private _canvases: csmVector<HTMLCanvasElement>;
 
-  LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
-}
+  /**
+   * Subdelegate
+   */
+  private _subdelegates: csmVector<LAppSubdelegate>;
 
-/**
- * クリックが終了したら呼ばれる。
- */
-function onClickEnded(e: MouseEvent): void {
-  LAppDelegate.getInstance()._captured = false;
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
+  /**
+   * 登録済みイベントリスナー 関数オブジェクト
+   */
+  private pointBeganEventListener: (this: Document, ev: PointerEvent) => void;
 
-  const rect = (e.target as Element).getBoundingClientRect();
-  const posX: number = e.clientX - rect.left;
-  const posY: number = e.clientY - rect.top;
+  /**
+   * 登録済みイベントリスナー 関数オブジェクト
+   */
+  private pointMovedEventListener: (this: Document, ev: PointerEvent) => void;
 
-  LAppDelegate.getInstance()._view.onTouchesEnded(posX, posY);
-}
+  /**
+   * 登録済みイベントリスナー 関数オブジェクト
+   */
+  private pointEndedEventListener: (this: Document, ev: PointerEvent) => void;
 
-/**
- * タッチしたときに呼ばれる。
- */
-function onTouchBegan(e: TouchEvent): void {
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
-
-  LAppDelegate.getInstance()._captured = true;
-
-  const posX = e.changedTouches[0].pageX;
-  const posY = e.changedTouches[0].pageY;
-
-  LAppDelegate.getInstance()._view.onTouchesBegan(posX, posY);
-}
-
-/**
- * スワイプすると呼ばれる。
- */
-function onTouchMoved(e: TouchEvent): void {
-  if (!LAppDelegate.getInstance()._captured) {
-    return;
-  }
-
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
-
-  const rect = (e.target as Element).getBoundingClientRect();
-
-  const posX = e.changedTouches[0].clientX - rect.left;
-  const posY = e.changedTouches[0].clientY - rect.top;
-
-  LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
-}
-
-/**
- * タッチが終了したら呼ばれる。
- */
-function onTouchEnded(e: TouchEvent): void {
-  LAppDelegate.getInstance()._captured = false;
-
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
-
-  const rect = (e.target as Element).getBoundingClientRect();
-
-  const posX = e.changedTouches[0].clientX - rect.left;
-  const posY = e.changedTouches[0].clientY - rect.top;
-
-  LAppDelegate.getInstance()._view.onTouchesEnded(posX, posY);
-}
-
-/**
- * タッチがキャンセルされると呼ばれる。
- */
-function onTouchCancel(e: TouchEvent): void {
-  LAppDelegate.getInstance()._captured = false;
-
-  if (!LAppDelegate.getInstance()._view) {
-    LAppPal.printMessage('view notfound');
-    return;
-  }
-
-  const rect = (e.target as Element).getBoundingClientRect();
-
-  const posX = e.changedTouches[0].clientX - rect.left;
-  const posY = e.changedTouches[0].clientY - rect.top;
-
-  LAppDelegate.getInstance()._view.onTouchesEnded(posX, posY);
+  /**
+   * 登録済みイベントリスナー 関数オブジェクト
+   */
+  private pointCancelEventListener: (this: Document, ev: PointerEvent) => void;
 }
