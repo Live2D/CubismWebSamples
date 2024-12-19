@@ -10,11 +10,9 @@ import { ACubismMotion } from '@framework/motion/acubismmotion';
 import { csmVector } from '@framework/type/csmvector';
 
 import * as LAppDefine from './lappdefine';
-import { canvas } from './lappglmanager';
 import { LAppModel } from './lappmodel';
 import { LAppPal } from './lapppal';
-
-export let s_instance: LAppLive2DManager = null;
+import { LAppSubdelegate } from './lappsubdelegate';
 
 /**
  * サンプルアプリケーションにおいてCubismModelを管理するクラス
@@ -22,53 +20,9 @@ export let s_instance: LAppLive2DManager = null;
  */
 export class LAppLive2DManager {
   /**
-   * クラスのインスタンス（シングルトン）を返す。
-   * インスタンスが生成されていない場合は内部でインスタンスを生成する。
-   *
-   * @return クラスのインスタンス
-   */
-  public static getInstance(): LAppLive2DManager {
-    if (s_instance == null) {
-      s_instance = new LAppLive2DManager();
-    }
-
-    return s_instance;
-  }
-
-  /**
-   * クラスのインスタンス（シングルトン）を解放する。
-   */
-  public static releaseInstance(): void {
-    if (s_instance != null) {
-      s_instance = void 0;
-    }
-
-    s_instance = null;
-  }
-
-  /**
-   * 現在のシーンで保持しているモデルを返す。
-   *
-   * @param no モデルリストのインデックス値
-   * @return モデルのインスタンスを返す。インデックス値が範囲外の場合はNULLを返す。
-   */
-  public getModel(no: number): LAppModel {
-    if (no < this._models.getSize()) {
-      return this._models.at(no);
-    }
-
-    return null;
-  }
-
-  /**
    * 現在のシーンで保持しているすべてのモデルを解放する
    */
-  public releaseAllModel(): void {
-    for (let i = 0; i < this._models.getSize(); i++) {
-      this._models.at(i).release();
-      this._models.set(i, null);
-    }
-
+  private releaseAllModel(): void {
     this._models.clear();
   }
 
@@ -79,12 +33,9 @@ export class LAppLive2DManager {
    * @param y 画面のY座標
    */
   public onDrag(x: number, y: number): void {
-    for (let i = 0; i < this._models.getSize(); i++) {
-      const model: LAppModel = this.getModel(i);
-
-      if (model) {
-        model.setDragging(x, y);
-      }
+    const model: LAppModel = this._models.at(0);
+    if (model) {
+      model.setDragging(x, y);
     }
   }
 
@@ -101,28 +52,23 @@ export class LAppLive2DManager {
       );
     }
 
-    for (let i = 0; i < this._models.getSize(); i++) {
-      if (this._models.at(i).hitTest(LAppDefine.HitAreaNameHead, x, y)) {
-        if (LAppDefine.DebugLogEnable) {
-          LAppPal.printMessage(
-            `[APP]hit area: [${LAppDefine.HitAreaNameHead}]`
-          );
-        }
-        this._models.at(i).setRandomExpression();
-      } else if (this._models.at(i).hitTest(LAppDefine.HitAreaNameBody, x, y)) {
-        if (LAppDefine.DebugLogEnable) {
-          LAppPal.printMessage(
-            `[APP]hit area: [${LAppDefine.HitAreaNameBody}]`
-          );
-        }
-        this._models
-          .at(i)
-          .startRandomMotion(
-            LAppDefine.MotionGroupTapBody,
-            LAppDefine.PriorityNormal,
-            this._finishedMotion
-          );
+    const model: LAppModel = this._models.at(0);
+
+    if (model.hitTest(LAppDefine.HitAreaNameHead, x, y)) {
+      if (LAppDefine.DebugLogEnable) {
+        LAppPal.printMessage(`[APP]hit area: [${LAppDefine.HitAreaNameHead}]`);
       }
+      model.setRandomExpression();
+    } else if (model.hitTest(LAppDefine.HitAreaNameBody, x, y)) {
+      if (LAppDefine.DebugLogEnable) {
+        LAppPal.printMessage(`[APP]hit area: [${LAppDefine.HitAreaNameBody}]`);
+      }
+      model.startRandomMotion(
+        LAppDefine.MotionGroupTapBody,
+        LAppDefine.PriorityNormal,
+        this.finishedMotion,
+        this.beganMotion
+      );
     }
   }
 
@@ -131,32 +77,28 @@ export class LAppLive2DManager {
    * モデルの更新処理及び描画処理を行う
    */
   public onUpdate(): void {
-    const { width, height } = canvas;
+    const { width, height } = this._subdelegate.getCanvas();
 
-    const modelCount: number = this._models.getSize();
+    const projection: CubismMatrix44 = new CubismMatrix44();
+    const model: LAppModel = this._models.at(0);
 
-    for (let i = 0; i < modelCount; ++i) {
-      const projection: CubismMatrix44 = new CubismMatrix44();
-      const model: LAppModel = this.getModel(i);
-
-      if (model.getModel()) {
-        if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
-          // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
-          model.getModelMatrix().setWidth(2.0);
-          projection.scale(1.0, width / height);
-        } else {
-          projection.scale(height / width, 1.0);
-        }
-
-        // 必要があればここで乗算
-        if (this._viewMatrix != null) {
-          projection.multiplyByMatrix(this._viewMatrix);
-        }
+    if (model.getModel()) {
+      if (model.getModel().getCanvasWidth() > 1.0 && width < height) {
+        // 横に長いモデルを縦長ウィンドウに表示する際モデルの横サイズでscaleを算出する
+        model.getModelMatrix().setWidth(2.0);
+        projection.scale(1.0, width / height);
+      } else {
+        projection.scale(height / width, 1.0);
       }
 
-      model.update();
-      model.draw(projection); // 参照渡しなのでprojectionは変質する。
+      // 必要があればここで乗算
+      if (this._viewMatrix != null) {
+        projection.multiplyByMatrix(this._viewMatrix);
+      }
     }
+
+    model.update();
+    model.draw(projection); // 参照渡しなのでprojectionは変質する。
   }
 
   /**
@@ -171,9 +113,11 @@ export class LAppLive2DManager {
   /**
    * シーンを切り替える
    * サンプルアプリケーションではモデルセットの切り替えを行う。
+   * @param index
    */
-  public changeScene(index: number): void {
+  private changeScene(index: number): void {
     this._sceneIndex = index;
+
     if (LAppDefine.DebugLogEnable) {
       LAppPal.printMessage(`[APP]model index: ${this._sceneIndex}`);
     }
@@ -187,8 +131,10 @@ export class LAppLive2DManager {
     modelJsonName += '.model3.json';
 
     this.releaseAllModel();
-    this._models.pushBack(new LAppModel());
-    this._models.at(0).loadAssets(modelPath, modelJsonName);
+    const instance = new LAppModel();
+    instance.setSubdelegate(this._subdelegate);
+    instance.loadAssets(modelPath, modelJsonName);
+    this._models.pushBack(instance);
   }
 
   public setViewMatrix(m: CubismMatrix44) {
@@ -198,20 +144,53 @@ export class LAppLive2DManager {
   }
 
   /**
-   * コンストラクタ
+   * モデルの追加
    */
-  constructor() {
-    this._viewMatrix = new CubismMatrix44();
-    this._models = new csmVector<LAppModel>();
-    this._sceneIndex = 0;
+  public addModel(sceneIndex: number = 0): void {
+    this._sceneIndex = sceneIndex;
     this.changeScene(this._sceneIndex);
   }
 
+  /**
+   * コンストラクタ
+   */
+  public constructor() {
+    this._subdelegate = null;
+    this._viewMatrix = new CubismMatrix44();
+    this._models = new csmVector<LAppModel>();
+    this._sceneIndex = 0;
+  }
+
+  /**
+   * 解放する。
+   */
+  public release(): void {}
+
+  /**
+   * 初期化する。
+   * @param subdelegate
+   */
+  public initialize(subdelegate: LAppSubdelegate): void {
+    this._subdelegate = subdelegate;
+    this.changeScene(this._sceneIndex);
+  }
+
+  /**
+   * 自身が所属するSubdelegate
+   */
+  private _subdelegate: LAppSubdelegate;
+
   _viewMatrix: CubismMatrix44; // モデル描画に用いるview行列
   _models: csmVector<LAppModel>; // モデルインスタンスのコンテナ
-  _sceneIndex: number; // 表示するシーンのインデックス値
+  private _sceneIndex: number; // 表示するシーンのインデックス値
+
+  // モーション再生開始のコールバック関数
+  beganMotion = (self: ACubismMotion): void => {
+    LAppPal.printMessage('Motion Began:');
+    console.log(self);
+  };
   // モーション再生終了のコールバック関数
-  _finishedMotion = (self: ACubismMotion): void => {
+  finishedMotion = (self: ACubismMotion): void => {
     LAppPal.printMessage('Motion Finished:');
     console.log(self);
   };

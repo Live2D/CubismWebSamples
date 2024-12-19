@@ -61,7 +61,7 @@ Enter `>Tasks: Run Task` in the command palette (*View > Command Palette...*) to
 1. Select `npm: install - Samples/TypeScript/Demo` from the task list to download the dependent packages
 1. Select `npm: build - Samples/TypeScript/Demo` from the task list to build the sample demo
 1. Select `npm: serve - Samples/TypeScript/Demo` from the task list to start the simple server for operation check
-1. Enter `http://localhost:5000/Samples/TypeScript/Demo/` in the URL field of your browser to access it
+1. Enter `http://localhost:5000` in the URL field of your browser to access it
 1. Enter `>Tasks: Terminate Task` from the command palette and select `npm: serve` to terminate the simple server
 
 For other tasks, see [README.md](Samples/TypeScript/README.md) of the sample project.
@@ -95,28 +95,28 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 21.7.1
-* 20.11.1
+* 23.4.0
+* 22.12.0
 
 
 ## Operation environment
 
 | Platform | Browser | Version |
 | --- | --- | --- |
-| Android | Google Chrome | 122.0.6261.106 |
-| Android | Microsoft Edge | 122.0.2365.86 |
-| Android | Mozilla Firefox | 123.1.0 |
-| iOS / iPadOS | Google Chrome | 122.0.6261.89 |
-| iOS / iPadOS | Microsoft Edge | 122.0.2365.86 |
-| iOS / iPadOS | Mozilla Firefox | 123.4 |
-| iOS / iPadOS | Safari | 17.4 |
-| macOS | Google Chrome | 122.0.6261.129 |
-| macOS | Microsoft Edge | 122.0.2365.80 |
-| macOS | Mozilla Firefox | 123.0.1 |
-| macOS | Safari | 17.4 |
-| Windows | Google Chrome | 122.0.6261.129 |
-| Windows | Microsoft Edge | 122.0.2365.80 |
-| Windows | Mozilla Firefox | 123.0.1 |
+| Android | Google Chrome | 131.0.6778.135 |
+| Android | Microsoft Edge | 131.0.2903.87 |
+| Android | Mozilla Firefox | 133.0.3 |
+| iOS / iPadOS | Google Chrome | 131.0.6778.134 |
+| iOS / iPadOS | Microsoft Edge | 131.0.2903.92 |
+| iOS / iPadOS | Mozilla Firefox | 133.3 |
+| iOS / iPadOS | Safari | 18.2 |
+| macOS | Google Chrome | 131.0.6778.140 |
+| macOS | Microsoft Edge | 131.0.2903.99 |
+| macOS | Mozilla Firefox | 133.0.3 |
+| macOS | Safari | 18.2 |
+| Windows | Google Chrome | 131.0.6778.140 |
+| Windows | Microsoft Edge | 131.0.2903.99 |
+| Windows | Mozilla Firefox | 133.0.3 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 

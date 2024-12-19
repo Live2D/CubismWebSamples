@@ -7,7 +7,6 @@
 
 import { LAppDelegate } from './lappdelegate';
 import * as LAppDefine from './lappdefine';
-import { LAppGlManager } from './lappglmanager';
 
 /**
  * ブラウザロード後の処理
@@ -16,10 +15,7 @@ window.addEventListener(
   'load',
   (): void => {
     // Initialize WebGL and create the application instance
-    if (
-      !LAppGlManager.getInstance() ||
-      !LAppDelegate.getInstance().initialize()
-    ) {
+    if (!LAppDelegate.getInstance().initialize()) {
       return;
     }
 
@@ -34,18 +30,5 @@ window.addEventListener(
 window.addEventListener(
   'beforeunload',
   (): void => LAppDelegate.releaseInstance(),
-  { passive: true }
-);
-
-/**
- * Process when changing screen size.
- */
-window.addEventListener(
-  'resize',
-  () => {
-    if (LAppDefine.CanvasSize === 'auto') {
-      LAppDelegate.getInstance().onResize();
-    }
-  },
   { passive: true }
 );

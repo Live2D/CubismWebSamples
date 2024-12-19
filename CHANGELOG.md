@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.2] - 2024-12-19
+
+### Added
+
+* Add a function to notify when motion playback starts.
+
+### Changed
+
+* Modify to run `tsc --noEmit` command during development build for type checking.
+* Change to be able to handle multiple `<canvas>`.
+* The interfaces MouseEvent and TouchEvent are deprecated and consolidate into PointerEvent.
+* Change to overwrite motion fade by the value specified in .model3.json on Framework.
+* Change the  function for playing back expression motions from CustomExpressionMotionManager.startMotionPriority() to CustomExpressionMotionManager.startMotion().
+
+### Fixed
+
+* Fix `eslintrc.yml` to conform to the exact wording.
+* Fix a bug that the eye tracking behavior was not released when dragging is released outside of a canvas element.
+* Fix an issue where `WebGLRenderingContext.deleteTexture()` was not being called in `releaseTextures()`, `releaseTextureByTexture()`, and `releaseTextureByFilePath()`.
+
+
 ## [5-r.1] - 2024-03-26
 
 ### Changed
@@ -254,6 +275,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.2]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1...5-r.2
 [5-r.1]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.4...5-r.1
 [5-r.1-beta.4]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.3...5-r.1-beta.4
 [5-r.1-beta.3]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.2...5-r.1-beta.3

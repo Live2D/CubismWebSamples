@@ -35,13 +35,13 @@ export class LAppPal {
    * @return デルタ時間[ms]
    */
   public static getDeltaTime(): number {
-    return this.s_deltaTime;
+    return this.deltaTime;
   }
 
   public static updateTime(): void {
-    this.s_currentFrame = Date.now();
-    this.s_deltaTime = (this.s_currentFrame - this.s_lastFrame) / 1000;
-    this.s_lastFrame = this.s_currentFrame;
+    this.currentFrame = Date.now();
+    this.deltaTime = (this.currentFrame - this.lastFrame) / 1000;
+    this.lastFrame = this.currentFrame;
   }
 
   /**
@@ -54,7 +54,7 @@ export class LAppPal {
 
   static lastUpdate = Date.now();
 
-  static s_currentFrame = 0.0;
-  static s_lastFrame = 0.0;
-  static s_deltaTime = 0.0;
+  static currentFrame = 0.0;
+  static lastFrame = 0.0;
+  static deltaTime = 0.0;
 }

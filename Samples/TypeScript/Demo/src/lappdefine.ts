@@ -14,6 +14,9 @@ import { LogLevel } from '@framework/live2dcubismframework';
 // Canvas width and height pixel values, or dynamic screen size ('auto').
 export const CanvasSize: { width: number; height: number } | 'auto' = 'auto';
 
+// キャンバスの数
+export const CanvasNum = 1;
+
 // 画面
 export const ViewScale = 1.0;
 export const ViewMaxScale = 2.0;
