@@ -102,7 +102,7 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 131.0.6778.135 |
+| Android | Google Chrome | 133.0.6943.50 |
 | Android | Microsoft Edge | 131.0.2903.87 |
 | Android | Mozilla Firefox | 133.0.3 |
 | iOS / iPadOS | Google Chrome | 131.0.6778.134 |
@@ -114,7 +114,7 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 | macOS | Mozilla Firefox | 133.0.3 |
 | macOS | Safari | 18.2 |
 | Windows | Google Chrome | 131.0.6778.140 |
-| Windows | Microsoft Edge | 131.0.2903.99 |
+| Windows | Microsoft Edge | 133.0.3065.69 |
 | Windows | Mozilla Firefox | 133.0.3 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
