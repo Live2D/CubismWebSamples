@@ -6,21 +6,21 @@
     "build:prod": "node copy_resources.js && vite build",
     "copy_resources": "node copy_resources.js",
     "test": "tsc --noEmit",
-    "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "serve": "vite preview --port 5000 --host",
     "clean": "rimraf dist"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
-    "eslint": "^8.57.0",
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.7.2",
-    "vite": "^6.0.3"
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5"
   },
   "optionalDependencies": {
     "fsevents": "*"

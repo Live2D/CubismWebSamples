@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.3] - 2025-02-18
+
+### Changed
+
+* Change ESLint version to `9.17.0`.
+  * With this update, we have added the eslint.confing.mjs required for FlatConfig.
+
+
 ## [5-r.2] - 2024-12-19
 
 ### Added
@@ -275,6 +283,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.3]: https://github.com/Live2D/CubismWebSamples/compare/5-r.2...5-r.3
 [5-r.2]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1...5-r.2
 [5-r.1]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.4...5-r.1
 [5-r.1-beta.4]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.3...5-r.1-beta.4
