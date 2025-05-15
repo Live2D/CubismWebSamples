@@ -95,28 +95,28 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 23.4.0
-* 22.12.0
+* 24.0.1
+* 22.15.0
 
 
 ## Operation environment
 
 | Platform | Browser | Version |
 | --- | --- | --- |
-| Android | Google Chrome | 133.0.6943.50 |
-| Android | Microsoft Edge | 131.0.2903.87 |
-| Android | Mozilla Firefox | 133.0.3 |
-| iOS / iPadOS | Google Chrome | 131.0.6778.134 |
-| iOS / iPadOS | Microsoft Edge | 131.0.2903.92 |
-| iOS / iPadOS | Mozilla Firefox | 133.3 |
-| iOS / iPadOS | Safari | 18.2 |
-| macOS | Google Chrome | 131.0.6778.140 |
-| macOS | Microsoft Edge | 131.0.2903.99 |
-| macOS | Mozilla Firefox | 133.0.3 |
-| macOS | Safari | 18.2 |
-| Windows | Google Chrome | 131.0.6778.140 |
-| Windows | Microsoft Edge | 133.0.3065.69 |
-| Windows | Mozilla Firefox | 133.0.3 |
+| Android | Google Chrome | 136.0.7103.87 |
+| Android | Microsoft Edge | 136.0.3240.50 |
+| Android | Mozilla Firefox | 138.0.2 |
+| iOS / iPadOS | Google Chrome | 136.0.7103.91 |
+| iOS / iPadOS | Microsoft Edge | 136.0.3240.61 |
+| iOS / iPadOS | Mozilla Firefox | 138.1 |
+| iOS / iPadOS | Safari | 18.4 |
+| macOS | Google Chrome | 136.0.7103.93 |
+| macOS | Microsoft Edge | 136.0.3240.64 |
+| macOS | Mozilla Firefox | 138.0.1 |
+| macOS | Safari | 18.4 |
+| Windows | Google Chrome | 136.0.7103.93 |
+| Windows | Microsoft Edge | 136.0.3240.64 |
+| Windows | Mozilla Firefox | 138.0.1 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 
