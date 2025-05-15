@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.4] - 2025-05-15
+
+### Fixed
+
+* Fix an issue where the priority was not reset if the motion was not read correctly.
+* Add a flag to enable the function that verifies the consistency when loading `motion3.json`.
+
+
 ## [5-r.3] - 2025-02-18
 
 ### Changed
@@ -283,6 +291,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.4]: https://github.com/Live2D/CubismWebSamples/compare/5-r.3...5-r.4
 [5-r.3]: https://github.com/Live2D/CubismWebSamples/compare/5-r.2...5-r.3
 [5-r.2]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1...5-r.2
 [5-r.1]: https://github.com/Live2D/CubismWebSamples/compare/5-r.1-beta.4...5-r.1

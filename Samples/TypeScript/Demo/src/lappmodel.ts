@@ -638,16 +638,20 @@ export class LAppModel extends CubismUserModel {
             onBeganMotionHandler,
             this._modelSetting,
             group,
-            no
+            no,
+            this._motionConsistency
           );
-
-          if (motion == null) {
-            return;
-          }
-
-          motion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
-          autoDelete = true; // 終了時にメモリから削除
         });
+
+      if (motion) {
+        motion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
+        autoDelete = true; // 終了時にメモリから削除
+      } else {
+        CubismLogError("Can't start motion {0} .", motionFileName);
+        // ロードできなかったモーションのReservePriorityをリセットする
+        this._motionManager.setReservePriority(LAppDefine.PriorityNone);
+        return InvalidMotionQueueEntryHandleValue;
+      }
     } else {
       motion.setBeganMotionHandler(onBeganMotionHandler);
       motion.setFinishedMotionHandler(onFinishedMotionHandler);
@@ -662,7 +666,7 @@ export class LAppModel extends CubismUserModel {
     }
 
     if (this._debugMode) {
-      LAppPal.printMessage(`[APP]start motion: [${group}_${no}`);
+      LAppPal.printMessage(`[APP]start motion: [${group}_${no}]`);
     }
     return this._motionManager.startMotionPriority(
       motion,
@@ -812,7 +816,8 @@ export class LAppModel extends CubismUserModel {
             null,
             this._modelSetting,
             group,
-            i
+            i,
+            this._motionConsistency
           );
 
           if (tmpMotion != null) {
@@ -825,24 +830,25 @@ export class LAppModel extends CubismUserModel {
             this._motions.setValue(name, tmpMotion);
 
             this._motionCount++;
-            if (this._motionCount >= this._allMotionCount) {
-              this._state = LoadStep.LoadTexture;
-
-              // 全てのモーションを停止する
-              this._motionManager.stopAllMotions();
-
-              this._updating = false;
-              this._initialized = true;
-
-              this.createRenderer();
-              this.setupTextures();
-              this.getRenderer().startUp(
-                this._subdelegate.getGlManager().getGl()
-              );
-            }
           } else {
             // loadMotionできなかった場合はモーションの総数がずれるので1つ減らす
             this._allMotionCount--;
+          }
+
+          if (this._motionCount >= this._allMotionCount) {
+            this._state = LoadStep.LoadTexture;
+
+            // 全てのモーションを停止する
+            this._motionManager.stopAllMotions();
+
+            this._updating = false;
+            this._initialized = true;
+
+            this.createRenderer();
+            this.setupTextures();
+            this.getRenderer().startUp(
+              this._subdelegate.getGlManager().getGl()
+            );
           }
         });
     }
@@ -967,6 +973,10 @@ export class LAppModel extends CubismUserModel {
       this._mocConsistency = true;
     }
 
+    if (LAppDefine.MotionConsistencyValidationEnable) {
+      this._motionConsistency = true;
+    }
+
     this._state = LoadStep.LoadAssets;
     this._expressionCount = 0;
     this._textureCount = 0;
@@ -1004,5 +1014,5 @@ export class LAppModel extends CubismUserModel {
   _motionCount: number; // モーションデータカウント
   _allMotionCount: number; // モーション総数
   _wavFileHandler: LAppWavFileHandler; //wavファイルハンドラ
-  _consistency: boolean; // MOC3一貫性チェック管理用
+  _consistency: boolean; // MOC3整合性チェック管理用
 }
