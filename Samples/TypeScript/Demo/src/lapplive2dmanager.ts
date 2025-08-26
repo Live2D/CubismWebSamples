@@ -26,6 +26,13 @@ export class LAppLive2DManager {
     this._models.clear();
   }
 
+  public setOffscreenSize(width: number, height: number): void {
+    for (let i = 0; i < this._models.getSize(); i++) {
+      const model: LAppModel = this._models.at(i);
+      model?.setRenderTargetSize(width, height);
+    }
+  }
+
   /**
    * 画面をドラッグした時の処理
    *

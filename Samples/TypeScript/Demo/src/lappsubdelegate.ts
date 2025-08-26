@@ -81,6 +81,13 @@ export class LAppSubdelegate {
 
     // AppViewの初期化
     this._view.initialize(this);
+
+    // フレームバッファサイズの設定
+    this._live2dManager.setOffscreenSize(
+      this._canvas.width,
+      this._canvas.height
+    );
+
     this._view.initializeSprite();
 
     this._live2dManager.initialize(this);

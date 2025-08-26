@@ -4,9 +4,21 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome",
+      "name": "Launch Chrome - start",
       "url": "http://localhost:5000",
-      "webRoot": "${workspaceFolder}/Samples/TypeScript/Demo",
+      "webRoot": "${workspaceFolder}/",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "http://localhost:5000/src/*": "${workspaceFolder}/Samples/TypeScript/Demo/src/*"
+      },
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome - serve",
+      "url": "http://localhost:5000",
+      "webRoot": "${workspaceFolder}/Samples/TypeScript/Demo/dist",
+      "sourceMaps": true,
     }
   ]
 }
