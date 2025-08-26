@@ -265,7 +265,7 @@ export class LAppWavFileHandler {
    * 指定したチャンネルから音声サンプルの配列を取得する
    *
    * @param usechannel 利用するチャンネル
-   * @returns 指定したチャンネルの音声サンプルの配列
+   * @return 指定したチャンネルの音声サンプルの配列
    */
   public getPcmDataChannel(usechannel: number): Float32Array {
     // 指定したチャンネル数がデータ用配列の長さより多いならnullを返す。
@@ -280,7 +280,7 @@ export class LAppWavFileHandler {
   /**
    * 音声のサンプリング周波数を取得する。
    *
-   * @returns 音声のサンプリング周波数
+   * @return 音声のサンプリング周波数
    */
   public getWavSamplingRate(): number {
     if (!this._wavFileInfo || this._wavFileInfo._samplingRate < 1) {
@@ -400,8 +400,8 @@ export class ByteReader {
   /**
    * @brief シグネチャの取得と参照文字列との一致チェック
    * @param[in] reference 検査対象のシグネチャ文字列
-   * @retval  true    一致している
-   * @retval  false   一致していない
+   * @return  true    一致している
+   *          false   一致していない
    */
   public getCheckSignature(reference: string): boolean {
     const getSignature: Uint8Array = new Uint8Array(4);

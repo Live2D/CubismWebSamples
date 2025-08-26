@@ -1,0 +1,75 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "Ren.moc3",
+		"Textures": [
+			"Ren.2048/texture_00.png"
+		],
+		"Physics": "Ren.physics3.json",
+		"DisplayInfo": "Ren.cdi3.json",
+		"Expressions": [
+			{
+				"Name": "exp_01",
+				"File": "expressions/exp_01.exp3.json"
+			},
+			{
+				"Name": "exp_02",
+				"File": "expressions/exp_02.exp3.json"
+			},
+			{
+				"Name": "exp_03",
+				"File": "expressions/exp_03.exp3.json"
+			},
+			{
+				"Name": "exp_04",
+				"File": "expressions/exp_04.exp3.json"
+			},
+			{
+				"Name": "exp_05",
+				"File": "expressions/exp_05.exp3.json"
+			}
+		],
+		"Motions": {
+			"Idle": [
+				{
+					"File": "motions/mtn_01.motion3.json"
+				}
+			],
+			"TapBody": [
+				{
+					"File": "motions/mtn_02.motion3.json"
+				},
+				{
+					"File": "motions/mtn_03.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		}
+	],
+	"HitAreas": [
+		{
+			"Id": "HitAreaBody",
+			"Name": "Body"
+		},
+		{
+			"Id": "HitAreaHead",
+			"Name": "Head"
+		}
+	]
+}
