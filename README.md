@@ -95,8 +95,9 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 24.6.0
-* 22.18.0
+* 24.10.0
+* 22.20.0
+* 20.19.5
 
 
 ## Operation environment
@@ -114,9 +115,9 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 | macOS | Microsoft Edge | 139.0.3405.102 |
 | macOS | Mozilla Firefox | 141.0.3 |
 | macOS | Safari | 18.6 |
-| Windows | Google Chrome | 139.0.7258.128 |
-| Windows | Microsoft Edge | 139.0.3405.102 |
-| Windows | Mozilla Firefox | 141.0.3 |
+| Windows | Google Chrome | 141.0.7390.77 |
+| Windows | Microsoft Edge | 141.0.3537.71 |
+| Windows | Mozilla Firefox | 143.0.4 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## 2025-10-14
+
+### Added
+
+* Add `csmGetMocVersion(mocBytes: ArrayBuffer)` with simplified arguments from `csmGetMocVersion(moc: Moc, mocBytes: ArrayBuffer)`. 
+  * The previous version `csmGetMocVersion(moc: Moc, mocBytes: ArrayBuffer)` is now deprecated and is planned to be removed in the future.
+
+
 ## 2025-08-26
 
 ### Added

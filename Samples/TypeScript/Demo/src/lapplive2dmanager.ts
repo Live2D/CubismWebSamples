@@ -8,6 +8,7 @@
 import { CubismMatrix44 } from '@framework/math/cubismmatrix44';
 import { ACubismMotion } from '@framework/motion/acubismmotion';
 import { csmVector } from '@framework/type/csmvector';
+import { CubismWebGLOffscreenManager } from '@framework/rendering/cubismoffscreenmanager';
 
 import * as LAppDefine from './lappdefine';
 import { LAppModel } from './lappmodel';
@@ -84,6 +85,10 @@ export class LAppLive2DManager {
    * モデルの更新処理及び描画処理を行う
    */
   public onUpdate(): void {
+    // 全てのモデルの描画処理開始前に、フレームごとのリセットフラグをクリアする
+    const gl = this._subdelegate.getGl();
+    CubismWebGLOffscreenManager.getInstance().resetPreviousActiveCount(gl);
+
     const { width, height } = this._subdelegate.getCanvas();
 
     const projection: CubismMatrix44 = new CubismMatrix44();
@@ -115,6 +120,14 @@ export class LAppLive2DManager {
   public nextScene(): void {
     const no: number = (this._sceneIndex + 1) % LAppDefine.ModelDirSize;
     this.changeScene(no);
+
+    // 不要なオフスクリーン描画用のレンダーテクスチャを解放する
+    const gl = this._subdelegate.getGl();
+    CubismWebGLOffscreenManager.getInstance().clearPreviousActiveRenderTextureCountResetFlag(
+      gl
+    );
+    CubismWebGLOffscreenManager.getInstance().resetPreviousActiveCount(gl);
+    CubismWebGLOffscreenManager.getInstance().releaseStaleRenderTextures(gl);
   }
 
   /**
