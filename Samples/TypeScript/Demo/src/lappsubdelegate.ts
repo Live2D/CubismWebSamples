@@ -235,6 +235,10 @@ export class LAppSubdelegate {
     return this._glManager;
   }
 
+  public getGl(): WebGLRenderingContext | WebGL2RenderingContext {
+    return this._glManager.getGl();
+  }
+
   public getLive2DManager(): LAppLive2DManager {
     return this._live2dManager;
   }
