@@ -19,11 +19,11 @@ Please check the [license](LICENSE.md) before using this SDK.
 Please check the [notices](NOTICE.md) before using this SDK.
 
 
-## Compatibility with Cubism 5 new features and previous Cubism SDK versions
+## Compatibility with Cubism 5.3 new features and previous Cubism SDK versions
 
-This SDK is compatible with Cubism 5.  
-For SDK compatibility with new features in Cubism 5 Editor, please refer to [here](https://docs.live2d.com/en/cubism-sdk-manual/cubism-5-new-functions/).  
-For compatibility with previous versions of Cubism SDK, please refer to [here](https://docs.live2d.com/en/cubism-sdk-manual/compatibility-with-cubism-5/).
+This SDK is compatible with Cubism 5.3.  
+For SDK compatibility with new features in Cubism 5.3 Editor, please refer to [here](https://docs.live2d.com/en/cubism-sdk-manual/cubism-5-3-new-functions/).  
+For compatibility with previous versions of Cubism SDK, please refer to [here](https://docs.live2d.com/en/cubism-sdk-manual/compatibility-with-cubism-5-3/).
 
 
 
@@ -95,9 +95,8 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 24.10.0
-* 22.20.0
-* 20.19.5
+* 25.4.0
+* 24.13.0
 
 
 ## Operation environment
@@ -115,9 +114,9 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 | macOS | Microsoft Edge | 139.0.3405.102 |
 | macOS | Mozilla Firefox | 141.0.3 |
 | macOS | Safari | 18.6 |
-| Windows | Google Chrome | 141.0.7390.77 |
-| Windows | Microsoft Edge | 141.0.3537.71 |
-| Windows | Mozilla Firefox | 143.0.4 |
+| Windows | Google Chrome | 144.0.7559.97 |
+| Windows | Microsoft Edge | 144.0.3719.82 |
+| Windows | Mozilla Firefox | 147.0.1 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 

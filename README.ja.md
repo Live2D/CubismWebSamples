@@ -19,11 +19,11 @@ Cubism Web Framework および Live2D Cubism Core と組み合わせて使用し
 本 SDK を使用する前に、[お知らせ](NOTICE.ja.md)をご確認ください。
 
 
-## Cubism 5新機能や過去バージョンとの互換性について
+## Cubism 5.3新機能や過去バージョンとの互換性について
 
-本 SDK はCubism 5に対応した製品です。  
-Cubism 5 Editorに搭載された新機能のSDK対応については [こちら](https://docs.live2d.com/cubism-sdk-manual/cubism-5-new-functions/)をご確認ください。  
-過去バージョンのCubism SDKとの互換性については [こちら](https://docs.live2d.com/cubism-sdk-manual/compatibility-with-cubism-5/)をご確認ください。
+本 SDK はCubism 5.3に対応した製品です。  
+Cubism 5.3 Editorに搭載された新機能のSDK対応については [こちら](https://docs.live2d.com/cubism-sdk-manual/cubism-5-3-new-functions/)をご確認ください。  
+過去バージョンのCubism SDKとの互換性については [こちら](https://docs.live2d.com/cubism-sdk-manual/compatibility-with-cubism-5-3/)をご確認ください。
 
 ## ディレクトリ構成
 
@@ -94,9 +94,8 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 24.10.0
-* 22.20.0
-* 20.19.5
+* 25.4.0
+* 24.13.0
 
 
 ## 動作確認環境
@@ -114,9 +113,9 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 | macOS | Microsoft Edge | 139.0.3405.102 |
 | macOS | Mozilla Firefox | 141.0.3 |
 | macOS | Safari | 18.6 |
-| Windows | Google Chrome | 141.0.7390.77 |
-| Windows | Microsoft Edge | 141.0.3537.71 |
-| Windows | Mozilla Firefox | 143.0.4 |
+| Windows | Google Chrome | 144.0.7559.97 |
+| Windows | Microsoft Edge | 144.0.3719.82 |
+| Windows | Mozilla Firefox | 147.0.1 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
 
