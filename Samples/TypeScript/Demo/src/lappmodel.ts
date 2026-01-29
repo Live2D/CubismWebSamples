@@ -27,10 +27,7 @@ import {
   CubismMotionQueueEntryHandle,
   InvalidMotionQueueEntryHandleValue
 } from '@framework/motion/cubismmotionqueuemanager';
-import { csmMap } from '@framework/type/csmmap';
 import { csmRect } from '@framework/type/csmrectf';
-import { csmString } from '@framework/type/csmstring';
-import { csmVector } from '@framework/type/csmvector';
 import {
   CSM_ASSERT,
   CubismLogError,
@@ -173,14 +170,12 @@ export class LAppModel extends CubismUserModel {
                 expressionName
               );
 
-              if (this._expressions.getValue(expressionName) != null) {
-                ACubismMotion.delete(
-                  this._expressions.getValue(expressionName)
-                );
-                this._expressions.setValue(expressionName, null);
+              if (this._expressions.get(expressionName) != null) {
+                ACubismMotion.delete(this._expressions.get(expressionName));
+                this._expressions.set(expressionName, null);
               }
 
-              this._expressions.setValue(expressionName, motion);
+              this._expressions.set(expressionName, motion);
 
               this._expressionCount++;
 
@@ -282,20 +277,17 @@ export class LAppModel extends CubismUserModel {
     const setupBreath = (): void => {
       this._breath = CubismBreath.create();
 
-      const breathParameters: csmVector<BreathParameterData> = new csmVector();
-      breathParameters.pushBack(
-        new BreathParameterData(this._idParamAngleX, 0.0, 15.0, 6.5345, 0.5)
-      );
-      breathParameters.pushBack(
-        new BreathParameterData(this._idParamAngleY, 0.0, 8.0, 3.5345, 0.5)
-      );
-      breathParameters.pushBack(
-        new BreathParameterData(this._idParamAngleZ, 0.0, 10.0, 5.5345, 0.5)
-      );
-      breathParameters.pushBack(
-        new BreathParameterData(this._idParamBodyAngleX, 0.0, 4.0, 15.5345, 0.5)
-      );
-      breathParameters.pushBack(
+      const breathParameters: Array<BreathParameterData> = [
+        new BreathParameterData(this._idParamAngleX, 0.0, 15.0, 6.5345, 0.5),
+        new BreathParameterData(this._idParamAngleY, 0.0, 8.0, 3.5345, 0.5),
+        new BreathParameterData(this._idParamAngleZ, 0.0, 10.0, 5.5345, 0.5),
+        new BreathParameterData(
+          this._idParamBodyAngleX,
+          0.0,
+          4.0,
+          15.5345,
+          0.5
+        ),
         new BreathParameterData(
           CubismFramework.getIdManager().getId(
             CubismDefaultParameterId.ParamBreath
@@ -305,7 +297,7 @@ export class LAppModel extends CubismUserModel {
           3.2345,
           1
         )
-      );
+      ];
 
       this._breath.setParameters(breathParameters);
       this._state = LoadStep.LoadUserData;
@@ -353,10 +345,9 @@ export class LAppModel extends CubismUserModel {
       const eyeBlinkIdCount: number =
         this._modelSetting.getEyeBlinkParameterCount();
 
+      this._eyeBlinkIds.length = eyeBlinkIdCount;
       for (let i = 0; i < eyeBlinkIdCount; ++i) {
-        this._eyeBlinkIds.pushBack(
-          this._modelSetting.getEyeBlinkParameterId(i)
-        );
+        this._eyeBlinkIds[i] = this._modelSetting.getEyeBlinkParameterId(i);
       }
 
       this._state = LoadStep.SetupLipSyncIds;
@@ -369,8 +360,9 @@ export class LAppModel extends CubismUserModel {
     const setupLipSyncIds = (): void => {
       const lipSyncIdCount = this._modelSetting.getLipSyncParameterCount();
 
+      this._lipSyncIds.length = lipSyncIdCount;
       for (let i = 0; i < lipSyncIdCount; ++i) {
-        this._lipSyncIds.pushBack(this._modelSetting.getLipSyncParameterId(i));
+        this._lipSyncIds[i] = this._modelSetting.getLipSyncParameterId(i);
       }
       this._state = LoadStep.SetupLayout;
 
@@ -380,7 +372,7 @@ export class LAppModel extends CubismUserModel {
 
     // Layout
     const setupLayout = (): void => {
-      const layout: csmMap<string, number> = new csmMap<string, number>();
+      const layout: Map<string, number> = new Map<string, number>();
 
       if (this._modelSetting == null || this._modelMatrix == null) {
         CubismLogError('Failed to setupLayout().');
@@ -432,6 +424,7 @@ export class LAppModel extends CubismUserModel {
         );
         this.setupTextures();
         this.getRenderer().startUp(this._subdelegate.getGlManager().getGl());
+        this.getRenderer().loadShaders(LAppDefine.ShaderPath);
       }
     };
   }
@@ -579,8 +572,8 @@ export class LAppModel extends CubismUserModel {
       this._wavFileHandler.update(deltaTimeSeconds);
       value = this._wavFileHandler.getRms();
 
-      for (let i = 0; i < this._lipSyncIds.getSize(); ++i) {
-        this._model.addParameterValueById(this._lipSyncIds.at(i), value, 0.8);
+      for (let i = 0; i < this._lipSyncIds.length; ++i) {
+        this._model.addParameterValueById(this._lipSyncIds[i], value, 0.8);
       }
     }
 
@@ -620,7 +613,7 @@ export class LAppModel extends CubismUserModel {
 
     // ex) idle_0
     const name = `${group}_${no}`;
-    let motion: CubismMotion = this._motions.getValue(name) as CubismMotion;
+    let motion: CubismMotion = this._motions.get(name) as CubismMotion;
     let autoDelete = false;
 
     if (motion == null) {
@@ -717,7 +710,7 @@ export class LAppModel extends CubismUserModel {
    * @param expressionId 表情モーションのID
    */
   public setExpression(expressionId: string): void {
-    const motion: ACubismMotion = this._expressions.getValue(expressionId);
+    const motion: ACubismMotion = this._expressions.get(expressionId);
 
     if (this._debugMode) {
       LAppPal.printMessage(`[APP]expression: [${expressionId}]`);
@@ -736,15 +729,17 @@ export class LAppModel extends CubismUserModel {
    * ランダムに選ばれた表情モーションをセットする
    */
   public setRandomExpression(): void {
-    if (this._expressions.getSize() == 0) {
+    if (this._expressions.size == 0) {
       return;
     }
 
-    const no: number = Math.floor(Math.random() * this._expressions.getSize());
+    const no: number = Math.floor(Math.random() * this._expressions.size);
 
-    for (let i = 0; i < this._expressions.getSize(); i++) {
+    for (let i = 0; i < this._expressions.size; i++) {
       if (i == no) {
-        const name: string = this._expressions._keyValues[i].first;
+        // const name: string = this._expressions._keyValues[i].first;
+        const expressionsArray = [...this._expressions.entries()];
+        const name: string = expressionsArray[i][0];
         this.setExpression(name);
         return;
       }
@@ -754,8 +749,8 @@ export class LAppModel extends CubismUserModel {
   /**
    * イベントの発火を受け取る
    */
-  public motionEventFired(eventValue: csmString): void {
-    CubismLogInfo('{0} is fired on LAppModel!!', eventValue.s);
+  public motionEventFired(eventValue: string): void {
+    CubismLogInfo('{0} is fired on LAppModel!!', eventValue);
   }
 
   /**
@@ -829,11 +824,11 @@ export class LAppModel extends CubismUserModel {
           if (tmpMotion != null) {
             tmpMotion.setEffectIds(this._eyeBlinkIds, this._lipSyncIds);
 
-            if (this._motions.getValue(name) != null) {
-              ACubismMotion.delete(this._motions.getValue(name));
+            if (this._motions.get(name) != null) {
+              ACubismMotion.delete(this._motions.get(name));
             }
 
-            this._motions.setValue(name, tmpMotion);
+            this._motions.set(name, tmpMotion);
 
             this._motionCount++;
           } else {
@@ -858,6 +853,7 @@ export class LAppModel extends CubismUserModel {
             this.getRenderer().startUp(
               this._subdelegate.getGlManager().getGl()
             );
+            this.getRenderer().loadShaders(LAppDefine.ShaderPath);
           }
         });
     }
@@ -891,7 +887,7 @@ export class LAppModel extends CubismUserModel {
       this._subdelegate.getFrameBuffer(),
       viewport
     );
-    this.getRenderer().drawModel();
+    this.getRenderer().drawModel(LAppDefine.ShaderPath);
   }
 
   /**
@@ -950,14 +946,14 @@ export class LAppModel extends CubismUserModel {
     this._modelHomeDir = null;
     this._userTimeSeconds = 0.0;
 
-    this._eyeBlinkIds = new csmVector<CubismIdHandle>();
-    this._lipSyncIds = new csmVector<CubismIdHandle>();
+    this._eyeBlinkIds = new Array<CubismIdHandle>();
+    this._lipSyncIds = new Array<CubismIdHandle>();
 
-    this._motions = new csmMap<string, ACubismMotion>();
-    this._expressions = new csmMap<string, ACubismMotion>();
+    this._motions = new Map<string, ACubismMotion>();
+    this._expressions = new Map<string, ACubismMotion>();
 
-    this._hitArea = new csmVector<csmRect>();
-    this._userArea = new csmVector<csmRect>();
+    this._hitArea = new Array<csmRect>();
+    this._userArea = new Array<csmRect>();
 
     this._idParamAngleX = CubismFramework.getIdManager().getId(
       CubismDefaultParameterId.ParamAngleX
@@ -1001,14 +997,14 @@ export class LAppModel extends CubismUserModel {
   _modelHomeDir: string; // モデルセッティングが置かれたディレクトリ
   _userTimeSeconds: number; // デルタ時間の積算値[秒]
 
-  _eyeBlinkIds: csmVector<CubismIdHandle>; // モデルに設定された瞬き機能用パラメータID
-  _lipSyncIds: csmVector<CubismIdHandle>; // モデルに設定されたリップシンク機能用パラメータID
+  _eyeBlinkIds: Array<CubismIdHandle>; // モデルに設定された瞬き機能用パラメータID
+  _lipSyncIds: Array<CubismIdHandle>; // モデルに設定されたリップシンク機能用パラメータID
 
-  _motions: csmMap<string, ACubismMotion>; // 読み込まれているモーションのリスト
-  _expressions: csmMap<string, ACubismMotion>; // 読み込まれている表情のリスト
+  _motions: Map<string, ACubismMotion>; // 読み込まれているモーションのリスト
+  _expressions: Map<string, ACubismMotion>; // 読み込まれている表情のリスト
 
-  _hitArea: csmVector<csmRect>;
-  _userArea: csmVector<csmRect>;
+  _hitArea: Array<csmRect>;
+  _userArea: Array<csmRect>;
 
   _idParamAngleX: CubismIdHandle; // パラメータID: ParamAngleX
   _idParamAngleY: CubismIdHandle; // パラメータID: ParamAngleY

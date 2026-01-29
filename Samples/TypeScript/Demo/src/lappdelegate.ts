@@ -5,7 +5,6 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { csmVector } from '@framework/type/csmvector';
 import { CubismFramework, Option } from '@framework/live2dcubismframework';
 import * as LAppDefine from './lappdefine';
 import { LAppPal } from './lapppal';
@@ -48,12 +47,8 @@ export class LAppDelegate {
    * ポインタがアクティブになるときに呼ばれる。
    */
   private onPointerBegan(e: PointerEvent): void {
-    for (
-      let ite = this._subdelegates.begin();
-      ite.notEqual(this._subdelegates.end());
-      ite.preIncrement()
-    ) {
-      ite.ptr().onPointBegan(e.pageX, e.pageY);
+    for (let i = 0; i < this._subdelegates.length; i++) {
+      this._subdelegates[i].onPointBegan(e.pageX, e.pageY);
     }
   }
 
@@ -61,12 +56,8 @@ export class LAppDelegate {
    * ポインタが動いたら呼ばれる。
    */
   private onPointerMoved(e: PointerEvent): void {
-    for (
-      let ite = this._subdelegates.begin();
-      ite.notEqual(this._subdelegates.end());
-      ite.preIncrement()
-    ) {
-      ite.ptr().onPointMoved(e.pageX, e.pageY);
+    for (let i = 0; i < this._subdelegates.length; i++) {
+      this._subdelegates[i].onPointMoved(e.pageX, e.pageY);
     }
   }
 
@@ -74,12 +65,8 @@ export class LAppDelegate {
    * ポインタがアクティブでなくなったときに呼ばれる。
    */
   private onPointerEnded(e: PointerEvent): void {
-    for (
-      let ite = this._subdelegates.begin();
-      ite.notEqual(this._subdelegates.end());
-      ite.preIncrement()
-    ) {
-      ite.ptr().onPointEnded(e.pageX, e.pageY);
+    for (let i = 0; i < this._subdelegates.length; i++) {
+      this._subdelegates[i].onPointEnded(e.pageX, e.pageY);
     }
   }
 
@@ -87,12 +74,8 @@ export class LAppDelegate {
    * ポインタがキャンセルされると呼ばれる。
    */
   private onPointerCancel(e: PointerEvent): void {
-    for (
-      let ite = this._subdelegates.begin();
-      ite.notEqual(this._subdelegates.end());
-      ite.preIncrement()
-    ) {
-      ite.ptr().onTouchCancel(e.pageX, e.pageY);
+    for (let i = 0; i < this._subdelegates.length; i++) {
+      this._subdelegates[i].onTouchCancel(e.pageX, e.pageY);
     }
   }
 
@@ -100,8 +83,8 @@ export class LAppDelegate {
    * Resize canvas and re-initialize view.
    */
   public onResize(): void {
-    for (let i = 0; i < this._subdelegates.getSize(); i++) {
-      this._subdelegates.at(i).onResize();
+    for (let i = 0; i < this._subdelegates.length; i++) {
+      this._subdelegates[i].onResize();
     }
   }
 
@@ -119,8 +102,8 @@ export class LAppDelegate {
       // 時間更新
       LAppPal.updateTime();
 
-      for (let i = 0; i < this._subdelegates.getSize(); i++) {
-        this._subdelegates.at(i).update();
+      for (let i = 0; i < this._subdelegates.length; i++) {
+        this._subdelegates[i].update();
       }
 
       // ループのために再帰呼び出し
@@ -160,15 +143,11 @@ export class LAppDelegate {
    * Subdelegate を解放する
    */
   private releaseSubdelegates(): void {
-    for (
-      let ite = this._subdelegates.begin();
-      ite.notEqual(this._subdelegates.end());
-      ite.preIncrement()
-    ) {
-      ite.ptr().release();
+    for (let i = 0; i < this._subdelegates.length; i++) {
+      this._subdelegates[i].release();
     }
 
-    this._subdelegates.clear();
+    this._subdelegates.length = 0;
     this._subdelegates = null;
   }
 
@@ -239,11 +218,11 @@ export class LAppDelegate {
       width = 100.0 / LAppDefine.CanvasNum;
     }
 
-    this._canvases.prepareCapacity(LAppDefine.CanvasNum);
-    this._subdelegates.prepareCapacity(LAppDefine.CanvasNum);
+    this._canvases.length = LAppDefine.CanvasNum;
+    this._subdelegates.length = LAppDefine.CanvasNum;
     for (let i = 0; i < LAppDefine.CanvasNum; i++) {
       const canvas = document.createElement('canvas');
-      this._canvases.pushBack(canvas);
+      this._canvases[i] = canvas;
       canvas.style.width = `${width}vw`;
       canvas.style.height = `${height}vh`;
 
@@ -251,14 +230,14 @@ export class LAppDelegate {
       document.body.appendChild(canvas);
     }
 
-    for (let i = 0; i < this._canvases.getSize(); i++) {
+    for (let i = 0; i < this._canvases.length; i++) {
       const subdelegate = new LAppSubdelegate();
-      subdelegate.initialize(this._canvases.at(i));
-      this._subdelegates.pushBack(subdelegate);
+      subdelegate.initialize(this._canvases[i]);
+      this._subdelegates[i] = subdelegate;
     }
 
     for (let i = 0; i < LAppDefine.CanvasNum; i++) {
-      if (this._subdelegates.at(i).isContextLost()) {
+      if (this._subdelegates[i].isContextLost()) {
         CubismLogError(
           `The context for Canvas at index ${i} was lost, possibly because the acquisition limit for WebGLRenderingContext was reached.`
         );
@@ -271,8 +250,8 @@ export class LAppDelegate {
    */
   private constructor() {
     this._cubismOption = new Option();
-    this._subdelegates = new csmVector<LAppSubdelegate>();
-    this._canvases = new csmVector<HTMLCanvasElement>();
+    this._subdelegates = new Array<LAppSubdelegate>();
+    this._canvases = new Array<HTMLCanvasElement>();
   }
 
   /**
@@ -283,12 +262,12 @@ export class LAppDelegate {
   /**
    * 操作対象のcanvas要素
    */
-  private _canvases: csmVector<HTMLCanvasElement>;
+  private _canvases: Array<HTMLCanvasElement>;
 
   /**
    * Subdelegate
    */
-  private _subdelegates: csmVector<LAppSubdelegate>;
+  private _subdelegates: Array<LAppSubdelegate>;
 
   /**
    * 登録済みイベントリスナー 関数オブジェクト

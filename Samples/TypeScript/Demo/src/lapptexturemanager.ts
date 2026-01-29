@@ -5,7 +5,6 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { csmVector, iterator } from '@framework/type/csmvector';
 import { LAppGlManager } from './lappglmanager';
 
 /**
@@ -17,19 +16,15 @@ export class LAppTextureManager {
    * コンストラクタ
    */
   public constructor() {
-    this._textures = new csmVector<TextureInfo>();
+    this._textures = new Array<TextureInfo>();
   }
 
   /**
    * 解放する。
    */
   public release(): void {
-    for (
-      let ite: iterator<TextureInfo> = this._textures.begin();
-      ite.notEqual(this._textures.end());
-      ite.preIncrement()
-    ) {
-      this._glManager.getGl().deleteTexture(ite.ptr().id);
+    for (let i = 0; i < this._textures.length; i++) {
+      this._glManager.getGl().deleteTexture(this._textures[i].id);
     }
     this._textures = null;
   }
@@ -47,25 +42,23 @@ export class LAppTextureManager {
     callback: (textureInfo: TextureInfo) => void
   ): void {
     // search loaded texture already
-    for (
-      let ite: iterator<TextureInfo> = this._textures.begin();
-      ite.notEqual(this._textures.end());
-      ite.preIncrement()
-    ) {
+    for (let i = 0; i < this._textures.length; i++) {
       if (
-        ite.ptr().fileName == fileName &&
-        ite.ptr().usePremultply == usePremultiply
+        this._textures[i].fileName == fileName &&
+        this._textures[i].usePremultply == usePremultiply
       ) {
         // 2回目以降はキャッシュが使用される(待ち時間なし)
         // WebKitでは同じImageのonloadを再度呼ぶには再インスタンスが必要
         // 詳細：https://stackoverflow.com/a/5024181
-        ite.ptr().img = new Image();
-        ite
-          .ptr()
-          .img.addEventListener('load', (): void => callback(ite.ptr()), {
+        this._textures[i].img = new Image();
+        this._textures[i].img.addEventListener(
+          'load',
+          (): void => callback(this._textures[i]),
+          {
             passive: true
-          });
-        ite.ptr().img.src = fileName;
+          }
+        );
+        this._textures[i].img.src = fileName;
         return;
       }
     }
@@ -140,7 +133,7 @@ export class LAppTextureManager {
           textureInfo.img = img;
           textureInfo.usePremultply = usePremultiply;
           if (this._textures != null) {
-            this._textures.pushBack(textureInfo);
+            this._textures.push(textureInfo);
           }
         }
 
@@ -157,12 +150,12 @@ export class LAppTextureManager {
    * 配列に存在する画像全てを解放する。
    */
   public releaseTextures(): void {
-    for (let i = 0; i < this._textures.getSize(); i++) {
-      this._glManager.getGl().deleteTexture(this._textures.at(i).id);
-      this._textures.set(i, null);
+    for (let i = 0; i < this._textures.length; i++) {
+      this._glManager.getGl().deleteTexture(this._textures[i].id);
+      this._textures[i] = null;
     }
 
-    this._textures.clear();
+    this._textures.length = 0;
   }
 
   /**
@@ -172,14 +165,14 @@ export class LAppTextureManager {
    * @param texture 解放するテクスチャ
    */
   public releaseTextureByTexture(texture: WebGLTexture): void {
-    for (let i = 0; i < this._textures.getSize(); i++) {
-      if (this._textures.at(i).id != texture) {
+    for (let i = 0; i < this._textures.length; i++) {
+      if (this._textures[i].id != texture) {
         continue;
       }
 
-      this._glManager.getGl().deleteTexture(this._textures.at(i).id);
-      this._textures.set(i, null);
-      this._textures.remove(i);
+      this._glManager.getGl().deleteTexture(this._textures[i].id);
+      this._textures[i] = null;
+      this._textures.splice(i, 1);
       break;
     }
   }
@@ -191,11 +184,11 @@ export class LAppTextureManager {
    * @param fileName 解放する画像ファイルパス名
    */
   public releaseTextureByFilePath(fileName: string): void {
-    for (let i = 0; i < this._textures.getSize(); i++) {
-      if (this._textures.at(i).fileName == fileName) {
-        this._glManager.getGl().deleteTexture(this._textures.at(i).id);
-        this._textures.set(i, null);
-        this._textures.remove(i);
+    for (let i = 0; i < this._textures.length; i++) {
+      if (this._textures[i].fileName == fileName) {
+        this._glManager.getGl().deleteTexture(this._textures[i].id);
+        this._textures[i] = null;
+        this._textures.splice(i, 1);
         break;
       }
     }
@@ -209,7 +202,7 @@ export class LAppTextureManager {
     this._glManager = glManager;
   }
 
-  _textures: csmVector<TextureInfo>;
+  _textures: Array<TextureInfo>;
   private _glManager: LAppGlManager;
 }
 
