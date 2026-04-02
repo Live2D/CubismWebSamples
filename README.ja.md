@@ -65,15 +65,15 @@ Coreディレクトリのファイルをコピーしてください。
 
 その他のタスクに関してはサンプルプロジェクトの [README.md](Samples/TypeScript/README.ja.md) を参照ください。
 
-NOTE: デバック用の設定は、`.vscode/tasks.json` に記述しています。
+NOTE: デバッグ用の設定は、`.vscode/tasks.json` に記述しています。
 
-### プロジェクトのデバック
+### プロジェクトのデバッグ
 
-Visual Studio Code で **本 SDK のトップディレクトリ** を開き、 *F5* キーを入力すると Debugger for Chrome が起動します。
+Visual Studio Code で **本 SDK のトップディレクトリ** を開き、 *F5* キーを押すと組み込みの JavaScript デバッガー（Chrome や Edge など）によるデバッグが開始されます。
 
-Visual Studio Code 上でブレイクポイントを貼って Chrome ブラウザと連動してデバックを行うことができます。
+Visual Studio Code 上でブレイクポイントを貼ってブラウザと連動してデバッグを行うことができます。
 
-NOTE: デバック用の設定は、`.vscode/launch.json` に記述しています。
+NOTE: デバッグ用の設定は、`.vscode/launch.json` に記述しています。
 
 
 ## SDKマニュアル
@@ -94,28 +94,28 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 25.4.0
-* 24.13.0
+* 25.8.2
+* 24.14.1
 
 
 ## 動作確認環境
 
 | プラットフォーム | ブラウザ | バージョン |
 | --- | --- | --- |
-| Android | Google Chrome | 139.0.7258.123 |
-| Android | Microsoft Edge | 139.0.3405.102 |
-| Android | Mozilla Firefox | 141.0.3 |
-| iOS / iPadOS | Google Chrome | 139.0.7258.76 |
-| iOS / iPadOS | Microsoft Edge | 139.0.3405.101 |
-| iOS / iPadOS | Mozilla Firefox | 142.0 |
-| iOS / iPadOS | Safari | 18.6 |
-| macOS | Google Chrome | 139.0.7258.128 |
-| macOS | Microsoft Edge | 139.0.3405.102 |
-| macOS | Mozilla Firefox | 141.0.3 |
-| macOS | Safari | 18.6 |
-| Windows | Google Chrome | 144.0.7559.97 |
-| Windows | Microsoft Edge | 144.0.3719.82 |
-| Windows | Mozilla Firefox | 147.0.1 |
+| Android | Google Chrome | 145.0.7680.164 |
+| Android | Microsoft Edge | 146.0.3856.71 |
+| Android | Mozilla Firefox | 148.0.2 |
+| iOS / iPadOS | Google Chrome | 147.0.7727.22 |
+| iOS / iPadOS | Microsoft Edge | 146.0.3856.77 |
+| iOS / iPadOS | Mozilla Firefox | 149.0 |
+| iOS / iPadOS | Safari | 26.4 |
+| macOS | Google Chrome | 146.0.7680.165 |
+| macOS | Microsoft Edge | 146.0.3856.72 |
+| macOS | Mozilla Firefox | 149.0 |
+| macOS | Safari | 26.4 |
+| Windows | Google Chrome | 146.0.7680.165 |
+| Windows | Microsoft Edge | 146.0.3856.78 |
+| Windows | Mozilla Firefox | 149.0 |
 
 Note: 動作確認時のサーバの起動は `./Samples/TypeScript/Demo/package.json` の `serve` スクリプトを使用して行っています。
 

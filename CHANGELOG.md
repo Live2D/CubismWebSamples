@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [5-r.5] - 2026-04-02
+
+### Changed
+
+* Change motion calculation order updates to be performed by `CubismUpdateScheduler`.
+* Change to configure the parameter IDs and settings used for target tracking in `CubismLook`.
+
+### Removed
+
+* Remove deprecated functions from `LAppWavFileHandler`:
+  * `getInstance()` (use `new LAppWavFileHandler()` instead)
+  * `releaseInstance()` (no longer needed with constructor pattern)
+  * `s_instance` variable (no longer needed with constructor pattern)
+
+
 ## [5-r.5-beta.3.1] - 2026-02-19
 
 ### Fixed
@@ -342,6 +357,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Fix issue with reloading model images in WebKit.
 
 
+[5-r.5]: https://github.com/Live2D/CubismWebSamples/compare/5-r.5-beta.3.1...5-r.5
 [5-r.5-beta.3.1]: https://github.com/Live2D/CubismWebSamples/compare/5-r.5-beta.3...5-r.5-beta.3.1
 [5-r.5-beta.3]: https://github.com/Live2D/CubismWebSamples/compare/5-r.5-beta.2...5-r.5-beta.3
 [5-r.5-beta.2]: https://github.com/Live2D/CubismWebSamples/compare/5-r.5-beta.1...5-r.5-beta.2

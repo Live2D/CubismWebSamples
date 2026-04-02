@@ -70,9 +70,9 @@ NOTE: Settings for debugging are described in `.vscode/tasks.json`.
 
 ### Project debugging
 
-Open **the top directory of this SDK** in Visual Studio Code and enter the *F5* key to start Debugger for Chrome.
+Open **the top directory of this SDK** in Visual Studio Code and press *F5* to start debugging with the built-in JavaScript Debugger (for example Chrome or Edge).
 
-You can place breakpoints in Visual Studio Code to debug in conjunction with the Chrome browser.
+You can place breakpoints in Visual Studio Code and debug in the browser.
 
 NOTE: Settings for debugging are described in `.vscode/launch.json`.
 
@@ -95,28 +95,28 @@ Core : [CHANGELOG.md](Core/CHANGELOG.md)
 
 ### Node.js
 
-* 25.4.0
-* 24.13.0
+* 25.8.2
+* 24.14.1
 
 
 ## Operation environment
 
 | Platform | Browser | Version |
 | --- | --- | --- |
-| Android | Google Chrome | 139.0.7258.123 |
-| Android | Microsoft Edge | 139.0.3405.102 |
-| Android | Mozilla Firefox | 141.0.3 |
-| iOS / iPadOS | Google Chrome | 139.0.7258.76 |
-| iOS / iPadOS | Microsoft Edge | 139.0.3405.101 |
-| iOS / iPadOS | Mozilla Firefox | 142.0 |
-| iOS / iPadOS | Safari | 18.6 |
-| macOS | Google Chrome | 139.0.7258.128 |
-| macOS | Microsoft Edge | 139.0.3405.102 |
-| macOS | Mozilla Firefox | 141.0.3 |
-| macOS | Safari | 18.6 |
-| Windows | Google Chrome | 144.0.7559.97 |
-| Windows | Microsoft Edge | 144.0.3719.82 |
-| Windows | Mozilla Firefox | 147.0.1 |
+| Android | Google Chrome | 145.0.7680.164 |
+| Android | Microsoft Edge | 146.0.3856.71 |
+| Android | Mozilla Firefox | 148.0.2 |
+| iOS / iPadOS | Google Chrome | 147.0.7727.22 |
+| iOS / iPadOS | Microsoft Edge | 146.0.3856.77 |
+| iOS / iPadOS | Mozilla Firefox | 149.0 |
+| iOS / iPadOS | Safari | 26.4 |
+| macOS | Google Chrome | 146.0.7680.165 |
+| macOS | Microsoft Edge | 146.0.3856.72 |
+| macOS | Mozilla Firefox | 149.0 |
+| macOS | Safari | 26.4 |
+| Windows | Google Chrome | 146.0.7680.165 |
+| Windows | Microsoft Edge | 146.0.3856.78 |
+| Windows | Mozilla Firefox | 149.0 |
 
 Note: You can start the server for operation check by running the `serve` script of `./Samples/TypeScript/Demo/package.json`.
 

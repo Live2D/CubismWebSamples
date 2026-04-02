@@ -12,7 +12,7 @@ This is a sample implementation of an application implemented with TypeScript.
 | Package | Version |
 | --- | --- |
 | TypeScript | 5.9.3 |
-| Vite | 7.3.1 |
+| Vite | 8.0.2 |
 
 For other packages, check the `package.json` for each project.
 For other development environments and operation environments, see [README.md](/README.md) in the top directory.
@@ -51,13 +51,13 @@ You can change the settings by editing `tsconfig.json`.
 
 Performs static analysis of TypeScript files in the `src` directory.
 
-You can change the settings by editing `.eslintrc.yml`.
+You can change the settings by editing `eslint.config.mjs`.
 
 ### `npm: lint:fix`
 
 Performs static analysis and automatic modification of TypeScript files in the `src` directory.
 
-You can change the settings by editing `.eslintrc.yml`.
+You can change the settings by editing `eslint.config.mjs`.
 
 ### `npm: serve`
 

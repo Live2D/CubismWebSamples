@@ -5,39 +5,10 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-/** @deprecated この変数は getInstance() が非推奨になったことに伴い、非推奨となりました。 */
-export let s_instance: LAppWavFileHandler = null;
+import { IParameterProvider } from '@framework/motion/iparameterprovider';
 
-export class LAppWavFileHandler {
-  /**
-   * クラスのインスタンス（シングルトン）を返す。
-   * インスタンスが生成されていない場合は内部でインスタンスを生成する。
-   *
-   * @return クラスのインスタンス
-   * @deprecated このクラスでのシングルトンパターンの使用は非推奨となりました。代わりに new LAppWavFileHandler() を使用してください。
-   */
-  public static getInstance(): LAppWavFileHandler {
-    if (s_instance == null) {
-      s_instance = new LAppWavFileHandler();
-    }
-
-    return s_instance;
-  }
-
-  /**
-   * クラスのインスタンス（シングルトン）を解放する。
-   *
-   * @deprecated この関数は getInstance() が非推奨になったことに伴い、非推奨となりました。
-   */
-  public static releaseInstance(): void {
-    if (s_instance != null) {
-      s_instance = void 0;
-    }
-
-    s_instance = null;
-  }
-
-  public update(deltaTimeSeconds: number) {
+export class LAppWavFileHandler extends IParameterProvider {
+  public update(deltaTimeSeconds?: number): boolean {
     let goalOffset: number;
     let rms: number;
 
@@ -50,8 +21,9 @@ export class LAppWavFileHandler {
       return false;
     }
 
-    // 経過時間後の状態を保持
-    this._userTimeSeconds += deltaTimeSeconds;
+    // 経過時間後の状態を保持 (deltaTimeSecondsがundefinedの場合は60fpsを想定)
+    const actualDeltaTime: number = deltaTimeSeconds ?? 1.0 / 60.0;
+    this._userTimeSeconds += actualDeltaTime;
     goalOffset = Math.floor(
       this._userTimeSeconds * this._wavFileInfo._samplingRate
     );
@@ -95,6 +67,15 @@ export class LAppWavFileHandler {
     this._lastRms = 0.0;
 
     this.loadWavFile(filePath);
+  }
+
+  /**
+   * Get parameter value for lip sync.
+   *
+   * @return RMS value from audio
+   */
+  public getParameter(): number {
+    return this.getRms();
   }
 
   public getRms(): number {
@@ -303,6 +284,7 @@ export class LAppWavFileHandler {
   }
 
   constructor() {
+    super();
     this._pcmData = null;
     this._userTimeSeconds = 0.0;
     this._lastRms = 0.0;

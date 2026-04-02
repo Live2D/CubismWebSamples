@@ -11,6 +11,7 @@ import {
   BreathParameterData,
   CubismBreath
 } from '@framework/effect/cubismbreath';
+import { LookParameterData, CubismLook } from '@framework/effect/cubismlook';
 import { CubismEyeBlink } from '@framework/effect/cubismeyeblink';
 import { ICubismModelSetting } from '@framework/icubismmodelsetting';
 import { CubismIdHandle } from '@framework/id/cubismid';
@@ -27,6 +28,14 @@ import {
   CubismMotionQueueEntryHandle,
   InvalidMotionQueueEntryHandleValue
 } from '@framework/motion/cubismmotionqueuemanager';
+import { CubismUpdateScheduler } from '@framework/motion/cubismupdatescheduler';
+import { CubismBreathUpdater } from '@framework/motion/cubismbreathupdater';
+import { CubismLookUpdater } from '@framework/motion/cubismlookupdater';
+import { CubismEyeBlinkUpdater } from '@framework/motion/cubismeyeblinkupdater';
+import { CubismExpressionUpdater } from '@framework/motion/cubismexpressionupdater';
+import { CubismPhysicsUpdater } from '@framework/motion/cubismphysicsupdater';
+import { CubismPoseUpdater } from '@framework/motion/cubismposeupdater';
+import { CubismLipSyncUpdater } from '@framework/motion/cubismlipsyncupdater';
 import { csmRect } from '@framework/type/csmrectf';
 import {
   CSM_ASSERT,
@@ -58,6 +67,7 @@ enum LoadStep {
   WaitLoadUserData,
   SetupEyeBlinkIds,
   SetupLipSyncIds,
+  SetupLook,
   SetupLayout,
   LoadMotion,
   WaitLoadMotion,
@@ -180,6 +190,14 @@ export class LAppModel extends CubismUserModel {
               this._expressionCount++;
 
               if (this._expressionCount >= count) {
+                // Expression Updaterの追加
+                if (this._expressionManager != null) {
+                  const expressionUpdater = new CubismExpressionUpdater(
+                    this._expressionManager
+                  );
+                  this._updateScheduler.addUpdatableList(expressionUpdater);
+                }
+
                 this._state = LoadStep.LoadPhysics;
 
                 // callback
@@ -215,6 +233,12 @@ export class LAppModel extends CubismUserModel {
           .then(arrayBuffer => {
             this.loadPhysics(arrayBuffer, arrayBuffer.byteLength);
 
+            // Physics Updaterの追加
+            if (this._physics) {
+              const physicsUpdater = new CubismPhysicsUpdater(this._physics);
+              this._updateScheduler.addUpdatableList(physicsUpdater);
+            }
+
             this._state = LoadStep.LoadPose;
 
             // callback
@@ -248,6 +272,12 @@ export class LAppModel extends CubismUserModel {
           .then(arrayBuffer => {
             this.loadPose(arrayBuffer, arrayBuffer.byteLength);
 
+            // Pose Updaterの追加
+            if (this._pose) {
+              const poseUpdater = new CubismPoseUpdater(this._pose);
+              this._updateScheduler.addUpdatableList(poseUpdater);
+            }
+
             this._state = LoadStep.SetupEyeBlink;
 
             // callback
@@ -266,8 +296,14 @@ export class LAppModel extends CubismUserModel {
     const setupEyeBlink = (): void => {
       if (this._modelSetting.getEyeBlinkParameterCount() > 0) {
         this._eyeBlink = CubismEyeBlink.create(this._modelSetting);
-        this._state = LoadStep.SetupBreath;
+        const eyeBlinkUpdater = new CubismEyeBlinkUpdater(
+          () => this._motionUpdated,
+          this._eyeBlink
+        );
+        this._updateScheduler.addUpdatableList(eyeBlinkUpdater);
       }
+
+      this._state = LoadStep.SetupBreath;
 
       // callback
       setupBreath();
@@ -300,6 +336,10 @@ export class LAppModel extends CubismUserModel {
       ];
 
       this._breath.setParameters(breathParameters);
+
+      const breathUpdater = new CubismBreathUpdater(this._breath);
+      this._updateScheduler.addUpdatableList(breathUpdater);
+
       this._state = LoadStep.LoadUserData;
 
       // callback
@@ -364,6 +404,63 @@ export class LAppModel extends CubismUserModel {
       for (let i = 0; i < lipSyncIdCount; ++i) {
         this._lipSyncIds[i] = this._modelSetting.getLipSyncParameterId(i);
       }
+
+      // LipSync Updaterの追加
+      if (this._lipSyncIds.length > 0) {
+        const lipSyncUpdater = new CubismLipSyncUpdater(
+          this._lipSyncIds,
+          this._wavFileHandler
+        );
+        this._updateScheduler.addUpdatableList(lipSyncUpdater);
+      }
+
+      this._state = LoadStep.SetupLook;
+
+      // callback
+      setupLook();
+    };
+
+    // Look
+    const setupLook = (): void => {
+      this._look = CubismLook.create();
+
+      const lookParameters: Array<LookParameterData> = [
+        new LookParameterData(this._idParamAngleX, 30.0, 0.0, 0.0),
+        new LookParameterData(this._idParamAngleY, 0.0, 30.0, 0.0),
+        new LookParameterData(this._idParamAngleZ, 0.0, 0.0, -30.0),
+        new LookParameterData(this._idParamBodyAngleX, 10.0, 0.0, 0.0),
+        new LookParameterData(
+          CubismFramework.getIdManager().getId(
+            CubismDefaultParameterId.ParamEyeBallX
+          ),
+          1.0,
+          0.0,
+          0.0
+        ),
+        new LookParameterData(
+          CubismFramework.getIdManager().getId(
+            CubismDefaultParameterId.ParamEyeBallY
+          ),
+          0.0,
+          1.0,
+          0.0
+        )
+      ];
+
+      this._look.setParameters(lookParameters);
+
+      const lookUpdater = new CubismLookUpdater(this._look, this._dragManager);
+      this._updateScheduler.addUpdatableList(lookUpdater);
+
+      // callback
+      finalizeUpdaters();
+    };
+
+    // UpdateScheduler最終化処理
+    const finalizeUpdaters = (): void => {
+      // 全てのUpdaterが追加されたのでUpdateSchedulerを最終ソート
+      this._updateScheduler.sortUpdatableList();
+
       this._state = LoadStep.SetupLayout;
 
       // callback
@@ -500,15 +597,12 @@ export class LAppModel extends CubismUserModel {
     const deltaTimeSeconds: number = LAppPal.getDeltaTime();
     this._userTimeSeconds += deltaTimeSeconds;
 
-    this._dragManager.update(deltaTimeSeconds);
-    this._dragX = this._dragManager.getX();
-    this._dragY = this._dragManager.getY();
-
-    // モーションによるパラメータ更新の有無
-    let motionUpdated = false;
-
     //--------------------------------------------------------------------------
     this._model.loadParameters(); // 前回セーブされた状態をロード
+
+    // Reset motion updated flag each frame
+    this._motionUpdated = false;
+
     if (this._motionManager.isFinished()) {
       // モーションの再生がない場合、待機モーションの中からランダムで再生する
       this.startRandomMotion(
@@ -516,7 +610,7 @@ export class LAppModel extends CubismUserModel {
         LAppDefine.PriorityIdle
       );
     } else {
-      motionUpdated = this._motionManager.updateMotion(
+      this._motionUpdated = this._motionManager.updateMotion(
         this._model,
         deltaTimeSeconds
       ); // モーションを更新
@@ -524,63 +618,8 @@ export class LAppModel extends CubismUserModel {
     this._model.saveParameters(); // 状態を保存
     //--------------------------------------------------------------------------
 
-    // まばたき
-    if (!motionUpdated) {
-      if (this._eyeBlink != null) {
-        // メインモーションの更新がないとき
-        this._eyeBlink.updateParameters(this._model, deltaTimeSeconds); // 目パチ
-      }
-    }
-
-    if (this._expressionManager != null) {
-      this._expressionManager.updateMotion(this._model, deltaTimeSeconds); // 表情でパラメータ更新（相対変化）
-    }
-
-    // ドラッグによる変化
-    // ドラッグによる顔の向きの調整
-    this._model.addParameterValueById(this._idParamAngleX, this._dragX * 30); // -30から30の値を加える
-    this._model.addParameterValueById(this._idParamAngleY, this._dragY * 30);
-    this._model.addParameterValueById(
-      this._idParamAngleZ,
-      this._dragX * this._dragY * -30
-    );
-
-    // ドラッグによる体の向きの調整
-    this._model.addParameterValueById(
-      this._idParamBodyAngleX,
-      this._dragX * 10
-    ); // -10から10の値を加える
-
-    // ドラッグによる目の向きの調整
-    this._model.addParameterValueById(this._idParamEyeBallX, this._dragX); // -1から1の値を加える
-    this._model.addParameterValueById(this._idParamEyeBallY, this._dragY);
-
-    // 呼吸など
-    if (this._breath != null) {
-      this._breath.updateParameters(this._model, deltaTimeSeconds);
-    }
-
-    // 物理演算の設定
-    if (this._physics != null) {
-      this._physics.evaluate(this._model, deltaTimeSeconds);
-    }
-
-    // リップシンクの設定
-    if (this._lipsync) {
-      let value = 0.0; // リアルタイムでリップシンクを行う場合、システムから音量を取得して、0~1の範囲で値を入力します。
-
-      this._wavFileHandler.update(deltaTimeSeconds);
-      value = this._wavFileHandler.getRms();
-
-      for (let i = 0; i < this._lipSyncIds.length; ++i) {
-        this._model.addParameterValueById(this._lipSyncIds[i], value, 0.8);
-      }
-    }
-
-    // ポーズの設定
-    if (this._pose != null) {
-      this._pose.updateParameters(this._model, deltaTimeSeconds);
-    }
+    // UpdateSchedulerによる一括エフェクト更新
+    this._updateScheduler.onLateUpdate(this._model, deltaTimeSeconds);
 
     this._model.update();
   }
@@ -937,6 +976,20 @@ export class LAppModel extends CubismUserModel {
   }
 
   /**
+   * デストラクタに相当する処理のオーバーライド
+   */
+  public release(): void {
+    if (this._look) {
+      CubismLook.delete(this._look);
+      this._look = null;
+    }
+    if (this._updateScheduler) {
+      this._updateScheduler.release();
+    }
+    super.release();
+  }
+
+  /**
    * コンストラクタ
    */
   public constructor() {
@@ -964,12 +1017,6 @@ export class LAppModel extends CubismUserModel {
     this._idParamAngleZ = CubismFramework.getIdManager().getId(
       CubismDefaultParameterId.ParamAngleZ
     );
-    this._idParamEyeBallX = CubismFramework.getIdManager().getId(
-      CubismDefaultParameterId.ParamEyeBallX
-    );
-    this._idParamEyeBallY = CubismFramework.getIdManager().getId(
-      CubismDefaultParameterId.ParamEyeBallY
-    );
     this._idParamBodyAngleX = CubismFramework.getIdManager().getId(
       CubismDefaultParameterId.ParamBodyAngleX
     );
@@ -989,9 +1036,14 @@ export class LAppModel extends CubismUserModel {
     this._allMotionCount = 0;
     this._wavFileHandler = new LAppWavFileHandler();
     this._consistency = false;
+    this._look = null;
+    this._updateScheduler = new CubismUpdateScheduler();
+    this._motionUpdated = false;
   }
 
-  private _subdelegate: LAppSubdelegate;
+  private _updateScheduler: CubismUpdateScheduler; // アップデートスケジューラー
+  private _motionUpdated: boolean; // モーション更新フラグ
+  private _subdelegate: LAppSubdelegate; // サブデリゲート
 
   _modelSetting: ICubismModelSetting; // モデルセッティング情報
   _modelHomeDir: string; // モデルセッティングが置かれたディレクトリ
@@ -1009,9 +1061,9 @@ export class LAppModel extends CubismUserModel {
   _idParamAngleX: CubismIdHandle; // パラメータID: ParamAngleX
   _idParamAngleY: CubismIdHandle; // パラメータID: ParamAngleY
   _idParamAngleZ: CubismIdHandle; // パラメータID: ParamAngleZ
-  _idParamEyeBallX: CubismIdHandle; // パラメータID: ParamEyeBallX
-  _idParamEyeBallY: CubismIdHandle; // パラメータID: ParamEyeBAllY
   _idParamBodyAngleX: CubismIdHandle; // パラメータID: ParamBodyAngleX
+
+  _look: CubismLook; // ドラッグ追従
 
   _state: LoadStep; // 現在のステータス管理用
   _expressionCount: number; // 表情データカウント
